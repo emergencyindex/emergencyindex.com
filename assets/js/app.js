@@ -88,10 +88,9 @@ $(function() {
   }
 
   $('.project-load').click(function(){
-    console.log('gonna load project via click!');
     loadProject($(this).parent());
   });
-  
+
   var scrollSpyExit = function(){
     $('#scrollspy-nav').find('a[href="#' + $(this).attr('id') + '"]').removeClass('active');
   }
