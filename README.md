@@ -34,6 +34,10 @@ Syntax highlighted code block
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
 
+### Jekyll
+
+`bundle exec jekyll serve`
+
 ### Project template
 
 ```markdown
@@ -56,6 +60,8 @@ contact:
 footnote: 
 tags: 
   - 
+pages:
+needs_review:
 ---
 
 ```
