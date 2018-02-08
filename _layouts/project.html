@@ -1,6 +1,7 @@
 ---
 layout: default
 ---
+
 <article class='row'>
   <header class="col s12 m4 project-info">
     <img src="/assets/img/{{page.volume}}/{{page.image}}" class="materialboxed project-img" data-caption="photo: {{page.photo_credit}}" />
@@ -19,7 +20,7 @@ layout: default
     </p>
 
     <h5>
-      <strong>{{ page.name }}</strong>
+      <strong>{{ page.contributor }}</strong>
     </h5>
 
     <p class="project-collaborators">
@@ -29,7 +30,7 @@ layout: default
     <p>
       {{page.home}}
       <br />
-      {{page.published_contact}}
+      {{page.contact}}
       {% for link in page.links %}
       	<a href="http://{{ link }}">{{ link }}</a>
       {% endfor %}
@@ -44,7 +45,7 @@ layout: default
     </h5>
 
     <h6>
-      <strong>{{ page.name }}</strong>
+      <strong>{{ page.contributor }}</strong>
     </h6>
 
     <p class="description">{{ content }}</p>
