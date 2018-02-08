@@ -22,9 +22,12 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Build settings
 markdown: kramdown
+# plugins:
+#   - jekyll-feed
 
-plugins:
-  - jekyll-feed
+sass:
+  sass_dir: _sass
+  style: compressed
 
 defaults:
   - scope:
@@ -33,9 +36,15 @@ defaults:
       image: true
 
 collections:
+  volumes: 
+    output: true
+    permalink: /volume/:path
   projects:
     output: true
     permalink: /:collection/:path
+  indexes:
+    output: true
+    permalink: /index/:path
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list

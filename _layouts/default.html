@@ -4,14 +4,19 @@
   <head>
     <meta charset="utf-8"/>
     <title>{% if page.title %} {{ page.title }} | {% endif %} {{ site.name }}</title>
-    <link rel="stylesheet" href="{{site.baseurl}}/assets/style.css" />
     <meta name="description" content="{{site.description}}"/>
     <meta name="author" content="{{site.author}}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="author" href="humans.txt"/>
-    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="{{site.baseurl}}/feed.xml" />
+    <!-- <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="{{site.baseurl}}/feed.xml" /> -->
 
-    <link rel="stylesheet" href="{{site.baseurl}}/assets/css/materialize.min.css" />
+    <link rel="stylesheet" href="{{site.baseurl}}/assets/css/styles.css" />
+
+    <script src="{{site.baseurl}}/assets/js/jquery-3.2.1.min.js"></script>
     <script src="{{site.baseurl}}/assets/js/materialize.min.js"></script>
+    <script src="{{site.baseurl}}/assets/js/scrollspy.js"></script>
+    <script src="{{site.baseurl}}/assets/js/jquery.ba-throttle-debounce.min.js"></script>
+
   </head>
 
   <body>
@@ -42,7 +47,7 @@
       </ul>
     </nav> -->
 
-    <main>
+    <main class="fixed-margin">
 
       {{ content }}
 
@@ -53,7 +58,7 @@
       <p>&copy; <time>2016</time> {{ site.author }}</p>
     </footer> -->
 
-    <!-- <script src="{{site.baseurl}}/scripts.js"></script> -->
+    <script src="{{site.baseurl}}/assets/js/app.js"></script>
   </body>
 
 </html>

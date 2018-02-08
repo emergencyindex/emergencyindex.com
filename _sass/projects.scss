@@ -1,0 +1,144 @@
+
+.file-path-wrapper label{
+  margin-left: 105px;
+}
+
+.dropzone .dz-preview, .dropzone .dz-preview .dz-image{
+  width: 100%;
+  height: auto;
+  margin: 0;
+  border-radius: 0;
+}
+
+.dz-image img{
+  max-width: 100%;
+}
+
+.dropzone{
+  margin-bottom: 1.5em;
+}
+
+label[for="project_already_submitted"], label[for="project_description_monospace"] {
+  margin-bottom: 1.5em;
+}
+
+#attachment-error{
+  color: red;
+}
+
+#project_description{
+  min-height: 75vh;
+}
+
+#project_description, .description{
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-size: 15px;
+  font-family: "Lucida Sans Typewriter", "Lucida Console", monaco, monospace;
+}
+
+.material-placeholder{
+    margin-top: 2em;
+}
+
+.project-img.active{
+  max-width: none;
+  max-height: none;
+}
+
+.right-panel{
+  padding-left: 2.5em !important;
+  padding-right: 2.5em !important;
+}
+
+.project-img{
+  max-width: 100%;
+  width: auto;
+  max-height: 50vh;
+  height: auto;
+}
+
+.photo-credit{
+  position: absolute;
+  text-align: right;
+  -moz-transform: rotate(-90deg) translate(0, -110%);
+  -webkit-transform: rotate(-90deg) translate(0, -110%);
+  -o-transform: rotate(-90deg) translate(0, -110%);
+  -ms-transform: rotate(-90deg) translate(0, -110%);
+  transform: rotate(-90deg) translate(0, -110%);
+  -ms-transform-origin: left top;
+  -webkit-transform-origin: left top;
+  transform-origin: left top;
+  max-width: 20vw;
+}
+
+.project-collaborators{
+  margin-top: 0;
+}
+
+.project-name-with-collaborators{
+  margin-bottom: 0;
+}
+
+.label{
+  color: #9e9e9e;
+}
+
+.select2-container{
+  width: 100%!important;
+}
+
+.project-pub{
+  margin-left: 33%;
+}
+
+.sticky-nav{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background: white;
+}
+
+
+#scrollspy-nav .active{
+  color: red;
+}
+.section.scrollspy{
+  min-height: 100vh;
+  margin-bottom: 100px;
+}
+
+.project-info{
+  overflow-wrap: break-word;
+}
+
+.nav-search-row {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+  max-width: 280px;
+}
+
+.nav-search-row input[type=search]{
+  height: 3.5rem;
+}
+
+#project_search .input-field {
+  display: flex;
+  align-items: center;
+}
+
+@media #{$small-and-down} {
+  .project-img{
+    max-height: none;
+  }
+  .photo-credit{
+    max-width: none;
+  }
+
+  .right-panel{
+    padding-left: 0.5rem !important;
+    padding-right: 1em !important;
+  }
+
+}
+

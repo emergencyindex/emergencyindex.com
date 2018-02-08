@@ -1,0 +1,50 @@
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
+
+
+$primary-color: #000 !default;
+$primary-color-light: #a1a1a1 !default;
+$primary-color-dark: #696969 !default;
+
+$secondary-color: #666 !default;
+$success-color: #999 !default;
+$error-color: #c00!default;
+$link-color: #333 !default;
+
+button{
+  border: none;
+}
+
+
+
+
+
+@import 'materialize';
+
+.select-dropdown label{
+  display: inline;
+}
+
+.btn-icon {
+  padding: 0 0.25rem;
+}
+.fixed-margin{
+  margin-right: 300px;
+}
+
+.btn-pad{
+  padding-bottom: 3rem;
+}
+
+.btn-flat:hover{
+  color: white;
+}
+
+@media #{$medium-and-down} {
+  .btn-icon {
+    padding: 0 2rem;
+  }
+  .fixed-margin{
+    margin-right: 0;
+  }
+}

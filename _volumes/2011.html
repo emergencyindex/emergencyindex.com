@@ -1,0 +1,70 @@
+---
+layout: default
+name: 2011
+---
+<section class="row">
+  <h1>2011</h1>
+  <div class="col s12">
+    {% assign projects = site.projects | where: "volume", "2011" | map: "url" %}
+    {% for project in projects %}
+    {% assign item = project | split: "/projects/2011/" | last %}
+      <div id="{{item}}" class="section scrollspy">
+        <h1>{{item}}</h1>
+        <div class="progress">
+          <div class="indeterminate"></div>
+        </div>
+      </div>
+    {% endfor %}
+ </div>
+</section>
+
+<script type="text/javascript">
+$(function() {
+
+  $('.scrollspy').scrollSpy();
+
+  var scrollSpyEnter = function() {
+    var $navElem = $('#scrollspy-nav').find('a[href="#' + $(this).attr('id') + '"]');
+    if( $navElem.length ){
+      $navElem.addClass('active');
+      $('#slide-out').animate({
+          scrollTop: $navElem.offset().top - $('#scrollspy-nav').offset().top
+      }, 100);
+    }
+
+    for(i=0;i < $('.collapsible-nav-item').length; i++){
+      $('.collapsible-nav').collapsible('close',i);
+    }
+
+    if($(this).find('.progress').length){
+      var _project_id = $(this).attr('id');
+      
+      $('.material-tooltip').remove();
+      $('#'+_project_id).load('/projects/2011/'+_project_id+' article');
+      $('.tooltipped').tooltip();
+
+      Materialize.fadeInImage('.project-img');
+
+      // $.ajax({
+      //   url: '/projects/2011/'+_project_id,
+      //   method: "GET",
+      //   success: function(response){
+      //     $('.material-tooltip').remove();
+      //     $('#'+_project_id).html(response);
+      //     $('.tooltipped').tooltip();
+
+      //     Materialize.fadeInImage('.project-img');
+
+      //   }
+      // });
+    }
+
+  }
+
+  $('.scrollspy').on('scrollSpy:enter', $.debounce(100, scrollSpyEnter) );
+  $('.scrollspy').on('scrollSpy:exit', function() {
+    $('#scrollspy-nav').find('a[href="#' + $(this).attr('id') + '"]').removeClass('active');
+  });
+
+});
+</script>

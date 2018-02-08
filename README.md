@@ -1,3 +1,8 @@
+---
+layout: default
+title: README
+permalink: /readme/
+---
 ## alveol.us
 
 You can use the [editor on GitHub](https://github.com/edwardsharp/alveol.us/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
@@ -27,3 +32,30 @@ Syntax highlighted code block
 ```
 
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+
+
+### Project template
+
+```markdown
+---
+layout: project
+volume: 
+image: 
+photo_credit: 
+title: 
+first_performed: 
+place: 
+times_performed: 
+contributor: 
+collaborators:
+	-
+home: 
+links: 
+  - 
+contact: 
+footnote: 
+tags: 
+  - 
+---
+
+```

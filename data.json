@@ -1,0 +1,14 @@
+---
+---
+
+[
+  {% assign projects = site.projects | sort: "volume"  %}{% for project in projects %}{
+      "type": "Project",
+      "properties": {
+        "volume": "{{ project.volume }}",
+        "title": "{{ project.title }}",
+        "contributor": "{{ project.contributor }}",
+        "url": "{{site.baseurl}}{{project.url}}",
+      }
+  }{% unless forloop.last %},{% endunless %}{% endfor %}
+]

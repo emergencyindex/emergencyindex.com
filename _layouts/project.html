@@ -1,11 +1,15 @@
 ---
 layout: default
 ---
-<article>
-  <header>
-    <h2>{{ page.title }} -- {{ page.name }}</h2>
-    <img src="/assets/img/{{page.volume}}/{{page.image}}" />
+<article class='row'>
+  <header class="col s12 m4 project-info">
+    <img src="/assets/img/{{page.volume}}/{{page.image}}" class="materialboxed project-img" data-caption="photo: {{page.photo_credit}}" />
     <div class="photo-credit truncate">{{page.photo_credit}}</div>
+    
+    <h5>
+      <strong>{{ page.title }}</strong>
+    </h5>
+    
     <p>
       {{page.first_performed}}
       <br />
@@ -34,10 +38,22 @@ layout: default
     {{page.footnote}}
 
   </header>
-  <div class="entry">{{ content }}</div>
+  <div class="col s12 m8 right-panel">
+    <h5>
+      <strong>{{ page.title }}</strong>
+    </h5>
+
+    <h6>
+      <strong>{{ page.name }}</strong>
+    </h6>
+
+    <p class="description">{{ content }}</p>
+
+
+  </div>
   <footer>
     {% for tag in page.tags %}
-    	<span>{{tag}};</span>
+    	<span class="chip">{{tag}}</span>
     {% endfor %}
   </footer>
 </article>

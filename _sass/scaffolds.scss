@@ -1,0 +1,172 @@
+body {
+  background-color: #fff;
+  color: #333;
+  margin: 33px;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+  &:visited {
+    color: #666;
+  }
+
+  &:hover {
+    color: #fff;
+    background-color: #000;
+  }
+}
+
+th {
+  padding-bottom: 8px;
+  padding-top: 0;
+}
+
+td {
+  padding: 0 5px 7px;
+}
+
+th.ellipsis, td.ellipsis {
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+td.minwidth {
+  min-width: 100px;
+}
+
+th.maxwidth, td.maxwidth {
+  max-width: 75px;
+}
+
+
+@media #{$medium-and-down} {
+  th.ellipsis, td.ellipsis {
+    max-width: initial;
+    overflow: initial;
+    text-overflow: initial;
+    white-space: initial;
+  }
+}
+
+div {
+  &.field, &.actions {
+    margin: 1.5em 0;
+    &.btn{
+      width: 100%;
+    }
+  }
+}
+
+.actions > .btn, input[type=submit], label {
+  width: 100%;
+}
+
+textarea.materialize-textarea.validate + label:not(.label-icon).active {
+  transform: translateY(-20px);
+}
+
+
+
+#notice {
+  color: green;
+}
+
+#error_explanation {
+  border: 2px solid #c00;
+  border-radius: 2px;
+  padding: 7px 7px 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+
+  h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: -7px -7px 0;
+    background-color: #c00;
+    color: #fff;
+  }
+
+  ul{
+    padding-left: 21px;
+  }
+
+  ul li {
+    font-size: 12px;
+    list-style: square;
+  }
+}
+
+label {
+  display: block;
+}
+
+.input-field{
+  margin-top: 0;
+}
+
+.input-field em{
+  position: relative;
+  top: -1em;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* pagination */
+.pagination {
+  text-align: center;
+  padding: 1em;
+  cursor: default; 
+}
+.pagination a, .pagination span {
+  padding: 0.2em 0.3em; 
+}
+.pagination .disabled {
+  color: #aaaaaa; 
+}
+.pagination .current {
+  font-style: normal;
+  font-weight: bold;
+  text-decoration: underline;
+  display: inline-block;
+  width: 1.4em;
+  height: 1.4em;
+  line-height: 1.5; 
+}
+
+
+@media #{$small-and-down} {
+  body{
+    margin: 0;
+    padding: 0 0.5rem;
+  }
+
+  .collapsible.popout > li{
+    margin: 0;
+  }
+
+  h1{
+    margin: 0 1rem 1rem 1rem;
+  }
+}
