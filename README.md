@@ -3,7 +3,7 @@ layout: default
 title: README
 permalink: /readme/
 ---
-## alveol.us
+## EmergencyINDEX
 
 You can use the [editor on GitHub](https://github.com/edwardsharp/alveol.us/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
@@ -11,7 +11,7 @@ Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://j
 
 ### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Markdown is a lightweight and easy-to-use syntax for styling writing. It includes conventions for
 
 ```markdown
 Syntax highlighted code block
@@ -33,11 +33,6 @@ Syntax highlighted code block
 
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
-
-### Jekyll
-
-`bundle exec jekyll serve`
-
 ### Project template
 
 ```markdown
@@ -52,7 +47,7 @@ place:
 times_performed: 
 contributor: 
 collaborators:
-	-
+  -
 home: 
 links: 
   - 
@@ -65,3 +60,23 @@ needs_review:
 ---
 
 ```
+
+### Jekyll (for local development)
+
+To make changes and preview locally, checkout this repository and run jekyll.
+
+$ `bundle exec jekyll serve`
+
+...to get started make sure you've got ruby 2.4 (or higher version) installed. see [rvm](https://rvm.io/)
+
+$ `bundle install`
+
+$ `bundle exec jekyll serve`
+
+...or
+
+$ `gem install bundler`
+
+$ `bundle install`
+
+$ `bundle exec jekyll serve`
