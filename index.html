@@ -1,0 +1,22 @@
+---
+layout: default
+title: Emergency INDEX
+---
+
+<div class="collection with-header">
+  <div class="collection-header"><h4>Indxes</h4></div>
+  {% for index in site.indexes %}
+  {% if index.name %}
+    <a href="{{index.url}}" class="waves-effect collection-item">{{index.name}}</a>
+  {% endif %}
+  {% endfor %}
+</div>
+
+<div class="collection with-header">
+  <div class="collection-header"><h4>Volumes</h4></div>
+  {% for volume in site.volumes %}
+  {%- if volume.name -%}
+    <a href="{{volume.url}}" class="waves-effect collection-item">{{volume.name}}</a>
+  {%- endif -%}
+  {% endfor %}
+</div>
