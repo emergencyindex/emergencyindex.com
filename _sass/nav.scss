@@ -1,0 +1,33 @@
+#nav {
+  top: 0;
+  max-height: 100px;
+}
+#user-nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+#user-nav a{
+  padding-right: 5px;
+  padding-left: 5px;
+}
+a.username{
+  min-width: 50%;
+  max-width: 85%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+.nav-heading{
+  width: 100%;
+  text-align: right;
+  padding-right: 2em;
+}
+.nav-item{
+  padding: 0 32px;
+  font-weight: bold;
+}
+.logout i{
+  margin-top: 16px;
+}

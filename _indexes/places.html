@@ -3,4 +3,65 @@ layout: default
 name: Places
 ---
 
-placez!
+{%- assign places = site.projects | map: 'place' | uniq | sort_natural -%}
+
+
+<ul class="indexes-collapsible popout" data-collapsible="accordion">
+  {%- assign index = "0" -%}
+  {%- for place in places -%}
+  {%- assign projects = site.projects | where: "place", place -%}
+  {%- assign newTag = place | slice: 0 | upcase -%}
+  {%- if index != newTag -%}
+  {%- assign index = newTag -%}
+  <li id="{{index}}" class="index scrollspy-terms"><h4>{{index}}</h4></li>
+  {%- endif -%}
+  <li>
+    <div class="flex-header collapsible-header with-hover">
+      <span>{{ place }}</span>
+      <span class="badge" data-badge-caption="project{% if projects.size != 1 %}s{% endif %}">{{projects.size}}</span>
+    </div>
+    <div class="collapsible-body">
+      <div class="collection">
+        {%- for project in projects -%}
+          <a href="{{ project.url }}" class="collection-item">{{ project.title }} -- {{ project.contributor }} <span class="badge">{{project.volume}}</span></a>
+        {%- endfor -%}
+      </div>
+    </div>
+  </li>
+  {%- endfor -%}
+</ul>
+
+<script type="text/javascript">
+$(function() {
+  
+  var items = [];
+  $('.index').each(function() {
+    items.push('<li><a href="#'+$(this).attr('id')+'"'+'>'+$(this).find('h4').html()+'</a></li>');
+  });
+  $('#scrollspy-nav ul')
+    .html(items.join(''))
+    .removeClass('hidden');
+
+  $( "<li/>", {
+    class: 'nav-index-heading',
+    html: 'Index: Places'
+  }).appendTo($('.sticky-nav'));
+
+  $('.scrollspy-terms').scrollSpy();
+  var scrollSpyTermsEnter = function() {
+    $('#scrollspy-nav').find('a.active').removeClass('active');
+    var $navElem = $('#scrollspy-nav').find('a[href="#' + $(this).attr('id') + '"]');
+    if( $navElem.length ){
+      $navElem.addClass('active');
+      $('#slide-out').animate({
+          scrollTop: $navElem.offset().top - $('#scrollspy-nav').offset().top
+      }, 100);
+    }
+    for(i=0;i < $('.collapsible-nav-item').length; i++){
+      $('.collapsible-nav').collapsible('close',i);
+    }
+  }
+  $('.scrollspy-terms').on('scrollSpy:enter', scrollSpyTermsEnter );
+
+});
+</script>

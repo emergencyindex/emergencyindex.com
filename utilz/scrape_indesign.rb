@@ -60,7 +60,7 @@ module ScrapeIndesign
     
     p "reading #{@options[:in_file]}...\n"
     Dir.mkdir("#{@options[:out_dir]}/projects") unless Dir.exist?("#{@options[:out_dir]}/projects")
-    
+    Dir.mkdir("#{@options[:out_dir]}/projects/#{@options[:vol]}") unless Dir.exist?("#{@options[:out_dir]}/projects/#{@options[:vol]}")
     
 
     page = Nokogiri::HTML(open(@options[:in_file]))
@@ -127,7 +127,7 @@ module ScrapeIndesign
       project['pages'] = idx_str
 
       @options[:pageoffset] += 2
-      outfile = "#{@options[:out_dir]}/projects/#{idx_str}.md"
+      outfile = "#{@options[:out_dir]}/projects/#{@options[:vol]}/#{idx_str}.md"
       File.open(outfile,"w") do |f|
         f.write(ERBWithBinding::render_from_hash(@project_template, project))
       end
@@ -137,7 +137,7 @@ module ScrapeIndesign
     end
 
     
-    outjson = "#{@options[:out_dir]}/projects/projects.json"
+    outjson = "#{@options[:out_dir]}/projects/#{@options[:vol]}/projects.json"
     File.open(outjson,"w") do |f|
       f.write(projects.to_json)
     end
@@ -146,8 +146,25 @@ module ScrapeIndesign
     p "Done!"
     p "wrote #{projects.length} projects to: #{outjson}"
 
+  end #scrape_html
+
+  def dump_from_rails
+    project_template = File.read Rails.root.join('app/views/projects/jekyll.html.erb')
+    Project.where(volume: Volume.where(year: 2011)).each do |project|
+      @project = project
+      outfile = "/Users/edward/src/tower/github/alveol.us/utilz/projects/2011/#{project.pages}.md"
+      File.open(outfile,"w") do |f|
+        f.write(ERB.new(project_template).result(binding))
+        p "wrote #{outfile}"
+      end
+    end
   end
 
+  def rename_imgz(dir: "/Users/edward/src/tower/github/alveol.us/assets/img/2011/")
+    Dir["#{dir}*.jpg"].each do |img|
+      File.rename(File.basename(img), File.basename(img).gsub(/[&$+,\/:;=?@<>\[\]\{\}\|\\\^~%# ]/,'_'))
+    end
+  end
 
 private
   def self.status_update(len:nil, idx:nil)

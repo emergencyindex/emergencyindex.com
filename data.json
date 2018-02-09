@@ -6,9 +6,24 @@
       "type": "Project",
       "properties": {
         "volume": "{{ project.volume }}",
+        "pages": "{{project.pages}}",
+        "url": "{{site.baseurl}}{{project.url}}",
         "title": "{{ project.title }}",
         "contributor": "{{ project.contributor }}",
-        "url": "{{site.baseurl}}{{project.url}}",
+        "image": "{{project.image}}",
+        "photo_credit": "{{project.photo_credit}}",
+        "title": "{{project.title}}",
+        "first_performed": "{{project.first_performed}}",
+        "place": "{{project.place}}",
+        "times_performed": "{{project.times_performed}}",
+        "contributor": "{{project.contributor}}",
+        "collaborators": [{% for collaborator in project.collaborators %}"{{collaborator}}"{% unless forloop.last %},{% endunless %}{% endfor %}],
+        "home": "{{project.home}}",
+        "links": [{% for link in project.links %}"{{link}}"{% unless forloop.last %},{% endunless %}{% endfor %}],
+        "contact": "{{project.contact}}",
+        "footnote": "{{project.footnote}}",
+        "tags": [{% for tag in project.tags %}"{{tag}}"{% unless forloop.last %},{% endunless %}{% endfor %}]
+        
       }
   }{% unless forloop.last %},{% endunless %}{% endfor %}
 ]

@@ -1,0 +1,32 @@
+---
+---
+{%-assign tags = '' | split: ',' -%}
+{%-assign unique_tags = '' | split: ',' -%}
+{%-assign project_tags = site.projects | map: 'tags' | join: ';' | join: ';' | split: ';' -%}
+{%-for tag in project_tags -%}
+  {%- assign tags = tags | push: tag -%}
+{%- endfor -%}
+{%- assign tags = tags | sort -%}
+{%- for tag in tags -%}
+  {%- unless tag == previous -%}
+    {%- assign unique_tags = unique_tags | push: tag -%}
+  {%- endunless -%}
+  {%- assign previous = tag -%}
+{%- endfor -%}
+{
+  {%- for tag in unique_tags -%}
+  "{{tag}}": 
+  [
+  {%- assign projects = site.projects | where: "tags", tag -%}
+  {%- for project in projects -%}
+  {%- if project.tags contains tag -%}{
+    "url": "{{ project.url }}",
+    "title": "{{ project.title }}",
+    "contributor": "{{ project.contributor }}",
+    "volume": "{{ project.volume }}"
+  }{% unless forloop.last %},{% endunless %}
+  {%- endif -%}
+  {%- endfor -%}
+  ]{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+}

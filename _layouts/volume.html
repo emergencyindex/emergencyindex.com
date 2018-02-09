@@ -8,7 +8,7 @@ layout: default
     {% for project in projects %}
     {% capture split_str %}/projects/{{ page.volume }}/{% endcapture %}
     {% assign item = project | split: split_str | last %}
-      <div data-href="{{project}}" data-volume="{{page.volume}}" class="section scrollspy">
+      <div id="{{page.volume}}-{{item}}" data-href="{{project}}" data-volume="{{page.volume}}" class="section scrollspy">
         <div class="project-load">
           <h1>{{item}}</h1>
           <div class="progress">
@@ -17,5 +17,25 @@ layout: default
         </div>
       </div>
     {% endfor %}
+
  </div>
 </section>
+
+<div id="volume-nav-{{page.volume}}" class="hidden">
+  {% assign projects = site.projects | where: "volume", page.volume | map: "url" %}
+  {% for project in projects %}
+  {% capture split_str %}/projects/{{ page.volume }}/{% endcapture %}
+  {% assign item = project | split: split_str | last %}
+    <li><a href="#{{page.volume}}-{{item}}" >{{item}}</a></li>
+  {% endfor %}
+</div>
+
+<script type="text/javascript">
+$(function() {
+  $("#volume-nav-{{page.volume}}").detach().appendTo('#scrollspy-nav ul').removeClass('hidden');
+  $( "<li/>", {
+    class: 'nav-index-heading',
+    html: 'Volume: {{page.volume}}'
+  }).appendTo($('.sticky-nav'));
+});
+</script>

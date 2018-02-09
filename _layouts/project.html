@@ -54,7 +54,21 @@ layout: default
   </div>
   <footer>
     {% for tag in page.tags %}
-    	<span class="chip">{{tag}}</span>
+    	<!-- <span class="chip">{{tag}}</span> -->
+      <a class="waves-effect waves-light btn modal-trigger chip" href="#modal{{page.pages}}" data-tag="{{tag}}">{{tag}}</a>
     {% endfor %}
+
+    <div id="modal{{page.pages}}" class="modal bottom-sheet">
+      <div class="modal-content">
+        <h4 class="tag-name"></h4>
+        <div class="collection">
+
+        </div>
+      </div>
+      <!-- <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+      </div> -->
+    </div>
+
   </footer>
 </article>

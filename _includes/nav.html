@@ -1,44 +1,8 @@
-<style type="text/css">
-  #nav {
-    top: 0;
-    max-height: 100px;
-  }
-  #user-nav{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-  }
-  #user-nav a{
-    padding-right: 5px;
-    padding-left: 5px;
-  }
-  a.username{
-    min-width: 50%;
-    max-width: 85%;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    text-align: center;
-  }
-  .nav-heading{
-    width: 100%;
-    text-align: right;
-    padding-right: 2em;
-  }
-  .nav-item{
-    padding: 0 32px;
-    font-weight: bold;
-  }
-  .logout i{
-    margin-top: 16px;
-  }
-</style>
-
 <div id="nav" class="fixed-action-btn click-to-toggle">
   <a href="#" data-activates="slide-out" class="button-collapse btn-floating btn-large tooltipped" data-delay="250", data-tooltip="Show Menu"><i class="material-icons medium">radio_button_checked</i></a>
 </div>
 
-<ul id="slide-out" class="side-nav fixed">
+<ul id="slide-out" class="side-nav fixed hidden">
   <div class="sticky-nav">
     <li>
       <div id="user-nav">
@@ -58,7 +22,9 @@
         <div class="collapsible-body">
           <ul>
           	{% for index in site.indexes %}
+            {% if index.name %}
             <li><a href="{{index.url}}" class="waves-effect">{{index.name}}</a></li>
+            {% endif %}
             {% endfor %}
           </ul>
         </div>
@@ -68,44 +34,20 @@
         <div class="collapsible-body">
           <ul>
           	{% for volume in site.volumes %}
+            {% if volume.name %}
               <li>
               	<a href="{{volume.url}}" class="waves-effect">{{volume.name}}</a>
               </li>
+            {% endif %}
             {% endfor %}
           </ul>
         </div>
       </li>
     </ul>
-  
   </div>
 
-  <!-- if controller_name == 'volumes' and action_name == 'index' -->
-<!--   <div id="scrollspy-nav">
+  <div id="scrollspy-nav">
     <ul class="section table-of-contents">
-      
-    	<li><a href="#<%= id %>" data-turbolinks="false">pages</a></li>
     </ul>
-  </div> -->
+  </div>
 </ul>
-
-
-<script type="text/javascript">
-
-////shit
-  // var nav = document.getElementById("nav");
-  // var mouseoverTimeout;
-
- //  nav.addEventListener("mouseover", function( event ) {   
- //    mouseoverTimeout = setTimeout(function(){
- //     event.target.style.backgroundColor = "purple";
-  //     console.log('purple!');
- //    }, 150)
- //  }, false);
-  
- 
- //  nav.addEventListener("mouseleave", function( event ) {   
- //   event.target.style.backgroundColor = "";
- //    clearTimeout(mouseoverTimeout)
- //  }, false);
-
-</script>

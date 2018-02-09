@@ -14,6 +14,14 @@ $.fn.animateRotate = function(angle, duration, easing, complete) {
 
 
 $(function() {
+
+  $('#slide-out').removeClass('hidden');
+
+  var terms;
+  $.getJSON('/index/terms.json', function(data){
+    terms = data;
+  })
+
   setTimeout(function(){
     $('.mat-select').material_select('destroy');
     $('.mat-select').material_select();
@@ -55,7 +63,33 @@ $(function() {
   // $('#projects-table tbody tr td.has-action').unbind('click');
 
 
-  $('.scrollspy').scrollSpy();
+  var initProjectTagModal = function(){
+    $('.modal').modal({
+      ready: function(modal, trigger) { 
+        var tag = trigger.attr('data-tag');
+        modal.find('.tag-name').html(tag);
+        if(terms[tag]){
+          var caption = terms[tag].length + " project" + (terms[tag].length != 1 ? "s" : "");
+          $("<span/>", {
+            "class": "badge",
+            "data-badge-caption": caption
+          }).appendTo(modal.find('.tag-name'));
+
+          var items = [];
+          $.each( terms[tag], function(key, t) {
+            items.push( "<a href='"+t.url+"' class='collection-item'>"+t.title+" -- "+t.contributor+" <span class='badge'>"+t.volume+"</span></>" );
+          });
+          modal.find('.collection').html(items.join(''));
+        }
+      },
+      complete: function(modal) { 
+        modal.find('.tag-name').html('');
+        modal.find('.collection').html('');
+      }
+    });
+  }
+
+  initProjectTagModal();
 
   var loadProject = function(_this){
     var _project_href = _this.attr('data-href');
@@ -65,8 +99,12 @@ $(function() {
     Materialize.fadeInImage('.project-img');
     setTimeout(function(){
       $('.materialboxed').materialbox();
-    },500);
+      initProjectTagModal();
+    }, 100);
   }
+
+  $('.scrollspy').scrollSpy();
+
   var scrollSpyEnter = function() {
     $(this).find('.indeterminate').removeClass('hidden');
     var $navElem = $('#scrollspy-nav').find('a[href="#' + $(this).attr('id') + '"]');
@@ -87,16 +125,15 @@ $(function() {
 
   }
 
-  $('.project-load').click(function(){
-    loadProject($(this).parent());
-  });
-
   var scrollSpyExit = function(){
     $('#scrollspy-nav').find('a[href="#' + $(this).attr('id') + '"]').removeClass('active');
   }
 
   $('.scrollspy').on('scrollSpy:enter', $.debounce(100, scrollSpyEnter) );
-  $('.scrollspy').on('scrollSpy:exit', $.debounce(100, scrollSpyExit));
+  $('.scrollspy').on('scrollSpy:exit', $.debounce(50, scrollSpyExit));
 
+  $('.project-load').click(function(){
+    loadProject($(this).parent());
+  });
 
 });

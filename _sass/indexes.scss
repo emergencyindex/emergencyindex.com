@@ -14,3 +14,8 @@
   margin-top: 1.14rem;
   margin-bottom: 0;
 }
+
+.collapsible-header.with-hover:hover, .collapsible-header.with-hover.active{
+  background-color: #ddd;
+}
+
