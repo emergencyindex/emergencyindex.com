@@ -1,3 +1,8 @@
+blockquote{
+  border: none;
+  margin: 0;
+  padding-left: 2rem;
+}
 
 .file-path-wrapper label{
   margin-left: 105px;
@@ -37,6 +42,10 @@ label[for="project_already_submitted"], label[for="project_description_monospace
   font-family: "Lucida Sans Typewriter", "Lucida Console", monaco, monospace;
 }
 
+.project-info p{
+  font-size: 14px;
+}
+
 .material-placeholder{
     margin-top: 2em;
 }
@@ -54,11 +63,11 @@ label[for="project_already_submitted"], label[for="project_description_monospace
 .project-img{
   max-width: 100%;
   width: auto;
-  max-height: 50vh;
   height: auto;
 }
 
 .photo-credit{
+  font-size: 12px;
   position: absolute;
   text-align: right;
   -moz-transform: rotate(-90deg) translate(0, -110%);
