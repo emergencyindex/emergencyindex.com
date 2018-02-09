@@ -57,8 +57,12 @@ layout: default
   <footer>
     {% for tag in page.tags %}
     	<!-- <span class="chip">{{tag}}</span> -->
-      <a class="waves-effect waves-light btn modal-trigger chip" href="#modal{{page.pages}}" data-tag="{{tag}}">{{tag}}</a>
+      <a class="waves-effect waves-light btn btn-flat modal-trigger chip" href="#modal{{page.pages}}" data-tag="{{tag}}">{{tag}}</a>
     {% endfor %}
+
+    <br/>
+    <a class="btn-flat btn-small waves-effect waves-light tooltipped" data-tooltip="Edit This Project on GitHub" data-position="top" href="https://github.com/edwardsharp/alveol.us/edit/master/_projects/{{page.volume}}/{{page.pages}}.md" target="_blank"><i class="material-icons">edit</i></a>
+    
 
     <div id="modal{{page.pages}}" class="modal bottom-sheet">
       <div class="modal-content">
