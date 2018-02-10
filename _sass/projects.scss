@@ -36,7 +36,6 @@ label[for="project_already_submitted"], label[for="project_description_monospace
 }
 
 #project_description, .description{
-  white-space: pre-wrap;
   word-break: break-word;
   font-size: 15px;
   font-family: "Lucida Sans Typewriter", "Lucida Console", monaco, monospace;
@@ -63,11 +62,11 @@ label[for="project_already_submitted"], label[for="project_description_monospace
 }
 
 .description p{
-  margin: 0;
+  margin: 1rem 0;
 }
 
 .material-placeholder{
-    margin-top: 2em;
+  margin-top: 1em;
 }
 
 .project-img.active{
@@ -159,6 +158,21 @@ label[for="project_already_submitted"], label[for="project_description_monospace
 #project_search .input-field {
   display: flex;
   align-items: center;
+}
+
+.description ol li{
+  white-space: normal;
+}
+
+.description ol li p{
+  display: inline;
+}
+
+.description code, .description kbd, .description pre, .description samp{
+  word-wrap: normal;
+  white-space: pre-wrap;
+  background: none;
+  font-size: 14px;
 }
 
 @media #{$small-and-down} {

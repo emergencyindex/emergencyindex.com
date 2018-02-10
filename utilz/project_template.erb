@@ -1,28 +1,4 @@
----
-layout: project
-volume: <%= volume %>
-image: <%= image.to_json %>
-photo_credit: <%= photo_credit.to_json %>
-title: <%= info[0].to_json %>
-first_performed: <%= info[1].to_json %>
-place: <%= info[2].to_json %>
-times_performed: <%= info[3].to_json %>
-contributor: <%= info[4].to_json %>
-collaborators: 
-  - 
-home: <%= info[-3].to_json %>
-links: 
-  - <%= info[-2].to_json %>
-contact: <%= info[-1].to_json %>
-footnote: 
-tags: 
-  - 
-pages: <%= pages %>
-needs_review: <%= needs_review %>
+<%= info.to_yaml %>
 ---
 
-{% comment %} 
-<%= info[5..-4].join("\n") rescue '' %>
-{% endcomment %}
-
-<%= description.join("\n") %>
+<%= description.join("\n\n") rescue '' %>

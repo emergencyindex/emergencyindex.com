@@ -2,7 +2,7 @@
 ---
 
 [
-  {% assign projects = site.projects | sort: "volume"  %}{% for project in projects %}{
+  {% assign projects = site.projects %}{% for project in projects %}{
       "type": "Project",
       "properties": {
         "volume": "{{ project.volume }}",
@@ -22,7 +22,8 @@
         "links": [{% for link in project.links %}"{{link}}"{% unless forloop.last %},{% endunless %}{% endfor %}],
         "contact": "{{project.contact}}",
         "footnote": "{{project.footnote}}",
-        "tags": [{% for tag in project.tags %}"{{tag}}"{% unless forloop.last %},{% endunless %}{% endfor %}]
+        "tags": [{% for tag in project.tags %}"{{tag}}"{% unless forloop.last %},{% endunless %}{% endfor %}],
+        "content": {{project.content | jsonify }}
         
       }
   }{% unless forloop.last %},{% endunless %}{% endfor %}
