@@ -33,12 +33,16 @@ $(function() {
     }
   },600);
 
-  //nav
+  //sidenav
   $('.button-collapse').sideNav({
       // menuWidth: 300,
       edge: 'right',
       closeOnClick: true, 
-      draggable: true
+      draggable: true,
+      onOpen: function(el) { 
+        $('.material-tooltip').remove();
+        $('.tooltipped').tooltip();
+      }
     }
   );
   

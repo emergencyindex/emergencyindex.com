@@ -19,20 +19,23 @@ layout: default
       {{page.times_performed}}
     </p>
 
-    <h5>
-      <strong>{{ page.contributor }}</strong>
-    </h5>
+    <h6 class="contributor">
+      {{ page.contributor }}
+    </h6>
 
     <p class="project-collaborators">
       {{page.collaborators}}
     </p>
 
-    <p>
+    <p class="home">
       {{page.home}}
       <br />
-      {{page.contact}}
+      {%- assign obfuscate = page.contact | split: '' -%}
+      {%- assign rand = "now" | date: "%N" -%}
+      <span class="contact">{%- for c in obfuscate -%}<span class="hidden">{{rand}}</span>{{c}}{%- endfor -%}</span>
       {% for link in page.links %}
-      	<a href="http://{{ link }}">{{ link }}</a>
+      {% assign link_strip = link | replace: 'http://', '' | replace: 'https://', '' %}
+      	<a href="http://{{ link_strip }}" target="_blank">{{ link_strip }}</a>
       {% endfor %}
     </p>
 
@@ -40,13 +43,11 @@ layout: default
 
   </header>
   <div class="col s12 m8 right-panel">
-    <h5>
+    <h5 class="title">
       <strong>{{ page.title }}</strong>
     </h5>
 
-    <h6>
-      <strong>{{ page.contributor }}</strong>
-    </h6>
+    <h6 class="contributor">{{ page.contributor }}</h6>
 
     <div class="description">
       {{ content }}

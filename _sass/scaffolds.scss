@@ -159,6 +159,10 @@ label {
   margin-left: 1.5rem;
 }
 
+.materialbox-caption{
+  line-height: 75px;
+}
+
 @media #{$small-and-down} {
   body{
     margin: 0;

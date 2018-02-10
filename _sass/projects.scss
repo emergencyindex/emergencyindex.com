@@ -46,6 +46,26 @@ label[for="project_already_submitted"], label[for="project_description_monospace
   font-size: 14px;
 }
 
+.right-panel .title{
+  font-size: 1.66rem;
+  font-weight: 400;
+}
+
+.right-panel .contributor, .project-info .contributor{
+  font-size: 1.33rem;
+  font-weight: 100;
+}
+.project-info .contributor{
+  margin-top: 1em;
+}
+.project-info .home{
+  margin: 1em 0;
+}
+
+.description p{
+  margin: 0;
+}
+
 .material-placeholder{
     margin-top: 2em;
 }
