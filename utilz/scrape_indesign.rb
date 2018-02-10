@@ -66,12 +66,21 @@ module ScrapeIndesign
     
     page = Nokogiri::HTML(open(@options[:in_file]))
 
+    empty_divz_ref = []
+    page.xpath('/html/body/div/div').each_with_index do |div, idx|
+      empty_divz_ref << [div.line] if (div.content.strip.empty? and div.children.count == 1)
+    end
+
+    unless empty_divz_ref.empty?
+      p "#{empty_divz_ref.length} EMPTY DIVZ AT LINEZ: #{empty_divz_ref.join(", ")}" 
+    end
+    
     projects = []
     idx = 0
     len = page.xpath('/html/body/div').length
     pageoffset = @options[:pageoffset]
 
-    raise "\nERROR! wrong number of div elementz!" if len % 4 != 0
+    raise "\nERROR! wrong number of div elementz! (#{len}) (see empty divz?)" if len % 4 != 0
 
     page.xpath('/html/body/div').each_slice(4) do |div|
       status_update(len:len, idx:idx)
