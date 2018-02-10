@@ -153,7 +153,9 @@ module ScrapeIndesign
             Country.named(check_split) or
             Country.coded('US').subregions.coded(check_split) or
             Carmen::Country.coded('US').subregions.named(check_split, :fuzzy => true) or
-            check_split == 'UK'
+            check_split == 'UK' or
+            check_split.match/D.C./ 
+            
             project['info']['home'] = i.strip
             next
           end

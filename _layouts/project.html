@@ -5,7 +5,7 @@ layout: default
 <article class='row'>
   <header class="col s12 m4 project-info">
     <img src="/assets/img/{{page.volume}}/{{page.image}}" class="materialboxed project-img" data-caption="photo: {{page.photo_credit}}" alt="project image" />
-    <div class="photo-credit truncate">{{page.photo_credit}}</div>
+    <div class="photo-credit truncate">{{page.photo_credit | replace: 'Photo credit: ', '' }}</div>
     
     <h5>
       <strong>{{ page.title }}</strong>
