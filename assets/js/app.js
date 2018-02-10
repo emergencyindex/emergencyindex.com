@@ -85,6 +85,8 @@ $(function() {
           });
           modal.find('.collection').html(items.join(''));
         }
+        $('.material-tooltip').remove();
+        $('.tooltipped').tooltip();
       },
       complete: function(modal) { 
         modal.find('.tag-name').html('');

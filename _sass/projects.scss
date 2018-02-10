@@ -78,6 +78,7 @@ label[for="project_already_submitted"], label[for="project_description_monospace
 .right-panel{
   padding-left: 2.5em !important;
   padding-right: 2.5em !important;
+  padding-bottom: 1em;
 }
 
 .project-img{
@@ -128,6 +129,10 @@ label[for="project_already_submitted"], label[for="project_description_monospace
   background: white;
 }
 
+.modal .modal-footer{
+  text-align: left;
+  padding-left: 2rem;
+}
 
 #scrollspy-nav .active{
   color: red;
