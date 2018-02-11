@@ -335,21 +335,18 @@ module ScrapeIndesign
 
   def self.write_terms_to_md
     #/Users/edward/src/tower/github/alveol.us/_projects/2013
-    p "reading #{@options[:in_file]}...\n"
+    p "reading #{@options[:in_file]}..."
     j = JSON.parse( File.read(@options[:in_file]) )
-    
-    i = 0
+    len = j.length
+    idx = 0
     j.each do |item|
-     
+      status_update(len:len, idx:idx)
       project_file = "#{@options[:out_dir]}/#{item[0]}.md"
       project = read_md(file:project_file)
       project[:yml]["tags"] = item[1]["terms"]
-
       File.open(project_file,"w"){|f| f.write("#{project[:yml].to_yaml}---#{project[:description]}")}
-      i += 1
-      break if i > 4
+      idx += 1
     end
-
   end
 
 private
@@ -359,14 +356,10 @@ private
 
   
   def self.read_md file: ''
-    # p "file: #{file}"
-    s   = File.read(file, encoding: 'UTF-8')
-    contents = s.match(/---(.*)---(.*)/m) #/m for multiline mode
-    # raise "could not parse md file! #{file} contents: #{contents}"
+    f = File.read(file, encoding: 'UTF-8')
+    contents = f.match(/---(.*)---(.*)/m) #/m for multiline mode
     yml = YAML.load(contents[1])
     description = contents[2]
-
-    #out = "#{yml.to_yaml}---#{description}"
     {yml: yml, description: description}
   end
 
