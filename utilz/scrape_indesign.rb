@@ -343,7 +343,7 @@ module ScrapeIndesign
       status_update(len:len, idx:idx)
       project_file = "#{@options[:out_dir]}/#{item[0]}.md"
       project = read_md(file:project_file)
-      project[:yml]["tags"] = item[1]["terms"]
+      project[:yml]["tags"] = item[1]
       File.open(project_file,"w"){|f| f.write("#{project[:yml].to_yaml}---#{project[:description]}")}
       idx += 1
     end
