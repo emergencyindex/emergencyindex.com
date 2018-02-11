@@ -163,6 +163,12 @@ label {
   line-height: 75px;
 }
 
+.collection{
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+
 @media #{$small-and-down} {
   body{
     margin: 0;
