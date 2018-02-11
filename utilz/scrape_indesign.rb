@@ -31,6 +31,7 @@ module ScrapeIndesign
       opts.on('-o', '--pageoffset OFFSET', 'Page of first project') { |v| @options[:pageoffset] = v }
       opts.on("-h", "--projects", "Scrape Projects") { |v| @options[:projects] = v }
       opts.on("-t", "--terms", "Scrape Terms") { |v| @options[:terms] = v }
+      opts.on("-T", "--writeterms", "Write Terms to MD") { |v| @options[:writeterms] = v }
       opts.on("-p", "--places", "Scrape Places") { |v| @options[:places] = v }
       opts.on("-c", "--contributors", "Scrape Contributors") { |v| @options[:contributors] = v }
       # opts.on("-v", "--[no-]verbose", "Run verbosely") { |v| @options[:verbose] = v }
@@ -56,6 +57,8 @@ module ScrapeIndesign
       scrape_projects_html
     elsif @options[:terms]
       scrape_terms_html
+    elsif @options[:writeterms]
+      write_terms_to_md
     elsif @options[:places]
 
     elsif @options[:contributors]
@@ -250,40 +253,7 @@ module ScrapeIndesign
     Dir.mkdir("#{@options[:out_dir]}/projects") unless Dir.exist?("#{@options[:out_dir]}/projects")
     Dir.mkdir("#{@options[:out_dir]}/projects/#{@options[:vol]}") unless Dir.exist?("#{@options[:out_dir]}/projects/#{@options[:vol]}")
 
-    #.split /,|;/
     page = Nokogiri::HTML(open(@options[:in_file]))
-
-# <p class="index-of-terms">
-#   <span class="INDEX-term-BOLD">body</span>
-#   <span class="INDEX-basic-character"> 49, 81, 133, 155, 171, 223, 227, 263, 275, 283, 367, 375, 401, 413, 429, 445, 469, 509, 517, 575; </span>
-#   <span class="INDEX-term-BOLD">alteration</span>
-#   <span class="INDEX-basic-character"> (</span>
-#   <span class="INDEX-basic-ITALIC">also</span>
-#   <span class="INDEX-basic-character"> </span>
-#   <span class="INDEX-term-BOLD">augmentation</span>
-#   <span class="INDEX-basic-character">) 71, 169, 523, 597, 611, 641; </span>
-#   <span class="INDEX-term-BOLD">black</span>
-#   <span class="INDEX-basic-character"> 115, 515; </span>
-#   <span class="INDEX-term-BOLD">body-mind split</span>
-#   <span class="INDEX-basic-character"> 11, 61, 113; </span>
-#   <span class="INDEX-term-BOLD">collective</span>
-#   <span class="INDEX-basic-character"> 157, 337; </span>
-#   <span class="INDEX-term-BOLD">female</span>
-#   <span class="INDEX-basic-character"> 99, 209, 211, 229, 261, 299; </span>
-#   <span class="INDEX-term-BOLD">fragmented</span>
-#   <span class="INDEX-basic-character"> 13, 335, 587; male 29; </span>
-#   <span class="INDEX-basic-ITALIC">see also</span>
-#   <span class="INDEX-basic-character"> </span>
-#   <span class="INDEX-term-BOLD">corpse</span>
-#   <span class="INDEX-basic-character">, </span>
-#   <span class="INDEX-term-BOLD">embodiment</span>
-#   <span class="INDEX-basic-character">, </span>
-#   <span class="INDEX-term-BOLD">nudity</span>
-# </p>
-
-# "body 49, 81, 133, 155, 171, 223, 227, 263, 275, 283, 367, 375, 401, 413, 429, 445, 469, 509, 517, 575; alteration (also augmentation) 71, 169, 523, 597, 611, 641; black 115, 515; body-mind split 11, 61, 113; collective 157, 337; female 99, 209, 211, 229, 261, 299; fragmented 13, 335, 587; male 29; see also corpse, embodiment, nudity"
-
-# "objects 17, 37, 85, 99, 109, 143, 167, 185, 217, 227, 249, 365, 371, 391, 393, 429, 431, 457, 463, 469, 475, 485, 495, 509, 515, 523, 529, 531, 539, 565, 583, 587, 607, 609, 637, 647, 663; altar 49, 165, 215, 217, 279, 391, 563; ax 539; balloon 227, 275, 309, 469; belt 13, 337, 411, 563, 623; blood 139, 265, 289, 321, 329, 497 531, 547, 563; brick 73, 227; carpet 73, 399, 609, 655; casket 345; drywall 111, 243, 373; fabric 105, 127, 157, 275, 301, 349, 367, 423; flag 97, 105, 131, 257, 337, 339, 389, 565, 591; flower 131, 263, 461, 511, 573, 637; glass 197, 263, 275, 657; glove 121, 183, 351, 463; hair 163, 227, 229, 233, 463, 485, 567, 589; ice 121, 265, 643; knife 289, 337, 547; ladder 15, 611, 637; lottery tickets 27; mirror 133, 147, 153, 201, 303, 365, 379, 421, 463, 637, 657; nails 15, 243; paper 21, 51, 81, 123, 145, 195, 199, 213, 227, 231, 287, 295, 317, 349, 407, 469, 529, 553, 573, 575, 581, 597, 599, 609; ribbon 131, 321, 399; rope 73, 77, 309, 381, 491, 637, 647; shadow 117, 133, 259, 413, 633; shaving cream 485, 597; snowflakes 559; soil (also dirt) 133, 211, 349, 353, 497, 557, 589; stone 171, 273, 287, 311, 437, 443, 491, 637; thread 307, 605; umbrella 589, 623; urn 279; water 49, 53, 61, 161, 165, 179, 265, 279, 303, 317, 349, 359, 425, 437, 443, 481, 497, 581, 589, 629; wood 75, 87, 111, 213, 345, 353, 411, 481, 589, 637; see also props"
 
     terms = {}
     page.css('p').each do |_p|
@@ -355,92 +325,52 @@ module ScrapeIndesign
 
     end
 
-    p "writing #{pages_hash.length} items to pages.json"
+    p "Done!"
+    p "wrote #{pages_hash.length} items to pages.json"
     outfile = "#{@options[:out_dir]}/projects/#{@options[:vol]}/pages.json"
     File.open(outfile,"w"){|f| f.write(pages_hash.to_json)}
 
-    raise "hold it!"
-
-    projects = {}
-    projects["aliases"] = []
-
-    terms.each do |term|
-      _name = term["name"]
-      _subTerm = nil
-
-      if term["alias"]
-        projects["aliases"] << term
-        next
-      end 
-      if term["pages"]
-        term["pages"].gsub!(/\(.*?\)/) do |fixNestedCommaBeforeSplit|
-          fixNestedCommaBeforeSplit.gsub!(',', '|')
-        end
-        term["pages"].split(/,|;/).each do |t|
-          
-          _page = t.scan(/\d+/)[0]
-          _pages = 0
-
-          next if _page.nil? or _page.strip.blank?
-
-          if _page.to_i.even?
-            _next = (_page.to_i + 1).to_s
-            _pages = "#{_page.rjust(3, '0')}-#{_next.rjust(3, '0')}"
-          else
-            _prev = (_page.to_i - 1).to_s
-            _pages = "#{_prev.rjust(3, '0')}-#{_page.rjust(3, '0')}"
-          end 
-         
-          _tag = nil
-          if t.scan /[a-zA-Z]/
-            _subTerm = t.gsub(_page,'').squish.gsub('|',',')
-            _tag = "#{_name} #{_subTerm}"
-          else 
-            if _subTerm
-              _tag = "#{_name} #{_subTerm}"
-            else
-              _tag = "#{_name}"
-            end
-          end
-
-          projects[_pages] ||= {}
-          projects[_pages]["terms"] ||= []
-
-          _tag.gsub!(' )', '')
-
-          if _tag.scan(/ also /)
-            _tag.split(/ also /).each{|t| projects[_pages]["terms"] << t.strip }
-          else
-            projects[_pages]["terms"] << _tag.strip
-          end
-
-          if term["see_also"]
-            projects[_pages]["see_also"] ||= {}
-            projects[_pages]["see_also"][_tag.strip] ||= []
-            projects[_pages]["see_also"][_tag.strip] << term["see_also"].strip
-          end
-
-        end #term["pages"].split
-      end #if term["pages"]
-    end #terms.each
-
-    outfile = "#{@options[:out_dir]}/projects/#{@options[:vol]}/terms_by_page.json"
-    File.open(outfile,"w"){|f| f.write(projects.to_json)}
-
-    p "Done! wrote #{projects.length} items to #{outfile}"
+   
   end #scrape_terms_html
 
-  # misc shit
-  def read_md file: ''
-    s   = File.read(file, encoding: 'UTF-8')
-    contents = s.match(/---(.*)---(.*)/m) #/m for multiline mode
-    yml = YAML.load(contents[1])
-    description = contents[2]
+  def self.write_terms_to_md
+    #/Users/edward/src/tower/github/alveol.us/_projects/2013
+    p "reading #{@options[:in_file]}...\n"
+    j = JSON.parse( File.read(@options[:in_file]) )
+    
+    i = 0
+    j.each do |item|
+     
+      project_file = "#{@options[:out_dir]}/#{item[0]}.md"
+      project = read_md(file:project_file)
+      project[:yml]["tags"] = item[1]["terms"]
 
-    out = "#{yml.to_yaml}---#{description}"
+      File.open(project_file,"w"){|f| f.write("#{project[:yml].to_yaml}---#{project[:description]}")}
+      i += 1
+      break if i > 4
+    end
 
   end
 
+private
+  def self.status_update(len:nil, idx:nil)
+    print "\b" * 16, "Progress: #{(idx.to_f / len * 100).to_i}% ", @pinwheel.rotate!.first
+  end
+
+  
+  def self.read_md file: ''
+    # p "file: #{file}"
+    s   = File.read(file, encoding: 'UTF-8')
+    contents = s.match(/---(.*)---(.*)/m) #/m for multiline mode
+    # raise "could not parse md file! #{file} contents: #{contents}"
+    yml = YAML.load(contents[1])
+    description = contents[2]
+
+    #out = "#{yml.to_yaml}---#{description}"
+    {yml: yml, description: description}
+  end
+
+  # misc shit
   def dump_from_rails
     project_template = File.read Rails.root.join('app/views/projects/jekyll.html.erb')
     Project.where(volume: Volume.where(year: 2011)).each do |project|
@@ -457,11 +387,6 @@ module ScrapeIndesign
     Dir["#{dir}*.jpg"].each do |img|
       File.rename(File.basename(img), File.basename(img).gsub(/[&$+,\/:;=?@<>\[\]\{\}\|\\\^~%# ]/,'_'))
     end
-  end
-
-private
-  def self.status_update(len:nil, idx:nil)
-    print "\b" * 16, "Progress: #{(idx.to_f / len * 100).to_i}% ", @pinwheel.rotate!.first
   end
 
 end

@@ -13,6 +13,17 @@ $.fn.animateRotate = function(angle, duration, easing, complete) {
 };
 
 
+//#TODO: check if data has been updated, if so, re-init local storage
+// var xhr = $.ajax( {
+//   type: 'HEAD',
+//   url: '/data.json',
+//   success: function(msg) {
+//       var filetime = xhr.getResponseHeader('Last-Modified');
+//       console.log(filetime);
+//   }
+// });
+
+
 $(function() {
 
   $('#slide-out').removeClass('hidden');
