@@ -29,10 +29,10 @@ module ScrapeIndesign
       opts.on('-d', '--out DIRECTORY', 'Output directory') { |v| @options[:out_dir] = v }
       opts.on('-v', '--volume VOLUME', 'Volume Name') { |v| @options[:vol] = v }
       opts.on('-o', '--pageoffset OFFSET', 'Page of first project') { |v| @options[:pageoffset] = v }
-      opts.on("-h", "--projects", "Scrape Projects") { |v| @options[:projects] = v }
+      opts.on("-p", "--projects", "Scrape Projects") { |v| @options[:projects] = v }
       opts.on("-t", "--terms", "Scrape Terms") { |v| @options[:terms] = v }
       opts.on("-T", "--writeterms", "Write Terms to MD") { |v| @options[:writeterms] = v }
-      opts.on("-p", "--places", "Scrape Places") { |v| @options[:places] = v }
+      opts.on("-q", "--places", "Scrape Places") { |v| @options[:places] = v }
       opts.on("-c", "--contributors", "Scrape Contributors") { |v| @options[:contributors] = v }
       # opts.on("-v", "--[no-]verbose", "Run verbosely") { |v| @options[:verbose] = v }
     end
@@ -165,8 +165,8 @@ module ScrapeIndesign
             Country.named(check_split) or
             Country.coded('US').subregions.coded(check_split) or
             Carmen::Country.coded('US').subregions.named(check_split, :fuzzy => true) or
-            check_split == 'UK' or
-            check_split.match/D.C./ 
+            check_split.include?('UK') or
+            check_split.include?('D.C.')
             
             project['info']['home'] = i.strip
             next
