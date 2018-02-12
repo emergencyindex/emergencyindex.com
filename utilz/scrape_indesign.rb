@@ -77,19 +77,28 @@ module ScrapeIndesign
     Dir.mkdir("#{@options[:out_dir]}/projects/#{@options[:vol]}") unless Dir.exist?("#{@options[:out_dir]}/projects/#{@options[:vol]}")
     
     page = Nokogiri::HTML(open(@options[:in_file]))
-
+    
+    len = page.xpath('/html/body/div').length
     empty_divz_ref = []
+
     page.xpath('/html/body/div/div').each_with_index do |div, idx|
-      empty_divz_ref << [div.line] if (div.content.strip.empty? and div.children.count == 1)
+      empty_divz_ref << [div.line] if (div.content.strip.empty? and div.css('img').length == 0)
     end
 
     unless empty_divz_ref.empty?
       p "#{empty_divz_ref.length} EMPTY DIVZ AT LINEZ: #{empty_divz_ref.join(", ")}" 
     end
+    unless len % 4 == 0
+      p "found #{page.css('img').length} images. expect #{page.xpath('/html/body/div').length / 4}"
+      page.xpath('/html/body/div').each_slice(4) do |div|
+        p "4block does not have an img tag. line: #{div.first.line}" unless div.collect{|d| d.css('div img') and d.css('div img').length > 0 }.include?(true)
+      end
+    end
     
+    # p "zomg"
+
     projects = []
     idx = 0
-    len = page.xpath('/html/body/div').length
     pageoffset = @options[:pageoffset]
 
     raise "\nERROR! wrong number of div elementz! (#{len}) (see empty divz?)" if len % 4 != 0
@@ -160,7 +169,7 @@ module ScrapeIndesign
            next
         end
         if i.strip.match(/[[:upper:]]/) and i.strip.match(/\s/) and !i.include?('@')
-          check_split = i.split('/').last.split(',').last.strip
+          check_split = i.split('/').last.split(',').last.strip.gsub(/\(|\)/,'')
           if Country.coded(check_split) or
             Country.named(check_split) or
             Country.coded('US').subregions.coded(check_split) or
