@@ -8,14 +8,11 @@ require 'yaml'
 require 'carmen'
 include Carmen
 
-#/Users/edward/Desktop/emergencyINDEX/indesign_dump_2_4_2018/2012/html
-
 module ScrapeIndesign
 
-  @pinwheel = %w{ | / - \\ }
   @options = {}
   @project_template = File.read 'project_template.erb'
-
+  @pinwheel = %w{ | / - \\ }
 
   def self.init
     
@@ -24,7 +21,6 @@ module ScrapeIndesign
 
     optparse = OptionParser.new do |opts|
       opts.banner = "Usage: #{__FILE__} [options]"
-
       opts.on('-i', '--infile FILE', 'Input file name') { |v| @options[:in_file] = v }
       opts.on('-d', '--out DIRECTORY', 'Output directory') { |v| @options[:out_dir] = v }
       opts.on('-v', '--volume VOLUME', 'Volume Name') { |v| @options[:vol] = v }
@@ -32,9 +28,6 @@ module ScrapeIndesign
       opts.on("-p", "--projects", "Scrape Projects") { |v| @options[:projects] = v }
       opts.on("-t", "--terms", "Scrape Terms") { |v| @options[:terms] = v }
       opts.on("-T", "--writeterms", "Write Terms to MD") { |v| @options[:writeterms] = v }
-      # opts.on("-q", "--places", "Scrape Places") { |v| @options[:places] = v }
-      # opts.on("-c", "--contributors", "Scrape Contributors") { |v| @options[:contributors] = v }
-      # opts.on("-v", "--[no-]verbose", "Run verbosely") { |v| @options[:verbose] = v }
     end
 
     begin
@@ -59,10 +52,6 @@ module ScrapeIndesign
       scrape_terms_html
     elsif @options[:writeterms]
       write_terms_to_md
-    elsif @options[:places]
-
-    elsif @options[:contributors]
-
     else
       p "nothing to do!"
       puts optparse 
@@ -94,8 +83,6 @@ module ScrapeIndesign
         p "4block does not have an img tag. line: #{div.first.line}" unless div.collect{|d| d.css('div img') and d.css('div img').length > 0 }.include?(true)
       end
     end
-    
-    # p "zomg"
 
     projects = []
     idx = 0
@@ -342,7 +329,6 @@ module ScrapeIndesign
   end #scrape_terms_html
 
   def self.write_terms_to_md
-    #/Users/edward/src/tower/github/alveol.us/_projects/2013
     p "reading #{@options[:in_file]}..."
     j = JSON.parse( File.read(@options[:in_file]) )
     len = j.length
@@ -350,15 +336,13 @@ module ScrapeIndesign
     j.each do |item|
       status_update(len:len, idx:idx)
       project_file = "#{@options[:out_dir]}/#{item[0]}.md"
-      
       unless File.exist?(project_file)
         p "WARN: #{project_file} doesnot exist!"
         next
       end
       project = read_md(file:project_file)
-      project[:yml]["tags"] = item[1]
+      project[:yml]["tags"] = item[1].sort_by(&:downcase).uniq
       File.open(project_file,"w"){|f| f.write("#{project[:yml].to_yaml}---#{project[:description]}")}
-      idx += 1
     end
   end
 
@@ -390,7 +374,7 @@ private
 
   def self.read_md file: ''
     f = File.read(file, encoding: 'UTF-8')
-    contents = f.match(/---(.*)---(.*)/m) #/m for multiline mode
+    contents = f.match(/^---(.*)---(.*)/m) #/m for multiline mode
     yml = YAML.load(contents[1])
     description = contents[2]
     {yml: yml, description: description}
