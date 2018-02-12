@@ -111,13 +111,12 @@ $(function() {
   var loadProject = function(_this){
     var _project_href = _this.attr('data-href');
     $('.material-tooltip').remove();
-    _this.load(_project_href+' article');
-    $('.tooltipped').tooltip();
-    Materialize.fadeInImage('.project-img');
-    setTimeout(function(){
-      $('.materialboxed').materialbox();
+    _this.load(_project_href+' article', function(){
+      $('.tooltipped').tooltip();
+      _this.find('.materialboxed').materialbox();
+      Materialize.fadeInImage(_this.find('.project-img'));
       initProjectTagModal();
-    }, 100);
+    });
   }
 
   $('.scrollspy').scrollSpy();

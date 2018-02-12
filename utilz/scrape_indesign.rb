@@ -164,7 +164,7 @@ module ScrapeIndesign
           project['info']['contact'] = "#{project['info']['contact']} #{i.strip}"
           next
         end
-        if i.include?('.') and !i.strip.match(/\s/)
+        if i.include?('.') #and !i.strip.match(/\s/)
            project['info']['links'] << i.strip
            next
         end

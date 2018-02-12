@@ -76,6 +76,12 @@ label[for="project_already_submitted"], label[for="project_description_monospace
 
 .material-placeholder{
   margin-top: 1em;
+  min-height: 190px;
+}
+
+.project-load:hover{
+  background: black;
+  color: white;
 }
 
 .project-img.active{
