@@ -28,23 +28,14 @@ module ScrapeIndesign
       opts.on("-p", "--projects", "Scrape Projects") { |v| @options[:projects] = v }
       opts.on("-t", "--terms", "Scrape Terms") { |v| @options[:terms] = v }
       opts.on("-T", "--writeterms", "Write Terms to MD") { |v| @options[:writeterms] = v }
+      opts.on("-x", "--tidy DIRECTORY", "Tidy project YAML") { |v| @options[:tidy] = v }
+    end.parse!
+
+    unless @options[:tidy]
+      raise "ERROR! --vol not specified" unless @options[:in_file].nil?
+      raise "ERROR! --infile does not exist" unless File.exist?(@options[:in_file])
+      raise "ERROR! --outdir is not a directory" unless File.directory?(@options[:out_dir])
     end
-
-    begin
-      optparse.parse!
-      mandatory = [:in_file, :vol, :pageoffset]
-      missing = mandatory.select{ |param| @options[param].nil? }        
-      unless missing.empty?                                            
-        raise OptionParser::MissingArgument.new(missing.join(', '))    
-      end 
-    rescue OptionParser::InvalidOption, OptionParser::MissingArgument
-      puts $!.to_s 
-      puts optparse 
-      exit          
-    end  
-
-    raise "ERROR! --infile does not exist" unless File.exist?(@options[:in_file])
-    raise "ERROR! --outdir is not a directory" unless File.directory?(@options[:out_dir])
 
     if @options[:projects]
       scrape_projects_html
@@ -52,6 +43,8 @@ module ScrapeIndesign
       scrape_terms_html
     elsif @options[:writeterms]
       write_terms_to_md
+    elsif @options[:tidy]
+      tidy_project_yml
     else
       p "nothing to do!"
       puts optparse 
@@ -346,6 +339,29 @@ module ScrapeIndesign
     end
   end
 
+  def self.tidy_project_yml
+
+    #/Users/edward/src/tower/github/alveol.us/_projects/
+    @options[:tidy] = "#{@options[:tidy]}/" unless @options[:tidy][-1] == '/'
+    p "Looking for MD files in #{@options[:tidy]}"
+    all_filez = Dir.glob("#{@options[:tidy]}**/*.md").select{ |e| File.file? e }
+    len = all_filez.length
+    idx = 0
+    all_filez.each do |file|
+      status_update(len:len, idx:idx)
+      project = read_md file: file
+      project[:yml]["tags"] = project[:yml]["tags"].map(&:to_s).sort_by(&:downcase).uniq
+      project[:yml]["title"].upcase!
+      project[:yml]["contributor"].upcase!
+
+      # File.open(file,"w"){|f| f.write("#{project[:yml].to_yaml}---#{project[:description]}")}
+
+      idx += 1
+    end
+
+    p "done! #{len} filez"
+  end
+
 private
   def self.status_update(len:nil, idx:nil)
     print "\b" * 16, "Progress: #{(idx.to_f / len * 100).to_i}% ", @pinwheel.rotate!.first
@@ -375,6 +391,7 @@ private
   def self.read_md file: ''
     f = File.read(file, encoding: 'UTF-8')
     contents = f.match(/^---(.*)---(.*)/m) #/m for multiline mode
+    raise "ERROR in read_md, contents.length > 2! #{contents.length}" if contents.length > 3
     yml = YAML.load(contents[1])
     description = contents[2]
     {yml: yml, description: description}
