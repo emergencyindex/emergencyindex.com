@@ -42,7 +42,7 @@ label[for="project_already_submitted"], label[for="project_description_monospace
 }
 
 .project-info p{
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .right-panel .title{
@@ -50,9 +50,18 @@ label[for="project_already_submitted"], label[for="project_description_monospace
   font-weight: 400;
 }
 
-.right-panel .contributor, .project-info .contributor{
+.right-panel .contributor{
   font-size: 1.33rem;
   font-weight: 100;
+}
+
+.project-info .contributor{
+  font-size: 17px;
+  font-weight: 100;
+}
+
+.project-info .title{
+  font-size: 19px;
 }
 .project-info .contributor{
   margin-top: 1em;
@@ -90,11 +99,11 @@ label[for="project_already_submitted"], label[for="project_description_monospace
   font-size: 12px;
   position: absolute;
   text-align: right;
-  -moz-transform: rotate(-90deg) translate(6px, -110%);
-  -webkit-transform: rotate(-90deg) translate(6px, -110%);
-  -o-transform: rotate(-90deg) translate(6px, -110%);
-  -ms-transform: rotate(-90deg) translate(6px, -110%);
-  transform: rotate(-90deg) translate(6px, -110%);
+  -moz-transform: rotate(-90deg) translate(6px, -100%);
+  -webkit-transform: rotate(-90deg) translate(6px, -100%);
+  -o-transform: rotate(-90deg) translate(6px, -100%);
+  -ms-transform: rotate(-90deg) translate(6px, -100%);
+  transform: rotate(-90deg) translate(6px, -100%);
   -ms-transform-origin: left top;
   -webkit-transform-origin: left top;
   transform-origin: left top;
@@ -186,6 +195,18 @@ label[for="project_already_submitted"], label[for="project_description_monospace
   .right-panel{
     padding-left: 0.5rem !important;
     padding-right: 1em !important;
+  }
+
+  .right-panel .title, .right-panel .contributor{
+    display: none;
+  }
+
+  .project-info .contributor{
+    font-size: 1.33rem;
+    font-weight: 100;
+  }
+  .project-info .title{
+    font-size: 1.66rem;
   }
 
 }
