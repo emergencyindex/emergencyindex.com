@@ -35,7 +35,7 @@ layout: default
       <span class="contact">{%- for c in obfuscate -%}<span class="hidden">{{rand}}</span>{{c}}{%- endfor -%}</span>
       {% for link in page.links %}
       {% assign link_strip = link | replace: 'http://', '' | replace: 'https://', '' %}
-      	<a href="http://{{ link_strip }}" target="_blank">{{ link_strip }}</a>
+      	<br><a href="http://{{ link_strip }}" target="_blank">{{ link_strip }}</a>
       {% endfor %}
     </p>
 
