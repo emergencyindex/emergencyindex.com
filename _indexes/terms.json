@@ -1,5 +1,11 @@
 ---
 ---
+{%- comment -%}
+zomg!
+so, this file is really hard to read :(
+...cuz whitespace takez up to much space.
+(probably should just build out an array (not hash, ugh, liquid) and |jsonify; whatever.)
+{%- endcomment -%}
 {%-assign tags = '' | split: ',' -%}
 {%-assign unique_tags = '' | split: ',' -%}
 {%-assign project_tags = site.projects | map: 'tags' | join: ';' | join: ';' | split: ';' -%}
@@ -13,20 +19,9 @@
   {%- endunless -%}
   {%- assign previous = tag -%}
 {%- endfor -%}
-{
-  {%- for tag in unique_tags -%}
-  {{tag | jsonify}}: 
-  [
-  {%- assign projects = site.projects | where: "tags", tag -%}
-  {%- for project in projects -%}
-  {%- if project.tags contains tag -%}{
-    "url": {{ project.url | jsonify}},
-    "title": {{ project.title  | jsonify}},
-    "contributor": {{ project.contributor  | jsonify }},
-    "volume": "{{ project.volume }}"
-  }{% unless forloop.last %},{% endunless %}
-  {%- endif -%}
-  {%- endfor -%}
-  ]{% unless forloop.last %},{% endunless %}
-  {% endfor %}
-}
+{ {%- for tag in unique_tags -%}
+{{- tag | jsonify -}}:[
+{%- assign projects = site.projects | where: "tags", tag -%}
+{%- for project in projects -%}
+{%- if project.tags contains tag -%}{"url": {{- project.url | jsonify-}},"title": {{- project.title  | jsonify-}},"contributor": {{- project.contributor  | jsonify -}},"volume": "{{ project.volume }}"}{%- unless forloop.last -%},{%- endunless -%}{%- endif -%}{%- endfor -%}]{%- unless forloop.last -%},{%- endunless -%}
+{%- endfor -%} }
