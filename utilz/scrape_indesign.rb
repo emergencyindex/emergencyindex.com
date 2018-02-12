@@ -326,10 +326,9 @@ module ScrapeIndesign
     end
 
     p "Done!"
-    p "wrote #{pages_hash.length} items to pages.json"
     outfile = "#{@options[:out_dir]}/projects/#{@options[:vol]}/pages.json"
     File.open(outfile,"w"){|f| f.write(pages_hash.to_json)}
-
+    p "wrote #{pages_hash.length} items to #{outfile}"
    
   end #scrape_terms_html
 
@@ -342,6 +341,11 @@ module ScrapeIndesign
     j.each do |item|
       status_update(len:len, idx:idx)
       project_file = "#{@options[:out_dir]}/#{item[0]}.md"
+      
+      unless File.exist?(project_file)
+        p "WARN: #{project_file} doesnot exist!"
+        next
+      end
       project = read_md(file:project_file)
       project[:yml]["tags"] = item[1]
       File.open(project_file,"w"){|f| f.write("#{project[:yml].to_yaml}---#{project[:description]}")}
@@ -354,7 +358,27 @@ private
     print "\b" * 16, "Progress: #{(idx.to_f / len * 100).to_i}% ", @pinwheel.rotate!.first
   end
 
-  
+  def fix_2012_termz
+    f = "/Users/edward/src/tower/github/alveol.us/utilz/projects/2012/pages_edited.json"
+    j = JSON.parse( File.read(f) )
+
+    j.each do |i|
+      terms = i[1]
+      terms.each do |t|
+        m = t.match(/(.*)\(([a-z, ]*)\)/)
+        if m and m[2]
+          j[i[0]] -= [t]
+          j[i[0]] << m[2].split(',').collect{|s| "#{m[1].strip} #{s.strip}" }
+          j[i[0]].flatten!
+          j[i[0]].sort!
+        end
+      end
+    end
+
+    File.open("/Users/edward/src/tower/github/alveol.us/utilz/projects/2012/pages_edited_fixed_subtermz.json","w"){|f| f.write(j.to_json)}
+
+  end
+
   def self.read_md file: ''
     f = File.read(file, encoding: 'UTF-8')
     contents = f.match(/---(.*)---(.*)/m) #/m for multiline mode
