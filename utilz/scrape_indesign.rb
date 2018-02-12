@@ -32,8 +32,8 @@ module ScrapeIndesign
       opts.on("-p", "--projects", "Scrape Projects") { |v| @options[:projects] = v }
       opts.on("-t", "--terms", "Scrape Terms") { |v| @options[:terms] = v }
       opts.on("-T", "--writeterms", "Write Terms to MD") { |v| @options[:writeterms] = v }
-      opts.on("-q", "--places", "Scrape Places") { |v| @options[:places] = v }
-      opts.on("-c", "--contributors", "Scrape Contributors") { |v| @options[:contributors] = v }
+      # opts.on("-q", "--places", "Scrape Places") { |v| @options[:places] = v }
+      # opts.on("-c", "--contributors", "Scrape Contributors") { |v| @options[:contributors] = v }
       # opts.on("-v", "--[no-]verbose", "Run verbosely") { |v| @options[:verbose] = v }
     end
 
