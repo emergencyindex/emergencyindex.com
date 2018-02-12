@@ -15,14 +15,14 @@
 {%- endfor -%}
 {
   {%- for tag in unique_tags -%}
-  "{{tag}}": 
+  {{tag | jsonify}}: 
   [
   {%- assign projects = site.projects | where: "tags", tag -%}
   {%- for project in projects -%}
   {%- if project.tags contains tag -%}{
-    "url": "{{ project.url }}",
-    "title": "{{ project.title }}",
-    "contributor": "{{ project.contributor }}",
+    "url": {{ project.url | jsonify}},
+    "title": {{ project.title  | jsonify}},
+    "contributor": {{ project.contributor  | jsonify }},
     "volume": "{{ project.volume }}"
   }{% unless forloop.last %},{% endunless %}
   {%- endif -%}

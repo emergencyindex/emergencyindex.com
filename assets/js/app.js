@@ -31,7 +31,7 @@ $(function() {
   var terms;
   $.getJSON('/index/terms.json', function(data){
     terms = data;
-  })
+  });
 
   setTimeout(function(){
     $('.mat-select').material_select('destroy');
