@@ -29,6 +29,7 @@ module ScrapeIndesign
       opts.on("-t", "--terms", "Scrape Terms") { |v| @options[:terms] = v }
       opts.on("-T", "--writeterms", "Write Terms to MD") { |v| @options[:writeterms] = v }
       opts.on("-x", "--tidy DIRECTORY", "Tidy project YAML") { |v| @options[:tidy] = v }
+      opts.on("-X", "--drytidy", "DRY RUN Tidy project YAML (no files modified)") { |v| @options[:drytidy] = v }
     end.parse!
 
     unless @options[:tidy]
@@ -340,7 +341,7 @@ module ScrapeIndesign
   end
 
   def self.tidy_project_yml
-
+    p "DRY RUNNING TIDY PROCESS (good job!)" if @options[:drytidy]
     #/Users/edward/src/tower/github/alveol.us/_projects/
     @options[:tidy] = "#{@options[:tidy]}/" unless @options[:tidy][-1] == '/'
     p "Looking for MD files in #{@options[:tidy]}"
@@ -353,9 +354,7 @@ module ScrapeIndesign
       project[:yml]["tags"] = project[:yml]["tags"].map(&:to_s).sort_by(&:downcase).uniq
       project[:yml]["title"].upcase!
       project[:yml]["contributor"].upcase!
-
-      # File.open(file,"w"){|f| f.write("#{project[:yml].to_yaml}---#{project[:description]}")}
-
+      File.open(file,"w"){|f| f.write("#{project[:yml].to_yaml}---#{project[:description]}")} unless @options[:drytidy]
       idx += 1
     end
 
