@@ -1,36 +1,35 @@
 ---
 layout: page
 title: Emergency INDEX
-pID: index-wrapper
 ---
 
-  <h4 class="sticky-nav home-nav">Indxes</h4>
+<h4 class="sticky-nav home-nav">Indxes</h4>
 
-  <div class="collection with-header">
-    {% for index in site.indexes %}
-    {%- if index.name and index.volume == 'all' -%}
-    <a href="{{index.url}}" class="waves-effect collection-item">All {{index.name}}</a>
-    {%- endif -%}
+<div class="collection with-header">
+  {% for index in site.indexes %}
+  {%- if index.name and index.volume == 'all' -%}
+  <a href="{{index.url}}" class="waves-effect collection-item">All {{index.name}}</a>
+  {%- endif -%}
+  {% endfor %}
+
+  {% for volume in site.volumes %}
+  {%- assign sub_items = site.indexes | where: "volume", volume.name -%}
+  {%- if sub_items.size > 0 -%}
+
+  <div class="collection-header"><h4>{{volume.name}}</h4></div>
+    {% for item in sub_items %}
+    <a href="{{item.url}}" class="waves-effect collection-item">{{item.name}}</a>
     {% endfor %}
+  {%- endif -%}
+  {% endfor %}
 
-    {% for volume in site.volumes %}
-    {%- assign sub_items = site.indexes | where: "volume", volume.name -%}
-    {%- if sub_items.size > 0 -%}
-  
-    <div class="collection-header"><h4>{{volume.name}}</h4></div>
-      {% for item in sub_items %}
-      <a href="{{item.url}}" class="waves-effect collection-item">{{item.name}}</a>
-      {% endfor %}
-    {%- endif -%}
-    {% endfor %}
+</div>
 
-  </div>
-
-  <h4 class="sticky-nav home-nav">Volumes</h4>
-  <div class="collection">
-    {% for volume in site.volumes %}
-    {%- if volume.name -%}
-      <a href="{{volume.url}}" class="waves-effect collection-item">{{volume.name}}</a>
-    {%- endif -%}
-    {% endfor %}
-  </div>
+<h4 class="sticky-nav home-nav">Volumes</h4>
+<div class="collection">
+  {% for volume in site.volumes %}
+  {%- if volume.name -%}
+    <a href="{{volume.url}}" class="waves-effect collection-item">{{volume.name}}</a>
+  {%- endif -%}
+  {% endfor %}
+</div>
