@@ -4,9 +4,10 @@ layout: default
 
 <article class='row'>
   <header class="col s12 m4 project-info">
+    {%- if page.image -%}
     <img src="/assets/img/{{page.volume}}/{{page.image}}" class="materialboxed project-img" data-caption="photo: {{page.photo_credit | replace: 'Photo credit: ', '' }}" alt="project image" />
     <div class="photo-credit truncate">{{page.photo_credit | replace: 'Photo credit: ', '' }}</div>
-    
+    {%- endif -%}
     <h5 class="title">
       <strong>{{ page.title }}</strong>
     </h5>
