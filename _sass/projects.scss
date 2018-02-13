@@ -141,6 +141,18 @@ label[for="project_already_submitted"], label[for="project_description_monospace
   position: sticky;
   top: 0;
   background: white;
+  background-color: white !important;
+  z-index: 4;
+}
+
+.sticky-nav-2{
+  top: 48px;
+  z-index: 3;
+}
+
+.sticky-nav-3{
+  top: 96px;
+  z-index: 2;
 }
 
 .modal .modal-footer{
@@ -149,8 +161,10 @@ label[for="project_already_submitted"], label[for="project_description_monospace
 }
 
 #scrollspy-nav .active{
-  color: red;
+  color: black;
+  font-weight: 600;
 }
+
 .section.scrollspy{
   min-height: 100vh;
   margin-bottom: 100px;

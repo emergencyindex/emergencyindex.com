@@ -30,6 +30,49 @@
     </main>
 
     <script src="{{site.baseurl}}/assets/js/app.js"></script>
+    {%- if page.toc -%}
+    <script type="text/javascript">
+    $(function() {
+      $( "<li/>", {
+        class: 'nav-index-heading',
+        html: {{page.toc | jsonify}}
+      }).appendTo($('#toc-header'));
+      
+      var items = [];
+      $('.index').each(function() {
+        items.push('<li><a href="#'+$(this).attr('id')+'"'+'>'+$(this).text()+'</a></li>');
+      });
+      $('#scrollspy-nav ul')
+        .html(items.join(''))
+        .removeClass('hidden');
 
+      $('.index').scrollSpy();
+      var scrollSpyTermsEnter = function() {
+        $('#scrollspy-nav').find('a.active').removeClass('active');
+        var $navElem = $('#scrollspy-nav').find('a[href="#' + $(this).attr('id') + '"]');
+        if( $navElem.length ){
+          $navElem.addClass('active');
+          $('#slide-out').animate({
+              scrollTop: $navElem.offset().top - $('#scrollspy-nav').offset().top
+          }, 100);
+        }
+        for(i=0;i < $('.collapsible-nav-item').length; i++){
+          $('.collapsible-nav').collapsible('close',i);
+        }
+      }
+      $('.index').on('scrollSpy:enter', $.debounce(100, scrollSpyTermsEnter) );
+
+      $('.table-of-contents a').click(function(){
+        try{
+          var name = $(this).attr('href');
+          window.scrollTo(window.scrollX, $(name).next().position().top - $(name).height());
+        }catch(e){
+          //odang!
+        }
+      })
+
+    });
+    </script>
+    {%- endif -%}
   </body>
 </html>

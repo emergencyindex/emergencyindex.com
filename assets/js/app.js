@@ -12,6 +12,18 @@ $.fn.animateRotate = function(angle, duration, easing, complete) {
   });
 };
 
+$.fn.isolatedScroll = function() {
+  this.bind('mousewheel DOMMouseScroll', function (e) {
+    var delta = e.wheelDelta || (e.originalEvent && e.originalEvent.wheelDelta) || -e.detail,
+      bottomOverflow = this.scrollTop + $(this).outerHeight() - this.scrollHeight >= 0,
+      topOverflow = this.scrollTop <= 0;
+    if ((delta < 0 && bottomOverflow) || (delta > 0 && topOverflow)) {
+      e.preventDefault();
+    }
+  });
+  return this;
+};
+
 
 //#TODO: check if data has been updated, if so, re-init local storage
 // var xhr = $.ajax( {
@@ -23,11 +35,11 @@ $.fn.animateRotate = function(angle, duration, easing, complete) {
 //   }
 // });
 
-
 $(function() {
 
   $('#slide-out').removeClass('hidden');
-
+  $('#slide-out').isolatedScroll();
+  
   var terms;
   $.getJSON('/index/terms.json', function(data){
     terms = data;
@@ -65,9 +77,8 @@ $(function() {
 
   //volumes
   $('.indexes-collapsible').collapsible({
-    onOpen: function(el) { setTimeout(function(){el[0].scrollIntoView()}, 250) }
+    onOpen: function(el) { setTimeout(function(){window.scrollTo(window.scrollX, el.position().top - 50)}, 250) }
   });
-
 
   $('.materialboxed').materialbox();
 

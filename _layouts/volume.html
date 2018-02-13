@@ -35,7 +35,7 @@ $(function() {
   $("#volume-nav-{{page.volume}}").detach().appendTo('#scrollspy-nav ul').removeClass('hidden');
   $( "<li/>", {
     class: 'nav-index-heading',
-    html: 'Volume: {{page.volume}}'
-  }).appendTo($('.sticky-nav'));
+    html: 'Volume {{page.volume}}'
+  }).appendTo($('#toc-header'));
 });
 </script>

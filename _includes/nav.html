@@ -3,8 +3,7 @@
 </div>
 
 <ul id="slide-out" class="side-nav fixed hidden">
-  <div class="sticky-nav">
-    <li>
+    <li class="sticky-nav">
       <div id="user-nav">
         <!-- <div class="background">
           <img src="">
@@ -18,19 +17,30 @@
 
     <ul class="collapsible-nav" data-collapsible="accordion">
       <li class="collapsible-nav-item">
-        <div class="collapsible-header">Indexes <i class="material-icons indicator">keyboard_arrow_down</i></div>
+        <div class="collapsible-header sticky-nav sticky-nav-2">Indexes <i class="material-icons indicator">keyboard_arrow_down</i></div>
         <div class="collapsible-body">
           <ul>
           	{% for index in site.indexes %}
-            {% if index.name %}
-            <li><a href="{{index.url}}" class="waves-effect">{{index.name}}</a></li>
-            {% endif %}
+            {%- if index.name and index.volume == 'all' -%}
+            <li><a href="{{index.url}}" class="waves-effect">All {{index.name}}</a></li>
+            {%- endif -%}
             {% endfor %}
           </ul>
+          {% for volume in site.volumes %}
+          {%- assign sub_items = site.indexes | where: "volume", volume.name -%}
+          {%- if sub_items.size > 0 -%}
+          <ul>
+            <li class="nav-indexes-vol sticky-nav sticky-nav-3">{{volume.name}}</li>
+            {% for item in sub_items %}
+            <li><a href="{{item.url}}" class="waves-effect">{{item.name}}</a></li>
+            {% endfor %}
+          </ul>
+          {%- endif -%}
+          {% endfor %}
         </div>
       </li>
       <li class="collapsible-nav-item">
-        <div class="collapsible-header">Volumes <i class="material-icons indicator">keyboard_arrow_down</i></div>
+        <div class="collapsible-header sticky-nav sticky-nav-2">Volumes <i class="material-icons indicator">keyboard_arrow_down</i></div>
         <div class="collapsible-body">
           <ul>
           	{% for volume in site.volumes %}
@@ -44,6 +54,8 @@
         </div>
       </li>
     </ul>
+
+  <div id="toc-header" class="sticky-nav sticky-nav-2 center">
   </div>
 
   <div id="scrollspy-nav">

@@ -36,6 +36,10 @@ a {
   }
 }
 
+b, strong{
+  font-weight: 800;
+}
+
 th {
   padding-bottom: 8px;
   padding-top: 0;
@@ -171,6 +175,22 @@ label {
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
+}
+
+.entry{
+  margin-bottom: 5em;
+}
+
+.home-nav{
+  height: 4.28rem;
+  padding-top: 1rem;
+}
+
+h2.sticky-nav{
+  min-height: 4rem;
+}
+li.sticky-nav{
+  min-height: 3rem;
 }
 
 @media #{$small-and-down} {

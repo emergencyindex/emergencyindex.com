@@ -1,6 +1,8 @@
 ---
 layout: default
 name: Terms
+volume: all
+toc: All Terms
 ---
 
 {%- comment -%} Create empty arrays {%- endcomment -%}
@@ -27,10 +29,10 @@ name: Terms
   {%- assign index = "0" -%}
   {%- for tag in unique_tags -%}
   {%- assign projects = site.projects | where: "tags", tag -%}
-  {%- assign newTag = tag | slice: 0 | upcase -%}
+  {%- assign newTag = tag | slice: 0 | slugify | upcase | default: '_' -%}
   {%- if index != newTag -%}
   {%- assign index = newTag -%}
-  <li id="{{index}}" class="index scrollspy-terms"><h4>{{index}}</h4></li>
+  <li id="{{index}}" class="index sticky-nav"><h4>{{index}}</h4></li>
   {%- endif -%}
   <li>
     <div class="flex-header collapsible-header with-hover">
@@ -47,39 +49,3 @@ name: Terms
   </li>
   {%- endfor -%}
 </ul>
-
-<script type="text/javascript">
-$(function() {
-  
-  var items = [];
-  $('.index').each(function() {
-    items.push('<li><a href="#'+$(this).attr('id')+'"'+'>'+$(this).find('h4').html()+'</a></li>');
-  });
-  $('#scrollspy-nav ul')
-    .html(items.join(''))
-    .removeClass('hidden');
-
-  $( "<li/>", {
-    class: 'nav-index-heading',
-    html: 'Index: Terms'
-  }).appendTo($('.sticky-nav'));
-
-  $('.scrollspy-terms').scrollSpy();
-  var scrollSpyTermsEnter = function() {
-    $('#scrollspy-nav').find('a.active').removeClass('active');
-    var $navElem = $('#scrollspy-nav').find('a[href="#' + $(this).attr('id') + '"]');
-    if( $navElem.length ){
-      $navElem.addClass('active');
-      $('#slide-out').animate({
-          scrollTop: $navElem.offset().top - $('#scrollspy-nav').offset().top
-      }, 100);
-    }
-    for(i=0;i < $('.collapsible-nav-item').length; i++){
-      $('.collapsible-nav').collapsible('close',i);
-    }
-  }
-  $('.scrollspy-terms').on('scrollSpy:enter', scrollSpyTermsEnter );
-
-});
-</script>
-

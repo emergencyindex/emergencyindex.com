@@ -2,10 +2,10 @@
 layout: default
 ---
 
-<div class="page">
+<div id="{{page.pID}}" class="page">
 
   <h2>{{ page.title }}</h2>
 
-	<div class="entry">{{ content }}</div>
+	<div class="entry {{page.wrapperclass}}">{{ content }}</div>
 
 </div>
