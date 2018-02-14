@@ -49,3 +49,4 @@ collections:
 
 exclude:
   - utilz/
+  - CNAME

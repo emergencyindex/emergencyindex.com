@@ -204,10 +204,6 @@ label[for="project_already_submitted"], label[for="project_description_monospace
   font-size: 14px;
 }
 
-table.intro tbody tr td:first-child{
-  text-align: right;
-}
-
 @media #{$small-and-down} {
   .project-img{
     max-height: none;

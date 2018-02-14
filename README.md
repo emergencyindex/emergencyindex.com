@@ -1,7 +1,7 @@
 ---
 layout: default
 title: README
-permalink: /readme/
+permalink: /README.md/
 ---
 ## EmergencyINDEX
 

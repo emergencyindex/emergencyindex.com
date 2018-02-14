@@ -193,6 +193,35 @@ li.sticky-nav{
   min-height: 3rem;
 }
 
+.intro {
+  word-break: break-word;
+}
+.intro .collection{
+  border: none;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+.intro .collection-header{
+  padding:10px 20px 0 20px;
+  margin-bottom: 10px;
+}
+.intro .collection-item{
+  border: none;
+  padding: 0 0 0.5rem 0;
+}
+.intro-page-container{
+  min-height: 100vh;
+  margin-bottom: 20vh;
+}
+
+.dropcap{
+  float: left;
+  font-size: 75px;
+  line-height: 55px;
+  padding-right: 5px;
+}
+
+
 @media #{$small-and-down} {
   body{
     margin: 0;
@@ -204,6 +233,10 @@ li.sticky-nav{
   }
 
   h1{
-    margin: 0 1rem 1rem 1rem;
+    margin: 0;
+    /*margin: 0 1rem 1rem 1rem;*/
+  }
+  .intro{
+    margin-top: 66px;
   }
 }

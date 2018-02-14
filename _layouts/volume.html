@@ -2,7 +2,6 @@
 layout: default
 ---
 <section class="row">
-  <h1>{{page.volume}}</h1>
   <div class="col s12">
     {% assign projects = site.projects | where: "volume", page.volume | map: "url" %}
     {% for project in projects %}
