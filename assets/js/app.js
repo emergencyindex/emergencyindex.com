@@ -117,9 +117,10 @@ $(function() {
             var _sel  ='#'+_vol+'-'+_page;
             if($(_sel).length){
               e.preventDefault();
+              modal.modal('close');
               // window.scrollTo(window.scrollX, $(_sel).position().top);
               location.hash = _vol+'-'+_page;
-              $('body').removeAttr('style'); //aarg. #hamfist ...how is overflow:hidden getting here right now?
+              //$('body').removeAttr('style'); //aarg. #hamfist ...how is overflow:hidden getting here right now?
             }
           }catch(e){
             //o noz! (~˘▾˘)~
@@ -143,6 +144,12 @@ $(function() {
       _this.find('.materialboxed').materialbox();
       Materialize.fadeInImage(_this.find('.project-img'));
       initProjectTagModal();
+      var _project_href = $(this).attr('data-href').split('/');
+      if(_project_href.length){
+        var _page = _project_href.pop();
+        var _vol  = _project_href.pop();
+        location.hash = _vol+'-'+_page;
+      }
     });
   }
 
@@ -178,5 +185,10 @@ $(function() {
   $('.project-load').click(function(){
     loadProject($(this).parent());
   });
+
+  if(window.location.hash.length && $(window.location.hash).length){
+    window.scrollTo(window.scrollX, $(window.location.hash).position().top);
+  }
+  
 
 });
