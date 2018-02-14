@@ -103,12 +103,28 @@ $(function() {
 
           var items = [];
           $.each( terms[tag], function(key, t) {
-            items.push( "<a href='"+t.url+"' class='collection-item'>"+t.title+" -- "+t.contributor+" <span class='badge'>"+t.volume+"</span></>" );
+            items.push( "<a href='"+t.url+"' class='collection-item project-tag'  >"+t.title+" -- "+t.contributor+" <span class='badge'>"+t.volume+"</span></>" );
           });
           modal.find('.collection').html(items.join(''));
         }
         $('.material-tooltip').remove();
         $('.tooltipped').tooltip();
+        modal.find('.project-tag').click(function(e){
+          try{
+            var _href = $(this).attr('href').split('/');
+            var _page = _href.pop();
+            var _vol  = _href.pop();
+            var _sel  ='#'+_vol+'-'+_page;
+            if($(_sel).length){
+              e.preventDefault();
+              // window.scrollTo(window.scrollX, $(_sel).position().top);
+              location.hash = _vol+'-'+_page;
+              $('body').removeAttr('style'); //aarg. #hamfist ...how is overflow:hidden getting here right now?
+            }
+          }catch(e){
+            //o noz! (~˘▾˘)~
+          }
+        });
       },
       complete: function(modal) { 
         modal.find('.tag-name').html('');
