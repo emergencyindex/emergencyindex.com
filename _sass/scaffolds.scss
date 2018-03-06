@@ -175,7 +175,10 @@ label {
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
-  clear: both;
+}
+
+.clear-collection{
+  clear:both;
 }
 
 .entry{
