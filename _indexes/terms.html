@@ -36,7 +36,7 @@ toc: All Terms
   {%- endif -%}
   <li>
     <div class="flex-header collapsible-header with-hover">
-      <span id="{{ tag | slugify }}" class="tag-name">{{ tag }}</span>
+      <span id="{{ tag | slugify }}" class="tag-slug">{{ tag }}</span>
       <span class="badge" data-badge-caption="project{% if projects.size != 1 %}s{% endif %}">{{projects.size}}</span>
     </div>
     <div class="collapsible-body">

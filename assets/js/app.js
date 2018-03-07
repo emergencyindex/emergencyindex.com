@@ -44,9 +44,9 @@ $(function() {
       $("label[for='autocomplete-input']").html('Search '+currentVolume)
     }
 
-    if($('.tag-name').length > 0){
+    if($('.tag-slug').length > 0){
       $("label[for='autocomplete-input']").html('Search Terms')
-      $('.tag-name').each(function(tag){
+      $('.tag-slug').each(function(tag){
         var _key = $(this).html();
         dataObj[_key] = null;
         hrefObj[_key+'HREF'] = '#'+$(this).attr('id');
@@ -80,7 +80,7 @@ $(function() {
             }
           }else{
             window.location = hrefObj[val+'HREF']; //+'/?s='+val;
-            if($('.tag-name').length > 0){
+            if($('.tag-slug').length > 0){
               window.scrollTo(window.scrollX, $(window.location.hash).position().top - 50);
             }
           }
