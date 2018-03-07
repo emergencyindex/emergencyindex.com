@@ -251,7 +251,9 @@ $(function() {
             var _sel  ='#'+_vol+'-'+_page;
 
             var _pathVol;
-            if(window.location.pathname.split('/').length > 2 && !isNaN(parseInt(window.location.pathname.split('/')[2])) ){
+            if(  window.location.pathname.match('/volume/')
+              && window.location.pathname.split('/').length > 2 
+              && !isNaN(parseInt(window.location.pathname.split('/')[2])) ){
               _pathVol = window.location.pathname.split('/')[2]
             }
             if($(_sel).length || _pathVol == _vol){
