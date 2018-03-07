@@ -25,7 +25,7 @@ toc: All Terms
   {%- assign previous = tag -%}
 {%- endfor -%}
 
-<ul class="indexes-collapsible popout" data-collapsible="accordion">
+<ul class="indexes-collapsible popout" data-collapsible="expandable">
   {%- assign index = "0" -%}
   {%- for tag in unique_tags -%}
   {%- assign projects = site.projects | where: "tags", tag -%}
@@ -36,7 +36,7 @@ toc: All Terms
   {%- endif -%}
   <li>
     <div class="flex-header collapsible-header with-hover">
-      <span>{{ tag }}</span>
+      <span id="{{ tag | slugify }}" class="tag-name">{{ tag }}</span>
       <span class="badge" data-badge-caption="project{% if projects.size != 1 %}s{% endif %}">{{projects.size}}</span>
     </div>
     <div class="collapsible-body">

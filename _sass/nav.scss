@@ -1,3 +1,7 @@
+.collapsible-nav-item:hover{
+  background-color: rgba(0,0,0,0.05);
+}
+
 #nav {
   top: 0;
   max-height: 100px;
@@ -34,4 +38,28 @@ a.username{
 
 .nav-indexes-vol{
   padding-left: 1.33em;
+}
+
+.dropdown-content{
+  max-height: none;
+  overflow-y: none;
+}
+
+.dropdown-content li:first-child{
+  margin-top: 10px;
+}
+
+.autocomplete-content .highlight{
+  font-weight: 600;
+}
+
+.search-label{
+  left: 1em;
+}
+
+#user-nav a {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  border-bottom: 1px solid #e0e0e0;
 }

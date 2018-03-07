@@ -1,0 +1,12 @@
+---
+---
+
+[
+  {% assign projects = site.projects %}{% for project in projects %}{
+    "volume": {{ project.volume | jsonify }},
+    "url": {{project.url | jsonify }},
+    "title": {{ project.title | jsonify }},
+    "contributor": {{ project.contributor | jsonify }},
+    "image": {{ project.image | jsonify }}
+  }{% unless forloop.last %},{% endunless %}{% endfor %}
+]
