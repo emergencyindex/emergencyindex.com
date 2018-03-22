@@ -1,4 +1,4 @@
----
+```yaml
 layout: project
 volume: 
 image: 
@@ -18,6 +18,6 @@ footnote:
 tags: 
   - 
 pages:
----
+```
 
 ADD PROJECT DESCRIPTION TEXT HERE...
