@@ -8,32 +8,24 @@ title: 'Index 2014: Places'
 {: .index-ul }
 * **Argentina**
   * Buenos Aires [144], [146]
-
 * **Australia**
   * Melbourne [098], [211]
   * Perth [210], [282], [324]
   * Sydney [324]
-
 * **Austria**
   * Salzburg [216]
   * Vienna [266]
-
 * **Bangladesh** [123]
   * Dhaka, [380]
-
 * **Belgium**
   * Brussels [126], [328]
-
 * **Bolivia**
   * Santa Cruz de la Sierra [110], [146]
-
 * **Brazil**
   * Curitiba [366]
   * São Paulo [296], [298]
-
 * **Burkina Faso**
   * Ouagadougou [076]
-
 * **Canada** [170], [295]
   * Calgary [282], [286]
   * Montreal [012], [134], [168], [170], [172], [260]
@@ -42,34 +34,24 @@ title: 'Index 2014: Places'
   * St. Catharines [128]
   * Sackville [332]
   * Toronto [026], [036], [128], [140], [152], [162], [172], [174], [192], [312], [332], [334]
-
 * **Czech Republic**
   * Prague [146]  
-
 * **Chile**
   * Santiago [360]
-
 * **China**
   * Hong Kong [078]
-
 * **Colombia** [101], [209]
-
 * **Cuba** [157]
   * Punta de Maisí [156]
-
 * **Denmark**
   * Copenhagen [134]
-
 * **Finland**
   * Helsinki [096], [118], [124], [140], [320]
-
 * **France**
   * Paris [064], [144], [322], [358]
   * Besançon [064], [248]
-
 * **Georgia** 
   * Tbilisi
-
 * **Germany** [004], [221], [257]
   * Berlin [014], [034], [112], [180], [196], [226], [256], [286], [310], [328]
   * Cologne [034], [166]
@@ -79,28 +61,19 @@ title: 'Index 2014: Places'
   * Kassel [350]
   * Nordrhine-Westfalia [110]
   * Salem [220]
-
 * **Greece**
   * Athens [266]
-
 * **Haiti** [157]
   * Cap Haitien [156]
-
 * **Hungary** [147]
-
 * **Italy**
   Venice [388]
   * Rome [174]
-
 * **Iran** 
   * Tehran [059]
-
 * **Japan** [088]
-  
-
 * **Lithuania**
   * Kaunas [140]
-
 * **Mexico** [132], [363]
   * Guadalajara [362]
   * Guerrero [335], [361]
@@ -109,44 +82,31 @@ title: 'Index 2014: Places'
   * Querétaro [362], [364]
   * San Cristóbal de las Casas [360]
   * Tijuana [056]
-  
 * **Morocco**
   * Fes [342]
-
 * **Nepal**
   * Marpha [254]
-
 * **Netherlands** [300]
   * Amsterdam [300]
-
 * **Norway**
   * Bergen [144]
-
 * **Northern Ireland**
   * Derry [326]
   * Londonderry [326]
-
 * **Peru**
   * Lima [190]
-
 * **Poland** [147]
-
 * **Portugal**
   * Porto [160]
-
 * **South** Korea
   * Seoul [088]
-
 * **Singapore** [068], [148], [320], [376]
-
 * **Spain** [248]
   * Les Caules [248]
-
 * **United** Kingdom
   * Birmingham [288]
   * Bristol [338]
   * London [108], [186], [288]
-
 * **United States**
   * California [012], 
     * Berkeley [168], [376]
@@ -250,10 +210,8 @@ title: 'Index 2014: Places'
     * Walla Walla [114]
   * Wisconsin 
     * Steuben [204]
-
 * **Venezuela** 
   * Caracas [130]
-
 * **Vietnam**
   * Hanoi [182]
 
