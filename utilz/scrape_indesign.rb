@@ -27,6 +27,7 @@ module ScrapeIndesign
       opts.on('-o', '--pageoffset OFFSET', 'Page of first project') { |v| @options[:pageoffset] = v }
       opts.on("-p", "--projects", "Scrape Projects") { |v| @options[:projects] = v }
       opts.on("-t", "--terms", "Scrape Terms") { |v| @options[:terms] = v }
+      opts.on("-u", "--termstxt", "Scrape Terms Text") { |v| @options[:terms_txt] = v }
       opts.on("-T", "--writeterms", "Write Terms to MD") { |v| @options[:writeterms] = v }
       opts.on("-x", "--tidy DIRECTORY", "Tidy project YAML") { |v| @options[:tidy] = v }
       opts.on("-X", "--drytidy", "DRY RUN Tidy project YAML (no files modified)") { |v| @options[:drytidy] = v }
@@ -43,6 +44,8 @@ module ScrapeIndesign
       scrape_projects_html
     elsif @options[:terms]
       scrape_terms_html
+    elsif @options[:terms_txt]
+      scrape_terms_txt
     elsif @options[:writeterms]
       write_terms_to_md
     elsif @options[:tidy]
@@ -240,7 +243,7 @@ module ScrapeIndesign
 
   def self.scrape_terms_html
 
-    p "reading #{@options[:in_file]}...\n"
+    p "reading #{@options[:in_file]}..."
     Dir.mkdir("#{@options[:out_dir]}/projects") unless Dir.exist?("#{@options[:out_dir]}/projects")
     Dir.mkdir("#{@options[:out_dir]}/projects/#{@options[:vol]}") unless Dir.exist?("#{@options[:out_dir]}/projects/#{@options[:vol]}")
 
@@ -322,6 +325,46 @@ module ScrapeIndesign
     p "wrote #{pages_hash.length} items to #{outfile}"
    
   end #scrape_terms_html
+
+  def self.scrape_terms_txt
+    # read txt files like:
+    # TERM [...pages]
+    # example:  body 007, 023, 033, 119
+    p "reading #{@options[:in_file]}..."
+    Dir.mkdir("#{@options[:out_dir]}/projects") unless Dir.exist?("#{@options[:out_dir]}/projects")
+    Dir.mkdir("#{@options[:out_dir]}/projects/#{@options[:vol]}") unless Dir.exist?("#{@options[:out_dir]}/projects/#{@options[:vol]}")
+  
+    terms = {}
+    file = open(@options[:in_file])
+
+    file.each do |line|
+      term = line.match(/^[^\d]*/)[0].strip
+      terms[term] = line.gsub(/[^0-9, ]/, '').split(/,| /).reject(&:empty?)
+    end
+
+    pages_hash = {}
+    terms.each do |term, pages|
+
+      pages.each do |page|
+        if page.to_i.even?
+          _next = (page.to_i + 1).to_s
+          _pages = "#{page.rjust(3, '0')}-#{_next.rjust(3, '0')}"
+        else
+          _prev = (page.to_i - 1).to_s
+          _pages = "#{_prev.rjust(3, '0')}-#{page.rjust(3, '0')}"
+        end 
+
+        pages_hash[_pages] ||= []
+        pages_hash[_pages] << term unless pages_hash[_pages].include?(term) or term.blank?
+      end
+
+    end
+
+    p "Done!"
+    outfile = "#{@options[:out_dir]}/projects/#{@options[:vol]}/terms_by_page.json"
+    File.open(outfile,"w"){|f| f.write(pages_hash.to_json)}
+    p "wrote #{pages_hash.length} items to #{outfile}"
+  end
 
   def self.write_terms_to_md
     p "reading #{@options[:in_file]}..."
