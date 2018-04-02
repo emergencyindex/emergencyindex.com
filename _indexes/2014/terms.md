@@ -156,9 +156,15 @@ choreography [031], [045], [049], [071], [119], [137], [153], [235], [245], [271
 
 Christ _also_ Jesus [175], [363] cigarette [043]
 
-cinematography [049], [367] _see_  lm citation [311]
+cinematography [049], [367] _see_  film 
 
-class [289], [299], [301], [303], [319], [355] caste [319] climate change [259], [325]
+citation [311]
+
+class [289], [299], [301], [303], [319], [355] 
+
+caste [319] 
+
+climate change [259], [325]
 
 clock [035], [117], [137] _see also_ temporality
 
@@ -168,15 +174,23 @@ clown [045], [085], [093] cognition [003], [135],
 
 collaboration [051], [071], [115], [151], [163], [167], [181], [229], [269], [277], [283], [299], [307],   [313], [347], [385] human-microbe [135], [213]
 
-colonialism [037], [197], [245], [283], [295] commodity _also_ commodi cation [139], [175], [251], [281],   [289] _see also_ consumption communication [245], [285], [327], [389] non-
+colonialism [037], [197], [245], [283], [295] 
 
-verbal [251], [333] miscommunication [251] Communism [055], [367]
+commodity _also_ commodification [139], [175], [251], [281], [289] _see also_ consumption 
+
+communication [245], [285], [327], [389] non-verbal [251], [333] miscommunication [251] 
+
+Communism [055], [367]
 
 compulsion [005]
 
 computer [003], [121], [287]
 
-conference [163], mobile [057], press [143] consumption [007], [043], [067], [151], [231], [277], [289],   [319], [381] consumer [097], [229]
+conference [163], mobile [057], press [143] 
+
+consumption [007], [043], [067], [151], [231], [277], [289], [319], [381] 
+
+consumer [097], [229]
 
 cooking [213], [301]
 
@@ -204,7 +218,9 @@ Cyrus, Miley [355]
 
 dance [013], [029], [033], [053], [077], [105], [137], [153], [271], [277], [329], [333], [373] and  lm [023] ballet [167], [393], [355] crumping [133] dance theater [073], [149] dance opera [245] face [235] improvisational [049], [313], [349] juking [133], modern [051] _see also_ choreography
 
-danger [071], [085], [109], [129], [267], [377] Davis, Angela [279]
+danger [071], [085], [109], [129], [267], [377] 
+
+Davis, Angela [279]
 
 Dean, Tacita [287]
 
@@ -258,7 +274,9 @@ drinking [063], [275]
 
 Duchamp, Marcel [249]
 
-duet [045], [051], [073], [137], [271], [311] Dunham, Lena [055], [153]
+duet [045], [051], [073], [137], [271], [311] 
+
+Dunham, Lena [055], [153]
 
 duration [049], [079], [137], [269], [287], [309], [313], [345] 
 
@@ -311,15 +329,17 @@ Facebook [369]
 
 factory [079], [183], [289], [341], _see also_ production line
 
-failure [039], [045],[165], [167], [209], [245], [285], [345] fame _also_ celebrity [099], [167], [383] _see   also_
+failure [039], [045],[165], [167], [209], [245], [285], [345] 
 
-success Hall of [299] fantasy [013], [241], [303] Fascism [169] Neo- [257]
+fame _also_ celebrity [099], [167], [383] _see also_ success, Hall of [299] 
+
+fantasy [013], [241], [303] 
+
+Fascism [169] Neo- [257]
 
 The Fast and the Furious [263]
 
-Federal Emergency Management Agency
-
-(FEMA) [285]
+Federal Emergency Management Agency (FEMA) [285]
 
 feedback [045], [047], [367]
 
@@ -331,7 +351,9 @@ family [013], [083], [147], [227], [275], [285], [393]
 
 feminine [033], [133]
 
-feminism [055], [217], [359] feminist [037], [045], [049],[153], [217], [221], [229], [261], [283], [359]
+feminism [055], [217], [359] 
+
+feminist [037], [045], [049],[153], [217], [221], [229], [261], [283], [359]
 
 fetish [009],[017], [023]
 
@@ -373,7 +395,9 @@ gender [037], [043], [045], [049], [119], [123], [191], [201], [313], [341], [39
 
 genetics [053]
 
-genitals _also_ vagina, dick, cock [045], [185], [199] genocide [197], [217]
+genitals _also_ vagina, dick, cock [045], [185], [199] 
+
+genocide [197], [217]
 
 gentri cation [315]
 
@@ -383,7 +407,9 @@ gestalt [003]
 
 gesture [005], [009], [015], [031], [065], [103], [127], [131], [139], [155], [163], [171], [187], [199],   [231], [251], [261], [265], [275], [315], [327], [331], [369]
 
-gloves [025], [055], [077], [195], [221], [261], [375] Godard, Jean-Luc [207]
+gloves [025], [055], [077], [195], [221], [261], [375] 
+
+Godard, Jean-Luc [207]
 
 Goethe [093]
 
@@ -395,7 +421,9 @@ Gorbanevskaya, Natalya [367]
 
 gossip [143]
 
-GPS (Global Positioning System) [155], [169] grief [173], [369], [393] _see also_ loss
+GPS (Global Positioning System) [155], [169] 
+
+grief [173], [369], [393] _see also_ loss
 
 
 {: #H .index .sticky-nav }
@@ -427,7 +455,9 @@ history [029], [043], [051], [053], [073], [099], [155], [183], [195], [197], [2
 
 Hollywood [203], [263]
 
-home [013], [039], [055], [079], [081], [087], [089], [123], [143], [147], [155], [189], [205], [283], [371], [373], [385] _see also_ domesticity; homeless [123], [251]
+home [013], [039], [055], [079], [081], [087], [089], [123], [143], [147], [155], [189], [205], [283], [371], [373], [385] _see also_ domesticity
+
+homeless [123], [251]
 
 Homeland Security [037]
 
@@ -447,7 +477,9 @@ immigration [157], [297] _see also_ migration
 
 improvisation [009], [041], [049], [093], [113], [121], [217], [271], [293], [313], [319], [349], [377],   [385] contact [349], structured [173]
 
-incarceration _see_ prison indigeneity [197], [283] _see also_ Native America, race
+incarceration _see_ prison 
+
+indigeneity [197], [283] _see also_ Native America, race
 
 information [073], [091], [121], [137], [157], [301], [317] 
 
@@ -567,7 +599,9 @@ male [017], [033], [043], [045], [201], [225], [237], [263], [265], [295], [391]
 
 marathon _also_ race [109], [237], [155] _see also_ Olympics, sports
 
-Maria Magdalena _also_ Madonna [033], [363] martial arts [313] _see also_ sport
+Maria Magdalena _also_ Madonna [033], [363] 
+
+martial arts [313] _see also_ sport
 
 Marx, Karl [131], [139], [169]
 
@@ -575,9 +609,7 @@ masculinity [043], [045], [225], [331], [341]
 
 mask [011], [077], [187], [249], [251], [351], [357], [373]
 
-media [121], [137],[175], [211], [283], [349], [355], [385], [389], [391] 
-
-mass [009], [177], [379] new   [121], [193], [129], [259] news [167]
+media [121], [137],[175], [211], [283], [349], [355], [385], [389], [391], mass [009], [177], [379] new   [121], [193], [129], [259] news [167]
 
 mediation [009], [243], [283], [325], [355]
 
@@ -732,11 +764,15 @@ Persephone [265]
 
 persona [077], [083], [095], [223], [265] public [153] _see also_ character
 
-phallus [043], [201] fellatio [365] _see also_ genitals philosophy [373] of mind [245]
+phallus [043], [201] fellatio [365] _see also_ genitals 
+
+philosophy [373] of mind [245]
 
 photocopy _see_ xerox
 
-photograph [013], [151], [179], [183], [227], [291], [295], [317], [335], [351] as documentation [107],   [165], [193], [259], [391] photographer [183], [223], [391]
+photograph [013], [151], [179], [183], [227], [291], [295], [317], [335], [351] as documentation [107],   [165], [193], [259], [391] 
+
+photographer [183], [223], [391]
 
 Picasso, Pablo [149]
 
@@ -748,17 +784,27 @@ play [023], [041], [071], [093], [099], [109], [149], [153], [355], [383] _see a
 
 Plutarch [323]
 
-poetry [007], [045], [049], [101], [127], [133], [149], [177], [219], [245], [261], [277], [293], [305],   [309], [317], [319], [333], [367], [387] poet [263] poetics [251]
+poetry [007], [045], [049], [101], [127], [133], [149], [177], [219], [245], [261], [277], [293], [305],   [309], [317], [319], [333], [367], [387] 
 
-police [037], [111], [299], [303], [337], [341] brutality, violence [191], [369] policing [279], [299]
+poet [263] 
 
-politics [109], [117], [119], [171], [197], [217], [257], [261], [279], [297], [347], [361], [367], [379],   [389] body politic [217] feminist [229], [283] geopolitics [157], [365] politician [055]
+poetics [251]
+
+police [037], [111], [299], [303], [337], [341] brutality, violence [191], [369] 
+
+policing [279], [299]
+
+politics [109], [117], [119], [171], [197], [217], [257], [261], [279], [297], [347], [361], [367], [379],   [389] body politic [217] feminist [229], [283] geopolitics [157], [365] 
+
+politician [055]
 
 Polke, Sigmar [241]
 
 polygamy [059]
 
-pornography [009], [017], PornHub [185] poverty [209]
+pornography [009], [017], PornHub [185] 
+
+poverty [209]
 
 power [027], [119], [131], [169], [243], [299], [313], [315], [337], [365], [369], [389] dynamics [265],   [347] empowerment [013], [029], [043], [265] female [091] male [043], [045] mystical [075] powerlessness [059]
 
@@ -772,7 +818,11 @@ Pritchard, Evan [271]
 
 prison _also_ incarceration [013], [379], abolition [279]
 
-privacy [119], [219], [337], [351], [173] private performance [219], [269], [371] private space [051], [073], [095], [143], [343] _see also_ public space
+privacy [119], [219], [337], [351], [173] 
+
+private performance [219], [269], [371] 
+
+private space [051], [073], [095], [143], [343] _see also_ public space
 
 privilege [169], [251], [303] white [077]
 
@@ -790,7 +840,9 @@ public art [259], [291]
 
 public relations [037], [043], [285]
 
-public space [051], [073], [081], [143], [173], [181], [187], [227], [261], [283], [285], [303], [307],   [327], [343], public sphere [147]
+public space [051], [073], [081], [143], [173], [181], [187], [227], [261], [283], [285], [303], [307],   [327], [343]
+
+public sphere [147]
 
 punk [045], [207]
 
@@ -826,9 +878,7 @@ reenactment [373]
 
 relationality [047], [269] relational aesthetics [245]
 
-religion [029], [175], [297], [365] Buddhism [337]
-
-Catholicism [029], [295] God [297] goddess [059], [265] Islam [059]
+religion [029], [175], [297], [365] Buddhism [337], Catholicism [029], [295] God [297] goddess [059], [265] Islam [059]
 
 repetition [009], [023], [107], [137], [149], [171], [205], [241], [277], [281], [287], [311], [329], [333], [345]
 
@@ -872,9 +922,11 @@ scar [013], [195], [343], [361]
 
 script [023], [103], [119], [139], [225], [263], [275] _see also_ play, score, text
 
-scholarship [129], [169] _see also_ academy science [135], [211], [259]
+scholarship [129], [169] _see also_ academy 
 
-science  ction [049]
+science [135], [211], [259]
+
+science fiction [049]
 
 Scientology [197]
 
@@ -906,7 +958,7 @@ silence [063], [233], [329], [333], [387]
 
 Simon, Seymor [205]
 
-site-speci c _also_ site-responsive, site- relative [013], [029], [031], [039], [051], [079], [087], [153], [221], [283], [291], [307], [329]
+site-specific _also_ site-responsive, site-relative [013], [029], [031], [039], [051], [079], [087], [153], [221], [283], [291], [307], [329]
 
 Smith, Jack [141]
 
@@ -944,9 +996,7 @@ story-telling [379]
 
 Strindberg, August [355]
 
-student [059], [129], [135], [215], [253], [351]
-
-disappeared (Ayotzinapa) [335], [361], [363]
+student [059], [129], [135], [215], [253], [351], disappeared (Ayotzinapa) [335], [361], [363]
 
 success [153], [167], [245], [249], [315], [379]
 
@@ -972,11 +1022,11 @@ tattoo [013], [215], [273], [361]
 
 technology [019], [043], [211], [233], [243], [255], [281], [309]
 
-television [063], [137], [177], [373], [389], game
+television [063], [137], [177], [373], [389], game show [099]
 
-show [099]
+temporality _also_ time _see also_ clock 
 
-temporality _also_ time _see also_ clock tension [005], [137], [171], [265], [309], [381]
+tension [005], [137], [171], [265], [309], [381]
 
 text [019], [029], [041], [049], [071], [075], [081], [083], [093], [101], [109], [111], [119], [137], [143], [151], [153], [165], [173], [175], [205], [209], [219], [245], [259], [261], [269], [283], [293], [313], [317], [319], [323], [333], [355], [359], [377], [387], text-based performance [023]
 
@@ -990,7 +1040,9 @@ Theatrum Mundi [245]
 
 theft [375]
 
-theory [245], [299] Theseus [323]
+theory [245], [299] 
+
+Theseus [323]
 
 time _see_ temporality
 
@@ -1036,7 +1088,9 @@ Uncle Vanya _see_ Chekhov
 
 United States of America [033], [043], [045], [063], [067], [091], [115], [157], [223], [279], [369], [383]
 
-university [129] _see also_ scholarship, student urban space _also_ city [147], [173], [267], [291], [299] 
+university [129] _see also_ scholarship, student 
+
+urban space _also_ city [147], [173], [267], [291], [299] 
 
 Ustvolskaya, Galina [367]
 
@@ -1048,7 +1102,9 @@ vagina _see_ genitals
 
 Vallejo, Camila [055]
 
-van der Rohe, Ludwig Mies [255] vandalism [185]
+van der Rohe, Ludwig Mies [255] 
+
+vandalism [185]
 
 victim [111], [159], [285], [381]
 
