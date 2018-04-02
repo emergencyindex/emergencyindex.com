@@ -367,6 +367,7 @@ module ScrapeIndesign
   end
 
   def self.write_terms_to_md
+    # ex:  ruby utilz/scrape_indesign.rb --infile /Users/edward/src/tower/github/alveol.us/utilz/projects/2014/terms_by_page.json --out_dir ../_projects/2014/ --writeterms
     p "reading #{@options[:in_file]}..."
     j = JSON.parse( File.read(@options[:in_file]) )
     len = j.length
