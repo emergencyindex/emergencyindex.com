@@ -32,8 +32,9 @@ module ScrapeIndesign
       opts.on("-X", "--drytidy", "DRY RUN Tidy project YAML (no files modified)") { |v| @options[:drytidy] = v }
     end.parse!
 
+
     unless @options[:tidy]
-      raise "ERROR! --vol not specified" unless @options[:in_file].nil?
+      raise "ERROR! --input file not specified" if @options[:in_file].nil?
       raise "ERROR! --infile does not exist" unless File.exist?(@options[:in_file])
       raise "ERROR! --outdir is not a directory" unless File.directory?(@options[:out_dir])
     end
