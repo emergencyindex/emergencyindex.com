@@ -182,7 +182,11 @@ cooking [213], [301]
 
 costume [041], [071], [073], [083], [097], [133], [145], [159], [281], [307]
 
-Critical Resistance [279] Crutzen, Paul [259] crying [059], [127]
+Critical Resistance [279] 
+
+Crutzen, Paul [259] 
+
+crying [059], [127]
 
 Cuba [157]
 
