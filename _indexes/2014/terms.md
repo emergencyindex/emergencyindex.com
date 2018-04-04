@@ -16,9 +16,13 @@ absence [065], [233], [373] of language [333]
 
 abstraction [111], [203], [233], [329], [331], [349], [385]
 
-absurdity [045], [075], [169], [207], [223], [247] academy [019], academic [169] _see also_ scholarship
+absurdity [045], [075], [169], [207], [223], [247] 
 
-actor [109], [263], [293], [307], [313], [355] older
+academy [019], 
+
+academic [169] _see also_ scholarship
+
+actor [109], [263], [293], [307], [313], [355]
 
 actors [041]
 
@@ -68,9 +72,21 @@ autobiography [031], [087], [373] _see also_ personal stories (under story)
 {: #B .index .sticky-nav }
 ## B
 
-bacteria [135], [211], [213] _see also_ microbes ball [003], [139], [223] bowling ball [047] _see also_   sports
+bacteria [135], [211], [213] _see also_ microbes 
 
-Barthes, Roland [197] basketball _see_ sports Beethoven, Ludwig von [035] Benjamin, Walter [015] Berlin Wall   [227]
+ball [003], [139], [223] 
+
+bowling ball [047] _see also_ sports
+
+Barthes, Roland [197] 
+
+basketball _see_ sports 
+
+Beethoven, Ludwig von [035] 
+
+Benjamin, Walter [015] 
+
+Berlin Wall [227]
 
 Beyoncé [355]
 
@@ -78,7 +94,9 @@ bildungsroman [093]
 
 Birnbaum, Dara [281]
 
-birth [013], [101], [127], [235] birthday [055], [149], [161], [313]
+birth [013], [101], [127], [235] 
+
+birthday [055], [149], [161], [313]
 
 Bishop, Claire [281]
 
@@ -120,7 +138,7 @@ butoh [021], [147], [173], [293], [313]
 {: #C .index .sticky-nav }
 ## C
 
-camera [003], [051], [059], [095], [129], [215], [235], [247], [391] GoPro [157] hand-held [355] _see also_    lm, surveillance, video
+camera [003], [051], [059], [095], [129], [215], [235], [247], [391] GoPro [157] hand-held [355] _see also_ film, surveillance, video
 
 camp [141], [153]
 
@@ -154,7 +172,9 @@ children [029], [127], [139], [227], [285] baby [235], [371] _see also_ student
 
 choreography [031], [045], [049], [071], [119], [137], [153], [235], [245], [271], [275], [277], [287],   [309], [349], [367], [373], [383]
 
-Christ _also_ Jesus [175], [363] cigarette [043]
+Christ _also_ Jesus [175], [363] 
+
+cigarette [043]
 
 cinematography [049], [367] _see_  film 
 
@@ -170,7 +190,9 @@ clock [035], [117], [137] _see also_ temporality
 
 clothes _also_ garments [095], [113], [159], [173], [217], [251], [315], [335] dress [029], [073], [145],   [221], shoes [145], [195], [237], t-shirt [031], [141], veil [145]
 
-clown [045], [085], [093] cognition [003], [135],
+clown [045], [085], [093] 
+
+cognition [003], [135]
 
 collaboration [051], [071], [115], [151], [163], [167], [181], [229], [269], [277], [283], [299], [307],   [313], [347], [385] human-microbe [135], [213]
 
@@ -216,7 +238,7 @@ Cyrus, Miley [355]
 {: #D .index .sticky-nav }
 ## D
 
-dance [013], [029], [033], [053], [077], [105], [137], [153], [271], [277], [329], [333], [373] and  lm [023] ballet [167], [393], [355] crumping [133] dance theater [073], [149] dance opera [245] face [235] improvisational [049], [313], [349] juking [133], modern [051] _see also_ choreography
+dance [013], [029], [033], [053], [077], [105], [137], [153], [271], [277], [329], [333], [373] and film [023] ballet [167], [393], [355] crumping [133] dance theater [073], [149] dance opera [245] face [235] improvisational [049], [313], [349] juking [133], modern [051] _see also_ choreography
 
 danger [071], [085], [109], [129], [267], [377] 
 
@@ -301,7 +323,9 @@ ego [139]
 
 Eichelberger, Ethyl [071]
 
-embodiment [085], [109], [129], [173], [181], [261], [265], [283], [309], [377] embodied activism [129]   queer [237]
+embodiment [085], [109], [129], [173], [181], [261], [265], [283], [309], [377] 
+
+embodied activism [129] queer [237]
 
 encounter [015], [085], [143], [165], [249], chance [251], [267], [299], [307], [325]
 
@@ -313,7 +337,9 @@ empathy [127], [245], [331], [365]
 
 Epic of Gilgamesh [059]
 
-ephemerality [131], [155], [261], [311], [343] ephemera [107]
+ephemerality [131], [155], [261], [311], [343] 
+
+ephemera [107]
 
 ethics [019], [169], [193], [229], [325]
 
@@ -487,7 +513,7 @@ insatiability [189]
 
 Instagram [369]
 
-installation [025], [097], [159], [175], [199], [219], [227], [269], [279], [287], [349], [363], [375]   immersive [017], [085], interactive [085] performance [283], [321] [287] site-specific [031] sound [035], [143], [287]
+installation [025], [097], [159], [175], [199], [219], [227], [269], [279], [287], [349], [363], [375]   immersive [017], [085], interactive [085] performance [283], [321], [287] site-specific [031] sound [035], [143], [287]
 
 instructions [025], [081], [239], [275], [377], [385]
 
