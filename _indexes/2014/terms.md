@@ -18,9 +18,7 @@ abstraction [111], [203], [233], [329], [331], [349], [385]
 
 absurdity [045], [075], [169], [207], [223], [247] 
 
-academy [019], 
-
-academic [169] _see also_ scholarship
+academy [019], academic [169] _see also_ scholarship
 
 actor [109], [263], [293], [307], [313], [355]
 
