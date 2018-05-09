@@ -198,6 +198,14 @@ label[for="project_already_submitted"], label[for="project_description_monospace
   font-size: 14px;
 }
 
+.all-projects{
+  display: flex;
+  justify-content: space-between;
+}
+.all-projects-chip{
+  margin-top: 1.5em;
+}
+
 @media #{$small-and-down} {
   .project-img{
     max-height: none;

@@ -5,20 +5,8 @@ permalink: /projects/
 ---
 
 <section>
-  <h1>2011</h1>
+  <h1 class="sticky-nav all-projects">All projects <span class="chip all-projects-chip">{{site.projects.size}}</span></h1>
   {% for project in site.projects %}
-    {% if project.path contains '2011' %}
-      <a href="{{ project.url }}">{{ project.title }} -- {{ project.name }}</a>
-    {% endif %}
+      <a href="{{ project.url }}">[{{project.volume}}] {{ project.title }} -- {{ project.contributor }}</a><br>
   {% endfor %}
 </section>
-
-<section>
-  <h1>2012</h1>
-  {% for project in site.projects %}
-    {% if project.path contains '2012' %}
-      <a href="{{ project.url }}">{{ project.title }} -- {{ project.name }}</a>
-    {% endif %}
-  {% endfor %}
-</section>
-
