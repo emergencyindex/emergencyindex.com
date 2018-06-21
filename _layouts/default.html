@@ -8,7 +8,6 @@
     <meta name="author" content="{{site.author}}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="author" href="humans.txt"/>
-    <!-- <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="{{site.baseurl}}/feed.xml" /> -->
 
     <link rel="stylesheet" href="{{site.baseurl}}/assets/css/styles.css" />
 
@@ -26,9 +25,28 @@
       gtag('config', 'UA-115328945-1');
     </script>
 
+    <script>
+      //ohey, this aesthetic. 
+      $(function() {
+        if(window.localStorage 
+          && window.localStorage.getItem("passwd")
+          && window.localStorage.getItem("passwd") == 'd2hhdCdzJTIwdGhlJTIwZW1lcmdlbmN5JTNG'
+        ){
+          $('body').removeClass('hidden');
+        }else{
+          var passwd = prompt('Hold up! This site is not ready for the public, yet. Please enter the secret to continue:');
+          if(btoa(encodeURIComponent(passwd)) == 'd2hhdCdzJTIwdGhlJTIwZW1lcmdlbmN5JTNG'){
+            window.localStorage.setItem('passwd','d2hhdCdzJTIwdGhlJTIwZW1lcmdlbmN5JTNG');
+            $('body').removeClass('hidden');
+          }
+        }
+      });
+
+    </script>
+
   </head>
 
-  <body>
+  <body class="hidden">
 
     {% include nav.html %}
 
