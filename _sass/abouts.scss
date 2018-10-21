@@ -1,0 +1,37 @@
+
+.flex-header{
+  display:flex;
+  justify-content: space-between;
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+.collection-item.header{
+	padding-left: 1.5em;
+}
+
+.search-row {
+  margin-top: 1.14rem;
+  margin-bottom: 0;
+}
+
+.collapsible-header.with-hover:hover, .collapsible-header.with-hover.active{
+  background-color: #ddd;
+}
+
+.index-ul ul{
+  margin-left: 2em;
+}
+
+.index-contributors p{
+  line-height: 1.5em;
+}
+
+.index-terms p{
+  font-weight: 800;
+}
+
+.index-terms p em, .index-terms p a{
+  font-weight: normal;
+  text-decoration: underline;
+}
