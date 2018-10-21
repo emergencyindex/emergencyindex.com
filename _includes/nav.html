@@ -5,15 +5,33 @@
 <ul id="slide-out" class="side-nav fixed hidden">
     <li class="sticky-nav">
       <div id="user-nav">
-        <a href="/">EmergencyINDEX</a>
+        <a href="/">Emergency INDEX</a>
+      </div>
+      <div id="user-nav">
+        <a href="https://www.facebook.com/EmergencyIndex/" target="_blank"><img src="/assets/img/about/fbIcon.png" width="100%"></a>
+        <a href="http://twitter.com/emergency_index" target="_blank"><img src="/assets/img/about/twitIcon.png" width="100%"></a>
+        <a href="http://instagram.com/emergency_index" target="_blank"><img src="/assets/img/about/instaIcon.png" width="100%"></a>
       </div>
       <div class="input-field">
         <input type="text" id="autocomplete-input" class="autocomplete">
         <label for="autocomplete-input" class='search-label'> Search</label>
       </div>
     </li>
-    
+
     <ul class="collapsible-nav" data-collapsible="accordion">
+      <li class="collapsible-nav-item">
+        <div class="collapsible-header sticky-nav sticky-nav-2">About <i class="material-icons indicator">keyboard_arrow_down</i></div>
+        <div class="collapsible-body">
+          <ul>
+            {% for about in site.abouts %}
+            {% if about.name %}
+              <li>
+              	<a href="{{about.url}}" class="waves-effect">{{about.name}}</a>
+              </li>
+            {% endif %}
+            {% endfor %}
+          </ul>
+      </li>
       <li class="collapsible-nav-item">
         <div class="collapsible-header sticky-nav sticky-nav-2">Indexes <i class="material-icons indicator">keyboard_arrow_down</i></div>
         <div class="collapsible-body">

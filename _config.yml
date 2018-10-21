@@ -37,7 +37,10 @@ defaults:
       image: true
 
 collections:
-  volumes: 
+  abouts:
+    output: true
+    permalink: /about/:path
+  volumes:
     output: true
     permalink: /volume/:path
   projects:
