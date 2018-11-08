@@ -6,7 +6,12 @@
   top: 0;
   max-height: 100px;
 }
-#user-nav{
+
+#slide-out {
+  overflow-x: hidden;
+}
+
+#user-nav, #social-nav{
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -62,4 +67,32 @@ a.username{
   height: 100%;
   text-align: center;
   border-bottom: 1px solid #e0e0e0;
+}
+
+#social-nav {
+  position: -webkit-sticky;
+  position: sticky;
+  top: calc(100vh - 41px);
+  padding-top: 5px;
+}
+
+#social-nav a {
+  border-bottom: 2px solid transparent;
+}
+
+#social-nav a:hover {
+  background-color: white;
+  border-bottom: 2px solid black;
+}
+
+.social-icon svg {
+  height: 30px;
+}
+
+.social-icon svg {
+  height: 30px;
+}
+
+.social-icon svg:hover {
+  fill: #000000;
 }
