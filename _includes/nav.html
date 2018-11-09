@@ -1,5 +1,5 @@
-<div id="nav" class="fixed-action-btn click-to-toggle">
-  <a href="#" data-activates="slide-out" class="button-collapse btn-floating btn-large tooltipped" data-delay="250" data-tooltip="Show Menu"><i class="material-icons medium">radio_button_checked</i></a>
+<div id="nav" class="click-to-toggle">
+  <a href="#" data-activates="slide-out" class="button-collapse tooltipped waves-effect" data-delay="250" data-tooltip="Show Menu">&nbsp;</a>
 </div>
 
 <ul id="slide-out" class="side-nav fixed hidden">
@@ -16,12 +16,12 @@
 
     <ul class="collapsible-nav" data-collapsible="accordion">
       <li class="collapsible-nav-item">
-        <div class="collapsible-header sticky-nav sticky-nav-2">About <i class="material-icons indicator">keyboard_arrow_down</i></div>
+        <div class="collapsible-header sticky-nav sticky-nav-2 waves-effect{% if page.about %} active{% endif %}">About <i class="material-icons indicator">keyboard_arrow_down</i></div>
         <div class="collapsible-body">
           <ul>
             {% for about in site.abouts %}
             {% if about.name %}
-              <li>
+              <li class="{% if page.about == about.name %}active{% endif %}">
               	<a href="{{about.url}}" class="waves-effect">{{about.name}}</a>
               </li>
             {% endif %}
@@ -29,7 +29,7 @@
           </ul>
       </li>
       <li class="collapsible-nav-item">
-        <div class="collapsible-header sticky-nav sticky-nav-2">Indexes <i class="material-icons indicator">keyboard_arrow_down</i></div>
+        <div class="collapsible-header sticky-nav sticky-nav-2 waves-effect">Indexes <i class="material-icons indicator">keyboard_arrow_down</i></div>
         <div class="collapsible-body">
           <ul>
           	{% for index in site.indexes %}
@@ -52,7 +52,7 @@
         </div>
       </li>
       <li class="collapsible-nav-item">
-        <div class="collapsible-header sticky-nav sticky-nav-2">Volumes <i class="material-icons indicator">keyboard_arrow_down</i></div>
+        <div class="collapsible-header sticky-nav sticky-nav-2 waves-effect">Volumes <i class="material-icons indicator">keyboard_arrow_down</i></div>
         <div class="collapsible-body">
           <ul>
           	{% for volume in site.volumes %}

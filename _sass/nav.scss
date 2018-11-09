@@ -3,8 +3,25 @@
 }
 
 #nav {
+  position: fixed;
+  right: 0;
   top: 0;
   max-height: 100px;
+  z-index: 10;
+}
+
+#nav a {
+  background: url('/assets/img/emergency_navblob.svg');
+  height: 50px;
+  width: 50px;
+  background-size: 100px;
+  background-position: bottom left;
+}
+
+#nav a:hover{
+  height: 75px;
+  width: 75px;
+  background-size: 150px;
 }
 
 #slide-out {
@@ -74,6 +91,15 @@ a.username{
   position: sticky;
   top: calc(100vh - 41px);
   padding-top: 5px;
+}
+
+@media #{$small-and-down} {
+  #social-nav {
+    top: calc(100vh - 41px - 44px); /* 44px for ios safari :/ */
+  }
+  .side-nav{
+    width: 80vw;
+  }
 }
 
 #social-nav a {
