@@ -95,7 +95,7 @@ a.username{
 
 @media #{$small-and-down} {
   #social-nav {
-    top: calc(100vh - 41px - 44px); /* 44px for ios safari :/ */
+    position: unset;
   }
   .side-nav{
     width: 80vw;
