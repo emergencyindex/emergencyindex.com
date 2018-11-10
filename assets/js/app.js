@@ -260,10 +260,10 @@ $(function() {
               e.preventDefault();
               modal.modal('close');
               location.hash = _vol+'-'+_page;
-            }else{
+            }else if(window.location.pathname.match('/volume/')){
               e.preventDefault();
               modal.modal('close');
-              location.href = _vol+'/2011#'+_vol+'-'+_page;
+              location.href = '/volume/'+_vol+'#'+_vol+'-'+_page;
             }
           }catch(e){
             //o noz! (~˘▾˘)~
