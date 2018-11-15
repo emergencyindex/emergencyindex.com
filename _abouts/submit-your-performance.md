@@ -1,14 +1,12 @@
 ---
-layout: page
+layout: abouts
 about: Submit Your Performance
 name: Submit Your Performance
 ---
 
 _Emergency INDEX_ is an annual print publication documenting new performance in the words of its creators. For more information, see our [Project Description](https://emergencyindex.com/project-description/) page.
 
-**Submissions for INDEX Volume 7 are now open. Click [here](https://docs.google.com/forms/d/e/1FAIpQLScABbffKVft_4VERTR3SVnp14s4zDVVC2wFSX8SrYirPjm2AA/viewform?c=0&w=1) to fill out the form.**
-
-We extended the submission deadline! Volume 7 submissions will now close on January 20th, 2018.
+**Submissions for INDEX Volume 7 have closed.**
 
 Please email <emergencyindex2017@gmail.com> with any questions.
 

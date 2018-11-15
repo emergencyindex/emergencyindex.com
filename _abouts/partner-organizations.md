@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: abouts
 about: Partner Organizations
 name: Partner Organizations
 ---

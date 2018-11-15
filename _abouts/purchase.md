@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: abouts
 about: Purchase Book
 name: Purchase Book
 ---
