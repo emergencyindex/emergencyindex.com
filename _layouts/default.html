@@ -67,7 +67,7 @@
       
       var items = [];
       $('.index').each(function() {
-        items.push('<li><a href="#'+$(this).attr('id')+'"'+'>'+$(this).text()+'</a></li>');
+        items.push('<li><a href="#'+$(this).attr('id')+'"'+' class="waves-effect">'+$(this).text()+'</a></li>');
       });
       $('#scrollspy-nav ul')
         .html(items.join(''))
