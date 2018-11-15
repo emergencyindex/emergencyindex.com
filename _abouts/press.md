@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: abouts
 about: Testimonials & Press
 name: Testimonials & Press
 ---

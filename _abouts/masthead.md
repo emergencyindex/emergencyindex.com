@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: abouts
 about: Masthead
 name: Masthead
 ---
@@ -26,6 +26,10 @@ Esther Neff \\
 Rob Ray \\
 Ben Spatz \\
 Sara Wintz
+
+**Digital Editors** \\
+Brian McCorkle \\
+Edward Sharp \\
 
 **Advisory Board** \\
 Oron Catts \\
