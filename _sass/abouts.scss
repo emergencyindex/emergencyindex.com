@@ -8,7 +8,15 @@
 .flex-banner{
   display:flex;
   justify-content: space-between;
+  width: 100%;
 }
+
+@media #{$small-and-down} {
+  .flex-banner{
+    display: none;
+  }
+}
+
 
 .collection-item.header{
 	padding-left: 1.5em;
