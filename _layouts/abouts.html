@@ -1,0 +1,35 @@
+---
+layout: default
+---
+
+<script type="text/javascript">
+  var imageURLs = [
+       "/assets/img/about/cropped-22its-exercise-time22-1.jpg"
+     , "/assets/img/about/cropped-all-the-animals-in-the-gemaldegalerie-animalia.jpg"
+     , "/assets/img/about/cropped-between_paradise_and_a_hard_place.jpg"
+     , "/assets/img/about/cropped-ickes_irre_irrfahrt.jpg"
+     , "/assets/img/about/cropped-moralfiber-1.jpg"
+     , "/assets/img/about/cropped-performance-on-flow-and-boudaries.jpg"
+  ];
+  function getImageTag() {
+    var img = '<img src=\"';
+    var randomIndex = Math.floor(Math.random() * imageURLs.length);
+    img += imageURLs[randomIndex];
+    img += '\" class=\"flex-header\" alt=\"Emergency Index\"/>';
+    return img;
+  }
+</script>
+
+  <article class="page">
+
+    <script type="text/javascript">
+      document.write(getImageTag());
+    </script>
+
+    <p>&nbsp;</p>
+
+    <h2>{{ page.title }}</h2>
+
+  	<div class="entry {{page.wrapperclass}}">{{ content }}</div>
+
+  </article>
