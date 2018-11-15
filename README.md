@@ -65,15 +65,9 @@ needs_review:
 
 To make changes and preview locally, checkout this repository and run jekyll.
 
-$ `bundle exec jekyll serve`
+$ `bundle exec jekyll serve --incremental`
 
 ...to get started make sure you've got ruby 2.4 (or higher version) installed. see [rvm](https://rvm.io/)
-
-$ `bundle install`
-
-$ `bundle exec jekyll serve`
-
-...or
 
 $ `gem install bundler`
 

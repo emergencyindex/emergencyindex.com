@@ -7,6 +7,6 @@ permalink: /projects/
 <section>
   <h1 class="sticky-nav all-projects">All projects <span class="chip all-projects-chip">{{site.projects.size}}</span></h1>
   {% for project in site.projects %}
-      <a href="{{ project.url }}">[{{project.volume}}] {{ project.title }} -- {{ project.contributor }}</a><br>
+      <a href="{{ project.url }}" class="waves-effect">[{{project.volume}}] {{ project.title }} -- {{ project.contributor }}</a><br>
   {% endfor %}
 </section>

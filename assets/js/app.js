@@ -260,6 +260,10 @@ $(function() {
               e.preventDefault();
               modal.modal('close');
               location.hash = _vol+'-'+_page;
+            }else if(window.location.pathname.match('/volume/')){
+              e.preventDefault();
+              modal.modal('close');
+              location.href = '/volume/'+_vol+'#'+_vol+'-'+_page;
             }
           }catch(e){
             //o noz! (~˘▾˘)~
