@@ -29,7 +29,7 @@ Sara Wintz
 
 **Digital Editors** \\
 Brian McCorkle \\
-Edward Sharp
+edward sharp
 
 **Advisory Board** \\
 Oron Catts \\
