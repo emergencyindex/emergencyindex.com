@@ -11,7 +11,7 @@ Whenever someone commits to this repository, GitHub Pages will run [Jekyll](http
 
 ### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling text. It includes conventions for
+Markdown is a lightweight and easy-to-use syntax for styling text. It includes conventions for general purpose formatting, for example:
 
 ```markdown
 Syntax highlighted code block
@@ -34,6 +34,8 @@ Syntax highlighted code block
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
 ### Project template
+
+All of the project files need to include this [YAML](http://yaml.org/) metadata at the top of the Markdown file:
 
 ```markdown
 ---
