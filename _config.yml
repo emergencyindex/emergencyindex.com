@@ -18,7 +18,7 @@ title: EmergencyINDEX
 email: hello@alveol.us
 description: >- # this means to ignore newlines until "baseurl:"
   Emergency INDEX: an index of performances.
-baseurl: "/emergencyindex.com" # the subpath of your site, e.g. /blog
+baseurl: "emergencyindex.com/" # the subpath of your site, e.g. /blog
 url: "http://alveol.us" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Build settings
@@ -39,16 +39,16 @@ defaults:
 collections:
   abouts:
     output: true
-    permalink: /about/:path
+    permalink: about/:path
   volumes:
     output: true
-    permalink: /volume/:path
+    permalink: volume/:path
   projects:
     output: true
-    permalink: /:collection/:path
+    permalink: :collection/:path
   indexes:
     output: true
-    permalink: /index/:path
+    permalink: index/:path
 
 exclude:
   - utilz/
