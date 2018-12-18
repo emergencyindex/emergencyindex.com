@@ -46,9 +46,6 @@ Katie Gaydos
 **Publishers** \\
 The Bros. Lumiere for Ugly Duckling Presse
 
-**Web Design** \\
-Zoe Guttenplan
-
 **Contact** \\
 <emergency@uglyducklingpresse.org>
 
