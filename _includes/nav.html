@@ -5,7 +5,7 @@
 <ul id="slide-out" class="side-nav fixed hidden">
     <li class="sticky-nav">
       <div id="user-nav">
-        <a href="/" class="waves-effect">Emergency INDEX</a>
+        <a href="about/about" class="waves-effect">Emergency INDEX</a>
       </div>
       
       <div class="input-field">
@@ -13,21 +13,20 @@
         <label for="autocomplete-input" class='search-label'> Search</label>
       </div>
     </li>
+  
+    <li class="nav">
+      <div id="user-nav">
+        <a href="about/submit-your-performance" class="waves-effect">Submit Your Performance</a>
+      </div>
+    </li>
 
+    <li class="nav">
+      <div id="user-nav">
+        <a href="about/purchase" class="waves-effect">Purchase Book</a>
+      </div>
+    </li>
+  
     <ul class="collapsible-nav" data-collapsible="accordion">
-      <li class="collapsible-nav-item">
-        <div class="collapsible-header sticky-nav sticky-nav-2 waves-effect{% if page.about %} active{% endif %}">About <i class="material-icons indicator">keyboard_arrow_down</i></div>
-        <div class="collapsible-body">
-          <ul>
-            {% for about in site.abouts %}
-            {% if about.name %}
-              <li class="{% if page.about == about.name %}active{% endif %}">
-              	<a href="{{about.url}}" class="waves-effect">{{about.name}}</a>
-              </li>
-            {% endif %}
-            {% endfor %}
-          </ul>
-      </li>
       <li class="collapsible-nav-item">
         <div class="collapsible-header sticky-nav sticky-nav-2 waves-effect">Indexes <i class="material-icons indicator">keyboard_arrow_down</i></div>
         <div class="collapsible-body">
