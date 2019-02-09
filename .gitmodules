@@ -1,18 +1,18 @@
 [submodule "_projects/2011"]
 	path = _projects/2011
-	url = git@github.com:emergencyindex/projects-2011.git
+	url = https://github.com/emergencyindex/projects-2011.git
 [submodule "_projects/2012"]
 	path = _projects/2012
-	url = git@github.com:emergencyindex/projects-2012.git
+	url = https://github.com/emergencyindex/projects-2012.git
 [submodule "_projects/2013"]
 	path = _projects/2013
-	url = git@github.com:emergencyindex/projects-2013.git
+	url =https://github.com/emergencyindex/projects-2013.git
 [submodule "_projects/2014"]
 	path = _projects/2014
-	url = git@github.com:emergencyindex/projects-2014.git
+	url = https://github.com/emergencyindex/projects-2014.git
 [submodule "_projects/2015"]
 	path = _projects/2015
-	url = git@github.com:emergencyindex/projects-2015.git
+	url = https://github.com/emergencyindex/projects-2015.git
 [submodule "_projects/2016"]
 	path = _projects/2016
-	url = git@github.com:emergencyindex/projects-2016.git
+	url = https://github.com/emergencyindex/projects-2016.git
