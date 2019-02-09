@@ -1,3 +1,6 @@
 [submodule "_projects/2011"]
 	path = _projects/2011
 	url = git@github.com:emergencyindex/projects-2011.git
+[submodule "_projects/2012"]
+	path = _projects/2012
+	url = git@github.com:emergencyindex/projects-2012.git
