@@ -60,13 +60,13 @@
 	branch = images
 [submodule "_indexes/2016"]
 	path = _indexes/2016
-	url = https://edwardsharp@github.com/emergencyindex/projects-2015.git
+	url = https://edwardsharp@github.com/emergencyindex/projects-2016.git
 	branch = indexes
 [submodule "_projects/2016"]
 	path = _projects/2016
-	url = https://edwardsharp@github.com/emergencyindex/projects-2015.git
+	url = https://edwardsharp@github.com/emergencyindex/projects-2016.git
 	branch = projects
 [submodule "assets/img/2016"]
 	path = assets/img/2016
-	url = https://edwardsharp@github.com/emergencyindex/projects-2015.git
+	url = https://edwardsharp@github.com/emergencyindex/projects-2016.git
 	branch = images
