@@ -1,3 +1,5 @@
+var BASE_URL = "/emergencyindex.com/";
+
 $.fn.animateRotate = function(angle, duration, easing, complete) {
   var args = $.speed(duration, easing, complete);
   var step = args.step;
@@ -109,7 +111,7 @@ $(function() {
   var getData = function(){
     $.ajax({
       type: 'GET',
-      url: '/autocomplete.json',
+      url: BASE_URL+'autocomplete.json',
       dataType: 'json',
       success: function(j, xhr){
         data = j;
@@ -123,7 +125,7 @@ $(function() {
 
   var dataXHR = $.ajax( {
     type: 'HEAD',
-    url: '/autocomplete.json',
+    url: BASE_URL+'autocomplete.json',
     success: function() {
       var currentTime;
       if(window.localStorage && window.localStorage.getItem("data-last-modified")){
@@ -150,7 +152,7 @@ $(function() {
   var getTerms = function(){
     $.ajax({
       type: 'GET',
-      url: '/index/terms.json',
+      url: BASE_URL+'index/terms.json',
       dataType: 'json',
       success: function(j, xhr){
         terms = j;
@@ -163,7 +165,7 @@ $(function() {
 
   var termsXHR = $.ajax( {
     type: 'HEAD',
-    url: '/index/terms.json',
+    url: BASE_URL+'index/terms.json',
     success: function() {
       var currentTime;
       if(window.localStorage && window.localStorage.getItem("terms-last-modified")){
