@@ -39,16 +39,16 @@ defaults:
 collections:
   abouts:
     output: true
-    permalink: /emergencyindex.com/about/:path
+    permalink: /about/:path
   volumes:
     output: true
-    permalink: /emergencyindex.com/volume/:path
+    permalink: /volume/:path
   projects:
     output: true
-    permalink: /emergencyindex.com/:collection/:path
+    permalink: /:collection/:path
   indexes:
     output: true
-    permalink: /emergencyindex.com/index/:path
+    permalink: /index/:path
 
 exclude:
   - utilz/
