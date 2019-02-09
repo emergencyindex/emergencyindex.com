@@ -71,11 +71,11 @@ $ `git clone https://github.com/emergencyindex/emergencyindex.com.git`
 
 the content for each year is referenced via git submodules to individual project repos: 
 
-[projects-2011](https://github.com/emergencyindex/projects-2011)
-[projects-2012](https://github.com/emergencyindex/projects-2012)
-[projects-2013](https://github.com/emergencyindex/projects-2013)
-[projects-2014](https://github.com/emergencyindex/projects-2014)
-[projects-2015](https://github.com/emergencyindex/projects-2015)
+[projects-2011](https://github.com/emergencyindex/projects-2011),
+[projects-2012](https://github.com/emergencyindex/projects-2012),
+[projects-2013](https://github.com/emergencyindex/projects-2013),
+[projects-2014](https://github.com/emergencyindex/projects-2014),
+[projects-2015](https://github.com/emergencyindex/projects-2015),
 [projects-2016](https://github.com/emergencyindex/projects-2016)
 
 every repository contains separate branches (`projects`, `indexes`, & `images`) with files that end up their own respective folder in this project (e.g. [projects-2011](https://github.com/emergencyindex/projects-2011)'s `indexes` branch files will end up the `_projects/2011` folder).  
@@ -91,6 +91,10 @@ $ `git submodule update --init -- _projects/2011`
 ...replace `_projects/2011` what a specific sub-module (e.g. `assets/img/2015`) 
 
 see [.gitmodules](https://github.com/emergencyindex/emergencyindex.com/blob/master/.gitmodules) file for reference to all the different modules used in this repository.
+
+to pull in updates from sub-modules run:
+
+$ `git submodule update --recursive --remote`
 
 
 #### Jekyll (for local development)
