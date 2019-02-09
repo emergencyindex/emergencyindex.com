@@ -94,7 +94,8 @@ see [.gitmodules](https://github.com/emergencyindex/emergencyindex.com/blob/mast
 
 to pull in updates from sub-modules run:
 
-$ `git submodule update --recursive --remote`
+$ `git submodule sync`
+$ `git submodule update --init --recursive --remote`
 
 
 #### Jekyll (for local development)
