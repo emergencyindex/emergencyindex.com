@@ -1,0 +1,12 @@
+[submodule "_projects/2011"]
+	path = _projects/2011
+	url = https://edwardsharp@github.com/emergencyindex/projects-2011.git
+	branch = projects
+[submodule "_indexes/2011"]
+	path = _indexes/2011
+	url = https://edwardsharp@github.com/emergencyindex/projects-2011.git
+	branch = indexes
+[submodule "assets/img/2011"]
+	path = assets/img/2011
+	url = https://edwardsharp@github.com/emergencyindex/projects-2011.git
+	branch = images
