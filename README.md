@@ -110,6 +110,6 @@ $ `bundle exec jekyll serve`
 
 (...it will take a few minutes to build)
 
-add `--incremental` flag to speed up build time. make changes & preview locally, run:
+add `--incremental` flag to speed up build time. make changes and preview locally, run:
 
 $ `bundle exec jekyll serve --incremental`
