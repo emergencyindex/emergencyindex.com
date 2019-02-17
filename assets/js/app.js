@@ -1,4 +1,4 @@
-var BASE_URL = "/emergencyindex.com/";
+var BASE_URL = "/";
 
 $.fn.animateRotate = function(angle, duration, easing, complete) {
   var args = $.speed(duration, easing, complete);
@@ -67,7 +67,7 @@ $(function() {
       });
     }
    
-
+    // console.log('gonna init autocomplete...')
     $('input.autocomplete').autocomplete({
       data: dataObj,
       limit: 50,
