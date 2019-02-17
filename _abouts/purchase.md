@@ -9,6 +9,8 @@ Click on any image below to order a copy of Emergency INDEX.
 
 For lists of contributors, [click here](/index/contributors).
 
+[![Vol. 7](/assets/img/about/index7_promo_crop.jpg "Vol. 7")](https://emergencyindex.files.wordpress.com/2019/01/index7_promo_crop.jpg) Vol. 7 (2017)
+
 [![Vol. 6](/assets/img/about/index6_promo_crop.jpg "Vol. 6")](https://www.uglyducklingpresse.org/catalog/browse/item/?pubID=564) Vol. 6 (2016)
 
 [![Vol. 5](/assets/img/about/index5_crop.jpg "Vol. 5")](https://www.uglyducklingpresse.org/catalog/browse/item/?pubID=545) Vol. 5 (2015)
