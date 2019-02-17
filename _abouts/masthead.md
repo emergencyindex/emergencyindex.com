@@ -2,6 +2,7 @@
 layout: abouts
 about: Masthead
 name: Masthead
+permalink: /about/masthead/
 ---
 
 **Editors** \\

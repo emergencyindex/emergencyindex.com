@@ -2,6 +2,7 @@
 layout: abouts
 about: Purchase Book
 name: Purchase Book
+permalink: /purchase/
 ---
 
 Click on any image below to order a copy of Emergency INDEX.
