@@ -1,4 +1,5 @@
 var BASE_URL = "/";
+var data, terms;
 
 $.fn.animateRotate = function(angle, duration, easing, complete) {
   var args = $.speed(duration, easing, complete);
@@ -27,9 +28,7 @@ $.fn.isolatedScroll = function() {
 };
 
 
-
 $(function() {
-  var data, terms;
 
   $('#slide-out').removeClass('hidden');
   $('#slide-out').isolatedScroll();
