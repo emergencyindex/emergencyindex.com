@@ -2,7 +2,7 @@
 layout: abouts
 about: Partner Organizations
 name: Partner Organizations
-permalink: /about/organizations/
+permalink: /about/partner-organizations/
 ---
 
 **Partner Organizations**\* \\
