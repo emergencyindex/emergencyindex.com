@@ -3,14 +3,9 @@ layout: default
 ---
 
 <script type="text/javascript">
-  var imageURLs = [
-       "/assets/img/about/cropped-22its-exercise-time22-1.jpg"
-     , "/assets/img/about/cropped-all-the-animals-in-the-gemaldegalerie-animalia.jpg"
-     , "/assets/img/about/cropped-between_paradise_and_a_hard_place.jpg"
-     , "/assets/img/about/cropped-ickes_irre_irrfahrt.jpg"
-     , "/assets/img/about/cropped-moralfiber-1.jpg"
-     , "/assets/img/about/cropped-performance-on-flow-and-boudaries.jpg"
-  ];
+  var imageURLs = [];
+  // grab all images from all projects, make array of "image url + url of project"
+  // display and crop the image linked, and make into hyperlink to project
   function getImageTag() {
     var img = '<img src=\"';
     var randomIndex = Math.floor(Math.random() * imageURLs.length);
