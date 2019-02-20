@@ -31,15 +31,9 @@ label[for="project_already_submitted"], label[for="project_description_monospace
   color: red;
 }
 
-#project_description{
-  min-height: 75vh;
-}
-
-#project_description, .description{
+.description{
   word-break: break-word;
-  font-size: 15px;
-  font-family: "Lucida Sans Typewriter", "Lucida Console", monaco, monospace;
-}
+ }
 
 .project-info p{
   font-size: 12px;
@@ -231,4 +225,29 @@ label[for="project_already_submitted"], label[for="project_description_monospace
     font-size: 1.66rem;
   }
 
+}
+
+@media (min-width: 1281px) {
+  .project-info p, .photo-credit{
+    font-size: 20px
+  }
+  .description code, .description kbd, .description pre, .description samp{
+    font-size: 22px;
+  }
+  .right-panel .title{
+    font-size: 30px;
+  }
+
+  .right-panel .contributor{
+    font-size: 28px;
+  }
+  .project-info .contributor{
+    font-size: 22px;
+  }
+  
+  .project-info .title{
+    font-size: 24px;
+  }
+
+  
 }
