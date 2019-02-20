@@ -17,8 +17,6 @@ button{
 
 
 
-
-
 @import 'materialize';
 
 .select-dropdown label{
@@ -46,5 +44,11 @@ button{
   }
   .fixed-margin{
     margin-right: 0;
+  }
+}
+
+@media (min-width: 1281px) {
+  .fixed-margin{
+    margin-right: 300px;
   }
 }

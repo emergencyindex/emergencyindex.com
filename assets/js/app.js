@@ -1,4 +1,6 @@
 var BASE_URL = "/";
+var data, terms;
+var dataReadyEvent = new Event('dataReady');
 
 $.fn.animateRotate = function(angle, duration, easing, complete) {
   var args = $.speed(duration, easing, complete);
@@ -27,9 +29,7 @@ $.fn.isolatedScroll = function() {
 };
 
 
-
 $(function() {
-  var data, terms;
 
   $('#slide-out').removeClass('hidden');
   $('#slide-out').isolatedScroll();
@@ -119,6 +119,7 @@ $(function() {
           window.localStorage.setItem("data", JSON.stringify(data));
         }
         initAutocomplete();
+        document.dispatchEvent(dataReadyEvent);
       }
     });
   }
@@ -144,6 +145,7 @@ $(function() {
     if(window.localStorage && window.localStorage.getItem("data")){
       data = JSON.parse(window.localStorage.getItem("data"));
       initAutocomplete();
+      document.dispatchEvent(dataReadyEvent);
     }else{
       getData();
     }
