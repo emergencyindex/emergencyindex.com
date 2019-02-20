@@ -2,29 +2,35 @@
 layout: default
 ---
 
-<script type="text/javascript">
-  var imageURLs = [
-       "/assets/img/about/cropped-22its-exercise-time22-1.jpg"
-     , "/assets/img/about/cropped-all-the-animals-in-the-gemaldegalerie-animalia.jpg"
-     , "/assets/img/about/cropped-between_paradise_and_a_hard_place.jpg"
-     , "/assets/img/about/cropped-ickes_irre_irrfahrt.jpg"
-     , "/assets/img/about/cropped-moralfiber-1.jpg"
-     , "/assets/img/about/cropped-performance-on-flow-and-boudaries.jpg"
-  ];
-  function getImageTag() {
-    var img = '<img src=\"';
-    var randomIndex = Math.floor(Math.random() * imageURLs.length);
-    img += imageURLs[randomIndex];
-    img += '\" class=\"flex-banner\" alt=\"Emergency Index\"/>';
-    return img;
+<style>
+  .project-banner-img {
+    min-height: 300px;
+    height: 33vh;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
   }
+</style>
+
+<script type="text/javascript">
+  document.addEventListener('dataReady', function (e) {
+    var randoProject = data[ Math.floor(Math.random() * data.length - 1) ];
+    
+    var projectBannerLink = document.querySelector('.project-banner-link');
+    projectBannerLink.href = randoProject.url;
+    projectBannerLink.title = randoProject.title + ' -- ' + randoProject.contributor;
+
+    var projectBannerImg = document.querySelector('.project-banner-img');
+    projectBannerImg.style.backgroundImage = 'url("/assets/img/'+randoProject.volume+'/'+randoProject.image+'")';
+
+  }, false);
+
 </script>
 
   <article class="page">
-
-    <script type="text/javascript">
-      document.write(getImageTag());
-    </script>
+    <a class="project-banner-link">
+      <div class="project-banner-img flex-banner"></div>
+    </a>
 
     <p>&nbsp;</p>
 
