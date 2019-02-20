@@ -1,5 +1,11 @@
 .side-nav {
-  width: 300px;
+  width: 200px;
+}
+
+@media (min-width: 1281px) {
+  .side-nav {
+    width: 300px;
+  }
 }
 
 .collapsible-nav-item:hover{
@@ -109,6 +115,16 @@ a.username{
 .side-nav li > a{
     font-size: 18px;
 }
+
+@media (max-width: 1281px) {
+  .side-nav li > a.about {
+    overflow: visible;
+    line-height: 1.25em;
+    height: auto;
+    padding: 5px 1em!important;
+  }
+}
+
 
 #social-nav a {
   border-bottom: 2px solid transparent;
