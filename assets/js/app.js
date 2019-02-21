@@ -111,8 +111,13 @@ $(function() {
     var projectBannerLink = document.querySelector('.project-banner-link');
     if(projectBannerLink){
         var randoProject = data[ Math.floor(Math.random() * data.length - 1) ];
-        console.log('randoProject:',randoProject)
-        projectBannerLink.href = randoProject.url;
+        // console.log('randoProject:',randoProject)
+        // projectBannerLink.href = randoProject.url;
+        var _href = randoProject.url.split('/');
+        var _page = _href.pop();
+        var _vol  = _href.pop();
+        projectBannerLink.href = '/volume/'+_vol+'#'+_vol+'-'+_page;
+
         // projectBannerLink.title = randoProject.title + ' -- ' + randoProject.contributor;
     
         var projectBannerElem = document.querySelector('.project-banner-elem');

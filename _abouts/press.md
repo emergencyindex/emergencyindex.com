@@ -3,7 +3,7 @@ layout: abouts
 about: Testimonials & Press
 name: Testimonials & Press
 permalink: /about/press/
-ref: about
+banner: true
 ---
 
 >_"This is a bible of performance art activity. And if you are, like I am, a believer in performance art and the value of this ephemeral art activity to change the hearts and minds and consciousness of people, then you need to have this bible in your life. The end." — **MARTHA WILSON**_

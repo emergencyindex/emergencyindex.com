@@ -4,8 +4,8 @@ layout: default
 
 <article class="page">
 
-  {% if page.ref == 'index' or page.ref == 'about' %}
-    {% include header.html %}
+  {% if page.banner %}
+    {% include banner.html %}
   {% endif %}
 
 	<div class="entry {{page.wrapperclass}}">{{ content }}</div>

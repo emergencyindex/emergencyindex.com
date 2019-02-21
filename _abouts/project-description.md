@@ -3,7 +3,7 @@ layout: abouts
 about: Project Description
 name: Project Description
 permalink: /about/project-description/
-ref: about
+banner: true
 ---
 
 ### The Problem

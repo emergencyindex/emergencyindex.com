@@ -3,7 +3,7 @@ layout: abouts
 about: Submit Your Performance
 name: Submit Your Performance
 permalink: /submit-your-performance/
-ref: about
+banner: true
 ---
 
 _Emergency INDEX_ is an annual print publication documenting new performance in the words of its creators. For more information, see our [Project Description](https://emergencyindex.com/project-description/) page.

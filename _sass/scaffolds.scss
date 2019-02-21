@@ -177,6 +177,10 @@ label {
   flex-direction: column;
 }
 
+.collection, .collection .collection-item {
+  border: none;
+}
+
 .clear-collection{
   clear:both;
 }

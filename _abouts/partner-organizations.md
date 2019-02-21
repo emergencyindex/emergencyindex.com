@@ -3,7 +3,7 @@ layout: abouts
 about: Partner Organizations
 name: Partner Organizations
 permalink: /about/partner-organizations/
-ref: about
+banner: true
 ---
 
 **Partner Organizations**\* \\
