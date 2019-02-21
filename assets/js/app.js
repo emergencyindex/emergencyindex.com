@@ -121,8 +121,7 @@ $(function() {
         var _page = _href.pop();
         var _vol  = _href.pop();
         projectBannerLink.href = '/volume/'+_vol+'#'+_vol+'-'+_page;
-
-        // projectBannerLink.title = randoProject.title + ' -- ' + randoProject.contributor;
+        projectBannerLink.title = randoProject.title + ' -- ' + randoProject.contributor;
     
         var projectBannerElem = document.querySelector('.project-banner-elem');
         projectBannerElem.style.backgroundImage = 'url("/assets/img/'+randoProject.volume+'/'+randoProject.image+'")';

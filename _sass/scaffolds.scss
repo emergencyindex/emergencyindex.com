@@ -235,6 +235,15 @@ li.sticky-nav{
   color: #333;
   background-color: transparent;
 }
+.project-banner-link .project-banner-elem div{
+  -webkit-transition: opacity 200ms ease-in;
+    -moz-transition: opacity 200ms ease-in;
+    -o-transition: opacity 200ms ease-in;
+    transition: opacity 200ms ease-in;
+}
+.project-banner-link:hover .project-banner-elem div {
+  opacity: 0;
+}
 .project-banner-wrapper {
   display: flex;
   justify-content: space-between;
