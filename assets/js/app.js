@@ -123,6 +123,8 @@ $(function() {
         var projectBannerElem = document.querySelector('.project-banner-elem');
         projectBannerElem.style.backgroundImage = 'url("/assets/img/'+randoProject.volume+'/'+randoProject.image+'")';
         
+        projectBannerElem.innerHTML = '';
+
         var divTitle = document.createElement("div");
         divTitle.innerHTML = randoProject.title;
         projectBannerElem.appendChild(divTitle);
