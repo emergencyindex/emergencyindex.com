@@ -231,6 +231,9 @@ li.sticky-nav{
 
 .project-banner-link {
   width: 100%;
+  display: flex;
+  justify-content: center;
+  flex: 7;
 }
 .project-banner-link:hover {
   color: #333;
@@ -245,24 +248,36 @@ li.sticky-nav{
   width: 100%;
   text-align: right;
   margin-right: 0.5em;
+  flex: 5;
 }
 .project-banner-elem {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-end;
-  min-height: 300px;
-  height: 33vh;
   width: 100%;
+  max-width: 420px;
+  height: 302px;
   background-position: right;
   background-size: contain;
   background-repeat: no-repeat;
   text-align: right;
 }
 @media #{$small-and-down} {
+  .project-banner-wrapper {
+    flex-direction: column;
+  }
   .project-banner-elem {
     background-position: center;
     background-size: cover;
+    max-width: 100vw;
+  }
+  .project-banner-link {
+    flex: 1;
+  }
+  .project-banner-blob {
+    flex: 1;
+    text-align: left;
   }
 }
 .project-banner-elem div {
