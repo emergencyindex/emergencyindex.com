@@ -257,8 +257,24 @@ li.sticky-nav{
   background-position: right;
   background-size: contain;
   background-repeat: no-repeat;
-  text-align: right;
+  text-align: right; 
+  opacity: 0;
+  -webkit-transition: opacity 250ms ease-in;
+    -moz-transition: opacity 250ms ease-in;
+    -o-transition: opacity 250ms ease-in;
+    transition: opacity 250ms ease-in;
 }
+.project-banner-elem-anim {
+  opacity: 1;
+}
+.project-banner-elem-anim div {
+  animation: 333ms slidein;
+}
+@keyframes slidein {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
 @media #{$small-and-down} {
   .project-banner-wrapper {
     flex-direction: column;
