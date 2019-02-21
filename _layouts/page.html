@@ -4,7 +4,9 @@ layout: default
 
 <article class="page">
 
-  <h2 class="{% if page.about %}sticky-nav{% endif %}">{{ page.title }}</h2>
+  {% if page.ref == 'index' or page.ref == 'about' %}
+    {% include header.html %}
+  {% endif %}
 
 	<div class="entry {{page.wrapperclass}}">{{ content }}</div>
 

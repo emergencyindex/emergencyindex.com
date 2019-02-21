@@ -1,6 +1,5 @@
 var BASE_URL = "/";
 var data, terms;
-var dataReadyEvent = new Event('dataReady');
 
 $.fn.animateRotate = function(angle, duration, easing, complete) {
   var args = $.speed(duration, easing, complete);
@@ -108,6 +107,33 @@ $(function() {
     // }
   }
   
+  var setRandoProjectBanner = function() {
+    var projectBannerLink = document.querySelector('.project-banner-link');
+    if(projectBannerLink){
+        var randoProject = data[ Math.floor(Math.random() * data.length - 1) ];
+        console.log('randoProject:',randoProject)
+        projectBannerLink.href = randoProject.url;
+        // projectBannerLink.title = randoProject.title + ' -- ' + randoProject.contributor;
+    
+        var projectBannerElem = document.querySelector('.project-banner-elem');
+        projectBannerElem.style.backgroundImage = 'url("/assets/img/'+randoProject.volume+'/'+randoProject.image+'")';
+        
+        var divTitle = document.createElement("div");
+        divTitle.innerHTML = randoProject.title;
+        projectBannerElem.appendChild(divTitle);
+
+        var divContributor = document.createElement("div");
+        divContributor.innerHTML = randoProject.contributor;
+        projectBannerElem.appendChild(divContributor);
+
+        var divVolume = document.createElement("div");
+        divVolume.innerHTML = randoProject.volume;
+        projectBannerElem.appendChild(divVolume);
+
+        
+    }
+  }
+
   var getData = function(){
     $.ajax({
       type: 'GET',
@@ -119,7 +145,7 @@ $(function() {
           window.localStorage.setItem("data", JSON.stringify(data));
         }
         initAutocomplete();
-        document.dispatchEvent(dataReadyEvent);
+        setRandoProjectBanner();
       }
     });
   }
@@ -145,7 +171,7 @@ $(function() {
     if(window.localStorage && window.localStorage.getItem("data")){
       data = JSON.parse(window.localStorage.getItem("data"));
       initAutocomplete();
-      document.dispatchEvent(dataReadyEvent);
+      setRandoProjectBanner();
     }else{
       getData();
     }
@@ -336,6 +362,5 @@ $(function() {
   if(window.location.hash.length && $(window.location.hash).length){
     window.scrollTo(window.scrollX, $(window.location.hash).position().top);
   }
-
 
 });

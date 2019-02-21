@@ -225,6 +225,50 @@ li.sticky-nav{
   padding-right: 5px;
 }
 
+.project-banner-link {
+  width: 100%;
+}
+.project-banner-link:hover {
+  color: #333;
+  background-color: transparent;
+}
+.project-banner-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.project-banner-blob {
+  height: 100%;
+  width: 100%;
+  text-align: right;
+  margin-right: 0.5em;
+}
+.project-banner-elem {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  min-height: 300px;
+  height: 33vh;
+  width: 100%;
+  background-position: right;
+  background-size: contain;
+  background-repeat: no-repeat;
+  text-align: right;
+}
+@media #{$small-and-down} {
+  .project-banner-elem {
+    background-position: center;
+    background-size: cover;
+  }
+}
+.project-banner-elem div {
+  text-align: right;
+  margin-top: 2px;
+  padding: 0 6px;
+  color: white;
+  background-color: black;
+  background-color: rgba(0,0,0,0.6);
+}
 
 @media #{$small-and-down} {
   body{
@@ -236,6 +280,9 @@ li.sticky-nav{
     margin: 0;
   }
 
+  h2 {
+    font-size: 2.5rem;
+  }
   h1{
     margin: 0;
     /*margin: 0 1rem 1rem 1rem;*/

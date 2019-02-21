@@ -3,6 +3,7 @@ layout: abouts
 about: Masthead
 name: Masthead
 permalink: /about/masthead/
+ref: about
 ---
 
 **Editors** \\
