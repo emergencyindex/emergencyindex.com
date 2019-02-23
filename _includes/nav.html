@@ -23,31 +23,9 @@
             <li><a href="/purchase/" class="waves-effect about">Purchase a Book</a></li>
             <li><a href="/about/masthead/" class="waves-effect about">Masthead</a></li>
             <li><a href="/about/partner-organizations/" class="waves-effect about">Partner Organizations</a></li>
+            <li><a href="/about/project-description/" class="waves-effect about">Project Description</a></li>
             <li><a href="/about/press/" class="waves-effect about">Press</a></li>
           </ul>
-      <li class="collapsible-nav-item">
-        <div class="collapsible-header sticky-nav sticky-nav-2 waves-effect">Indexes <i class="material-icons indicator">keyboard_arrow_down</i></div>
-        <div class="collapsible-body">
-          <ul>
-          	{% for index in site.indexes %}
-            {%- if index.name and index.volume == 'all' -%}
-            <li><a href="{{index.url}}" class="waves-effect">All {{index.name}}</a></li>
-            {%- endif -%}
-            {% endfor %}
-          </ul>
-          {% for volume in site.volumes %}
-          {%- assign sub_items = site.indexes | where: "volume", volume.name -%}
-          {%- if sub_items.size > 0 -%}
-          <ul>
-            <li class="nav-indexes-vol sticky-nav sticky-nav-3">{{volume.name}}</li>
-            {% for item in sub_items %}
-            <li><a href="{{item.url}}" class="waves-effect">{{item.name}}</a></li>
-            {% endfor %}
-          </ul>
-          {%- endif -%}
-          {% endfor %}
-        </div>
-      </li>
       <li class="collapsible-nav-item">
         <div class="collapsible-header sticky-nav sticky-nav-2 waves-effect">Volumes <i class="material-icons indicator">keyboard_arrow_down</i></div>
         <div class="collapsible-body">

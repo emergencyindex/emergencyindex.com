@@ -7,6 +7,7 @@
     "url": {{project.url | jsonify }},
     "title": {{ project.title | jsonify }},
     "contributor": {{ project.contributor | jsonify }},
-    "image": {{ project.image | jsonify }}
+    "image": {{ project.image | jsonify }},
+    "place" : {{ project.place | jsonify }}
   }{% unless forloop.last %},{% endunless %}{% endfor %}
 ]

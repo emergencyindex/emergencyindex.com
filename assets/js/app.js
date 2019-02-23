@@ -59,7 +59,7 @@ $(function() {
             && proj.volume != currentVolume ){
             return;
           }
-          var _key = proj.title + ' -- ' + proj.contributor;
+          var _key = proj.title + ' -- ' + proj.contributor + ' -- ' + proj.place;
           dataObj[_key] = null; //'/assets/img/'+proj.volume+'/'+proj.image;
           hrefObj[_key+'HREF'] = proj.url;
         }
