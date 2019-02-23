@@ -40,6 +40,20 @@
           </ul>
         </div>
       </li>
+      <li class="collapsible-nav-item">
+        <div class="collapsible-header sticky-nav sticky-nav-2 waves-effect">Cumulative Indices <i class="material-icons indicator">keyboard_arrow_down</i></div>
+        <div class="collapsible-body">
+          <ul>
+            {% for index in site.indexes %}
+            {%- if index.name and index.volume == 'all' -%}
+              <li>
+                <a href="{{index.url}}" class="waves-effect collection-item">All {{index.name}}</a>
+              </li>
+            {%- endif -%}
+            {% endfor %}
+          </ul>
+        </div>
+      </li>
     </ul>
 
   <div id="toc-header" class="sticky-nav sticky-nav-2 center">
