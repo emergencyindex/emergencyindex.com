@@ -20,7 +20,9 @@ banner: true
 
 **Talk by us:** -->
 
-**An article from 2015**
+**Some articles about/on Emergency Index**
+
+[How Four Women Performance Artists Launched Emergency INDEX Volume 6 at The Kitchen](https://whitehotmagazine.com/articles/index-volume-6-at-kitchen/4086)
 
 [YELENA GLUZMAN, CONTEMPORARY THEATER RESEARCH](http://www.contemporarytheatrereview.org/2015/emergency-index/)
 

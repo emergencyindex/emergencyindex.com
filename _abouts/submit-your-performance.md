@@ -8,7 +8,7 @@ banner: true
 
 _Emergency INDEX_ is an annual print publication documenting new performance in the words of its creators. For more information, see our [Project Description](/about/project-description/) page.
 
-**Submissions for INDEX Volume 8 close on February 15, 2019 at 11:59pm EST**
+**Submissions for INDEX Volume 8 closed**
 
 Submissions for INDEX Volume 9 will be opened at the beginning of 2020.
 

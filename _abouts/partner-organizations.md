@@ -17,9 +17,9 @@ banner: true
 [PRESENTAATIO RY (FINLAND)](http://www.presentaatio.org/) \\
 [PS122](http://www.ps122.org/) \\
 [SPREAD ART](http://www.spreadart.org/) \\
-\* arts organizations and educational institutions where **INDEX** is displayed and made available for use to practitioners, students, scholars, or the general public
+ \* arts organizations and educational institutions where **INDEX** is displayed and made available for use to practitioners, students, scholars, or the general public
 
 [Please contact us if you would like to become a partner organization]
 
 **Supporters**
-To donate to this project, or to volunteer your time, please [CLICK HERE](https://emergencyindex.com/getinvolved.html).
+To donate to this project, or to volunteer your time, please [email emergency@uglyducklingpresse.org](mailto:emergency@uglyducklingpresse.org)
