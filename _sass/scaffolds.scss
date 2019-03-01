@@ -318,6 +318,19 @@ li.sticky-nav{
   background-color: rgba(0,0,0,0.6);
 }
 
+.index-about {
+  margin-top: 3em;
+}
+
+.nysca {
+  margin-top: 6em;
+  font-size: 16px;
+}
+
+.nysca img {
+  width: 100%;
+}
+
 @media #{$small-and-down} {
   body{
     margin: 0;
