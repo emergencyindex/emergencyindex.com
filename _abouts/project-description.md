@@ -10,4 +10,4 @@ banner: true
 
 The new Emergency INDEX website was developed with the generous support of the New York State Council on the Arts, a state agency.
 
-(/assets/img/NYSCA Logo - Black.png)
+!["NYSCA"](/assets/img/NYSCA Logo - Black.png =200x)
