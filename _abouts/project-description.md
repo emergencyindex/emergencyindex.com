@@ -30,6 +30,4 @@ _**Emergency INDEX**_ acknowledges the semi-autonomous materiality of language, 
 
 This indexing allows for creators to find like-minded practitioners; it creates connections between performance works that may not be obviously or typically related to one another; and it surveys a network of discourse that may change as years pass.
 
-<br />
-
 {% include nysca.html %}
