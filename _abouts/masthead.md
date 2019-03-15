@@ -11,13 +11,12 @@ banner: true
     <ul class="col s12 m4 l3 collection with-header">
       <li class="collection-header"><h6>Editors</h6></li>
       <li class="collection-item">Sophia Cleary</li>
-      <li class="collection-item">Yelena Gluzman</li>
       <li class="collection-item">Zoe Guttenplan</li>
     </ul>
     <ul class="col s12 m4 l3 collection with-header">
       <li class="collection-header"><h6>Managing Editor</h6></li>
-      <li class="collection-item">Zoe Guttenplan</li>
-    </ul>
+      <li class="collection-item">Yelena Gluzman</li>
+    </ul>    
   </div>
   <div class="row">
     <ul class="col s12 m4 l3 collection with-header">
@@ -34,6 +33,7 @@ banner: true
     </ul>
     <ul class="col s12 m4 l3 collection with-header">
       <li class="collection-header"><h6>Advisory Board</h6></li>
+      <li class="collection-item">Katie Gaydos</li>
       <li class="collection-item">Oron Catts</li>
       <li class="collection-item">Steven Durland</li>
       <li class="collection-item">Branislav Jakovljevic</li>
@@ -45,10 +45,14 @@ banner: true
       <li class="collection-item">edward sharp</li>
     </ul>
     <ul class="col s12 m4 l3 collection with-header">
-      <li class="collection-header"><h6>Past INDEX Interns</h6></li>
-      <li class="collection-item">Zoe Guttenplan</li>
-      <li class="collection-item">Claire LeDoyen</li>
-      <li class="collection-item">Katie Gaydos</li>
+      <li class="collection-header"><h6>Past Editors</h6></li>
+      <li class="collection-item">Matvei Yankelvich (Managing Editor, 2011-2018)</li>
+      <li class="collection-item">Katie Gaydos (Associate Editor, 2014; Co-editor, 2015-2017)</li>
+      <li class="collection-item">Claire Ledoyen (Assistant Editor, 2015)</li>
+      <li class="collection-item">Dominic Finnocchiaro (Assistant Editor, 2013)</li>
+      <li class="collection-item">Michael Newton (Associate Editor, 2012)</li>
+      <li class="collection-item">Andrew Ross (Associate Editor, 2012)</li>
+      <li class="collection-item">Abraham Adams (Associate Editor, 2011)</li>
     </ul>
   </div>
   <div class="row">
