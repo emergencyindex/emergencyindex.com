@@ -14,7 +14,7 @@ banner: true
       <li class="collection-item">Zoe Guttenplan</li>
     </ul>
     <ul class="col s12 m4 l3 collection with-header">
-      <li class="collection-header"><h6>Managing Editor</h6></li>
+      <li class="collection-header"><h6>Founding Editor</h6></li>
       <li class="collection-item">Yelena Gluzman</li>
     </ul>    
   </div>
@@ -38,13 +38,14 @@ banner: true
       <li class="collection-item">Steven Durland</li>
       <li class="collection-item">Branislav Jakovljevic</li>
       <li class="collection-item">Caden Manson</li>
-    </ul>
-    <ul class="col s12 m4 l3 collection with-header">
+      <li class="collection-item">&nbsp;</li>
       <li class="collection-header"><h6>Digital Editors</h6></li>
       <li class="collection-item">Brian McCorkle</li>
       <li class="collection-item">edward sharp</li>
     </ul>
-    <ul class="col s12 m4 l3 collection with-header">
+  </div>
+  <div class="row">
+    <ul class="col s12 m6 collection with-header">
       <li class="collection-header"><h6>Past Editors</h6></li>
       <li class="collection-item">Matvei Yankelvich (Managing Editor, 2011-2018)</li>
       <li class="collection-item">Katie Gaydos (Associate Editor, 2014; Co-editor, 2015-2017)</li>
@@ -55,7 +56,7 @@ banner: true
       <li class="collection-item">Abraham Adams (Associate Editor, 2011)</li>
     </ul>
   </div>
-  <div class="row">
+<!--  <div class="row">
     <div class="col s12 m6 right-align">
     PUBLISHED BY
     </div>
@@ -77,5 +78,30 @@ banner: true
     <a href="http://WWW.UGLYDUCKLINGPRESSE.ORG" target="_blank">&gt;WWW.UGLYDUCKLINGPRESSE.ORG&lt;</a>
     <b>emergency@uglyducklingpresse.org</b>
     </div>
+  </div>-->
+
+  <div class="row">
+    <ul class="col s12 m6 collection with-header">
+      <li class="collection-header"><h6>Partner Organizations&ast;</h6></li>
+      <li class="collection-item"><a href="http://www.bodegaphiladelphia.org/" target='_blank'>BODEGA PHILADELPHIA</a></li>
+      <li class="collection-item"><a href="http://www.grace-exhibition-space.com/" target="_blank">GRACE EXHIBITION SPACE</a></li>
+      <li class="collection-item"><a href="http://issueprojectroom.org/" target="_blank">ISSUE PROJECT ROOM</a></li>
+      <li class="collection-item"><a href="http://www.thisisliveart.co.uk" target="_blank">LIVE ART DEVELOPMENT AGENCY</a></li>
+      <li class="collection-item"><a href="http://www.movementresearch.org/" target="_blank">MOVEMENT RESEARCH</a></li>
+      <li class="collection-item"><a href="http://www.nypl.org/locations/lpa" target="_blank">NY PUBLIC LIBRARY OF THE PERFORMING ARTS</a></li>
+      <li class="collection-item"><a href="http://performance.tisch.nyu.edu/page/program.html" target="_blank">NYU DEPT. OF PERFORMANCE STUDIES</a></li>
+      <li class="collection-item"><a href="http://www.presentaatio.org/" target="_blank">PRESENTAATIO RY (FINLAND)</a></li>
+      <li class="collection-item"><a href="http://www.ps122.org" target="_blank">PS122</a></li>
+      <li class="collection-item"><a href="http://www.spreadart.org/" target="_blank">SPREAD ART</a></li>
+      <li class="collection-item">&nbsp;</li>
+      <li class="collection-item"><h6>&ast;arts organizations and educational institutions where <em>INDEX</em> is displayed and made available for use to practitioners, students, scholars, or the general public</h6></li>
+      <li class="collection-item"><h6><a href="mailto:emergency@uglyducklingpresse.org">[Please contact us if you would like to become a partner organization]</a></h6></li>
+    </ul>
+  </div>
+  <div class="row">
+     <ul class="col s12 m6 collection with-header">
+       <li class="collection-header"><h6>Supporters</h6></li>
+       <li class="collection-item"><h6>To donate to this project, or to volunteer your time, please <a href="mailto:emergency@uglyducklingpresse.org">mail emergency@uglyducklingpresse.org</a></h6></li>
+     </ul>
   </div>
 </div>

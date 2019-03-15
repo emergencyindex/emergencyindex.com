@@ -5,6 +5,12 @@ banner: true
 ---
 
 <div class="row index-about">
+  <div class="row">
+    <strong>Emergency INDEX</strong> is an annual print publication documenting performances that occurred in one calendar year. Begun in 2011, <em>INDEX</em> was conceived as a "state of the field" publication that could present a year-to-year view of the issues, techniques, and challenges that performance makers dealt with in the work they actualized. Every year since then, <em>INDEX</em> has published hundreds of documents of performances made in various genres and media, for different audiences and purposes, and in a wide variety of venues, cities, and countries. Each annual volume includes three back-of-the-book indexes: an index of terms, an index of places, and an index of authors. Taking as its starting point actual performances described by the artists who made them, <strong>Emergency INDEX</strong> proposes building your performance theory from the ground up.
+  </div>
+  <div class="row">
+    This website, launched in 2019 through the support of the New York State Council for the Arts and the labor and imagination of Brian McCorkle and edward sharp, now makes freely available all previously published volumes. On this site, you can <a href="/search-archives/">search</a> through published project collaborators, locations, and titles. You can also submit your own performance to the next volume of <strong>Emergency INDEX</strong>, see the history of the project, and, of course, <a href="/purchase/">purchase or subscribe to the print volume</a>.
+  </div>
   <div class="col s12 m6">
       <p><em><strong>Emergency INDEX</strong></em> is part of Ugly Duckling Presse’s Emergency series of performance-related publications, which also includes Emergency Playscripts, eclectic performance notations which highlight tensions between text and performance, as well as the forthcoming Emergency Analysis series, annual monographs on performance from theorists outside the field. </p>
   </div>
@@ -17,55 +23,13 @@ banner: true
   </div>
 </div>
 
-
 <div class="row">
-  <div class="col s12 m7">
-    <h4 class="sticky-nav home-nav">About</h4>
+  <div class="col s12 m6">
+    <h4 class="sticky-nav home-nav">Volumes</h4>
     <div class="collection">
-      <a href="/submit-your-performance/" class="waves-effect collection-item">Submit Your Performance</a>
-      <a href="/purchase/" class="waves-effect collection-item">Purchase a Book</a>
-      <a href="/about/project-description/" class="waves-effect collection-item">Project Description</a>
-      <a href="/about/masthead/" class="waves-effect collection-item">Masthead</a>
-      <a href="/about/partner-organizations/" class="waves-effect collection-item">Partner Organizations</a>
-      <a href="/about/press/" class="waves-effect collection-item">Press</a>
-    </div>
-    </div>
-    <div class="col s12 m5">
-      <h4 class="sticky-nav home-nav">Volumes</h4>
-      <div class="collection">
-        {% for volume in site.volumes %}
-        {%- if volume.name -%}
-          <a href="{{volume.url}}" class="waves-effect collection-item">{{volume.name}}</a>
-        {%- endif -%}
-        {% endfor %}
-      </div>
-    </div>
-</div>
-
-<h4 class="sticky-nav home-nav">Indexes</h4>
-
-<div class="row">
-  {% for volume in site.volumes %}
-  {%- assign sub_items = site.indexes | where: "volume", volume.name -%}
-  {%- if sub_items.size > 0 -%}
-  <div class="col s12 m4 l3">
-    <div class="collection with-header">
-      <h4 class="collection-header">{{volume.name}}</h4></li>
-      {% for item in sub_items %}
-        <a href="{{item.url}}" class="waves-effect collection-item">{{item.name}}</a>
-      {% endfor %}
-    </div>
-  </div>
-  {%- endif -%}
-  {% endfor %}
-</div>
-<div class="row">
-  <div class="col s12 m5 l4">
-    <div class="collection with-header">
-      <h4 class="collection-header">Cumulative</h4>
-      {% for index in site.indexes %}
-      {%- if index.name and index.volume == 'all' -%}
-        <a href="{{index.url}}" class="waves-effect collection-item">All {{index.name}}</a>
+      {% for volume in site.volumes %}
+      {%- if volume.name -%}
+        <a href="{{volume.url}}" class="waves-effect collection-item">{{volume.name}}</a>
       {%- endif -%}
       {% endfor %}
     </div>
