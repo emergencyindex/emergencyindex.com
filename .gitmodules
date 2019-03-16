@@ -70,3 +70,7 @@
 	path = assets/img/2016
 	url = https://edwardsharp@github.com/emergencyindex/projects-2016.git
 	branch = images
+[submodule "_indexes/2017"]
+	path = _indexes/2017
+	url = https://edwardsharp@github.com/emergencyindex/projects-2017.git
+	branch = indexes
