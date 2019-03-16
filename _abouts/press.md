@@ -11,22 +11,3 @@ banner: true
 >_"Emergency INDEX is a book of wonders, a kind of bestiary. Open it to any page and you will find something worth thinking about:  a performance that "brings the internal sounds of the human body to our ears" (171); a cultic dance/theater experiment choreographed around an enormous plastic "sac" (90); a "performative" lecture on UFOs, ley lines, and visionary architecture (312); a display of public/private breakdown in a Brooklyn IKEA (338); a restaging, with child performers, of Peter Handke's  1966 play Offending the Audience (I 12); a Twitter-fed simultaneous "group walk" through multiple cities (16); and  much, much  more. The  venues are equally wide-ranging, from Jay Scheib at the Kitchen in New York City (22) and XXXY / Yehuda Duenyas at Rensselaer's Experimental Media and Performing Arts Center (168) to Annette Arlander's stark environmental work on Harakka Island, Finland (64) and Felipe Faundez Funtes's milk action staged "alone outside of a gallery in the streets of Belfast" (407). One performance took place at the banyan tree gates outside the Sultan's Palace in Yogyakarta, Indonesia (431)." — **Contributing Editor BEN SPATZ writing about Emergency Index Vol. 1, TDR 57:2, p. 185.**_
 
 >_"This is the distinctive contribution of Emergency index  to the much-contested practice of performance documentation: the prioritization of writing as its medium. Performance scholars, including Jones and Auslander, tend to assume that performance documentation is primarily photographic, and this both reflects and reifies the position of performance as a subsidiary of visual art, not theater. In making this distinction, I don’t mean to imply that theater is inherently reliant on text, but simply that writing is a more accepted interlocutor for theatrical performance (and theater studies), be it via the dramatic script, the performance-generated text of devised theater, or the textual record of choreography, than it is for “performance art” as delineated (if not defined) by scholars like Jones. But writing would seem to be a strikingly apt medium for performance documentation, if, following Jones and Auslander, we take documentation not as a record of an original event but as that which makes performance what it is: a subversion and estrangement of presence.  In fact, for Jones’s recurrent philosophical reference, Jacques Derrida, writing is the medium of this estrangement. Intentionally or not, Emergency Index shifts performance documentation— and thus, performance itself — away from its long-standing alliance with visual art and into the realm of literature." — **SHONNI ENELOW, Theatre, 43:1, p. 140-148.**_
-
-<!--**Talk by others:**
-
-[BEN SPATZ, TDR](http://www.emergencyindex.com/TDRReview.pdf)
-
-[SHONNI ENELOW, THEATER](http://www.emergencyindex.com/TheaterReview.pdf)
-
-[SYLVAN OSWALD, OSMOS](http://www.emergencyindex.com/EmergencyIndex_Gluzman_Interview_Osmos_Summer15%20(1).pdf)
-
-**Talk by us:**
-
-**Some articles about/on Emergency Index**
-
-[DAVID MOSCOVICH, WHITEHOT MAGAZINE](https://whitehotmagazine.com/articles/index-volume-6-at-kitchen/4086)
-
-[YELENA GLUZMAN, CONTEMPORARY THEATER RESEARCH](http://www.contemporarytheatrereview.org/2015/emergency-index/)
-
-[YELENA GLUZMAN IN CONVERSATION WITH LYDIA BELL (INTERVIEW), MOVEMENT RESEARCH](http://www.movementresearch.org/criticalcorrespondence/blog/?p=4186)
--->

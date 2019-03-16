@@ -56,29 +56,6 @@ banner: true
       <li class="collection-item">Abraham Adams (Associate Editor, 2011)</li>
     </ul>
   </div>
-<!--  <div class="row">
-    <div class="col s12 m6 right-align">
-    PUBLISHED BY
-    </div>
-    <div class="col s12 m7 offset-m5">
-    THE BROS. LUMIÈRE <small>FOR</small> <br>
-    Ugly Duckling Presse <br>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col s12 m6 right-align">
-    CONTACT
-    </div>
-    <div class="col s12 m7 offset-m5">
-    <b>Emergency INDEX</b> <br>
-    c/o Ugly Duckling Presse <br>
-    OLD AMERICAN CAN FACTORY <br>
-    232 THIRD STREET, #E-303 <br>
-    BROOKLYN, NY 11215 <br>
-    <a href="http://WWW.UGLYDUCKLINGPRESSE.ORG" target="_blank">&gt;WWW.UGLYDUCKLINGPRESSE.ORG&lt;</a>
-    <b>emergency@uglyducklingpresse.org</b>
-    </div>
-  </div>-->
 
   <div class="row">
     <ul class="col s12 m6 collection with-header">
