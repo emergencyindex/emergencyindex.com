@@ -1,7 +1,8 @@
 ---
 layout: abouts
+about: Purchase Book
 name: Purchase Book
-permalink: /about/purchase/
+permalink: /purchase/
 banner: true
 ---
 
@@ -34,7 +35,7 @@ To subscribe by post, send a check or money order made out to Ugly Duckling Pres
 
 To arrange for standing orders for libraries and institutions, please write to \\ <info@uglyducklingpresse.org> or to the address below:
 
-_**Emergency INDEX**_ \\
+Emergency INDEX \\
 c/o Ugly Duckling Presse \\
 The Old American Can Factory \\
 232 Third Street, #E303 \\

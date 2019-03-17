@@ -1,5 +1,6 @@
 ---
 layout: abouts
+about: Partner Organizations
 name: Partner Organizations
 permalink: /about/partner-organizations/
 banner: true

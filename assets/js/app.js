@@ -37,6 +37,13 @@ $(function() {
 
     var dataObj = {};
     var hrefObj = {};
+    var currentVolume;
+    if(  window.location.pathname.match('/volume/') 
+      && !isNaN(parseInt(window.location.pathname.split('/')[2])) 
+    ){
+      currentVolume = window.location.pathname.split('/')[2];
+      $("label[for='autocomplete-input']").html('Search '+currentVolume)
+    }
 
     if($('.tag-slug').length > 0){
       $("label[for='autocomplete-input']").html('Search Terms')
@@ -48,7 +55,10 @@ $(function() {
     }else{
        _.each(data, function(proj){
         if(proj.title != ''){
-  
+          if(  currentVolume
+            && proj.volume != currentVolume ){
+            return;
+          }
           var _key = proj.title + ' -- ' + proj.contributor + ' -- ' + proj.place;
           dataObj[_key] = null; //'/assets/img/'+proj.volume+'/'+proj.image;
           hrefObj[_key+'HREF'] = proj.url;
@@ -62,9 +72,18 @@ $(function() {
       limit: 50,
       onAutocomplete: function(val) {
         if(hrefObj[val+'HREF']){
-          window.location = hrefObj[val+'HREF']; //+'/?s='+val;
-          if($('.tag-slug').length > 0){
-            window.scrollTo(window.scrollX, $(window.location.hash).position().top - 50);
+          if(window.location.pathname.match('/volume/')){
+            var _project_href = hrefObj[val+'HREF'].split('/');
+            if(_project_href.length){
+              var _page = _project_href.pop();
+              var _vol  = _project_href.pop();
+              location.hash = _vol+'-'+_page;
+            }
+          }else{
+            window.location = hrefObj[val+'HREF']; //+'/?s='+val;
+            if($('.tag-slug').length > 0){
+              window.scrollTo(window.scrollX, $(window.location.hash).position().top - 50);
+            }
           }
          
         }
@@ -72,6 +91,16 @@ $(function() {
       minLength: 1
     });
 
+    var autocompleteSubtreeMod = function(){
+      if($(this).html() != ''){
+        $('.collapsible-nav').addClass('hidden');
+        $('#scrollspy-nav').addClass('hidden');
+      }else{
+        $('.collapsible-nav').removeClass('hidden');
+        $('#scrollspy-nav').removeClass('hidden');
+      }
+    }
+    $('.autocomplete-content').on('DOMSubtreeModified', $.debounce(100, autocompleteSubtreeMod));
 
     // if(location.search.split('s=')[1]){
     //   $('input.autocomplete').val(decodeURI(location.search.split('s=')[1]));
