@@ -1,6 +1,6 @@
 ---
 layout: submit
-about: Guidelines and Frequenctly Asked Questions pertaining to the Emergency INDEX website
+about: Guidelines and Frequently Asked Questions pertaining to the Emergency INDEX website
 name: Guidelines & FAQ
 permalink: /guidelines/
 banner: true

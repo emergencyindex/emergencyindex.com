@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: archives
 name: Corrections
 permalink: /archive/corrections/
 banner: true
