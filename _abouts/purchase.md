@@ -1,6 +1,5 @@
 ---
 layout: abouts
-about: Purchase Book
 name: Purchase Book
 permalink: /about/purchase/
 banner: true

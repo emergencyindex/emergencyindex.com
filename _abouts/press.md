@@ -1,6 +1,5 @@
 ---
 layout: abouts
-about: Testimonials & Press
 name: Testimonials & Press
 permalink: /about/press/
 banner: true

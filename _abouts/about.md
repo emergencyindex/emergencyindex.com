@@ -1,6 +1,5 @@
 ---
 layout: abouts
-about: About Emergency Index
 name: About Emergency Index
 permalink: /about/
 banner: true
