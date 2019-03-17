@@ -1,7 +1,7 @@
 ---
 layout: archives
 name: Volumes
-permalink: /archive/volumes/
+permalink: /archives/volumes/
 banner: true
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: archives
 name: Search Project Archives
-permalink: /archive/search-archives/
+permalink: /archives/search-archives/
 banner: false
 ---
 

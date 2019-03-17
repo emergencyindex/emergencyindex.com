@@ -1,7 +1,7 @@
 ---
 layout: archives
 name: Corrections
-permalink: /archive/corrections/
+permalink: /archives/corrections/
 banner: true
 ---
 

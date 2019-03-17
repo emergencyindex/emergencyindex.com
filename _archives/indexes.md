@@ -1,7 +1,7 @@
 ---
 layout: archives
 name: Indexes
-permalink: /archive/indexes/
+permalink: /archives/indexes/
 banner: true
 ---
 
