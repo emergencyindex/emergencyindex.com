@@ -1,5 +1,5 @@
 ---
-layout: submit
+layout: abouts
 about: Submit Your Performance
 name: Submit Your Performance
 permalink: /submit-your-performance/

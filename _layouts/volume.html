@@ -25,7 +25,7 @@ layout: default
   {% for project in projects %}
   {% capture split_str %}/projects/{{ page.volume }}/{% endcapture %}
   {% assign item = project | split: split_str | last %}
-    <li><a href="#{{page.volume}}-{{item}}" class="waves-effect">p.{{item}}</a></li>
+    <li><a href="#{{page.volume}}-{{item}}" class="waves-effect">{{item}}</a></li>
   {% endfor %}
 </div>
 
