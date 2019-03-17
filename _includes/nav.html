@@ -7,6 +7,11 @@
       <div id="user-nav">
         <a href="/" class="waves-effect"><em><span style="font-variant:small-caps">emergency</span> INDEX</em></a>
       </div>
+
+      <div class="input-field">
+        <input type="text" id="autocomplete-input" class="autocomplete">
+        <label for="autocomplete-input" class='search-label'> Search</label>
+      </div>
     </li>
 
     <ul class="collapsible-nav" data-collapsible="accordion">
@@ -14,18 +19,13 @@
         <div class="collapsible-header sticky-nav sticky-nav-2 waves-effect {% if page.layout == 'abouts' %}active{% endif %}">About <i class="material-icons indicator">keyboard_arrow_down</i></div>
         <div class="collapsible-body">
           <ul>
-            <li class="waves-effect {% if page.permalink contains 'masthead' %}active{% endif %}">
-              <a href="/about/masthead/">Masthead</a>
-            </li>
-            <li class="waves-effect {% if page.permalink contains 'project-description' %}active{% endif %}">
-              <a href="/about/project-description/" class="overflow">Project Description</a>
-            </li>
-            <li class="waves-effect {% if page.permalink contains 'press' %}active{% endif %}">
-              <a href="/about/press/">Press</a>
+            <li class="waves-effect {% if page.permalink contains 'submit-your-performance' %}active{% endif %}">
+              <a href="/submit-your-performance/" class="about">Submit Your Performance</a>
             </li>
             <li class="waves-effect {% if page.permalink contains 'purchase' %}active{% endif %}">
-              <a href="/about/purchase/">Purchase</a>
+              <a href="/purchase/" class="about">Purchase a Book</a>
             </li>
+<<<<<<< HEAD
           </ul>
         </div>
       </li>
@@ -44,30 +44,48 @@
             </li>
             <li class="waves-effect {% if page.permalink contains 'corrections' %}active{% endif %}">
               <a href="/archives/corrections/">Corrections</a>
+=======
+            <li class="waves-effect {% if page.permalink contains 'masthead' %}active{% endif %}">
+              <a href="/about/masthead/" class="about">Masthead</a>
+            </li>
+            <li class="waves-effect {% if page.permalink contains 'partner-organizations' %}active{% endif %}">
+              <a href="/about/partner-organizations/" class="about">Partner Organizations</a>
+            </li>
+            <li class="waves-effect {% if page.permalink contains 'project-description' %}active{% endif %}">
+              <a href="/about/project-description/" class="about">Project Description</a>
+            </li>
+            <li class="waves-effect {% if page.permalink contains 'press' %}active{% endif %}">
+              <a href="/about/press/" class="about">Press</a>
+>>>>>>> master
             </li>
           </ul>
         </div>
       </li>
       <li class="collapsible-nav-item">
-        <div class="collapsible-header sticky-nav sticky-nav-2 waves-effect {% if page.layout == 'submit' %}active{% endif %}">Submit <i class="material-icons indicator">keyboard_arrow_down</i></div>
+        <div class="collapsible-header sticky-nav sticky-nav-2 waves-effect">Volumes <i class="material-icons indicator">keyboard_arrow_down</i></div>
         <div class="collapsible-body">
           <ul>
-            <li class="waves-effect {% if page.permalink contains 'guidelines' %}active{% endif %}">
-              <a href="/guidelines/">Guidelines</a>
-            </li>
-            <li class="waves-effect {% if page.permalink contains 'submit-your-performance' %}active{% endif %}">
-              <a href="/submit-your-performance/" class="overflow">Submit Your Performance</a>
-            </li>
+          	{% for volume in site.volumes %}
+            {% if volume.name %}
+              <li>
+              	<a href="{{volume.url}}" class="waves-effect">{{volume.name}}</a>
+              </li>
+            {% endif %}
+            {% endfor %}
           </ul>
         </div>
       </li>
       <li class="collapsible-nav-item">
-        <div class="collapsible-header sticky-nav sticky-nav-2 waves-effect {% if page.layout == 'contact' %}active{% endif %}">Contact <i class="material-icons indicator">keyboard_arrow_down</i></div>
+        <div class="collapsible-header sticky-nav sticky-nav-2 waves-effect">Indexes <i class="material-icons indicator">keyboard_arrow_down</i></div>
         <div class="collapsible-body">
           <ul>
-            <li class="waves-effect {% if page.permalink contains 'signup' %}active{% endif %}">
-              <a href="/signup/">Mailing List</a>
-            </li>
+            {% for index in site.indexes %}
+            {%- if index.name and index.volume == 'all' -%}
+              <li>
+                <a href="{{index.url}}" class="waves-effect collection-item">All {{index.name}}</a>
+              </li>
+            {%- endif -%}
+            {% endfor %}
           </ul>
         </div>
       </li>

@@ -40,15 +40,6 @@ collections:
   abouts:
     output: true
     permalink: /about/:path
-  archives:
-    output: true
-    permalink: /archives/:path
-  submit:
-    output: true
-    permalink: /submit/:path
-  contact:
-    output: true
-    permalink: /contact/:path
   volumes:
     output: true
     permalink: /volume/:path
