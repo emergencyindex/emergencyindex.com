@@ -34,11 +34,12 @@ a {
     color: #fff;
     background-color: #000;
   }
+
+  &:not(.waves-effect) {
+    text-decoration: underline;
+  }
 }
 
-.abouts a {
-  text-decoration: underline;
-}
 
 b, strong{
   font-weight: 800;
@@ -141,6 +142,10 @@ label {
   top: -1em;
 }
 
+.search.input-field {
+  margin-top: 2em;
+}
+
 .hidden {
   display: none !important;
 }
@@ -149,13 +154,13 @@ label {
 .pagination {
   text-align: center;
   padding: 1em;
-  cursor: default; 
+  cursor: default;
 }
 .pagination a, .pagination span {
-  padding: 0.2em 0.3em; 
+  padding: 0.2em 0.3em;
 }
 .pagination .disabled {
-  color: #aaaaaa; 
+  color: #aaaaaa;
 }
 .pagination .current {
   font-style: normal;
@@ -164,7 +169,7 @@ label {
   display: inline-block;
   width: 1.4em;
   height: 1.4em;
-  line-height: 1.5; 
+  line-height: 1.5em;
 }
 
 .nav-index-heading{
@@ -238,6 +243,7 @@ li.sticky-nav{
   display: flex;
   justify-content: center;
   flex: 7;
+  text-decoration: none;
 }
 .project-banner-link:hover {
   color: #333;
@@ -255,6 +261,7 @@ li.sticky-nav{
 .project-banner-wrapper {
   display: flex;
   justify-content: space-between;
+  padding-bottom: 2em;
 }
 .project-banner-blob {
   height: 100%;
@@ -274,7 +281,7 @@ li.sticky-nav{
   background-position: right;
   background-size: contain;
   background-repeat: no-repeat;
-  text-align: right; 
+  text-align: right;
   opacity: 0;
   -webkit-transition: opacity 250ms ease-in;
     -moz-transition: opacity 250ms ease-in;
@@ -319,7 +326,7 @@ li.sticky-nav{
 }
 
 .index-about {
-  margin-top: 3em;
+  margin-top: 2em;
 }
 
 .nysca {

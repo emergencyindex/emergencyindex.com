@@ -1,12 +1,16 @@
 ---
 layout: abouts
-about: About Emergency Index
 name: About Emergency Index
 permalink: /about/
 banner: true
 ---
 
-_**Emergency INDEX**_ is part of Ugly Duckling Presse’s Emergency series of performance-related publications, which also includes Emergency Playscripts, eclectic performance notations which highlight tensions between text and performance, as well as the forthcoming Emergency Analysis series, annual monographs on performance from theorists outside the field. Browse all titles in the Playscripts series [here](http://www.uglyducklingpresse.org/catalog/?series=Emergency-Playscripts). Browse all the volumes of INDEX [here](https://www.uglyducklingpresse.org/catalog/?series=Emergency-Index).
+_**Emergency INDEX**_ is an annual print publication documenting performances that occurred in one calendar year. Begun in 2011, _INDEX_ was conceived as a "state of the field" publication that could present a year-to-year view of the issues, techniques, and challenges that performance makers dealt with in the work they actualized. Every year since then, _INDEX_ has published hundreds of documents of performances made in various genres and media, for different audiences and purposes, and in a wide variety of venues, cities, and countries. Each annual volume includes three back-of-the-book indexes: an index of terms, an index of places, and an index of authors. Taking as its starting point actual performances described by the artists who made them, _**Emergency INDEX**_ proposes building your performance theory from the ground up.
+
+This website, launched in 2019 through the support of the New York State Council for the Arts and the labor and imagination of Brian McCorkle and edward sharp, now makes freely available all previously published volumes. On this site, you can now [search](/search-archives/) through published project collaborators, locations, and titles. You can also submit your own performance to the next volume of _**Emergency INDEX**_, see the history of the project, and, of course, purchase or subscribe to the print volume.
+
+[here](http://www.uglyducklingpresse.org/catalog/?series=Emergency-Playscripts).
+Browse all the volumes of _INDEX_ [here](https://www.uglyducklingpresse.org/catalog/?series=Emergency-Index).
 
 <div class="collection">
   <a href="/about/masthead/" class="waves-effect collection-item">Masthead</a>
