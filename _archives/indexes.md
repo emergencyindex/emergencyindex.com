@@ -1,13 +1,9 @@
 ---
 layout: archives
-about: All Indexes
 name: Indexes
-permalink: /indexes/
+permalink: /archive/indexes/
 banner: true
 ---
-
-
-<h4 class="sticky-nav home-nav">Indexes</h4>
 
 <div class="row">
   {% for volume in site.volumes %}

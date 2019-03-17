@@ -34,11 +34,12 @@ a {
     color: #fff;
     background-color: #000;
   }
+
+  &:not(.waves-effect) {
+    text-decoration: underline;
+  }
 }
 
-.abouts a {
-  text-decoration: underline;
-}
 
 b, strong{
   font-weight: 800;
@@ -238,6 +239,7 @@ li.sticky-nav{
   display: flex;
   justify-content: center;
   flex: 7;
+  text-decoration: none;
 }
 .project-banner-link:hover {
   color: #333;
@@ -255,8 +257,6 @@ li.sticky-nav{
 .project-banner-wrapper {
   display: flex;
   justify-content: space-between;
-  border-bottom: 3px;
-  border-style: none none dashed none;
   padding-bottom: 2em;
 }
 .project-banner-blob {

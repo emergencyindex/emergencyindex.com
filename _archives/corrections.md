@@ -1,8 +1,7 @@
 ---
 layout: archives
-about: Corrections to printed Emergency Indexes
 name: Corrections
-permalink: /corrections/
+permalink: /archive/corrections/
 banner: true
 ---
 

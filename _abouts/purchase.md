@@ -2,7 +2,7 @@
 layout: abouts
 about: Purchase Book
 name: Purchase Book
-permalink: /purchase/
+permalink: /about/purchase/
 banner: true
 ---
 
