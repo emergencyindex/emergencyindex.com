@@ -1,5 +1,5 @@
 ---
-layout: archives
+layout: page
 name: Indexes
 permalink: /archive/indexes/
 banner: true

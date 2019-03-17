@@ -1,5 +1,5 @@
 ---
-layout: archives
+layout: page
 name: Volumes
 permalink: /archive/volumes/
 banner: true

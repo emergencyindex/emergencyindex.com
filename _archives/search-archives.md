@@ -1,5 +1,5 @@
 ---
-layout: archives
+layout: page
 name: Search Project Archives
 permalink: /archive/search-archives/
 banner: false
