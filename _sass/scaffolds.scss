@@ -261,7 +261,7 @@ li.sticky-nav{
 .project-banner-wrapper {
   display: flex;
   justify-content: space-between;
-  padding-bottom: 2em;
+  //padding-bottom: 2em;
 }
 .project-banner-blob {
   height: 100%;
@@ -269,6 +269,19 @@ li.sticky-nav{
   text-align: right;
   margin-right: 0.5em;
   flex: 5;
+}
+.project-banner-separator {
+  position: relative;
+  max-width: 100vw;
+  //left: -33px;
+  top: 0;
+  z-index:-10;
+  opacity: 1;
+  -webkit-transition: opacity 500ms ease-in;
+    -moz-transition: opacity 500ms ease-in;
+    -o-transition: opacity 500ms ease-in;
+    transition: opacity 500ms ease-in;
+  overflow: hidden;
 }
 .project-banner-elem {
   display: flex;
@@ -302,6 +315,9 @@ li.sticky-nav{
 @media #{$small-and-down} {
   .project-banner-wrapper {
     flex-direction: column;
+  }
+  .project-banner-separator {
+    top: -3em;
   }
   .project-banner-elem {
     background-position: center;
@@ -370,7 +386,11 @@ li.sticky-nav{
 
 @media (min-width: 1281px) {
   body, p, ol, ul, td, pre {
-    font-size: 22px;
+    font-size: 20px;
     line-height: 25px;
   }
+}
+
+#page-sticky-nav {
+  background: transparent;
 }
