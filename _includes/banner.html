@@ -9,13 +9,16 @@
   </a>
 </div>
 <svg class="project-banner-separator" viewBox="0 0 440 35">
-  <line id="botline" x1 = "0" y1 = "30" x2 = "440" y2 = "0" stroke="rgba(0,0,0,0.2)" stroke-width = "0.5"/>
-  <line id="midline" x1 = "0" y1 = "15" x2 = "440" y2 = "17" stroke="rgba(0,0,0,0.2)" stroke-width = "0.5"/>
-  <line id="topline" x1 = "0" y1 = "10" x2 = "440" y2 = "35" stroke="rgba(0,0,0,0.2)" stroke-width = "0.5"/>
-  <animate xlink:href="#botline" attributeName="y1" from="29" to="30" dur="4s" calcMode="paced">
-  <animate xlink:href="#botline" attributeName="y2" from="1" to="0" dur="4s" calcMode="paced">
-  <animate xlink:href="#midline" attributeName="y1" from="16" to="15" dur="4s" calcMode="paced">
-  <animate xlink:href="#midline" attributeName="y2" from="16" to="17" dur="4s" calcMode="paced">
-  <animate xlink:href="#topline" attributeName="y1" from="9" to="10" dur="4s" calcMode="paced">
-  <animate xlink:href="#topline" attributeName="y2" from="34" to="35" dur="4s" calcMode="paced">
+ <line x1="0" y1="28" x2="440" y2="1" stroke="rgba(0,0,0,0.2)" stroke-width="0.5">
+   <animate attributeName="y1" dur="3s" to="30" fill="freeze" calcMode="paced"/>
+   <animate attributeName="y2" dur="3s" to="0" fill="freeze" calcMode="paced" />
+ </line>
+ <line x1="0" y1="17" x2="440" y2="15" stroke="rgba(0,0,0,0.2)" stroke-width="0.5">
+   <animate attributeName="y1" dur="4s" to="15" fill="freeze" calcMode="paced" />
+   <animate attributeName="y2" dur="4s" to="17" fill="freeze" calcMode="paced" />
+ </line>
+ <line x1="0" y1="12" x2="440" y2="33" stroke="rgba(0,0,0,0.2)" stroke-width="0.5">
+   <animate attributeName="y1" dur="3.5s" to="10" fill="freeze" calcMode="paced" />
+   <animate attributeName="y2" dur="3.5s" to="35" fill="freeze" calcMode="paced" />
+ </line>
 </svg>

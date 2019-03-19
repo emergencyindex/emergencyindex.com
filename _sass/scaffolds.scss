@@ -276,12 +276,12 @@ li.sticky-nav{
   //left: -33px;
   top: 0;
   z-index:-10;
-  opacity: 1;
-  -webkit-transition: opacity 500ms ease-in;
-    -moz-transition: opacity 500ms ease-in;
-    -o-transition: opacity 500ms ease-in;
-    transition: opacity 500ms ease-in;
   overflow: hidden;
+  animation: 2s fadeInLinez;
+}
+@keyframes fadeInLinez {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 .project-banner-elem {
   display: flex;
