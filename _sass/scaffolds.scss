@@ -5,6 +5,7 @@ body {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 18px;
   line-height: 20px;
+  overflow-x: hidden;
 }
 
 p, ol, ul, td {
@@ -261,7 +262,6 @@ li.sticky-nav{
 .project-banner-wrapper {
   display: flex;
   justify-content: space-between;
-  padding-bottom: 2em;
 }
 .project-banner-blob {
   height: 100%;
@@ -269,6 +269,18 @@ li.sticky-nav{
   text-align: right;
   margin-right: 0.5em;
   flex: 5;
+}
+.project-banner-separator {
+  position: relative;
+  left: -33px;
+  width: 100vw;
+  top: 0;
+  z-index:-10;
+  animation: 2s fadeInLinez;
+}
+@keyframes fadeInLinez {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 .project-banner-elem {
   display: flex;
@@ -302,6 +314,9 @@ li.sticky-nav{
 @media #{$small-and-down} {
   .project-banner-wrapper {
     flex-direction: column;
+  }
+  .project-banner-separator {
+    top: -3em;
   }
   .project-banner-elem {
     background-position: center;
