@@ -32,7 +32,8 @@ Brought to you by the Bros. Lumiere — publishers of the legendary Emergency Ga
 
 To subscribe by post, send a check or money order made out to Ugly Duckling Presse with a note requesting the Emergency INDEX Lifetime Subscription to the address below.
 
-To arrange for standing orders for libraries and institutions, please write to \\ <info@uglyducklingpresse.org> or to the address below:
+To arrange for standing orders for libraries and institutions, please write to \\
+<info@uglyducklingpresse.org> or to the address below:
 
 _**Emergency INDEX**_ \\
 c/o Ugly Duckling Presse \\
