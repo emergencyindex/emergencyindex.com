@@ -105,6 +105,8 @@ a.username{
   position: sticky;
   top: calc(100vh - 41px);
   padding-top: 5px;
+  border-top: 1px solid #e0e0e0;
+  background-color: white;
 }
 
 @media #{$small-and-down} {
