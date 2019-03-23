@@ -30,6 +30,8 @@ $.fn.isolatedScroll = function() {
 
 $(function() {
 
+  M.AutoInit(); 
+
   $('#slide-out').removeClass('hidden');
   $('#slide-out').isolatedScroll();
 
@@ -198,8 +200,8 @@ $(function() {
 
 
   setTimeout(function(){
-    $('.mat-select').material_select('destroy');
-    $('.mat-select').material_select();
+    $('.mat-select').formSelect('destroy');
+    $('.mat-select').formSelect();
     try{
       // M.updateTextFields();
       Materialize.updateTextFields();
@@ -209,12 +211,12 @@ $(function() {
   },600);
 
   //sidenav
-  $('.button-collapse').sideNav({
+  $('.sidenav').sidenav({
       // menuWidth: 300,
       edge: 'right',
-      closeOnClick: true,
+      // closeOnClick: true,
       draggable: true,
-      onOpen: function(el) {
+      onOpenEnd: function(el) {
         $('.material-tooltip').remove();
         $('.tooltipped').tooltip();
       }
@@ -222,13 +224,13 @@ $(function() {
   );
 
   $('.collapsible-nav').collapsible({
-    onOpen: function(el) { el.find('.indicator').animateRotate(180); },
-    onClose: function(el) { el.find('.indicator').animateRotate(0); }
+    onOpenEnd: function(el) { el.find('.indicator').animateRotate(180); },
+    onCloseEnd: function(el) { el.find('.indicator').animateRotate(0); }
   });
 
   $('.indexes-collapsible').collapsible({
     accordion: false,
-    onOpen: function(el) { setTimeout(function(){window.scrollTo(window.scrollX, el.position().top - 50)}, 100) }
+    onOpenEnd: function(el) { setTimeout(function(){window.scrollTo(window.scrollX, el.position().top - 50)}, 100) }
   });
 
   $('.materialboxed').materialbox();
