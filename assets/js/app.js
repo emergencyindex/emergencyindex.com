@@ -27,10 +27,12 @@ $.fn.isolatedScroll = function() {
   return this;
 };
 
+document.addEventListener('DOMContentLoaded', function() {
+  M.AutoInit(); 
+});
+
 
 $(function() {
-
-  M.AutoInit(); 
 
   $('#slide-out').removeClass('hidden');
   $('#slide-out').isolatedScroll();
@@ -58,7 +60,6 @@ $(function() {
       });
     }
 
-    // console.log('gonna init autocomplete...')
     $('input.autocomplete').autocomplete({
       data: dataObj,
       limit: 50,
@@ -203,8 +204,8 @@ $(function() {
     $('.mat-select').formSelect('destroy');
     $('.mat-select').formSelect();
     try{
-      // M.updateTextFields();
-      Materialize.updateTextFields();
+      M.updateTextFields();
+      // Materialize.updateTextFields();
     }catch(e){
       //eh...
     }
@@ -236,56 +237,62 @@ $(function() {
   $('.materialboxed').materialbox();
 
   var initProjectTagModal = function(){
-    $('.modal').modal({
-      ready: function(modal, trigger) {
-        var tag = trigger.attr('data-tag');
-        modal.find('.tag-name').html(tag);
+    var modalz = document.querySelectorAll('.modal');
+    
+    M.Modal.init(modalz, {
+      onOpenStart: function(modal, trigger) {
+        var tag = trigger.getAttribute('data-tag');
+        modal.querySelector('.tag-name').innerHTML = tag;
         if(terms[tag]){
           var caption = terms[tag].length + " project" + (terms[tag].length != 1 ? "s" : "");
           $("<span/>", {
             "class": "badge",
             "data-badge-caption": caption
-          }).appendTo(modal.find('.tag-name'));
+          }).appendTo(modal.querySelector('.tag-name'));
 
           var items = [];
           $.each( terms[tag], function(key, t) {
             items.push( "<a href='"+t.url+"' class='collection-item project-tag'  >"+t.title+" -- "+t.contributor+" <span class='badge'>"+t.volume+"</span></>" );
           });
-          modal.find('.collection').html(items.join(''));
+          modal.querySelector('.collection').innerHTML = items.join('');
         }
         $('.material-tooltip').remove();
         $('.tooltipped').tooltip();
-        modal.find('.project-tag').click(function(e){
-          try{
-            var _href = $(this).attr('href').split('/');
-            var _page = _href.pop();
-            var _vol  = _href.pop();
-            var _sel  ='#'+_vol+'-'+_page;
-
-            var _pathVol;
-            if(  window.location.pathname.match('/volume/')
-              && window.location.pathname.split('/').length > 2
-              && !isNaN(parseInt(window.location.pathname.split('/')[2])) ){
-              _pathVol = window.location.pathname.split('/')[2]
+        modal.querySelectorAll('.project-tag').forEach( function(el){
+          el.onclick = function(e){
+            var modalInstance = M.Modal.getInstance(modal);
+            try{
+              var _href = $(this).attr('href').split('/');
+              var _page = _href.pop();
+              var _vol  = _href.pop();
+              var _sel  ='#'+_vol+'-'+_page;
+  
+              var _pathVol;
+              if(  window.location.pathname.match('/volume/')
+                && window.location.pathname.split('/').length > 2
+                && !isNaN(parseInt(window.location.pathname.split('/')[2])) ){
+                _pathVol = window.location.pathname.split('/')[2]
+              }
+              if($(_sel).length || _pathVol == _vol){
+                e.preventDefault();
+                modalInstance.close();
+                window.location.hash = _vol+'-'+_page;
+              }else if(window.location.pathname.match('/volume/')){
+                e.preventDefault();
+                modalInstance.close();
+                window.location.href = '/volume/'+_vol+'#'+_vol+'-'+_page;
+              }
+            }catch(e){
+              //o noz! (~˘▾˘)~
             }
-            if($(_sel).length || _pathVol == _vol){
-              e.preventDefault();
-              modal.modal('close');
-              location.hash = _vol+'-'+_page;
-            }else if(window.location.pathname.match('/volume/')){
-              e.preventDefault();
-              modal.modal('close');
-              location.href = '/volume/'+_vol+'#'+_vol+'-'+_page;
-            }
-          }catch(e){
-            //o noz! (~˘▾˘)~
           }
         });
       },
-      complete: function(modal) {
-        modal.find('.tag-name').html('');
-        modal.find('.collection').html('');
-      }
+      onCloseEnd: function(modal) {
+        modal.querySelector('.tag-name').innerHTML = '';
+        modal.querySelector('.collection').innerHTML = '';
+      },
+      preventScrolling: true
     });
   }
 
@@ -297,7 +304,7 @@ $(function() {
     _this.load(_project_href+' article', function(){
       $('.tooltipped').tooltip();
       _this.find('.materialboxed').materialbox();
-      Materialize.fadeInImage(_this.find('.project-img'));
+      // M.fadeInImage(_this.find('.project-img'));
       initProjectTagModal();
       var _project_href = $(this).attr('data-href').split('/');
       if(_project_href.length){
