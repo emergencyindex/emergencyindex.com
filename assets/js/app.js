@@ -28,7 +28,7 @@ $.fn.isolatedScroll = function() {
 };
 
 document.addEventListener('DOMContentLoaded', function() {
-  M.AutoInit(); 
+  // M.AutoInit(); 
 });
 
 
@@ -223,15 +223,15 @@ $(function() {
       }
     }
   );
-
-  $('.collapsible-nav').collapsible({
-    onOpenEnd: function(el) { el.find('.indicator').animateRotate(180); },
-    onCloseEnd: function(el) { el.find('.indicator').animateRotate(0); }
+  
+  M.Collapsible.init(document.querySelectorAll('.collapsible-nav'), {
+    // onOpenEnd: function(el) { el.find('.indicator').animateRotate(180); },
+    // onCloseEnd: function(el) { el.find('.indicator').animateRotate(0); }
   });
 
-  $('.indexes-collapsible').collapsible({
+  M.Collapsible.init(document.querySelectorAll('.indexes-collapsible'), {
     accordion: false,
-    onOpenEnd: function(el) { setTimeout(function(){window.scrollTo(window.scrollX, el.position().top - 50)}, 100) }
+    onOpenEnd: function(el) { console.log('Collapsible onOpenEnd el:',el); setTimeout(function(){window.scrollTo(window.scrollX, el.offsetTop - 50)}, 100) }
   });
 
   $('.materialboxed').materialbox();

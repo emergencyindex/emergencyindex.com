@@ -12,6 +12,7 @@ $error-color: #c00!default;
 $link-color: #333 !default;
 
 $sidenav-font-size: 18px !default;
+$chip-selected-color: $primary-color-dark;
 
 button{
   border: none;
@@ -38,6 +39,19 @@ button{
 
 .btn-flat:hover{
   color: white;
+}
+
+.collapsible.popout>li, .collapsible.popout>li.active, .collapsible li {
+  box-shadow: none;
+  margin: 0;
+}
+
+.collapsible .collection {
+  border: 1px solid #e0e0e0;
+}
+
+.collapsible .active .collapsible-header {
+  background-color: #ddd;
 }
 
 @media #{$medium-and-down} {

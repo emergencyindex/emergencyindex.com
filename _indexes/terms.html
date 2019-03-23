@@ -25,7 +25,7 @@ toc: All Terms
   {%- assign previous = tag -%}
 {%- endfor -%}
 
-<ul class="indexes-collapsible popout" data-collapsible="expandable">
+<ul class="indexes-collapsible collapsible popout">
   {%- assign index = "0" -%}
   {%- for tag in unique_tags -%}
   {%- assign projects = site.projects | where: "tags", tag -%}

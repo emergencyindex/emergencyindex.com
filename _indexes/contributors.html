@@ -7,7 +7,7 @@ toc: All Contributors
 
 {%- assign contributors = site.projects | map: 'contributor' | uniq | sort_natural -%}
 
-<ul class="indexes-collapsible popout" data-collapsible="accordion">
+<ul class="indexes-collapsible collapsible popout">
   {%- assign index = "0" -%}
   {%- for contributor in contributors -%}
   {%- assign projects = site.projects | where: "contributor", contributor -%}
