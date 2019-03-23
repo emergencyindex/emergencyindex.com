@@ -16,6 +16,11 @@
   width: 100%;
 }
 
+.collapsible-nav-item.active .indicator{
+  transition: transform 250ms ease-in;
+  transform: rotate(180deg);
+}
+
 #nav {
   position: fixed;
   right: 0;
