@@ -256,6 +256,9 @@ li.sticky-nav{
     -o-transition: opacity 200ms ease-in;
     transition: opacity 200ms ease-in;
 }
+.project-banner-elem div {
+  opacity: 0.75;
+}
 .project-banner-link:hover .project-banner-elem div {
   opacity: 1;
 }
