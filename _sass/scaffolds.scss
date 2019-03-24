@@ -343,6 +343,21 @@ li.sticky-nav{
   background-color: rgba(0,0,0,0.6);
 }
 
+.spacer-blob {
+  display: flex;
+  justify-content: space-between;
+  background: url('/assets/img/emergency_navblob.svg');
+  height: 24px;
+  background-size: 24px;
+  background-position: center;
+  background-repeat: no-repeat;
+  animation: 4s fadeInBlob;
+}
+@keyframes fadeInBlob {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
 .index-about {
   margin-top: 2em;
 }

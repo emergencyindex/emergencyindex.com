@@ -40,6 +40,7 @@
 
 .side-nav a {
   text-decoration: none;
+  font-size: 18px;
 }
 
 #slide-out {
@@ -109,6 +110,30 @@ a.username{
   background-color: white;
 }
 
+.sidebar-watermark {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  //max-height: 450px;
+  overflow:hidden;
+  z-index: -20;
+  background: url('/assets/img/emergency_navblob.svg');
+  height: 464px;
+  width: 450px;
+  background-size: 464px;
+  background-position: top right;
+  animation: 4s fadeInBlob;
+  visibility: hidden;
+
+  &.active {
+    visibility: visible;
+  }
+}
+@keyframes fadeInBlob {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
 @media #{$small-and-down} {
   #social-nav {
     position: unset;
@@ -116,10 +141,15 @@ a.username{
   .side-nav{
     width: 80vw;
   }
+  .sidebar-watermark {
+    display: none;
+  }
 }
 
-.side-nav li > a{
-    font-size: 18px;
+@media (max-height: 825px) {
+  .sidebar-watermark {
+    display: none;
+  }
 }
 
 @media (max-width: 1281px) {
