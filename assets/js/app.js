@@ -171,6 +171,8 @@ var fetchProject = function(_this, setLocation){
 
 var loadProject = function(_this){
   if(_this.previousElementSibling && _this.previousElementSibling.querySelector('.progress')){
+    // adding class here to prevent the size of the previous element from increasing and causing the current project to scroll down...
+    _this.previousElementSibling.classList.add('clamp100vh');
     fetchProject(_this.previousElementSibling);
   }
   if(_this.querySelector('.progress')){
@@ -192,7 +194,8 @@ var scrollSpyEnter = function(navElemSelector, id){
   var indeterminateElem = thisProject.querySelector('.indeterminate')
   indeterminateElem && indeterminateElem.classList.remove('hidden');
   var scrollspyNavElem = document.querySelector('#scrollspy-nav');
-  var navElem = scrollspyNavElem.querySelector(navElemSelector)
+  var navElem = scrollspyNavElem.querySelector(navElemSelector);
+  thisProject.classList.remove('clamp100vh');
   if(navElem){
     // navElem.classList.add('active');
     document.querySelector('#slide-out').scrollTo(window.scrollX, navElem.offsetTop - scrollspyNavElem.offsetTop)
