@@ -321,7 +321,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   if(window.location.hash.length){
     var projectFromHash = document.querySelector("[id='"+window.location.hash.replace('#','')+"']");
-    projectFromHash && window.setTimeout(function(){window.scrollTo(window.scrollX, projectFromHash.offsetTop)}, 100);
+    projectFromHash && window.setTimeout(function(){window.scrollTo(window.scrollX, projectFromHash.offsetTop)}, 1000);
   }else if(/\/volume\//.test(window.location.pathname)){
     // load the first project when the volume page loadz to avoid need a scroll event to trigger scrollSpy...
     var vol = window.location.pathname.split('/')[2];
