@@ -11,35 +11,24 @@
 
     <link rel="stylesheet" href="{{site.baseurl}}/assets/css/styles.css" />
 
-    <script src="{{site.baseurl}}/assets/js/jquery-3.2.1.min.js"></script>
     <script src="{{site.baseurl}}/assets/js/materialize-v1.min.js"></script>
-    <script src="{{site.baseurl}}/assets/js/jquery.ba-throttle-debounce.min.js"></script>
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115328945-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'UA-115328945-1');
-    </script>
 
     <script>
       //ohey, this aesthetic. 
-      $(function() {
+      document.addEventListener('DOMContentLoaded', function() {
         if(window.localStorage 
           && window.localStorage.getItem("passwd")
           && window.localStorage.getItem("passwd") == 'd2hhdCdzJTIwdGhlJTIwZW1lcmdlbmN5JTNG'
         ){
-          $('body').removeClass('hidden');
+          document.body.classList.remove('hidden')
         }else{
           var passwd = prompt('Hold up! This site is not ready for the public, yet. Please enter the secret to continue:');
           if(btoa(encodeURIComponent(passwd)) == 'd2hhdCdzJTIwdGhlJTIwZW1lcmdlbmN5JTNG'){
             window.localStorage.setItem('passwd','d2hhdCdzJTIwdGhlJTIwZW1lcmdlbmN5JTNG');
-            $('body').removeClass('hidden');
+            document.body.classList.remove('hidden')
           }
         }
       });
-
     </script>
 
   </head>
@@ -57,47 +46,9 @@
     <script src="{{site.baseurl}}/assets/js/app.js"></script>
     {%- if page.toc -%}
     <script type="text/javascript">
-    $(function() {
-      $( "<li/>", {
-        class: 'nav-index-heading',
-        html: {{page.toc | jsonify}}
-      }).appendTo($('#toc-header'));
-      
-      var items = [];
-      $('.index').each(function() {
-        items.push('<li><a href="#'+$(this).attr('id')+'"'+' class="waves-effect sidenav-close">'+$(this).text()+'</a></li>');
-      });
-      $('#scrollspy-nav ul')
-        .html(items.join(''))
-        .removeClass('hidden');
-
-      $('.index').scrollSpy();
-      var scrollSpyTermsEnter = function() {
-        $('#scrollspy-nav').find('a.active').removeClass('active');
-        var $navElem = $('#scrollspy-nav').find('a[href="#' + $(this).attr('id') + '"]');
-        if( $navElem.length ){
-          $navElem.addClass('active');
-          $('#slide-out').animate({
-              scrollTop: $navElem.offset().top - $('#scrollspy-nav').offset().top
-          }, 100);
-        }
-        for(i=0;i < $('.collapsible-nav-item').length; i++){
-          $('.collapsible-nav').collapsible('close',i);
-        }
-      }
-      $('.index').on('scrollSpy:enter', $.debounce(100, scrollSpyTermsEnter) );
-
-      $('.table-of-contents a').click(function(){
-        try{
-          var name = $(this).attr('href');
-          window.scrollTo(window.scrollX, $(name).next().position().top - $(name).height());
-        }catch(e){
-          //odang!
-        }
-      })
-
-    });
+      var PAGE_TOC = {{page.toc | jsonify}};
     </script>
+    <script src="{{site.baseurl}}/assets/js/toc.js"></script>
     {%- endif -%}
   </body>
 </html>

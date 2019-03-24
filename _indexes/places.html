@@ -16,7 +16,8 @@ toc: All Places
 
   {%- if index != newTag -%}
   {%- assign index = newTag -%}
-  <li id="{{index}}" class="index sticky-nav"><h4>{{index}}</h4></li>
+  <li id="{{index}}" class="index">&nbsp;</li>
+  <li class="sticky-nav"><h4>{{index}}</h4></li>
   {%- endif -%}
   <li>
     <div class="flex-header collapsible-header with-hover">

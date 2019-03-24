@@ -11,7 +11,7 @@ function debounce(func, wait, immediate) {
 		};
 		var callNow = immediate && !timeout;
 		clearTimeout(timeout);
-		timeout = setTimeout(later, wait);
+		timeout = window.setTimeout(later, wait);
 		if (callNow) func.apply(context, args);
 	};
 };
@@ -159,27 +159,30 @@ var fetchProject = function(_this, setLocation){
 
     initTooltip();
     M.Materialbox.init(_this.querySelectorAll('.materialboxed'));
-    // M.fadeInImage(_this.find('.project-img'));
     initProjectTagModal();
-    var _project_href = _this.getAttribute('data-href').split('/');
-    if(setLocation && _project_href.length){
+    // var _project_href = _this.getAttribute('data-href').split('/');
+    // if(setLocation && _project_href.length){
       // var _page = _project_href.pop();
       // var _vol  = _project_href.pop();
       // location.hash = _vol+'-'+_page;
-    }
+    // }
   });
 }
 
 var loadProject = function(_this){
+  if(_this.previousElementSibling && _this.previousElementSibling.querySelector('.progress')){
+    fetchProject(_this.previousElementSibling);
+  }
   if(_this.querySelector('.progress')){
     fetchProject(_this, true);
   }
-  _this.previousElementSibling && _this.previousElementSibling.querySelector('.progress') && fetchProject(_this.previousElementSibling);
   var nextProjElem = _this;
   for(var i=0; i < 5; i++){
-    nextProjElem = nextProjElem.nextElementSibling;
-    if(nextProjElem.querySelector('.progress')){
-      fetchProject(nextProjElem);
+    if(nextProjElem){
+      nextProjElem = nextProjElem.nextElementSibling;
+      if(nextProjElem && nextProjElem.querySelector('.progress')){
+        fetchProject(nextProjElem);
+      }
     }
   }
 }

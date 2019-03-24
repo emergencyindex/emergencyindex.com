@@ -32,7 +32,8 @@ toc: All Terms
   {%- assign newTag = tag | slice: 0 | slugify | upcase | default: '_' -%}
   {%- if index != newTag -%}
   {%- assign index = newTag -%}
-  <li id="{{index}}" class="index sticky-nav"><h4>{{index}}</h4></li>
+  <div id="{{index}}" class="index">&nbsp;</div>
+  <div class="sticky-nav"><h4>{{index}}</h4></div>
   {%- endif -%}
   <li>
     <div class="flex-header collapsible-header with-hover">

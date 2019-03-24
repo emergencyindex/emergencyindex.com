@@ -30,11 +30,20 @@ layout: default
 </div>
 
 <script type="text/javascript">
-$(function() {
-  $("#volume-nav-{{page.volume}}").detach().appendTo('#scrollspy-nav ul').removeClass('hidden');
-  $( "<li/>", {
-    class: 'nav-index-heading',
-    html: 'Volume {{page.volume}}'
-  }).appendTo($('#toc-header'));
+document.addEventListener('DOMContentLoaded', function() {
+  var volNavElem = document.querySelector('#volume-nav-{{page.volume}}');
+  var scrollspyNav = document.querySelector('#scrollspy-nav ul');
+  volNavElem.classList.remove('hidden');
+  scrollspyNav.appendChild(volNavElem.cloneNode(true));
+  volNavElem.remove();
+
+  var tocHeader = document.getElementById('toc-header');
+  if(tocHeader){
+    var navIndexHeading = document.createElement("li"); 
+    navIndexHeading.classList.add('nav-index-heading');
+    var navIndexHeadingContent = document.createTextNode('Volume {{page.volume}}'); 
+    navIndexHeading.appendChild(navIndexHeadingContent);
+    tocHeader.appendChild(navIndexHeading);
+  }
 });
 </script>
