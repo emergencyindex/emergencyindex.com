@@ -163,9 +163,9 @@ var fetchProject = function(_this, setLocation){
     initProjectTagModal();
     var _project_href = _this.getAttribute('data-href').split('/');
     if(setLocation && _project_href.length){
-      var _page = _project_href.pop();
-      var _vol  = _project_href.pop();
-      location.hash = _vol+'-'+_page;
+      // var _page = _project_href.pop();
+      // var _vol  = _project_href.pop();
+      // location.hash = _vol+'-'+_page;
     }
   });
 }
@@ -174,6 +174,7 @@ var loadProject = function(_this){
   if(_this.querySelector('.progress')){
     fetchProject(_this, true);
   }
+  _this.previousElementSibling && _this.previousElementSibling.querySelector('.progress') && fetchProject(_this.previousElementSibling);
   var nextProjElem = _this;
   for(var i=0; i < 5; i++){
     nextProjElem = nextProjElem.nextElementSibling;
@@ -315,10 +316,8 @@ document.addEventListener('DOMContentLoaded', function() {
   if(window.location.hash.length){
     var projectFromHash = document.querySelector("[id='"+window.location.hash.replace('#','')+"']");
     projectFromHash && window.setTimeout(function(){window.scrollTo(window.scrollX, projectFromHash.offsetTop)}, 100);
-  }
-
-  // load the first project when the volume page loadz to avoid need a scroll event to trigger scrollSpy...
-  if(/\/volume\//.test(window.location.pathname)){
+  }else if(/\/volume\//.test(window.location.pathname)){
+    // load the first project when the volume page loadz to avoid need a scroll event to trigger scrollSpy...
     var vol = window.location.pathname.split('/')[2];
     var introElem = document.querySelector("[id='"+vol+"-000-001']")
     vol && introElem && loadProject(introElem);
