@@ -40,6 +40,7 @@
 
 .side-nav a {
   text-decoration: none;
+  font-size: 18px;
 }
 
 #slide-out {
@@ -122,7 +123,11 @@ a.username{
   background-size: 464px;
   background-position: top right;
   animation: 4s fadeInBlob;
-  visibility: active;
+  visibility: hidden;
+
+  &.active {
+    visibility: visible;
+  }
 }
 @keyframes fadeInBlob {
   from { opacity: 0; }
@@ -136,8 +141,14 @@ a.username{
   .side-nav{
     width: 80vw;
   }
-  #sidebar-watermark {
-    visibility: hidden;
+  .sidebar-watermark {
+    display: none;
+  }
+}
+
+@media (max-height: 825px) {
+  .sidebar-watermark {
+    display: none;
   }
 }
 
