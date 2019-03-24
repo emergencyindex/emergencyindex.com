@@ -146,7 +146,7 @@ var initProjectTagModal = function(){
   });
 }
 
-var loadProject = function(_this){
+var fetchProject = function(_this, setLocation){
   var _project_href = _this.getAttribute('data-href');
   fetch(_project_href)
   .then(function(response) {
@@ -162,12 +162,25 @@ var loadProject = function(_this){
     // M.fadeInImage(_this.find('.project-img'));
     initProjectTagModal();
     var _project_href = _this.getAttribute('data-href').split('/');
-    if(_project_href.length){
+    if(setLocation && _project_href.length){
       var _page = _project_href.pop();
       var _vol  = _project_href.pop();
       location.hash = _vol+'-'+_page;
     }
   });
+}
+
+var loadProject = function(_this){
+  if(_this.querySelector('.progress')){
+    fetchProject(_this, true);
+  }
+  var nextProjElem = _this;
+  for(var i=0; i < 5; i++){
+    nextProjElem = nextProjElem.nextElementSibling;
+    if(nextProjElem.querySelector('.progress')){
+      fetchProject(nextProjElem);
+    }
+  }
 }
 
 var scrollSpyEnter = function(navElemSelector, id){
@@ -177,12 +190,10 @@ var scrollSpyEnter = function(navElemSelector, id){
   var scrollspyNavElem = document.querySelector('#scrollspy-nav');
   var navElem = scrollspyNavElem.querySelector(navElemSelector)
   if(navElem){
-    navElem.classList.add('active');
+    // navElem.classList.add('active');
     document.querySelector('#slide-out').scrollTo(window.scrollX, navElem.offsetTop - scrollspyNavElem.offsetTop)
   }
-  if(thisProject.querySelector('.progress')){
-    loadProject(thisProject);
-  }
+  loadProject(thisProject);
 }
 
 var debounceScrollSpyEnter = debounce(scrollSpyEnter, 100);
@@ -306,4 +317,10 @@ document.addEventListener('DOMContentLoaded', function() {
     projectFromHash && window.setTimeout(function(){window.scrollTo(window.scrollX, projectFromHash.offsetTop)}, 100);
   }
 
+  // load the first project when the volume page loadz to avoid need a scroll event to trigger scrollSpy...
+  if(/\/volume\//.test(window.location.pathname)){
+    var vol = window.location.pathname.split('/')[2];
+    var introElem = document.querySelector("[id='"+vol+"-000-001']")
+    vol && introElem && loadProject(introElem);
+  }
 });
