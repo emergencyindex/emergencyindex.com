@@ -207,6 +207,7 @@ h3.sticky-nav{
 h2.sticky-nav{
   min-height: 4rem;
 }
+
 li.sticky-nav{
   min-height: 3rem;
 }
@@ -391,7 +392,7 @@ li.sticky-nav{
   .intro{
     margin-top: 66px;
   }
-
+submit
   .intro-page-container h1{
     font-size: 13vw;
   }
@@ -405,5 +406,14 @@ li.sticky-nav{
   body, p, ol, ul, td, pre {
     font-size: 22px;
     line-height: 25px;
+  }
+}
+
+.faq {
+  dt, dd {
+  padding: 0.75em;
+  }
+  dd {
+    padding-left: 0em;
   }
 }
