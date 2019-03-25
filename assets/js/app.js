@@ -32,21 +32,11 @@ var initAutocomplete = function(){
     data: dataObj,
     limit: 50,
     onAutocomplete: function(val) {
-			if (val.search("\\(") != -1) {
-				newVal1 = val.replace(/\(/gi, "\\(");
-				newVal2 = newVal1.replace(/\)/gi, "\\)");
-			} else {
-				if (val.search("\\[") != -1) {
-					newVal1 = val.replace(/\[/gi, "\\[");
-					newVal2 = newVal1.replace(/\]/gi, "\\]");
-				} else {
-					newVal2 = val;
-				}
-			}
-			//newVal2 = newVal1.replace(/\]/gi, "\\]");
-			//alert(newVal2);
-			//alert(Object.keys(hrefObj).filter(function(i){return i.match(newVal2)})[0]);
-      var projKey = Object.keys(hrefObj).filter(function(i){return i.match(newVal2)})[0]
+			val = val.replace(/\(/, "\\(");
+			val = val.replace(/\)/, "\\)");
+			val = val.replace(/\[/, "\\[");
+			val = val.replace(/\]/, "\\]");
+      var projKey = Object.keys(hrefObj).filter(function(i){return i.match(val)})[0]
       if(projKey && hrefObj[projKey]){
         window.location = hrefObj[projKey]; //+'/?s='+val;
       }
