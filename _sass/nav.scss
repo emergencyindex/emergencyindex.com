@@ -139,18 +139,6 @@ a.username{
   to   { opacity: 1; }
 }
 
-@media #{$small-and-down} {
-  #social-nav {
-    position: unset;
-  }
-  .sidenav{
-    width: 80vw;
-  }
-  .sidebar-watermark {
-    display: none;
-  }
-}
-
 @media (max-height: 825px) {
   .sidebar-watermark {
     display: none;
@@ -165,6 +153,21 @@ a.username{
   }
 }
 
+@media #{$small-and-down} {
+  #social-nav {
+    position: unset;
+  }
+  .sidenav{
+    width: 80vw;
+  }
+  .sidenav li > a.overflow {
+    line-height: 2.5em;
+    height: auto;
+  }
+  .sidebar-watermark {
+    display: none;
+  }
+}
 
 #social-nav a {
   border-bottom: 2px solid transparent;
