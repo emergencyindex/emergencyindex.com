@@ -1,5 +1,6 @@
 var BASE_URL = "/";
 var data, terms;
+var IS_TOUCH_DEVICE = false;
 
 function debounce(func, wait, immediate) {
 	var timeout;
@@ -84,15 +85,25 @@ var setRandoProjectBanner = function() {
   }
 }
 
-var initTooltip = function() {
+var destroyTooltipz = function(){
   var tooltipElemz = document.querySelectorAll('.tooltipped');
   tooltipElemz.forEach(function(el){
     try{
       M.Tooltip.getInstance(el).destroy()
     }catch(e) { /* ...eh */ }
-  })
-  M.Tooltip.init(tooltipElemz);
+  });
+  return tooltipElemz;
 }
+
+var initTooltip = function() {
+  !IS_TOUCH_DEVICE && M.Tooltip.init(destroyTooltipz());
+}
+
+window.addEventListener('touchstart', function firstTouch() {
+  IS_TOUCH_DEVICE = true;
+  destroyTooltipz();
+  window.removeEventListener('touchstart', firstTouch, false);
+})
 
 var initProjectTagModal = function(){
   var modalz = document.querySelectorAll('.modal');
@@ -295,6 +306,9 @@ document.addEventListener('DOMContentLoaded', function() {
   M.Sidenav.init(document.querySelectorAll('.sidenav'), {
     edge: 'right',
     draggable: true,
+    onOpenEnd: function(){
+      initTooltip();
+    }
   });
 
   M.Collapsible.init(document.querySelectorAll('.collapsible-nav'));
