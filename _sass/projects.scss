@@ -155,7 +155,12 @@ label[for="project_already_submitted"], label[for="project_description_monospace
 
 .section.scrollspy{
   min-height: 100vh;
-  margin-bottom: 75vh;
+  margin-bottom: 3em; /* note: margin here helps resole a bug with scrollSpy getting confused w/ setting window.location.hash (& browser srolling to that element) */
+}
+
+.clamp100vh{
+  max-height: 100vh;
+  overflow: hidden;
 }
 
 .project-info{

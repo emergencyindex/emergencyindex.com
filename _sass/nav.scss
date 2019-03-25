@@ -1,9 +1,9 @@
-.side-nav {
+.sidenav {
   width: 200px;
 }
 
 @media (min-width: 1281px) {
-  .side-nav {
+  .sidenav {
     width: 300px;
   }
 }
@@ -14,6 +14,11 @@
 
 .collapsible-nav .waves-effect {
   width: 100%;
+}
+
+.collapsible-nav-item.active .indicator{
+  transition: transform 250ms ease-in;
+  transform: rotate(180deg);
 }
 
 #nav {
@@ -38,7 +43,7 @@
   background-size: 150px;
 }
 
-.side-nav a {
+.sidenav a {
   text-decoration: none;
   font-size: 18px;
 }
@@ -138,7 +143,7 @@ a.username{
   #social-nav {
     position: unset;
   }
-  .side-nav{
+  .sidenav{
     width: 80vw;
   }
   .sidebar-watermark {
@@ -153,7 +158,7 @@ a.username{
 }
 
 @media (max-width: 1281px) {
-  .side-nav li > a.overflow {
+  .sidenav li > a.overflow {
     overflow: visible;
     line-height: 1.25em;
     height: auto;

@@ -25,14 +25,15 @@ toc: All Terms
   {%- assign previous = tag -%}
 {%- endfor -%}
 
-<ul class="indexes-collapsible popout" data-collapsible="expandable">
+<ul class="indexes-collapsible collapsible popout">
   {%- assign index = "0" -%}
   {%- for tag in unique_tags -%}
   {%- assign projects = site.projects | where: "tags", tag -%}
   {%- assign newTag = tag | slice: 0 | slugify | upcase | default: '_' -%}
   {%- if index != newTag -%}
   {%- assign index = newTag -%}
-  <li id="{{index}}" class="index sticky-nav"><h4>{{index}}</h4></li>
+  <div id="{{index}}" class="index">&nbsp;</div>
+  <div class="sticky-nav"><h4>{{index}}</h4></div>
   {%- endif -%}
   <li>
     <div class="flex-header collapsible-header with-hover">

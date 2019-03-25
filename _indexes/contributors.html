@@ -7,14 +7,15 @@ toc: All Contributors
 
 {%- assign contributors = site.projects | map: 'contributor' | uniq | sort_natural -%}
 
-<ul class="indexes-collapsible popout" data-collapsible="accordion">
+<ul class="indexes-collapsible collapsible popout">
   {%- assign index = "0" -%}
   {%- for contributor in contributors -%}
   {%- assign projects = site.projects | where: "contributor", contributor -%}
   {%- assign newTag = contributor | slice: 0 | slugify | upcase | default: '_'  -%}
   {%- if index != newTag -%}
   {%- assign index = newTag -%}
-  <li id="{{index}}" class="index sticky-nav"><h4>{{index}}</h4></li>
+  <li id="{{index}}" class="index">&nbsp;</li>
+  <li class="sticky-nav"><h4>{{index}}</h4></li>
   {%- endif -%}
   <li>
     <div class="flex-header collapsible-header with-hover">
