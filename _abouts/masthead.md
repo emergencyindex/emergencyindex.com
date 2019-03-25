@@ -13,9 +13,10 @@ banner: true
       <li class="collection-item">Zoe Guttenplan</li>
     </ul>
     <ul class="col s12 m4 l3 collection with-header">
-      <li class="collection-header"><h6>Founding Editor</h6></li>
-      <li class="collection-item">Yelena Gluzman</li>
-    </ul>    
+      <li class="collection-header"><h6>Digital Editors</h6></li>
+      <li class="collection-item">Brian McCorkle</li>
+      <li class="collection-item">edward sharp</li>
+    </ul>
   </div>
   <div class="row">
     <ul class="col s12 m4 l3 collection with-header">
@@ -29,6 +30,7 @@ banner: true
       <li class="collection-item">Rob Ray</li>
       <li class="collection-item">Ben Spatz</li>
       <li class="collection-item">Sara Wintz</li>
+      <li class="collection-item">Louise Hickman</li>
     </ul>
     <ul class="col s12 m4 l3 collection with-header">
       <li class="collection-header"><h6>Advisory Board</h6></li>
@@ -38,9 +40,8 @@ banner: true
       <li class="collection-item">Branislav Jakovljevic</li>
       <li class="collection-item">Caden Manson</li>
       <li class="collection-item">&nbsp;</li>
-      <li class="collection-header"><h6>Digital Editors</h6></li>
-      <li class="collection-item">Brian McCorkle</li>
-      <li class="collection-item">edward sharp</li>
+      <li class="collection-header"><h6>Founding Editor</h6></li>
+      <li class="collection-item">Yelena Gluzman</li>
     </ul>
   </div>
   <div class="row">
