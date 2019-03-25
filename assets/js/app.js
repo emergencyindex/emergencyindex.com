@@ -22,9 +22,15 @@ var initAutocomplete = function(){
 
   for(var proj of data){
     if(proj.title != ''){
-      var _key = proj.title + ' -- ' + proj.contributor + ' -- ' + proj.place;
-      dataObj[_key] = null; //'/assets/img/'+proj.volume+'/'+proj.image;
-      hrefObj[_key+'HREF'] = proj.url;
+      var _key = proj.title;
+      if(proj.contributor && proj.contributor !== ''){
+        _key = _key + ' -- ' + proj.contributor;
+      }
+      if(proj.place && proj.place !== ''){
+        _key = _key + ' -- ' + proj.place;
+      }
+      dataObj[_key.trim()] = null;
+      hrefObj[_key.trim()] = proj.url;
     }
   }
 
@@ -32,23 +38,9 @@ var initAutocomplete = function(){
     data: dataObj,
     limit: 50,
     onAutocomplete: function(val) {
-			if (val.search("\\(") != -1) {
-				newVal1 = val.replace(/\(/gi, "\\(");
-				newVal2 = newVal1.replace(/\)/gi, "\\)");
-			} else {
-				if (val.search("\\[") != -1) {
-					newVal1 = val.replace(/\[/gi, "\\[");
-					newVal2 = newVal1.replace(/\]/gi, "\\]");
-				} else {
-					newVal2 = val;
-				}
-			}
-			//newVal2 = newVal1.replace(/\]/gi, "\\]");
-			//alert(newVal2);
-			//alert(Object.keys(hrefObj).filter(function(i){return i.match(newVal2)})[0]);
-      var projKey = Object.keys(hrefObj).filter(function(i){return i.match(newVal2)})[0]
+      var projKey = Object.keys(hrefObj).filter(function(i){return i === val})[0]
       if(projKey && hrefObj[projKey]){
-        window.location = hrefObj[projKey]; //+'/?s='+val;
+        window.location = hrefObj[projKey];
       }
     },
     minLength: 1
