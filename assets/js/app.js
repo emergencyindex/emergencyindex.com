@@ -49,7 +49,7 @@ var setRandoProjectBanner = function() {
   // }
   var projectBannerLink = document.querySelector('.project-banner-link');
   if(projectBannerLink){
-      var randoProject = data[ Math.floor(Math.random() * data.length - 1) ];
+      var randoProject = data.filter(function(proj){return !!proj.image})[ Math.floor(Math.random() * data.length - 1) ];
       // console.log('randoProject:',randoProject)
       // projectBannerLink.href = randoProject.url;
       var _href = randoProject.url.split('/');
