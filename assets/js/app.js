@@ -32,7 +32,21 @@ var initAutocomplete = function(){
     data: dataObj,
     limit: 50,
     onAutocomplete: function(val) {
-      var projKey = Object.keys(hrefObj).filter(function(i){return i.match(val)})[0]
+			if (val.search("\\(") != -1) {
+				newVal1 = val.replace(/\(/gi, "\\(");
+				newVal2 = newVal1.replace(/\)/gi, "\\)");
+			} else {
+				if (val.search("\\[") != -1) {
+					newVal1 = val.replace(/\[/gi, "\\[");
+					newVal2 = newVal1.replace(/\]/gi, "\\]");
+				} else {
+					newVal2 = val;
+				}
+			}
+			//newVal2 = newVal1.replace(/\]/gi, "\\]");
+			//alert(newVal2);
+			//alert(Object.keys(hrefObj).filter(function(i){return i.match(newVal2)})[0]);
+      var projKey = Object.keys(hrefObj).filter(function(i){return i.match(newVal2)})[0]
       if(projKey && hrefObj[projKey]){
         window.location = hrefObj[projKey]; //+'/?s='+val;
       }
@@ -74,7 +88,7 @@ var setRandoProjectBanner = function() {
 
       var divVolume = document.createElement("div");
       divVolume.innerHTML = randoProject.volume;
-      projectBannerElem.appendChild(divVolume);    
+      projectBannerElem.appendChild(divVolume);
   }
 }
 
@@ -90,14 +104,14 @@ var initTooltip = function() {
 
 var initProjectTagModal = function(){
   var modalz = document.querySelectorAll('.modal');
-  
+
   M.Modal.init(modalz, {
     onOpenStart: function(modal, trigger) {
       var tag = trigger.getAttribute('data-tag');
       modal.querySelector('.tag-name').innerHTML = tag;
       if(terms[tag]){
         var caption = terms[tag].length + " project" + (terms[tag].length != 1 ? "s" : "");
-        var badge = document.createElement("span"); 
+        var badge = document.createElement("span");
         badge.classList.add('badge');
         badge.setAttribute('data-badge-caption', caption);
         modal.querySelector('.tag-name').appendChild(badge);
@@ -318,7 +332,7 @@ document.addEventListener('DOMContentLoaded', function() {
       loadProject(this.parentElement);
     }
   });
-  
+
   if(window.location.hash.length){
     var projectFromHash = document.querySelector("[id='"+window.location.hash.replace('#','')+"']");
     projectFromHash && window.setTimeout(function(){window.scrollTo(window.scrollX, projectFromHash.offsetTop)}, 1000);
