@@ -1,6 +1,5 @@
 <div id="nav" class="click-to-toggle">
   <a href="#" data-target="slide-out" class="sidenav-trigger tooltipped waves-effect" data-delay="250" data-tooltip="Show Menu">&nbsp;</a>
-  <!-- #todo add class="sidenav-close" to thingz that need to close sidenav... -->
 </div>
 
 <ul id="slide-out" class="sidenav sidenav-fixed hidden">
@@ -11,15 +10,15 @@
     </li>
 
     <ul class="collapsible-nav collapsible">
-      <li class="collapsible-nav-item">
-        <div class="collapsible-header sticky-nav sticky-nav-2 waves-effect {% if page.layout == 'abouts' %}active{% endif %}">About <i class="material-icons indicator">keyboard_arrow_down</i></div>
+      <li class="collapsible-nav-item {% if page.permalink contains '/about/' %}active{% endif %}">
+        <div class="collapsible-header sticky-nav sticky-nav-2 waves-effect">About <i class="material-icons indicator">keyboard_arrow_down</i></div>
         <div class="collapsible-body">
           <ul>
             <li class="waves-effect {% if page.permalink contains 'masthead' %}active{% endif %}">
               <a href="/about/masthead/">Masthead</a>
             </li>
             <li class="waves-effect {% if page.permalink contains 'project-description' %}active{% endif %}">
-              <a href="/about/project-description/" class="overflow" id="less-overflow">Project Description</a>
+              <a href="/about/project-description/" class="overflow">Project Description</a>
             </li>
             <li class="waves-effect {% if page.permalink contains 'press' %}active{% endif %}">
               <a href="/about/press/">Press</a>
@@ -33,8 +32,8 @@
           </ul>
         </div>
       </li>
-      <li class="collapsible-nav-item">
-        <div class="collapsible-header sticky-nav sticky-nav-2 waves-effect {% if page.layout == 'archives' || page.layout == 'volume' || page.layout == 'project' %}active{% endif %}">Archive <i class="material-icons indicator">keyboard_arrow_down</i></div>
+      <li class="collapsible-nav-item {% if page.permalink contains '/archive/' %}active{% endif %}">
+        <div class="collapsible-header sticky-nav sticky-nav-2 waves-effect">Archive <i class="material-icons indicator">keyboard_arrow_down</i></div>
         <div class="collapsible-body">
           <ul>
             <li class="waves-effect {% if page.permalink contains 'search-archives' %}active{% endif %}">
@@ -52,8 +51,8 @@
           </ul>
         </div>
       </li>
-      <li class="collapsible-nav-item">
-        <div class="collapsible-header sticky-nav sticky-nav-2 waves-effect {% if page.layout == 'submit' %}active{% endif %}">Submit <i class="material-icons indicator">keyboard_arrow_down</i></div>
+      <li class="collapsible-nav-item {% if page.permalink == '/submission-FAQ/' or page.permalink == '/submit-your-performance/' %}active{% endif %}">
+        <div class="collapsible-header sticky-nav sticky-nav-2 waves-effect">Submit <i class="material-icons indicator">keyboard_arrow_down</i></div>
         <div class="collapsible-body">
           <ul>
             <li class="waves-effect {% if page.permalink contains 'submit-your-performance' %}active{% endif %}">
@@ -65,8 +64,8 @@
           </ul>
         </div>
       </li>
-      <li class="collapsible-nav-item">
-        <div class="collapsible-header sticky-nav sticky-nav-2 waves-effect {% if page.layout == 'contact' %}active{% endif %}">Contact <i class="material-icons indicator">keyboard_arrow_down</i></div>
+      <li class="collapsible-nav-item {% if page.permalink == '/signup/' %}active{% endif %}">
+        <div class="collapsible-header sticky-nav sticky-nav-2 waves-effect">Contact <i class="material-icons indicator">keyboard_arrow_down</i></div>
         <div class="collapsible-body">
           <ul>
             <li class="waves-effect {% if page.permalink contains 'signup' %}active{% endif %}">
