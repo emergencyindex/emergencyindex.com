@@ -172,11 +172,9 @@ a.username{
 @media (max-width: 320px) {
   .sidenav li > a.overflow {
     line-height: 1.25em;
-    height: auto;
   }
-  .sidenav li > a#less-overflow {
+  .sidenav li > a.less-overflow {
     line-height: 2.5em;
-    height: auto;
   }
 }
 
