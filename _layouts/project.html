@@ -60,13 +60,25 @@ layout: default
 
   </div>
   <footer class="col s12">
+    <div id="{{ page.volume }}{{ page.pages }}" class="citation modal">
+      <div class="modal-content">
+        <h4>Citation</h4>
+        <p>{{ page.contributor }}. {{ page.title }}. In Emergency Index Vol. {{ page.volume }}, Brooklyn NY: Ugly Duckling Presse, {{ page.volume }}, {{ page.pages }}. Accessed on {{ site.time | date: '%B %d, %Y' }} from <span class="location-origin"></span>{{ page.url }}.</p>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Done</a>
+      </div>
+    </div>
+    
+    <a class="waves-effect waves-light btn btn-flat chip tooltipped project-citation-btn modal-trigger" href="#{{ page.volume }}{{ page.pages }}" data-tooltip="Cite this project" data-position="top"><i class="material-icons">format_quote</i></a>
+
     <a class="waves-effect waves-light btn btn-flat chip tooltipped" data-tooltip="Permanent link to this project" data-position="top" href="{{page.url}}"><i class="material-icons">link</i></a>
     {% for tag in page.tags %}
     	<!-- <span class="chip">{{tag}}</span> -->
       <a class="waves-effect waves-light btn btn-flat modal-trigger chip" href="#modal{{page.pages}}" data-tag="{{tag}}">{{tag}}</a>
     {% endfor %}
 
-    <div id="modal{{page.pages}}" class="modal bottom-sheet">
+    <div id="modal{{page.pages}}" class="modal bottom-sheet tags">
       <div class="modal-content">
         <h4 class="tag-name"></h4>
         <div class="collection">

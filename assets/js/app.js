@@ -106,7 +106,7 @@ window.addEventListener('touchstart', function firstTouch() {
 })
 
 var initProjectTagModal = function(){
-  var modalz = document.querySelectorAll('.modal');
+  var modalz = document.querySelectorAll('.modal:not(.citation)');
 
   M.Modal.init(modalz, {
     onOpenStart: function(modal, trigger) {
@@ -163,6 +163,13 @@ var initProjectTagModal = function(){
   });
 }
 
+var initProjectCitationModal = function(){
+  document.querySelectorAll('.location-origin').forEach(function(el){
+    el.innerHTML = window.location.origin;
+  });
+  M.Modal.init(document.querySelectorAll('.modal:not(.tags)'));
+}
+
 var fetchProject = function(_this, setLocation){
   var _project_href = _this.getAttribute('data-href');
   fetch(_project_href)
@@ -177,6 +184,7 @@ var fetchProject = function(_this, setLocation){
     initTooltip();
     M.Materialbox.init(_this.querySelectorAll('.materialboxed'));
     initProjectTagModal();
+    initProjectCitationModal();
     // var _project_href = _this.getAttribute('data-href').split('/');
     // if(setLocation && _project_href.length){
       // var _page = _project_href.pop();
@@ -323,6 +331,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initTooltip();
 
   initProjectTagModal();
+  initProjectCitationModal(); 
 
   M.ScrollSpy.init(document.querySelectorAll('.scrollspy'), {
     scrollOffset: 0,
