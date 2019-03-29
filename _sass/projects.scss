@@ -205,6 +205,10 @@ label[for="project_already_submitted"], label[for="project_description_monospace
   margin-top: 1.5em;
 }
 
+.citation.modal{
+  word-break: break-word;
+}
+
 @media #{$small-and-down} {
   .project-img{
     max-height: none;
