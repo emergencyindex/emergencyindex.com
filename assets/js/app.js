@@ -226,6 +226,9 @@ var scrollSpyEnter = function(navElemSelector, id){
     document.querySelector('#slide-out').scrollTo(window.scrollX, navElem.offsetTop - scrollspyNavElem.offsetTop)
   }
   loadProject(thisProject);
+  if(window.history.pushState && window.location.hash !== '#'+id) {
+    window.history.pushState(null, null, '#'+id);
+  }
 }
 
 var debounceScrollSpyEnter = debounce(scrollSpyEnter, 100);
