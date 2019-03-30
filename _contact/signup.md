@@ -6,4 +6,5 @@ permalink: /signup/
 banner: true
 ---
 
-To sign up for the Emergency INDEX mailing list, [email emergency@uglyducklingpresse.org](mailto:emergency@uglyducklingpresse.org)
+
+{% include email_list.html %}
