@@ -6,6 +6,7 @@ permalink: /signup/
 banner: true
 ---
 
+<<<<<<< Updated upstream
 <!-- Begin Mailchimp Signup Form -->
 <div id="mc_embed_signup">
 <form action="https://uglyducklingpresse.us15.list-manage.com/subscribe/post?u=3f7fc4cdfdf165e8063ad0c94&amp;id=cc0e998d17" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
@@ -44,3 +45,6 @@ banner: true
 </div>
 
 <!--End mc_embed_signup-->
+=======
+{% include email_list.html %}
+>>>>>>> Stashed changes
