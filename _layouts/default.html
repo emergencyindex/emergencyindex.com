@@ -13,24 +13,6 @@
 
     <script src="{{site.baseurl}}/assets/js/materialize-v1.min.js"></script>
 
-    <script>
-      //ohey, this aesthetic. 
-      document.addEventListener('DOMContentLoaded', function() {
-        if(window.localStorage 
-          && window.localStorage.getItem("passwd")
-          && window.localStorage.getItem("passwd") == 'd2hhdCdzJTIwdGhlJTIwZW1lcmdlbmN5JTNG'
-        ){
-          document.body.classList.remove('hidden')
-        }else{
-          var passwd = prompt('Hold up! This site is not ready for the public, yet. Please enter the secret to continue:');
-          if(btoa(encodeURIComponent(passwd)) == 'd2hhdCdzJTIwdGhlJTIwZW1lcmdlbmN5JTNG'){
-            window.localStorage.setItem('passwd','d2hhdCdzJTIwdGhlJTIwZW1lcmdlbmN5JTNG');
-            document.body.classList.remove('hidden')
-          }
-        }
-      });
-    </script>
-
   </head>
 
   <body class="hidden">
