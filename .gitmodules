@@ -1,76 +1,76 @@
 [submodule "_projects/2011"]
 	path = _projects/2011
-	url = git@github.com:emergencyindex/projects-2011.git
+	url = https://github.com/emergencyindex/projects-2011
 	branch = projects
 [submodule "_indexes/2011"]
 	path = _indexes/2011
-	url = git@github.com:emergencyindex/projects-2011.git
+	url = https://github.com/emergencyindex/projects-2011
 	branch = indexes
 [submodule "assets/img/2011"]
 	path = assets/img/2011
-	url = git@github.com:emergencyindex/projects-2011.git
+	url = https://github.com/emergencyindex/projects-2011
 	branch = images
 [submodule "_indexes/2012"]
 	path = _indexes/2012
-	url = git@github.com:emergencyindex/projects-2012.git
+	url = https://github.com/emergencyindex/projects-2012
 	branch = indexes
 [submodule "_projects/2012"]
 	path = _projects/2012
-	url = git@github.com:emergencyindex/projects-2012.git
+	url = https://github.com/emergencyindex/projects-2012
 	branch = projects
 [submodule "assets/img/2012"]
 	path = assets/img/2012
-	url = git@github.com:emergencyindex/projects-2012.git
+	url = https://github.com/emergencyindex/projects-2012
 	branch = images
 [submodule "_indexes/2013"]
 	path = _indexes/2013
-	url = git@github.com:emergencyindex/projects-2013.git
+	url = https://github.com/emergencyindex/projects-2013
 	branch = indexes
 [submodule "_projects/2013"]
 	path = _projects/2013
-	url = git@github.com:emergencyindex/projects-2013.git
+	url = https://github.com/emergencyindex/projects-2013
 	branch = projects
 [submodule "assets/img/2013"]
 	path = assets/img/2013
-	url = git@github.com:emergencyindex/projects-2013.git
+	url = https://github.com/emergencyindex/projects-2013
 	branch = images
 [submodule "_indexes/2014"]
 	path = _indexes/2014
-	url = git@github.com:emergencyindex/projects-2014.git
+	url = https://github.com/emergencyindex/projects-2014
 	branch = indexes
 [submodule "_projects/2014"]
 	path = _projects/2014
-	url = git@github.com:emergencyindex/projects-2014.git
+	url = https://github.com/emergencyindex/projects-2014
 	branch = projects
 [submodule "assets/img/2014"]
 	path = assets/img/2014
-	url = git@github.com:emergencyindex/projects-2014.git
+	url = https://github.com/emergencyindex/projects-2014
 	branch = images
 [submodule "_indexes/2015"]
 	path = _indexes/2015
-	url = git@github.com:emergencyindex/projects-2015.git
+	url = https://github.com/emergencyindex/projects-2015
 	branch = indexes
 [submodule "_projects/2015"]
 	path = _projects/2015
-	url = git@github.com:emergencyindex/projects-2015.git
+	url = https://github.com/emergencyindex/projects-2015
 	branch = projects
 [submodule "assets/img/2015"]
 	path = assets/img/2015
-	url = git@github.com:emergencyindex/projects-2015.git
+	url = https://github.com/emergencyindex/projects-2015
 	branch = images
 [submodule "_indexes/2016"]
 	path = _indexes/2016
-	url = git@github.com:emergencyindex/projects-2016.git
+	url = https://github.com/emergencyindex/projects-2016
 	branch = indexes
 [submodule "_projects/2016"]
 	path = _projects/2016
-	url = git@github.com:emergencyindex/projects-2016.git
+	url = https://github.com/emergencyindex/projects-2016
 	branch = projects
 [submodule "assets/img/2016"]
 	path = assets/img/2016
-	url = git@github.com:emergencyindex/projects-2016.git
+	url = https://github.com/emergencyindex/projects-2016
 	branch = images
 [submodule "_indexes/2017"]
 	path = _indexes/2017
-	url = git@github.com:emergencyindex/projects-2017.git
+	url = https://github.com/emergencyindex/projects-2017
 	branch = indexes
