@@ -61,65 +61,20 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // odang! try to create hyperlinkz for "see also"
-  try {
-    var see = document.evaluate("//em[contains(., 'see')]", document, null, XPathResult.ANY_TYPE, null);
-    var seez = see.iterateNext();
-    var tagzToUpdate = [];
-    while (seez) {
-      var txt = seez.nextSibling.textContent;
-      var tags = [];
-      // split(/,|;/) 
-      if (/;/.test(txt)) {
-        tags = txt.split(';');
-      } else {
-        tags = txt.split(',');
-      }
-      for (var i = 0; i < tags.length; i++) {
-        var tag = tags[i].trim();
-        if (tag !== '') {
-          var found = document.evaluate("//p[starts-with(., '" + tag + " ')]", document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null).snapshotLength;
-          if (found > 0) {
-            var tagLinkz = document.evaluate("//p[starts-with(., '" + tag + " ')]", document, null, XPathResult.ANY_TYPE, null);
-            var tagLink = tagLinkz.iterateNext();
-            if (tagLink) {
-              var parentEl = seez.parentElement;
-              parentEl && tagzToUpdate.push({ tag: tag, parentEl: parentEl, offsetTop: tagLink.offsetTop });
-            }
-          }
-        }
-      } // end for loop
-      seez = see.iterateNext();
-    } // end while
-    // need to defer dom mutationz until after iterating through all the see XPath itemz...
-    for (var i = 0; i < tagzToUpdate.length; i++) {
-      var tag = tagzToUpdate[i].tag;
-      var parentEl = tagzToUpdate[i].parentEl;
-      var offsetTop = tagzToUpdate[i].offsetTop;
-      // regex with boundry \b to match whole word (avoid removing 'god' from 'goddess')
-      tagRegEx = new RegExp('\\b'+tag+'\\b');
-      // walk the childNodes to check for text nodes (nodeType 3) 
-      // to avoid parentEl.innerHTML.replace which would replace html attributes that may contain the tag...
-      // also avoid replacing the first (i==0) match
-      parentEl.childNodes.forEach(function (n, i) {
-        if (i !== 0 && n.nodeType === 3 && n.textContent.match(tagRegEx)) {
-          var tagLink = document.createElement('a');
-          tagLink.classList.add('see-scroll');
-          tagLink.setAttribute('data-scroll', offsetTop);
-          // try to keep comma
-          tagLink.innerText = n.textContent.indexOf(tag + ',') > -1 ? tag + ',' : tag;
-          n.textContent = n.textContent.replace(tag + ',', '').replace(tagRegEx, '');
-          parentEl.insertBefore(tagLink, n);
-        }
-      });
+  var seeAlsoClick = function (e) {
+    if (e.target && e.target.innerText !== '') {
+      var searchSeeAlso = document.evaluate("//strong[contains(., '" + e.target.innerText.trim() + "')]", document, null, XPathResult.ANY_TYPE, null);
+      var seeAlso = searchSeeAlso.iterateNext();
+      seeAlso && window.scrollTo(0, seeAlso.offsetTop + SCROLL_OFFSET);
     }
-
-    var seeScrollClick = function (e) {
-      var offsetTop = e.target.getAttribute('data-scroll');
-      !isNaN(parseInt(offsetTop)) && window.scrollTo(window.scrollX, parseInt(offsetTop) + SCROLL_OFFSET);
+  }
+  document.querySelectorAll('.see-also').forEach(function (el) {
+    if (document.evaluate("//strong[contains(., '" + el.innerText.trim() + "')]", document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null).snapshotLength) {
+      el.classList.add('anchor');
+      el.addEventListener('click', seeAlsoClick);
+    } else {
+      console.log('cant seem to find', el.innerText);
     }
-    document.querySelectorAll('.see-scroll').forEach(function (el) {
-      el.addEventListener('click', seeScrollClick);
-    });
-  } catch (e) { /* eh... */ }
+  });
 
 });

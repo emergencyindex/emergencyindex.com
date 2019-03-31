@@ -42,3 +42,16 @@
 .see-scroll {
   margin-left: 0.5em;
 }
+
+.see-also {
+  font-weight: normal;
+}
+
+.see-also.anchor{
+  text-decoration: underline;
+}
+.see-also.anchor:hover{
+  background: black;
+  color: white;
+  cursor: pointer;
+}
