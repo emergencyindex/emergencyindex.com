@@ -86,6 +86,18 @@ a.username{
   padding-left: 1.33em;
 }
 
+.nav-index-heading{
+  display: flex;
+  justify-content: space-around;
+}
+
+.nav-back-to-top i {
+  color: black;
+}
+.nav-back-to-top i:hover {
+  color: white;
+}
+
 .dropdown-content{
   max-height: none;
   overflow-y: none;

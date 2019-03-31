@@ -17,8 +17,14 @@ document.addEventListener('DOMContentLoaded', function() {
     var navIndexHeading = document.createElement("li"); 
     navIndexHeading.classList.add('nav-index-heading');
     var navIndexHeadingContent = document.createTextNode(PAGE_TOC); 
+    var navIndexBackToTop = document.createElement('span')
+    navIndexBackToTop.innerHTML = '<a class="btn-floating btn-small btn-flat waves-effect waves-light nav-back-to-top tooltipped" data-tooltip="Back to top"><i class="material-icons">arrow_upward</i></a>';
     navIndexHeading.appendChild(navIndexHeadingContent);
+    navIndexHeading.appendChild(navIndexBackToTop);
     tocHeader.appendChild(navIndexHeading);
+    document.querySelector('.nav-back-to-top').addEventListener('click', function(e){
+      document.querySelector('#slide-out').scrollTo(0,0);
+    });
   }
   
   var items = [];
