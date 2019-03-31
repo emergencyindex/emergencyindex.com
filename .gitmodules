@@ -1,76 +1,76 @@
 [submodule "_projects/2011"]
 	path = _projects/2011
-	url = https://edwardsharp@github.com/emergencyindex/projects-2011.git
+	url = git@github.com:emergencyindex/projects-2011.git
 	branch = projects
 [submodule "_indexes/2011"]
 	path = _indexes/2011
-	url = https://edwardsharp@github.com/emergencyindex/projects-2011.git
+	url = git@github.com:emergencyindex/projects-2011.git
 	branch = indexes
 [submodule "assets/img/2011"]
 	path = assets/img/2011
-	url = https://edwardsharp@github.com/emergencyindex/projects-2011.git
+	url = git@github.com:emergencyindex/projects-2011.git
 	branch = images
 [submodule "_indexes/2012"]
 	path = _indexes/2012
-	url = https://edwardsharp@github.com/emergencyindex/projects-2012.git
+	url = git@github.com:emergencyindex/projects-2012.git
 	branch = indexes
 [submodule "_projects/2012"]
 	path = _projects/2012
-	url = https://edwardsharp@github.com/emergencyindex/projects-2012.git
+	url = git@github.com:emergencyindex/projects-2012.git
 	branch = projects
 [submodule "assets/img/2012"]
 	path = assets/img/2012
-	url = https://edwardsharp@github.com/emergencyindex/projects-2012.git
+	url = git@github.com:emergencyindex/projects-2012.git
 	branch = images
 [submodule "_indexes/2013"]
 	path = _indexes/2013
-	url = https://edwardsharp@github.com/emergencyindex/projects-2013.git
+	url = git@github.com:emergencyindex/projects-2013.git
 	branch = indexes
 [submodule "_projects/2013"]
 	path = _projects/2013
-	url = https://edwardsharp@github.com/emergencyindex/projects-2013.git
+	url = git@github.com:emergencyindex/projects-2013.git
 	branch = projects
 [submodule "assets/img/2013"]
 	path = assets/img/2013
-	url = https://edwardsharp@github.com/emergencyindex/projects-2013.git
+	url = git@github.com:emergencyindex/projects-2013.git
 	branch = images
 [submodule "_indexes/2014"]
 	path = _indexes/2014
-	url = https://edwardsharp@github.com/emergencyindex/projects-2014.git
+	url = git@github.com:emergencyindex/projects-2014.git
 	branch = indexes
 [submodule "_projects/2014"]
 	path = _projects/2014
-	url = https://edwardsharp@github.com/emergencyindex/projects-2014.git
+	url = git@github.com:emergencyindex/projects-2014.git
 	branch = projects
 [submodule "assets/img/2014"]
 	path = assets/img/2014
-	url = https://edwardsharp@github.com/emergencyindex/projects-2014.git
+	url = git@github.com:emergencyindex/projects-2014.git
 	branch = images
 [submodule "_indexes/2015"]
 	path = _indexes/2015
-	url = https://edwardsharp@github.com/emergencyindex/projects-2015.git
+	url = git@github.com:emergencyindex/projects-2015.git
 	branch = indexes
 [submodule "_projects/2015"]
 	path = _projects/2015
-	url = https://edwardsharp@github.com/emergencyindex/projects-2015.git
+	url = git@github.com:emergencyindex/projects-2015.git
 	branch = projects
 [submodule "assets/img/2015"]
 	path = assets/img/2015
-	url = https://edwardsharp@github.com/emergencyindex/projects-2015.git
+	url = git@github.com:emergencyindex/projects-2015.git
 	branch = images
 [submodule "_indexes/2016"]
 	path = _indexes/2016
-	url = https://edwardsharp@github.com/emergencyindex/projects-2016.git
+	url = git@github.com:emergencyindex/projects-2016.git
 	branch = indexes
 [submodule "_projects/2016"]
 	path = _projects/2016
-	url = https://edwardsharp@github.com/emergencyindex/projects-2016.git
+	url = git@github.com:emergencyindex/projects-2016.git
 	branch = projects
 [submodule "assets/img/2016"]
 	path = assets/img/2016
-	url = https://edwardsharp@github.com/emergencyindex/projects-2016.git
+	url = git@github.com:emergencyindex/projects-2016.git
 	branch = images
 [submodule "_indexes/2017"]
 	path = _indexes/2017
-	url = https://edwardsharp@github.com/emergencyindex/projects-2017.git
+	url = git@github.com:emergencyindex/projects-2017.git
 	branch = indexes
