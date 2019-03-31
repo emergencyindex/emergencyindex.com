@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
             var tagLink = tagLinkz.iterateNext();
             if (tagLink) {
               var parentEl = seez.parentElement;
-              parentEl && tagzToUpdate.push({ tag: tag, parentEl: seez.parentElement, offsetTop: tagLink.offsetTop });
+              parentEl && tagzToUpdate.push({ tag: tag, parentEl: parentEl, offsetTop: tagLink.offsetTop });
             }
           }
         }
@@ -95,7 +95,20 @@ document.addEventListener('DOMContentLoaded', function () {
       var tag = tagzToUpdate[i].tag;
       var parentEl = tagzToUpdate[i].parentEl;
       var offsetTop = tagzToUpdate[i].offsetTop;
-      parentEl.innerHTML = parentEl.innerHTML.replace(tag, '<a class="see-scroll" data-scroll="' + offsetTop + '">' + tag + '</a>');
+      // walk the childNodes to check for text nodes (nodeType 3) 
+      // to avoid parentEl.innerHTML.replace which would replace html attributes that may contain the tag...
+      // e.g. if tag='foo' then <p><a class="foo" title="zomg">011</a> see also zomg</p> would break cuz the replace would break the title attribute
+      parentEl.childNodes.forEach(function (n) {
+        if (n.nodeType === 3 && n.textContent.indexOf(tag) > -1) {
+          var tagLink = document.createElement('a');
+          tagLink.classList.add('see-scroll');
+          tagLink.setAttribute('data-scroll', offsetTop);
+          // try to keep comma
+          tagLink.innerText = n.textContent.indexOf(tag + ',') > -1 ? tag + ',' : tag;
+          n.textContent = n.textContent.replace(tag + ',', '').replace(tag, '');
+          parentEl.insertBefore(tagLink, n);
+        }
+      });
     }
 
     var seeScrollClick = function (e) {
