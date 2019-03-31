@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     indexAnchor.setAttribute('id', el.getAttribute('id'));
     indexAnchor.innerHTML = '&nbsp;';
     el.classList.remove('index');
-    el.setAttribute('id', undefined);
+    el.removeAttribute('id');
     el.parentNode.insertBefore(indexAnchor, el);
   });
   
@@ -59,5 +59,53 @@ document.addEventListener('DOMContentLoaded', function() {
       return navElemSelector;
     }
   });
+
+  // odang! try to create hyperlinkz for "see also"
+  try{
+    var see = document.evaluate("//em[contains(., 'see')]", document, null, XPathResult.ANY_TYPE, null );
+    var seez = see.iterateNext();
+    var tagzToUpdate = [];
+    while(seez){
+      var txt = seez.nextSibling.textContent;
+      var tags = [];
+      // split(/,|;/) 
+      if(/;/.test(txt)){
+        tags = txt.split(';');
+      }else{
+        tags = txt.split(',');
+      }
+      for(var i=0; i<tags.length; i++){
+        var tag = tags[i].trim();
+        if(tag !== ''){
+          var found = document.evaluate("//p[starts-with(., '"+tag+" ')]", document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null ).snapshotLength;
+          if(found > 0){
+            var tagLinkz = document.evaluate("//p[starts-with(., '"+tag+" ')]", document, null, XPathResult.ANY_TYPE, null );
+            var tagLink = tagLinkz.iterateNext();
+            if(tagLink){
+              tagzToUpdate.push({tag: tag, parentEl: seez.parentElement});
+              var parentEl = seez.parentElement;
+              parentEl && tagzToUpdate.push({tag: tag, parentEl: seez.parentElement, offsetTop: tagLink.offsetTop});
+            }
+          }
+        }
+      } // end for loop
+      seez=see.iterateNext();
+    } // end while
+    // need to defer dom mutationz until after iterating through all the see XPath itemz...
+    for(var i=0; i<tagzToUpdate.length; i++){
+      var tag = tagzToUpdate[i].tag;
+      var parentEl = tagzToUpdate[i].parentEl;
+      var offsetTop = tagzToUpdate[i].offsetTop;
+      parentEl.innerHTML = parentEl.innerHTML.replace(tag, '<a class="see-scroll" data-scroll="'+offsetTop+'">'+tag+'</a>');
+    }
+
+    var seeScrollClick = function(e){
+      var offsetTop = e.target.getAttribute('data-scroll');
+      !isNaN(parseInt(offsetTop)) && window.scrollTo(window.scrollX, parseInt(offsetTop) + SCROLL_OFFSET);
+    }
+    document.querySelectorAll('.see-scroll').forEach(function(el){
+      el.addEventListener('click', seeScrollClick);
+    });
+  }catch(e){ /* eh... */ }
 
 });
