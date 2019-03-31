@@ -82,7 +82,6 @@ document.addEventListener('DOMContentLoaded', function () {
             var tagLinkz = document.evaluate("//p[starts-with(., '" + tag + " ')]", document, null, XPathResult.ANY_TYPE, null);
             var tagLink = tagLinkz.iterateNext();
             if (tagLink) {
-              tagzToUpdate.push({ tag: tag, parentEl: seez.parentElement });
               var parentEl = seez.parentElement;
               parentEl && tagzToUpdate.push({ tag: tag, parentEl: seez.parentElement, offsetTop: tagLink.offsetTop });
             }
