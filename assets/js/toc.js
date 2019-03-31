@@ -95,17 +95,19 @@ document.addEventListener('DOMContentLoaded', function () {
       var tag = tagzToUpdate[i].tag;
       var parentEl = tagzToUpdate[i].parentEl;
       var offsetTop = tagzToUpdate[i].offsetTop;
+      // regex with boundry \b to match whole word (avoid removing 'god' from 'goddess')
+      tagRegEx = new RegExp('\\b'+tag+'\\b');
       // walk the childNodes to check for text nodes (nodeType 3) 
       // to avoid parentEl.innerHTML.replace which would replace html attributes that may contain the tag...
-      // e.g. if tag='foo' then <p><a class="foo" title="zomg">011</a> see also zomg</p> would break cuz the replace would break the title attribute
-      parentEl.childNodes.forEach(function (n) {
-        if (n.nodeType === 3 && n.textContent.indexOf(tag) > -1) {
+      // also avoid replacing the first (i==0) match
+      parentEl.childNodes.forEach(function (n, i) {
+        if (i !== 0 && n.nodeType === 3 && n.textContent.match(tagRegEx)) {
           var tagLink = document.createElement('a');
           tagLink.classList.add('see-scroll');
           tagLink.setAttribute('data-scroll', offsetTop);
           // try to keep comma
           tagLink.innerText = n.textContent.indexOf(tag + ',') > -1 ? tag + ',' : tag;
-          n.textContent = n.textContent.replace(tag + ',', '').replace(tag, '');
+          n.textContent = n.textContent.replace(tag + ',', '').replace(tagRegEx, '');
           parentEl.insertBefore(tagLink, n);
         }
       });
