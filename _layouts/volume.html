@@ -27,6 +27,10 @@ layout: default
   {% assign item = project | split: split_str | last %}
     <li><a href="#{{page.volume}}-{{item}}" class="waves-effect sidenav-close">p.{{item}}</a></li>
   {% endfor %}
+  <li class="center">Indexes</li>
+  <li><a href="/index/{{page.volume}}/terms" class="waves-effect sidenav-close">Terms</a></li>
+  <li><a href="/index/{{page.volume}}/contributors" class="waves-effect sidenav-close">Contributors</a></li>
+  <li><a href="/index/{{page.volume}}/places" class="waves-effect sidenav-close">Places</a></li>
 </div>
 
 <script type="text/javascript">
