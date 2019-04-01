@@ -36,8 +36,8 @@ banner: true
   <dd>A: The submission period for contributions generally begins in December and remains open for about a month. Please <a href="/submission-FAQ/">read the FAQ for submissions here</a> before starting our submission form.</dd>
 
   <dt>Q: I’m the contributor of a performance and there are errors on the page - what do I do?</dt>
-  <dd>A: Please email emergency@uglyducklingpresse.org with any corrections, and we will list them on the corrections page where all errata for the printed volumes will be listed, and update your performance as it is represented on this website. Please note: only errors made by us can be corrected, and we will not be able to update or finesse your text unless there are significant errors that warrant this additional labor on our part.</dd>
+  <dd>A: Please email <a href="mailto:emergency@uglyducklingpresse.org">emergency@uglyducklingpresse.org</a> with any corrections, and we will list them on the corrections page where all errata for the printed volumes will be listed, and update your performance as it is represented on this website. Please note: only errors made by us can be corrected, and we will not be able to update or finesse your text unless there are significant errors that warrant this additional labor on our part.</dd>
 
   <dt>Q: This website looks all wrong on my computer/machine/device/phone/flying machine - where do I complain?</dt>
-  <dd>A: All inquiries/complaints with regard to the website can be sent to <a href="mailto:webmaster@emergencyindex.com">webmaster@emergencyindex.com</a>.</dd>
+  <dd>A: All inquiries/complaints with regard to the website can be sent to <a href="mailto:emergency@uglyducklingpresse.org">emergency@uglyducklingpresse.org</a>.</dd>
 </dl>
