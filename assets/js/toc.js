@@ -72,8 +72,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if (document.evaluate("//strong[contains(., '" + el.innerText.trim() + "')]", document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null).snapshotLength) {
       el.classList.add('anchor');
       el.addEventListener('click', seeAlsoClick);
-    } else {
-      console.log('cant seem to find', el.innerText);
     }
   });
 

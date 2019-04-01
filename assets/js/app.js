@@ -346,16 +346,13 @@ document.addEventListener('DOMContentLoaded', function () {
     vol && introElem && loadProject(introElem);
   }
 
-  if(/\/index\/\d+/.test(window.location.pathname)){
+  if (/\/index\/\d+/.test(window.location.pathname)) {
     // if this is an index page; set tooltipz for project linkz w/ titlez.
     document.querySelectorAll('a[title]:not([title=""])').forEach(function (el) {
       el.classList.add('tooltipped');
       el.setAttribute('data-tooltip', el.getAttribute('title'));
+      el.removeAttribute('title');
     });
-    if (document.querySelectorAll('a[title]:not([title=""])').length) {
-      try {
-        initTooltip();
-      } catch (e) { /* eh... */ }
-    }
+    initTooltip();
   }
 });
