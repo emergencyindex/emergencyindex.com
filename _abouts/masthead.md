@@ -5,7 +5,7 @@ permalink: /about/masthead/
 banner: true
 ---
 
-<div class="intro">
+<div class="intro masthead">
   <div class="row">
     <ul class="col s6 m6 l4 collection with-header">
       <li class="collection-header"><h6>Editors</h6></li>
