@@ -7,19 +7,19 @@ banner: true
 
 <div class="intro">
   <div class="row">
-    <ul class="col s6 m6 l4 collection with-header">
+    <ul class="col s12 l4 offset-l1 collection with-header">
       <li class="collection-header"><h6>Editors</h6></li>
       <li class="collection-item">Sophia Cleary</li>
       <li class="collection-item">Zoe Guttenplan</li>
     </ul>
-    <ul class="col s6 m6 l4 collection with-header">
+    <ul class="col s12 l4 offset-l1 collection with-header">
       <li class="collection-header"><h6>Digital Editors</h6></li>
       <li class="collection-item">Brian McCorkle</li>
       <li class="collection-item">edward sharp</li>
     </ul>
   </div>
   <div class="row">
-    <ul class="col s6 m6 l4 collection with-header">
+    <ul class="col s12 l4 offset-l1 collection with-header">
       <li class="collection-header"><h6>Contributing Editors</h6></li>
       <li class="collection-item">Adelaide Bannerman</li>
       <li class="collection-item">Corina Copp</li>
@@ -32,7 +32,7 @@ banner: true
       <li class="collection-item">Sara Wintz</li>
       <li class="collection-item">Louise Hickman</li>
     </ul>
-    <ul class="col s6 m6 l4 collection with-header">
+    <ul class="col s12 l4 offset-l1 collection with-header">
       <li class="collection-header"><h6>Advisory Board</h6></li>
       <li class="collection-item">Katie Gaydos</li>
       <li class="collection-item">Oron Catts</li>
@@ -45,7 +45,7 @@ banner: true
     </ul>
   </div>
   <div class="row">
-    <ul class="col s12 m12 l9 collection with-header">
+    <ul class="col s12 l9 offset-l1 collection with-header">
       <li class="collection-header"><h6>Past Editors</h6></li>
       <li class="collection-item">Matvei Yankelvich (Managing Editor, 2011-2018)</li>
       <li class="collection-item">Katie Gaydos (Associate Editor, 2014; Co-editor, 2015-2017)</li>
@@ -58,7 +58,7 @@ banner: true
   </div>
 
   <div class="row">
-    <ul class="col s12 m12 l9 collection with-header">
+    <ul class="col s12 l9 offset-l1 collection with-header">
       <li class="collection-header"><h6>Partner Organizations&ast;</h6></li>
       <li class="collection-item"><a href="http://www.bodegaphiladelphia.org/" target='_blank'>BODEGA PHILADELPHIA</a></li>
       <li class="collection-item"><a href="http://www.grace-exhibition-space.com/" target="_blank">GRACE EXHIBITION SPACE</a></li>
@@ -76,9 +76,9 @@ banner: true
     </ul>
   </div>
   <div class="row">
-     <ul class="col s12 m6 collection with-header">
+     <ul class="col s12 m9 offset-l1 collection with-header">
        <li class="collection-header"><h6>Supporters</h6></li>
-       <li class="collection-item"><h6>To donate to this project, or to volunteer your time, please <a href="mailto:emergency@uglyducklingpresse.org">mail emergency@uglyducklingpresse.org</a></h6></li>
+       <li class="collection-item"><h6>To donate to this project, or to volunteer your time, please email <a href="mailto:emergency@uglyducklingpresse.org">emergency@uglyducklingpresse.org</a></h6></li>
      </ul>
   </div>
 </div>
