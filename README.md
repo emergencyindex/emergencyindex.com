@@ -5,16 +5,59 @@ permalink: /README.md/
 ---
 ## EmergencyINDEX
 
-You can use the [editor on GitHub](https://github.com/emergencyindex/emergencyindex.com/edit/master/README.md) to maintain and preview the content for this website in Markdown files.
+[![Gitter](https://badges.gitter.im/emergencyindex/community.svg)](https://gitter.im/emergencyindex/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-Whenever someone commits to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the site (_limit of 10 builds an hour_). 
+Edit files using a web browser with the [editor on GitHub](https://github.com/emergencyindex/emergencyindex.com/edit/master/README.md)
 
-### Markdown
+Whenever there are commits to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the site (_limit of 10 builds an hour_). 
 
-Markdown is a lightweight and easy-to-use syntax for styling text. It includes conventions for general purpose formatting, for example:
+### Markdown Syntax
+
+Markdown is a lightweight and easy-to-use syntax for styling text.
 
 ```markdown
-Syntax highlighted code block
+# Header 1
+## Header 2
+### Header 3
+
+- Bulleted
+- List
+
+1. Numbered
+2. List
+
+**Bold** and _Italic_ and `Code` text
+
+[Link](https://emergencyindex.com) and ![Image](https://emergencyindex.com/assets/img/preview.png)
+
+> blockquote
+
+two spaces  
+after text  
+will not
+add return
+
+Header 0 | Header 1
+-------- | --------
+cell 1 | cell 2
+cell 3 | cell 4
+
+HTML
+<dl>
+  <dt>Definition list</dt>
+  <dd>Is something people use sometimes.</dd>
+
+  <dt>Markdown in HTML</dt>
+  <dd>Does *not* work **very** well. Use HTML <em>tags</em>.</dd>
+</dl>
+
+Horizontal Rule
+
+---
+
+```
+
+The above markdown code looks like:
 
 # Header 1
 ## Header 2
@@ -28,8 +71,30 @@ Syntax highlighted code block
 
 **Bold** and _Italic_ and `Code` text
 
-[Link](url) and ![Image](src)
-```
+[Link](https://emergencyindex.com) and ![Image](https://emergencyindex.com/assets/img/preview.png)
+
+> blockquote
+
+two spaces  
+after text  
+will not
+add return (and multiple line breaks are ignored!)
+
+Header 0 | Header 1
+-------- | --------
+cell 1 | cell 2
+cell 3 | cell 4
+
+HTML
+<dl>
+  <dt>Definition list</dt>
+  <dd>Is something people use sometimes.</dd>
+
+  <dt>Markdown in HTML</dt>
+  <dd>Does *not* work **very** well. Use HTML <em>tags</em>.</dd>
+</dl>
+
+---
 
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
@@ -80,7 +145,7 @@ the content for each year is referenced via git submodules to individual project
 
 every repository contains separate branches (`projects`, `indexes`, & `images`) with files that end up their own respective folder in this project (e.g. [projects-2011](https://github.com/emergencyindex/projects-2011)'s `indexes` branch files will end up the `_projects/2011` folder).  
 
-so to get ALL of the projects git sub-module content you can:
+so to get ALL of the projects git sub-module content run:
 
 $ `git submodule update --init --recursive`
 
@@ -100,7 +165,7 @@ $ `git submodule update --init --recursive --remote`
 
 #### Jekyll (for local development)
 
-...to get started make sure you've got ruby 2.4 (or higher version) installed. see [rvm](https://rvm.io/)
+...to get started make sure ruby 2.4 (or higher version) is installed. see [rvm](https://rvm.io/)
 
 $ `gem install bundler`
 
