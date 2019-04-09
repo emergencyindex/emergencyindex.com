@@ -7,19 +7,19 @@ banner: true
 
 <div class="intro">
   <div class="row">
-    <ul class="col s12 l4 offset-l1 collection with-header">
+    <ul class="col s12 m6 l4 offset-l1 collection with-header">
       <li class="collection-header"><h6>Editors</h6></li>
       <li class="collection-item">Sophia Cleary</li>
       <li class="collection-item">Zoe Guttenplan</li>
     </ul>
-    <ul class="col s12 l4 offset-l1 collection with-header">
+    <ul class="col s12 m6 l4 offset-l1 collection with-header">
       <li class="collection-header"><h6>Digital Editors</h6></li>
       <li class="collection-item">Brian McCorkle</li>
       <li class="collection-item">edward sharp</li>
     </ul>
   </div>
   <div class="row">
-    <ul class="col s12 l4 offset-l1 collection with-header">
+    <ul class="col s12 m6 l4 offset-l1 collection with-header">
       <li class="collection-header"><h6>Contributing Editors</h6></li>
       <li class="collection-item">Adelaide Bannerman</li>
       <li class="collection-item">Corina Copp</li>
@@ -32,7 +32,7 @@ banner: true
       <li class="collection-item">Sara Wintz</li>
       <li class="collection-item">Louise Hickman</li>
     </ul>
-    <ul class="col s12 l4 offset-l1 collection with-header">
+    <ul class="col s12 m6 l4 offset-l1 collection with-header">
       <li class="collection-header"><h6>Advisory Board</h6></li>
       <li class="collection-item">Katie Gaydos</li>
       <li class="collection-item">Oron Catts</li>
