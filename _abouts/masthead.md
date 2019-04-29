@@ -47,7 +47,7 @@ banner: true
   <div class="row">
     <ul class="col s12 l9 offset-l1 collection with-header">
       <li class="collection-header"><h6>Past Editors</h6></li>
-      <li class="collection-item">Matvei Yankelvich (Managing Editor, 2011-2018)</li>
+      <li class="collection-item">Matvei Yankelevich (Managing Editor, 2011-2018)</li>
       <li class="collection-item">Katie Gaydos (Associate Editor, 2014; Co-editor, 2015-2017)</li>
       <li class="collection-item">Claire Ledoyen (Assistant Editor, 2015)</li>
       <li class="collection-item">Dominic Finnocchiaro (Assistant Editor, 2013)</li>
