@@ -5,7 +5,7 @@ permalink: /contact/
 banner: true
 ---
 
-For questions regarding the print edition, if you’d like to volunteer your time, or are interested in hosting an event email [emergency@upglyducklingpresse.org](mailto:emergency@uglyducklingpresse.org).
+For questions regarding the print edition, if you’d like to volunteer your time, or are interested in hosting an event email [emergency@uglyducklingpresse.org](mailto:emergency@uglyducklingpresse.org).
 
 For questions regarding orders, email [orders@uglyducklingpresse.org](mailto:orders@uglyducklingpresse.org).
     
