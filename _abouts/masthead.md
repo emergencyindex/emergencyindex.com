@@ -61,15 +61,15 @@ banner: true
     <ul class="col s12 l9 offset-l1 collection with-header">
       <li class="collection-header"><h6>Partner Organizations&ast;</h6></li>
       <li class="collection-item"><a href="http://www.bodegaphiladelphia.org/" target='_blank'>BODEGA PHILADELPHIA</a></li>
-      <li class="collection-item"><a href="http://www.grace-exhibition-space.com/" target="_blank">GRACE EXHIBITION SPACE</a></li>
-      <li class="collection-item"><a href="http://issueprojectroom.org/" target="_blank">ISSUE PROJECT ROOM</a></li>
-      <li class="collection-item"><a href="http://www.thisisliveart.co.uk" target="_blank">LIVE ART DEVELOPMENT AGENCY</a></li>
-      <li class="collection-item"><a href="http://www.movementresearch.org/" target="_blank">MOVEMENT RESEARCH</a></li>
-      <li class="collection-item"><a href="http://www.nypl.org/locations/lpa" target="_blank">NY PUBLIC LIBRARY OF THE PERFORMING ARTS</a></li>
-      <li class="collection-item"><a href="http://performance.tisch.nyu.edu/page/program.html" target="_blank">NYU DEPT. OF PERFORMANCE STUDIES</a></li>
-      <li class="collection-item"><a href="http://www.presentaatio.org/" target="_blank">PRESENTAATIO RY (FINLAND)</a></li>
-      <li class="collection-item"><a href="http://www.ps122.org" target="_blank">PS122</a></li>
-      <li class="collection-item"><a href="http://www.spreadart.org/" target="_blank">SPREAD ART</a></li>
+      <li class="collection-item"><a href="http://www.grace-exhibition-space.com/" target="_blank" rel="noopener noreferrer">GRACE EXHIBITION SPACE</a></li>
+      <li class="collection-item"><a href="http://issueprojectroom.org/" target="_blank" rel="noopener noreferrer">ISSUE PROJECT ROOM</a></li>
+      <li class="collection-item"><a href="http://www.thisisliveart.co.uk" target="_blank" rel="noopener noreferrer">LIVE ART DEVELOPMENT AGENCY</a></li>
+      <li class="collection-item"><a href="http://www.movementresearch.org/" target="_blank" rel="noopener noreferrer">MOVEMENT RESEARCH</a></li>
+      <li class="collection-item"><a href="http://www.nypl.org/locations/lpa" target="_blank" rel="noopener noreferrer">NY PUBLIC LIBRARY OF THE PERFORMING ARTS</a></li>
+      <li class="collection-item"><a href="http://performance.tisch.nyu.edu/page/program.html" target="_blank" rel="noopener noreferrer">NYU DEPT. OF PERFORMANCE STUDIES</a></li>
+      <li class="collection-item"><a href="http://www.presentaatio.org/" target="_blank" rel="noopener noreferrer">PRESENTAATIO RY (FINLAND)</a></li>
+      <li class="collection-item"><a href="http://www.ps122.org" target="_blank" rel="noopener noreferrer">PS122</a></li>
+      <li class="collection-item"><a href="http://www.spreadart.org/" target="_blank" rel="noopener noreferrer">SPREAD ART</a></li>
       <li class="collection-item">&nbsp;</li>
       <li class="collection-item"><h6>&ast;arts organizations and educational institutions where <em>INDEX</em> is displayed and made available for use to practitioners, students, scholars, or the general public</h6></li>
       <li class="collection-item"><h6><a href="mailto:emergency@uglyducklingpresse.org">[Please contact us if you would like to become a partner organization]</a></h6></li>

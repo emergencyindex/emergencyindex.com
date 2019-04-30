@@ -30,7 +30,7 @@ banner: true
   <dd>A: <strong><em>Emergency INDEX</em></strong> seeks to provide a yearly snapshot of the field of performance, in all its varied practices. Therefore, we are interested in an articulation of the theoretical, formal, political, aesthetic, commercial, historical or other problem/issue/framework your performance was made to address, or is most related to. We do this because performances are created by people in many different fields; knowing the problem that the work arose from allows other readers to contextualize the description, and to better understand what your performance did, how it functioned, and what innovations/realization/possibilities it brought to light. For examples, please see previous volumes.</dd>
 
   <dt>Q: What if I don’t have a problem?</dt>
-  <dd>A: If you feel that your work cannot be adequately described by contextualizing it through a problem or issue, or if you can’t identify/articulate a relevant problem, it may be that <em>INDEX</em> is not the right way to document your performance. If you have doubts and want to consult with an editor, please contact us at <a href="mailto:emergency@uglyducklingpresse.org" target="_blank">emergency(at)uglyducklingpresse.org</a>.</dd>
+  <dd>A: If you feel that your work cannot be adequately described by contextualizing it through a problem or issue, or if you can’t identify/articulate a relevant problem, it may be that <em>INDEX</em> is not the right way to document your performance. If you have doubts and want to consult with an editor, please contact us at <a href="mailto:emergency@uglyducklingpresse.org">emergency(at)uglyducklingpresse.org</a>.</dd>
 
   <dt>Q: What if the work has no author, a group of authors, or the authors are anonymous?</dt>
   <dd>A: It is possible to publish anonymous performance descriptions, or those in which creators have alternate names/identities, or those in which the creator(s) are groups/collectives. However, for reasons of authenticity and editing, the editors of <em>INDEX</em> must have a real name and contact information of at least one of the works’ creators. These will not be published or disclosed if you do not wish them to be. If a work has no author, it cannot be documented in <strong><em>Emergency INDEX</em></strong>.</dd>
@@ -48,7 +48,7 @@ banner: true
   <dd>A: Typically, the most recent print volume will become available online a year after the hard copy is published.</dd>
 
   <dt>Q: Will you announce the book on the web/social media?</dt>
-  <dd>A: Yes, as soon as the book goes to the printer, we will have a pre-sale with a special discount price. The pre-sale is very important to raise the funds to cover printing the book, so PLEASE SHARE the announcements. Look for them on Facebook, on the Ugly Duckling Presse site, and on Twitter (<a href="https://twitter.com/emergency_index" target="_blank">@emergency_index</a>).</dd>
+  <dd>A: Yes, as soon as the book goes to the printer, we will have a pre-sale with a special discount price. The pre-sale is very important to raise the funds to cover printing the book, so PLEASE SHARE the announcements. Look for them on Facebook, on the Ugly Duckling Presse site, and on Twitter (<a href="https://twitter.com/emergency_index" target="_blank" rel="noopener noreferrer">@emergency_index</a>).</dd>
 
   <dt>Q: When will the new volume be published?</dt>
   <dd>A: Generally, <strong><em>Emergency INDEX</em></strong> is published in November, and shipped in December. Please check our announcements on social media for exact dates.</dd>
