@@ -15,7 +15,7 @@ module ScrapeIndesign
   @pinwheel = %w{ | / - \\ }
 
   def self.init
-    
+
     @options[:out_dir] = Dir.pwd
     @options[:pageoffset] = 2
 
@@ -52,7 +52,7 @@ module ScrapeIndesign
       tidy_project_yml
     else
       p "nothing to do!"
-      puts optparse 
+      puts optparse
       exit
     end
   end
@@ -62,9 +62,9 @@ module ScrapeIndesign
     p "reading #{@options[:in_file]}...\n"
     Dir.mkdir("#{@options[:out_dir]}/projects") unless Dir.exist?("#{@options[:out_dir]}/projects")
     Dir.mkdir("#{@options[:out_dir]}/projects/#{@options[:vol]}") unless Dir.exist?("#{@options[:out_dir]}/projects/#{@options[:vol]}")
-    
+
     page = Nokogiri::HTML(open(@options[:in_file]))
-    
+
     len = page.xpath('/html/body/div').length
     empty_divz_ref = []
 
@@ -73,7 +73,7 @@ module ScrapeIndesign
     end
 
     unless empty_divz_ref.empty?
-      p "#{empty_divz_ref.length} EMPTY DIVZ AT LINEZ: #{empty_divz_ref.join(", ")}" 
+      p "#{empty_divz_ref.length} EMPTY DIVZ AT LINEZ: #{empty_divz_ref.join(", ")}"
     end
     unless len % 4 == 0
       p "found #{page.css('img').length} images. expect #{page.xpath('/html/body/div').length / 4}"
@@ -111,31 +111,32 @@ module ScrapeIndesign
 
       info_description = []
 
+      # for each div, check if there's an image
       div.each do |d|
         if d.css('div img').first and d.css('div img').first['src']
-          project['info']['image'] = d.css('div img').first['src'].gsub("#{@options[:vol]}-web-resources/image/",'').strip
+          project['info']['image'] = d.css('div img').first['src'].gsub("INDEX-7-book-web-resources/image/",'').strip
           next
         end
-        if d.css('.photo-credit').first and d.css('.photo-credit').first.text
-          project['info']['photo_credit'] = d.css('.photo-credit').first.text.strip
-          next 
-        end
+        #if d.css('.photo-credit').first and d.css('.photo-credit').first.text
+        #  project['info']['photo_credit'] = d.css('.photo-credit').first.text.strip
+        #  next
+        #end
         info_description << d
       end
 
-      # begin
-      info = info_description[0].css('p').collect do |i| 
-        i.to_html.gsub('</span>','').gsub(/<span[^>]*/,'<br').split('<br>').collect do |h| 
-          CGI.unescapeHTML(Sanitize.fragment(h).strip) 
+      # begin to get the tags
+      info = info_description[0].css('p').collect do |i|
+        i.to_html.gsub('</span>','').gsub(/<span[^>]*/,'<br').split('<br>').collect do |h|
+          CGI.unescapeHTML(Sanitize.fragment(h).strip)
         end
       end.flatten.reject(&:empty?)
 
       project['info']['title']           =  info.shift
       project['info']['first_performed'] =  info.shift
-      
+
       project['info']['place']           =  info.shift
-      project['info']['times_performed'] =  info.shift         
-      project['info']['contributor']     =  info.shift    
+      project['info']['times_performed'] =  info.shift
+      project['info']['contributor']     =  info.shift
 
 
       if project['info']['place'] and project['info']['place'].include?('performed ')
@@ -161,11 +162,11 @@ module ScrapeIndesign
             Carmen::Country.coded('US').subregions.named(check_split, :fuzzy => true) or
             check_split.include?('UK') or
             check_split.include?('D.C.')
-            
+
             project['info']['home'] = i.strip
             next
           end
-          
+
         end
 
         project['info']['collaborators'] = i.split(',').map!(&:strip)
@@ -173,14 +174,17 @@ module ScrapeIndesign
 
       project['info']['contact'] = project['info']['contact'].strip
 
+      # now get the photo credit div
+      project['info']['photo_credit'] = info_description[1].css('p').first.text.strip
 
-      info_description[1].css("span[class*=Italic]").each do |i|
+      # now get the description div
+      info_description[2].css("span[class*=Italic]").each do |i|
         i.name = 'em'
       end
-      info_description[1].css("p[class*=INDENT]").each do |i|
+      info_description[2].css("p[class*=INDENT]").each do |i|
         i.name = 'blockquote'
       end
-      project['description'] = info_description[1].css('p, blockquote').collect do |i| 
+      project['description'] = info_description[2].css('p, blockquote').collect do |i|
         CGI.unescapeHTML( Sanitize.fragment(i.to_html, elements: ['em', 'br', 'blockquote'])
           .gsub('<em>','_')
           .gsub('</em>', '_')
@@ -212,7 +216,7 @@ module ScrapeIndesign
       # end
 
       raise "\nERROR! no photo-credit, current div: \n#{div.collect{|d| d.text}}" if project['info']['photo_credit'].nil?
-      
+
       idx += 4
 
       idx_str = "#{pageoffset.to_s.rjust(3, '0')}-#{(pageoffset + 1).to_s.rjust(3, '0')}"
@@ -225,7 +229,7 @@ module ScrapeIndesign
       end
 
       projects << project
-      
+
     end
 
     outjson = "#{@options[:out_dir]}/projects/#{@options[:vol]}/projects.json"
@@ -236,7 +240,7 @@ module ScrapeIndesign
     p ""
     p "Done!"
     p "wrote #{projects.length} projects to: #{outjson}"
-    
+
     projects
 
   end #scrape_projects_html
@@ -251,12 +255,12 @@ module ScrapeIndesign
 
     terms = {}
     page.css('p').each do |_p|
-      
+
       _terms = _p.text.split(';')
 
-      _baseTerm = _terms[0].match(/^[^\d]*/)[0].strip 
+      _baseTerm = _terms[0].match(/^[^\d]*/)[0].strip
       _pages = _terms[0].gsub(/[^0-9,\ ]/, '').split(/,| /).reject(&:blank?)
-      
+
       if _baseTerm.include?('also ')
         _also = _baseTerm.match(/also [^\d]*/)[0].gsub('also','').strip
         # p "ALSO!! #{_also}"
@@ -311,7 +315,7 @@ module ScrapeIndesign
         else
           _prev = (page.to_i - 1).to_s
           _pages = "#{_prev.rjust(3, '0')}-#{page.rjust(3, '0')}"
-        end 
+        end
 
         pages_hash[_pages] ||= []
         pages_hash[_pages] << term unless pages_hash[_pages].include?(term) or term.blank?
@@ -323,7 +327,7 @@ module ScrapeIndesign
     outfile = "#{@options[:out_dir]}/projects/#{@options[:vol]}/pages.json"
     File.open(outfile,"w"){|f| f.write(pages_hash.to_json)}
     p "wrote #{pages_hash.length} items to #{outfile}"
-   
+
   end #scrape_terms_html
 
   def self.scrape_terms_txt
@@ -333,7 +337,7 @@ module ScrapeIndesign
     p "reading #{@options[:in_file]}..."
     Dir.mkdir("#{@options[:out_dir]}/projects") unless Dir.exist?("#{@options[:out_dir]}/projects")
     Dir.mkdir("#{@options[:out_dir]}/projects/#{@options[:vol]}") unless Dir.exist?("#{@options[:out_dir]}/projects/#{@options[:vol]}")
-  
+
     terms = {}
     file = open(@options[:in_file])
 
@@ -352,7 +356,7 @@ module ScrapeIndesign
         else
           _prev = (page.to_i - 1).to_s
           _pages = "#{_prev.rjust(3, '0')}-#{page.rjust(3, '0')}"
-        end 
+        end
 
         pages_hash[_pages] ||= []
         pages_hash[_pages] << term unless pages_hash[_pages].include?(term) or term.blank?

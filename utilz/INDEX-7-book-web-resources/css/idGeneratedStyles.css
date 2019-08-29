@@ -1,0 +1,801 @@
+body, div, dl, dt, dd, h1, h2, h3, h4, h5, h6, p, pre, code, blockquote {
+	margin:0;
+	padding:0;
+	border-width:0;
+}
+body {
+	-epub-hyphens:auto;
+}
+div.Basic-Text-Frame {
+	border-style:solid;
+}
+p.ARTIST {
+	-epub-hyphens:none;
+	color:#000000;
+	font-family:"12 Akzidenz Grotesk** Light   02003", sans-serif;
+	font-size:12px;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:300;
+	line-height:1.167;
+	margin-bottom:0;
+	margin-left:0;
+	margin-right:0;
+	margin-top:0;
+	orphans:1;
+	page-break-after:auto;
+	page-break-before:auto;
+	text-align:left;
+	text-decoration:none;
+	text-indent:0;
+	text-transform:uppercase;
+	widows:1;
+}
+p.Description {
+	-epub-hyphens:none;
+	color:#000000;
+	font-family:"12 Akzidenz Grotesk** Roman   05003", sans-serif;
+	font-size:9px;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	line-height:1.222;
+	margin-bottom:0;
+	margin-left:0;
+	margin-right:0;
+	margin-top:0;
+	orphans:1;
+	page-break-after:auto;
+	page-break-before:auto;
+	text-align:justify;
+	text-align-last:left;
+	text-decoration:none;
+	text-indent:0;
+	text-transform:none;
+	widows:1;
+}
+p.Description-Paragrah--no-indent- {
+	-epub-hyphens:none;
+	color:#000000;
+	font-family:"Minion Pro", serif;
+	font-size:12px;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	line-height:1.2;
+	margin-bottom:0;
+	margin-left:0;
+	margin-right:0;
+	margin-top:0;
+	orphans:1;
+	page-break-after:auto;
+	page-break-before:auto;
+	text-align:justify;
+	text-align-last:left;
+	text-decoration:none;
+	text-indent:0;
+	text-transform:none;
+	widows:1;
+}
+p.Basic-Paragraph {
+	-epub-hyphens:none;
+	color:#000000;
+	font-family:"Minion Pro", serif;
+	font-size:12px;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	line-height:1.167;
+	margin-bottom:0;
+	margin-left:0;
+	margin-right:0;
+	margin-top:0;
+	orphans:1;
+	page-break-after:auto;
+	page-break-before:auto;
+	text-align:justify;
+	text-align-last:left;
+	text-decoration:none;
+	text-indent:0;
+	text-transform:none;
+	widows:1;
+}
+p.TITLE {
+	-epub-hyphens:none;
+	color:#000000;
+	font-family:"12 Akzidenz Grotesk** Bold   07003", sans-serif;
+	font-size:12px;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:bold;
+	line-height:1.167;
+	margin-bottom:0;
+	margin-left:0;
+	margin-right:0;
+	margin-top:0;
+	orphans:1;
+	page-break-after:auto;
+	page-break-before:auto;
+	text-align:left;
+	text-decoration:none;
+	text-indent:0;
+	text-transform:uppercase;
+	widows:1;
+}
+p.copyright-left {
+	-epub-hyphens:none;
+	color:#000000;
+	font-family:Orator, sans-serif;
+	font-size:6px;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	line-height:1.5;
+	margin-bottom:0;
+	margin-left:0;
+	margin-right:135px;
+	margin-top:0;
+	orphans:1;
+	page-break-after:auto;
+	page-break-before:auto;
+	text-align:right;
+	text-decoration:none;
+	text-indent:0;
+	text-transform:uppercase;
+	widows:1;
+}
+p.copyright-right {
+	-epub-hyphens:none;
+	color:#000000;
+	font-family:Orator, sans-serif;
+	font-size:6px;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	line-height:1.5;
+	margin-bottom:0;
+	margin-left:144px;
+	margin-right:0;
+	margin-top:0;
+	orphans:1;
+	page-break-after:auto;
+	page-break-before:auto;
+	text-align:left;
+	text-decoration:none;
+	text-indent:0;
+	text-transform:uppercase;
+	widows:1;
+}
+p.index-of-place---STATES {
+	-epub-hyphens:none;
+	color:#000000;
+	font-family:"12 Akzidenz Grotesk** Roman   05003", sans-serif;
+	font-size:8px;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	line-height:1.625;
+	margin-bottom:2px;
+	margin-left:36px;
+	margin-right:0;
+	margin-top:2px;
+	orphans:1;
+	page-break-after:auto;
+	page-break-before:auto;
+	text-align:left;
+	text-decoration:none;
+	text-indent:-18px;
+	text-transform:none;
+	widows:1;
+}
+p.index-of-places {
+	-epub-hyphens:none;
+	color:#000000;
+	font-family:"12 Akzidenz Grotesk** Bold   07003", sans-serif;
+	font-size:8px;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:bold;
+	line-height:1.25;
+	margin-bottom:2px;
+	margin-left:36px;
+	margin-right:0;
+	margin-top:0;
+	orphans:1;
+	page-break-after:auto;
+	page-break-before:auto;
+	text-align:left;
+	text-decoration:none;
+	text-indent:-27px;
+	text-transform:none;
+	widows:1;
+}
+p.index-of-places---CITIES--inset- {
+	-epub-hyphens:none;
+	color:#000000;
+	font-family:"12 Akzidenz Grotesk** Light   02003", sans-serif;
+	font-size:8px;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:300;
+	line-height:1.25;
+	margin-bottom:1px;
+	margin-left:50px;
+	margin-right:0;
+	margin-top:0;
+	orphans:1;
+	page-break-after:auto;
+	page-break-before:auto;
+	text-align:left;
+	text-decoration:none;
+	text-indent:-13px;
+	text-transform:none;
+	widows:1;
+}
+p.index-of-terms {
+	-epub-hyphens:none;
+	color:#000000;
+	font-family:"Berthold Akzidenz Grotesk Condensed", sans-serif;
+	font-size:7px;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	line-height:1.429;
+	margin-bottom:5px;
+	margin-left:9px;
+	margin-right:0;
+	margin-top:0;
+	orphans:1;
+	page-break-after:auto;
+	page-break-before:auto;
+	text-align:left;
+	text-decoration:none;
+	text-indent:-9px;
+	text-transform:none;
+	widows:1;
+}
+p.info {
+	-epub-hyphens:none;
+	color:#000000;
+	font-family:"12 Akzidenz Grotesk** Light   02003", sans-serif;
+	font-size:8px;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:300;
+	line-height:1.25;
+	margin-bottom:0;
+	margin-left:0;
+	margin-right:0;
+	margin-top:0;
+	orphans:1;
+	page-break-after:auto;
+	page-break-before:auto;
+	text-align:left;
+	text-decoration:none;
+	text-indent:0;
+	text-transform:none;
+	widows:1;
+}
+p.inset-text---lists {
+	-epub-hyphens:none;
+	color:#000000;
+	font-family:"12 Akzidenz Grotesk** Roman   05003", sans-serif;
+	font-size:8px;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	line-height:1.25;
+	margin-bottom:0;
+	margin-left:32px;
+	margin-right:18px;
+	margin-top:2px;
+	orphans:1;
+	page-break-after:auto;
+	page-break-before:auto;
+	text-align:justify;
+	text-align-last:left;
+	text-decoration:none;
+	text-indent:-9px;
+	text-transform:none;
+	widows:1;
+}
+p.inset-text--plain {
+	-epub-hyphens:none;
+	color:#000000;
+	font-family:"12 Akzidenz Grotesk** Roman   05003", sans-serif;
+	font-size:8px;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	line-height:1.25;
+	margin-bottom:0;
+	margin-left:18px;
+	margin-right:18px;
+	margin-top:2px;
+	orphans:1;
+	page-break-after:auto;
+	page-break-before:auto;
+	text-align:justify;
+	text-align-last:left;
+	text-decoration:none;
+	text-indent:0;
+	text-transform:none;
+	widows:1;
+}
+p.masthead-left {
+	-epub-hyphens:none;
+	color:#000000;
+	font-family:Orator, sans-serif;
+	font-size:6px;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	line-height:1.2;
+	margin-bottom:0;
+	margin-left:0;
+	margin-right:144px;
+	margin-top:0;
+	orphans:1;
+	page-break-after:auto;
+	page-break-before:auto;
+	text-align:right;
+	text-decoration:none;
+	text-indent:0;
+	text-transform:uppercase;
+	widows:1;
+}
+p.masthead-right {
+	-epub-hyphens:none;
+	color:#000000;
+	font-family:"12 Akzidenz Grotesk** Light   02003", sans-serif;
+	font-size:8px;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:300;
+	line-height:1.25;
+	margin-bottom:0;
+	margin-left:144px;
+	margin-right:0;
+	margin-top:0;
+	orphans:1;
+	page-break-after:auto;
+	page-break-before:auto;
+	text-align:left;
+	text-decoration:none;
+	text-indent:0;
+	text-transform:none;
+	widows:1;
+}
+span.Artist---Add-l--INFO-PAGE- {
+	color:#000000;
+	font-family:"12 Akzidenz Grotesk** Light   02003", sans-serif;
+	font-size:11px;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:300;
+	text-transform:none;
+}
+span.INDEX-see---see-also {
+	font-family:"12 Akzidenz Grotesk** Light   02003", sans-serif;
+	font-size:7px;
+	font-style:normal;
+	font-weight:300;
+}
+span.INDEX-term-BOLD {
+	font-family:"12 Akzidenz Grotesk** Bold   07003", sans-serif;
+	font-size:7px;
+	font-style:normal;
+	font-weight:bold;
+}
+span.INDEX-term-ITALIC {
+	font-family:"12 Akzidenz Grotesk** Bold   07003", sans-serif;
+	font-size:7px;
+	font-style:normal;
+	font-weight:bold;
+}
+span.ITALIC--description-paragraphs- {
+	font-family:"12 Akzidenz Grotesk** Roman   05003", sans-serif;
+	font-style:normal;
+	font-weight:normal;
+}
+span.footer {
+	font-family:Orator, serif;
+	font-size:8px;
+	font-style:italic;
+	font-weight:normal;
+}
+span.footnotes-and-back-indexes {
+	font-family:"12 Akzidenz Grotesk** Roman   05003", sans-serif;
+	font-size:7px;
+	font-style:normal;
+	font-weight:normal;
+}
+span.index-basic-italic {
+	font-family:"12 Akzidenz Grotesk** Light   02003", sans-serif;
+	font-size:8px;
+	font-style:normal;
+	font-weight:300;
+}
+span.masthead-body {
+	font-family:"Bell Gothic Std Light", sans-serif;
+	font-size:9px;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	text-transform:none;
+}
+span.masthead-headers {
+	font-family:"Orator Std", sans-serif;
+	font-size:6px;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	text-transform:uppercase;
+}
+span.photo-credit {
+	font-family:"12 Akzidenz Grotesk** Light   02003", sans-serif;
+	font-size:7px;
+	font-style:normal;
+	font-weight:300;
+}
+span.section-titles--low-left- {
+	font-family:"Akzidenz Grotesk BE LightEx", sans-serif;
+	font-size:16px;
+	font-style:normal;
+	font-weight:300;
+}
+p.ParaOverride-1 {
+	margin-right:108px;
+	text-align:right;
+}
+p.ParaOverride-2 {
+	margin-right:72px;
+	text-align:right;
+}
+p.ParaOverride-3 {
+	text-align:right;
+}
+p.ParaOverride-4 {
+	margin-left:144px;
+	margin-right:108px;
+}
+p.ParaOverride-5 {
+	margin-left:144px;
+}
+p.ParaOverride-6 {
+	margin-bottom:5px;
+	text-align:right;
+}
+p.ParaOverride-7 {
+	margin-left:0px;
+	text-align:center;
+}
+p.ParaOverride-8 {
+	text-align:left;
+}
+p.ParaOverride-9 {
+	margin-bottom:5px;
+	margin-top:0px;
+}
+p.ParaOverride-10 {
+	margin-left:54px;
+	margin-top:0px;
+}
+p.ParaOverride-11 {
+	text-align:center;
+}
+p.ParaOverride-12 {
+	margin-top:0px;
+}
+p.ParaOverride-13 {
+	margin-top:1px;
+}
+p.ParaOverride-14 {
+	margin-left:14px;
+	margin-top:0px;
+	text-indent:-13px;
+}
+p.ParaOverride-15 {
+	margin-left:45px;
+}
+p.ParaOverride-16 {
+	margin-top:9px;
+}
+p.ParaOverride-17 {
+	margin-bottom:9px;
+}
+p.ParaOverride-18 {
+	margin-left:14px;
+}
+p.ParaOverride-19 {
+	margin-left:41px;
+}
+p.ParaOverride-20 {
+	margin-left:36px;
+	margin-top:4px;
+	text-align:left;
+}
+p.ParaOverride-21 {
+	margin-left:36px;
+	margin-top:4px;
+}
+span.CharOverride-1 {
+	font-family:Orator, serif;
+	font-size:14px;
+	font-style:italic;
+	font-weight:normal;
+}
+span.CharOverride-2 {
+	font-family:Orator, serif;
+	font-size:14px;
+	font-style:italic;
+	font-variant:normal;
+	font-weight:normal;
+	text-transform:uppercase;
+}
+span.CharOverride-3 {
+	font-variant:normal;
+	text-transform:none;
+}
+span.CharOverride-4 {
+	font-size:58%;
+	vertical-align:super;
+}
+span.CharOverride-5 {
+	font-family:Orator, serif;
+	font-size:30px;
+	font-style:italic;
+	font-weight:normal;
+}
+span.CharOverride-6 {
+	font-family:Orator, serif;
+	font-size:36px;
+	font-style:italic;
+	font-weight:normal;
+}
+span.CharOverride-7 {
+	font-family:Orator, serif;
+	font-size:17px;
+	font-style:italic;
+	font-weight:normal;
+}
+span.CharOverride-8 {
+	font-family:"12 Akzidenz Grotesk** Roman   05003", sans-serif;
+	font-size:36px;
+	font-style:normal;
+	font-weight:normal;
+}
+span.CharOverride-9 {
+	font-family:"12 Akzidenz Grotesk** Roman   05003", sans-serif;
+	font-size:14px;
+	font-style:normal;
+	font-weight:normal;
+}
+span.CharOverride-10 {
+	font-family:Orator, sans-serif;
+	font-style:normal;
+	font-weight:normal;
+	text-decoration:underline;
+}
+span.CharOverride-11 {
+	font-family:Orator, sans-serif;
+	font-style:normal;
+	font-weight:normal;
+}
+span.CharOverride-12 {
+	font-variant:normal;
+	text-transform:uppercase;
+}
+span.CharOverride-13 {
+	font-family:Orator, sans-serif;
+	font-size:10px;
+	font-style:normal;
+	font-weight:normal;
+}
+span.CharOverride-14 {
+	font-size:9px;
+}
+span.CharOverride-15 {
+	font-family:"Akzidenz Grotesk BE LightEx", sans-serif;
+	font-size:9px;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:300;
+	text-transform:uppercase;
+}
+span.CharOverride-16 {
+	font-family:"Akzidenz Grotesk BE LightEx", sans-serif;
+	font-size:8px;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:300;
+	text-transform:uppercase;
+}
+span.CharOverride-17 {
+	font-family:Orator, sans-serif;
+	font-size:9px;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	text-transform:uppercase;
+}
+span.CharOverride-18 {
+	font-family:"12 Akzidenz Grotesk** Roman   05003", sans-serif;
+	font-size:9px;
+	font-style:normal;
+	font-weight:normal;
+}
+span.CharOverride-19 {
+	font-size:12px;
+	font-style:normal;
+	font-weight:bold;
+}
+span.CharOverride-20 {
+	font-size:8px;
+	font-style:normal;
+	font-weight:normal;
+}
+span.CharOverride-21 {
+	font-size:7px;
+}
+span.CharOverride-22 {
+	font-size:12px;
+	font-style:normal;
+	font-weight:normal;
+}
+span.CharOverride-23 {
+	font-family:"Hiragino Kaku Gothic Pro W3", sans-serif;
+	font-style:normal;
+	font-weight:300;
+}
+span.CharOverride-24 {
+	font-family:"Apple SD Gothic Neo", sans-serif;
+	font-style:normal;
+	font-weight:normal;
+}
+span.CharOverride-25 {
+	font-family:Arial, sans-serif;
+	font-style:normal;
+	font-weight:normal;
+}
+span.CharOverride-26 {
+	font-size:12px;
+}
+span.CharOverride-27 {
+	font-family:Arial, sans-serif;
+	font-size:12px;
+	font-style:normal;
+	font-weight:normal;
+}
+span.CharOverride-28 {
+	font-family:"12 Akzidenz Grotesk** Roman   05003", sans-serif;
+	font-size:7px;
+	font-style:normal;
+	font-weight:normal;
+}
+span.CharOverride-29 {
+	font-size:8px;
+}
+span.CharOverride-30 {
+	font-family:Helvetica, sans-serif;
+	font-style:normal;
+	font-weight:normal;
+}
+span.CharOverride-31 {
+	font-family:"PingFang SC", sans-serif;
+	font-style:normal;
+	font-weight:600;
+}
+span.CharOverride-32 {
+	font-family:"Apple LiSung Light", sans-serif;
+	font-style:normal;
+	font-weight:normal;
+}
+span.CharOverride-33 {
+	font-family:Helvetica, sans-serif;
+	font-size:9px;
+	font-style:normal;
+	font-weight:normal;
+}
+span.CharOverride-34 {
+	font-family:Recta, sans-serif;
+	font-style:normal;
+	font-weight:normal;
+}
+span.CharOverride-35 {
+	font-family:Helvetica, sans-serif;
+	font-size:8px;
+	font-style:normal;
+	font-weight:normal;
+}
+span.CharOverride-36 {
+	font-style:normal;
+	font-weight:normal;
+}
+span.CharOverride-37 {
+	font-family:"Avenir Heavy", sans-serif;
+	font-style:normal;
+	font-weight:900;
+}
+span.CharOverride-38 {
+	font-family:"Avenir Book", sans-serif;
+	font-style:normal;
+	font-weight:normal;
+}
+span.CharOverride-39 {
+	font-family:Helvetica, sans-serif;
+	font-size:11px;
+	font-style:normal;
+	font-weight:normal;
+}
+span.CharOverride-40 {
+	font-family:NanumGothic, sans-serif;
+	font-style:normal;
+	font-weight:normal;
+}
+span.CharOverride-41 {
+	font-family:Orator, sans-serif;
+	font-size:11px;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	text-transform:uppercase;
+}
+span.CharOverride-42 {
+	font-family:Orator, sans-serif;
+	font-size:11px;
+	font-style:normal;
+	font-weight:normal;
+}
+span.CharOverride-43 {
+	font-family:Orator, serif;
+	font-size:11px;
+	font-style:italic;
+	font-variant:normal;
+	font-weight:normal;
+	text-transform:uppercase;
+}
+p._idGenParaOverride-1 {
+	page-break-after:always;
+}
+#_idContainer006 {
+	display:inline-block;
+	height:24px;
+	width:104px;
+}
+#_idContainer015, #_idContainer023, #_idContainer027, #_idContainer031, #_idContainer048, #_idContainer060, #_idContainer068, #_idContainer072, #_idContainer076, #_idContainer080, #_idContainer084, #_idContainer088, #_idContainer100, #_idContainer104, #_idContainer108, #_idContainer112, #_idContainer124, #_idContainer128, #_idContainer136, #_idContainer140, #_idContainer144, #_idContainer148, #_idContainer156, #_idContainer160, #_idContainer164, #_idContainer172, #_idContainer180, #_idContainer184, #_idContainer188, #_idContainer192, #_idContainer196, #_idContainer200, #_idContainer208, #_idContainer212, #_idContainer220, #_idContainer224, #_idContainer232, #_idContainer236, #_idContainer248, #_idContainer252, #_idContainer256, #_idContainer260, #_idContainer264, #_idContainer272, #_idContainer276, #_idContainer280, #_idContainer288, #_idContainer296, #_idContainer308, #_idContainer312, #_idContainer316, #_idContainer320, #_idContainer328, #_idContainer332, #_idContainer336, #_idContainer340, #_idContainer344, #_idContainer356, #_idContainer360, #_idContainer364, #_idContainer372, #_idContainer376, #_idContainer380, #_idContainer392, #_idContainer396, #_idContainer400, #_idContainer404, #_idContainer412, #_idContainer416, #_idContainer420, #_idContainer424, #_idContainer428, #_idContainer432, #_idContainer436, #_idContainer440, #_idContainer444, #_idContainer448, #_idContainer452, #_idContainer464, #_idContainer468, #_idContainer472, #_idContainer476, #_idContainer480, #_idContainer484, #_idContainer492, #_idContainer496, #_idContainer500, #_idContainer504, #_idContainer508, #_idContainer512, #_idContainer516, #_idContainer520, #_idContainer524, #_idContainer532, #_idContainer540, #_idContainer544, #_idContainer548, #_idContainer552, #_idContainer556, #_idContainer560, #_idContainer564, #_idContainer568, #_idContainer572, #_idContainer576, #_idContainer580, #_idContainer584, #_idContainer588, #_idContainer596, #_idContainer600, #_idContainer604, #_idContainer608, #_idContainer612, #_idContainer616, #_idContainer620, #_idContainer624, #_idContainer628, #_idContainer632, #_idContainer636, #_idContainer644, #_idContainer648, #_idContainer660, #_idContainer664, #_idContainer668, #_idContainer672, #_idContainer676, #_idContainer680, #_idContainer688, #_idContainer692, #_idContainer696, #_idContainer700, #_idContainer704, #_idContainer708, #_idContainer712, #_idContainer728, #_idContainer732, #_idContainer740, #_idContainer744, #_idContainer748, #_idContainer752, #_idContainer760, #_idContainer764, #_idContainer772, #_idContainer776, #_idContainer780, #_idContainer788, #_idContainer792, #_idContainer800, #_idContainer808, #_idContainer816, #_idContainer820, #_idContainer824, #_idContainer828, #_idContainer832, #_idContainer836, #_idContainer840, #_idContainer844, #_idContainer848, #_idContainer852, #_idContainer856, #_idContainer860, #_idContainer864, #_idContainer868, #_idContainer872, #_idContainer876, #_idContainer892, #_idContainer896, #_idContainer900, #_idContainer904, #_idContainer908, #_idContainer912, #_idContainer916, #_idContainer920, #_idContainer924, #_idContainer928, #_idContainer936, #_idContainer940, #_idContainer944, #_idContainer948, #_idContainer952, #_idContainer956, #_idContainer960, #_idContainer964, #_idContainer968, #_idContainer976, #_idContainer980, #_idContainer988, #_idContainer992, #_idContainer996, #_idContainer1001, #_idContainer1005, #_idContainer1009, #_idContainer1013, #_idContainer1017, #_idContainer1021, #_idContainer1029, #_idContainer1033, #_idContainer1037, #_idContainer1041, #_idContainer1049, #_idContainer1053 {
+	display:inline-block;
+	height:207px;
+	width:288px;
+}
+#_idContainer019, #_idContainer039, #_idContainer044, #_idContainer052, #_idContainer056, #_idContainer064, #_idContainer092, #_idContainer096, #_idContainer116, #_idContainer120, #_idContainer132, #_idContainer152, #_idContainer168, #_idContainer176, #_idContainer204, #_idContainer216, #_idContainer228, #_idContainer240, #_idContainer268, #_idContainer284, #_idContainer292, #_idContainer300, #_idContainer304, #_idContainer324, #_idContainer348, #_idContainer352, #_idContainer368, #_idContainer384, #_idContainer388, #_idContainer408, #_idContainer456, #_idContainer460, #_idContainer488, #_idContainer528, #_idContainer536, #_idContainer592, #_idContainer640, #_idContainer652, #_idContainer656, #_idContainer684, #_idContainer716, #_idContainer720, #_idContainer724, #_idContainer736, #_idContainer756, #_idContainer768, #_idContainer784, #_idContainer796, #_idContainer804, #_idContainer812, #_idContainer880, #_idContainer884, #_idContainer888, #_idContainer932, #_idContainer972, #_idContainer984, #_idContainer1025, #_idContainer1045 {
+	display:inline-block;
+	height:288px;
+	width:207px;
+}
+#_idContainer035 {
+	display:inline-block;
+	height:289px;
+	width:207px;
+}
+#_idContainer244 {
+	display:inline-block;
+	height:207px;
+	width:219px;
+}
+#_idContainer1000 {
+	display:inline-block;
+	height:38px;
+	width:38px;
+}
+img._idGenObjectAttribute-1 {
+	height:100.00%;
+	min-width:100%;
+	width:100.00%;
+}
+div._idGenObjectStyleOverride-1 {
+	border-width:0px;
+}
+div._idGenObjectLayout-1 {
+	text-align:center;
+}
