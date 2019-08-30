@@ -259,7 +259,7 @@ module ScrapeIndesign
       _terms = _p.text.split(';')
 
       _baseTerm = _terms[0].match(/^[^\d]*/)[0].strip
-      _pages = _terms[0].gsub(/[^0-9,\ ]/, '').split(/,| /).reject(&:blank?)
+      _pages = _terms[0].gsub(/[^0-9,\ ]/, '').split(/,| /).reject(&:nil?)
 
       if _baseTerm.include?('also ')
         _also = _baseTerm.match(/also [^\d]*/)[0].gsub('also','').strip
@@ -281,7 +281,7 @@ module ScrapeIndesign
 
       _terms[1..-1].each do |_t|
         _subTerm = _t.match(/^[^\d]*/)[0]
-        _pages = _t.gsub(/[^0-9, ]/, '').split(/,| /).reject(&:blank?)
+        _pages = _t.gsub(/[^0-9, ]/, '').split(/,| /).reject(&:nil?)
         if _t.include?('also ')
           _also = _t.match(/also [^\d]*/)[0].gsub('also','').strip
           _also.gsub!(')','') if _also.include?(')') and !_also.include?('(')
@@ -318,7 +318,7 @@ module ScrapeIndesign
         end
 
         pages_hash[_pages] ||= []
-        pages_hash[_pages] << term unless pages_hash[_pages].include?(term) or term.blank?
+        pages_hash[_pages] << term unless pages_hash[_pages].include?(term) or term.nil?
       end
 
     end
@@ -359,7 +359,7 @@ module ScrapeIndesign
         end
 
         pages_hash[_pages] ||= []
-        pages_hash[_pages] << term unless pages_hash[_pages].include?(term) or term.blank?
+        pages_hash[_pages] << term unless pages_hash[_pages].include?(term) or term.nil?
       end
 
     end
