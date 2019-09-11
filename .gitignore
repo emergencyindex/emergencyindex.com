@@ -4,3 +4,4 @@ _site
 .jekyll-metadata
 /utilz/projects.json
 /utilz/projects
+.jekyll-cache
