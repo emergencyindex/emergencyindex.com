@@ -178,10 +178,10 @@ module ScrapeIndesign
       project['info']['photo_credit'] = info_description[1].css('p').first.text.strip
 
       # now get the description div
-      info_description[2].css("span[class*=ITALIC]").each do |i|
+      info_description[2].css("span[class*=ITALIC--description-paragraphs-]").each do |i|
         i.name = 'em'
       end
-      info_description[2].css("p[class*=CharOverride-21]").each do |i|
+      info_description[2].css("p[class*=inset-text--plain]").each do |i|
         i.name = 'blockquote'
       end
       project['description'] = info_description[2].css('p, blockquote').collect do |i|
@@ -192,7 +192,7 @@ module ScrapeIndesign
           .gsub('<br />', "\n")
           .gsub('<br/>', "\n")
           .strip
-          .gsub('<blockquote>', "\t")
+          .gsub('<blockquote>', "> ")
           .gsub('</blockquote>', '') )
       end
 
