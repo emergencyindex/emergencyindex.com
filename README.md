@@ -136,11 +136,11 @@ $ `git clone https://github.com/emergencyindex/emergencyindex.com.git`
 
 the content for each year is referenced via git submodules to individual project repos: 
 
-[projects-2011](https://github.com/emergencyindex/projects-2011),
-[projects-2012](https://github.com/emergencyindex/projects-2012),
-[projects-2013](https://github.com/emergencyindex/projects-2013),
-[projects-2014](https://github.com/emergencyindex/projects-2014),
-[projects-2015](https://github.com/emergencyindex/projects-2015),
+[projects-2011](https://github.com/emergencyindex/projects-2011)  
+[projects-2012](https://github.com/emergencyindex/projects-2012)  
+[projects-2013](https://github.com/emergencyindex/projects-2013)  
+[projects-2014](https://github.com/emergencyindex/projects-2014)  
+[projects-2015](https://github.com/emergencyindex/projects-2015)  
 [projects-2016](https://github.com/emergencyindex/projects-2016)
 
 every repository contains separate branches (`projects`, `indexes`, & `images`) with files that end up their own respective folder in this project (e.g. [projects-2011](https://github.com/emergencyindex/projects-2011)'s `indexes` branch files will end up the `_projects/2011` folder).  
@@ -160,6 +160,27 @@ see [.gitmodules](https://github.com/emergencyindex/emergencyindex.com/blob/mast
 to pull in updates from sub-modules run:
 
 $ `git submodule sync`
+$ `git submodule update --init --recursive --remote`
+
+to add a new submodule: 
+
+$ `git submodule add <url> <path>`
+
+so for example: `git submodule add https://github.com/emergencyindex/projects-2017 _indexes/2017`
+
+then edit the `.gitmodules` file to specify the branch (if needed). for example: `branch = indexes`
+
+so something like: 
+
+```
+[submodule "_indexes/2017"]
+path = _indexes/2017
+url = https://github.com/emergencyindex/projects-2017
+branch = indexes
+```
+
+finally run:
+
 $ `git submodule update --init --recursive --remote`
 
 
