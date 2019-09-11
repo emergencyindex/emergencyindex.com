@@ -78,7 +78,7 @@
 	path = _projects/2017
 	url = https://github.com/emergencyindex/projects-2017
 	branch = projects
-[submodule "_images/2017"]
+[submodule "assets/img/2017"]
 	path = assets/img/2017
 	url = https://github.com/emergencyindex/projects-2017
 	branch = images
