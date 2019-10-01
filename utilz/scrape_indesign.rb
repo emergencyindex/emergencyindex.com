@@ -12,7 +12,7 @@ module ScrapeIndesign
 
   @options = {}
   @project_template = File.read 'project_template.erb'
-  @pinwheel = %w{ | / - \\ }
+  @pinwheel = %w{ | \/ - \\ }
 
   def self.init
     
@@ -396,10 +396,20 @@ module ScrapeIndesign
     all_filez.each do |file|
       status_update(len:len, idx:idx)
       project = read_md file: file
+
       project[:yml]["tags"] = project[:yml]["tags"].map(&:to_s).sort_by(&:downcase).uniq
+      
+      # try to remove HTML entities
+      project[:yml]["title"] = Nokogiri::HTML.parse(project[:yml]["title"]).text
+      project[:yml]["contributor"] = Nokogiri::HTML.parse(project[:yml]["contributor"]).text
+      project[:yml]["photo_credit"] = Nokogiri::HTML.parse(project[:yml]["photo_credit"]).text
+      project[:yml]["collaborators"].each{ |collaborator| collaborator = Nokogiri::HTML.parse(collaborator).text } rescue nil
+      project[:description] = Nokogiri::HTML.parse(project[:description]).text
+
       project[:yml]["title"].upcase!
       project[:yml]["contributor"].upcase!
-      File.open(file,"w"){|f| f.write("#{project[:yml].to_yaml}---#{project[:description]}")} unless @options[:drytidy]
+
+      File.open(file,"w"){|f| f.write("#{project[:yml].to_yaml}---\n\n#{project[:description]}")} unless @options[:drytidy]
       idx += 1
     end
 
