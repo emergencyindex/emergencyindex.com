@@ -29,6 +29,7 @@ module ScrapeIndesign
       opts.on("-t", "--terms", "Scrape Terms") { |v| @options[:terms] = v }
       opts.on("-u", "--termstxt", "Scrape Terms Text") { |v| @options[:terms_txt] = v }
       opts.on("-T", "--writeterms", "Write Terms to MD") { |v| @options[:writeterms] = v }
+      opts.on("-I", "--termsindex", "Build Terms Index MD") { |v| @options[:termsindex] = v }
       opts.on("-x", "--tidy DIRECTORY", "Tidy project YAML") { |v| @options[:tidy] = v }
       opts.on("-X", "--drytidy", "DRY RUN Tidy project YAML (no files modified)") { |v| @options[:drytidy] = v }
     end.parse!
@@ -48,6 +49,8 @@ module ScrapeIndesign
       scrape_terms_txt
     elsif @options[:writeterms]
       write_terms_to_md
+    elsif @options[:termsindex]
+      build_terms_index
     elsif @options[:tidy]
       tidy_project_yml
     else
@@ -383,6 +386,46 @@ module ScrapeIndesign
       project[:yml]["tags"] = item[1].sort_by(&:downcase).uniq
       File.open(project_file,"w"){|f| f.write("#{project[:yml].to_yaml}---#{project[:description]}")}
     end
+  end
+
+  def self.build_terms_index
+     # ex:  ruby scrape_indesign.rb --infile /Users/edwardsharp/src/github/emergencyindex/emergencyindex.com/utilz/projects/2017/terms.json --termsindex
+     p "reading #{@options[:in_file]}..."
+     j = JSON.parse( File.read(@options[:in_file]) )
+     len = j.length
+     idx = 0
+     md_out = ''
+     j.each do |item|
+       status_update(len:len, idx:idx)
+
+       if item[0].length === 1
+         # this must be a letter section heading
+         md_out += "{: ##{item[0]} .index .sticky-nav }\n"
+         md_out += "## #{item[0]}\n\n"
+       elsif item[1].length === 0
+          if item[0] =~ /see also/
+            splt = item[0].split('see also')
+            md_out += "**#{splt[0].strip}** _see also_ "
+            md_out += splt[1].split(',').map{ |t| "<span class=\"see-also\">#{t.strip}</span>"}.join(' ')
+            md_out += "\n\n"
+          elsif item[0] =~ /see/
+            splt = item[0].split('see')
+            md_out += "**#{splt[0].strip}** _see_ "
+            md_out += splt[1].split(',').map{ |t| "<span class=\"see-also\">#{t.strip}</span>"}.join(' ')
+            md_out += "\n\n"
+          else 
+            p "expected empty array to be see also ref, got: #{item[0]}"
+          end
+       else
+         md_out += "**#{item[0]}** "
+         md_out += item[1].map{ |pp| "[#{pp}]"}.join(', ')
+         md_out += "\n\n"
+       end
+       
+     end
+
+     File.open('terms.md',"w"){|f| f.write(md_out)}
+
   end
 
   def self.tidy_project_yml
