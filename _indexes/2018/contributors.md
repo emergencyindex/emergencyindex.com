@@ -7,7 +7,13 @@ wrapperclass: 'index-contributors'
 toc: 2018 Contributors
 ---
 
+{: #\3 .index .sticky-nav }
+## 3
+
 3dwardsharp  32–33, 52–53
+
+{: #A .index .sticky-nav }
+## A
 
 Aaron, Ashli  524–525
 
@@ -82,6 +88,9 @@ Auciello, Emily  232–233
 Austin, Anicka  562–563
 
 Ayorinde, Oluwadamilare  492–493
+
+{: #B .index .sticky-nav }
+## B
 
 Ba, Ruiyun  118–119
 
@@ -201,6 +210,9 @@ Butterworth, Emma  42–43
 
 Butz, Sindy  428–429
 
+{: #C .index .sticky-nav }
+## C
+
 Cahill, Sinead  342–343
 
 Cairncross, Boni  212–213
@@ -282,6 +294,9 @@ Curran, Cody  268–269
 curtis, von  370–371
 
 Cuthbert, Lilian  240–241
+
+{: #D .index .sticky-nav }
+## D
 
 D’Avila, Francesco  434–435
 
@@ -369,6 +384,9 @@ Dwyer, Diane  98–99
 
 dyoskuri  286–287
 
+{: #E .index .sticky-nav }
+## E
+
 Egas, Salomé  178–179, 242–243
 
 Ehemann, Daniela  176–177
@@ -384,6 +402,9 @@ Engwirda, Darren  212–213
 Ensayos  466–467
 
 Evans, Ayana  168–169
+
+{: #F .index .sticky-nav }
+## F
 
 Fabien, Marvin  498–499
 
@@ -424,6 +445,9 @@ Frías, Edgar Fabián  14–15
 Fries, Kath  212–213
 
 futuredeath.agency  32–33
+
+{: #G .index .sticky-nav }
+## G
 
 G.B, Darshna  486–487
 
@@ -485,6 +509,9 @@ Guyon, Jil  414–415
 
 Guzman, Oscar  384–385
 
+{: #H .index .sticky-nav }
+## H
+
 haberstroh, beck  484–485
 
 Hadick, Matthew  454–455
@@ -520,7 +547,6 @@ Hayatshahi, Janet  28–29
 Hayes-Chute, Ethan  280–281
 
 Heit, Stephanie  100–101
-
 
 Herlihy, Leann  456–457
 
@@ -558,6 +584,9 @@ Hutchinson, Brenda  372–373
 
 Huth, Geof  294–295
 
+{: #I .index .sticky-nav }
+## I
+
 Ialeggio, Anna  408–409, 454–455
 
 Ichikawa, Akiko  464–465
@@ -569,6 +598,9 @@ Irina Baldini Company  220–221
 Isabelle, Nina  22–23, 52–53, 184–185, 194–195
 
 Iwaoka, Takashi  220–221
+
+{: #J .index .sticky-nav }
+## J
 
 J.B, Waheeda  486–487
 
@@ -607,6 +639,9 @@ Jones, Ellicia  42–43
 Jordan, Luke  110–111
 
 Jorkjen, Finn Adrian  78–79
+
+{: #K .index .sticky-nav }
+## K
 
 Kann, Camila  242–243
 
@@ -651,6 +686,9 @@ Kuo, Nina  300–301
 Kuppers, Petra  100–101
 
 Kurzyna, Luiza  402–403
+
+{: #L .index .sticky-nav }
+## L
 
 La Marre, Rebecca  276–277
 
@@ -731,6 +769,9 @@ Lyn-Kee-Chow, Jodie  406–407
 Lyon, Greth  342–343
 
 Lyson, Krystian  492–493
+
+{: #M .index .sticky-nav }
+## M
 
 MacEwan, Jemila  264–265
 
@@ -852,6 +893,9 @@ Mykolenko, Maria  372–373
 
 Myshko, Yelena  56–57
 
+{: #N .index .sticky-nav }
+## N
+
 Naj, Cloud  484–485
 
 Nangle, Anna  436–437
@@ -884,6 +928,9 @@ Novotny-Jones, Mari  190–191
 
 Nykaza, Nastja  116–117
 
+{: #O .index .sticky-nav }
+## O
+
 O’dell, Robyn  408–409
 
 O’Neil, Sarah  412–413
@@ -901,6 +948,9 @@ Ojeda, Paulina  348–349
 Onukar, Pırıltı  216–217
 
 Ortega, Sierra  144–145
+
+{: #P .index .sticky-nav }
+## P
 
 Palekaitė, Goda  320–321
 
@@ -978,6 +1028,9 @@ Pundyk, Jeff  240–241
 
 Punsoda, Amanda  462–463
 
+{: #Q .index .sticky-nav }
+## Q
+
 queen of luxuria  410–411
 
 Quinones, David  158–159
@@ -987,6 +1040,9 @@ Quintero, George Mario Angel  324–325
 Quintero, Karla  386–387
 
 Quoc, Kim Doan  476–477
+
+{: #R .index .sticky-nav }
+## R
 
 Ra, Vitche Boul  172–173
 
@@ -1046,7 +1102,6 @@ Rosen, Danielle  380–381
 
 Rosen, Jessica  552–553
 
-
 Rosenberg, Gem  266–267, 522–523
 
 Roser, Lorin  300–301
@@ -1058,6 +1113,9 @@ Rostami, Nooshin  264–265
 Ruiseco-Lombera, Alexis  310–311
 
 Rutter, Dove  496–497
+
+{: #S .index .sticky-nav }
+## S
 
 Sagisi, Suzette  386–387
 
@@ -1080,6 +1138,7 @@ Saxe, Claire  6–7
 Sears, Christina  270–271
 
 Seki, Kazumi  124–125
+
 Selna, Jane  386–387
 
 Seror, Dorothea  346–347
@@ -1162,6 +1221,9 @@ Szrama, Tomasz  296–297
 
 Szydłowska, Krystyna Lama  492–493
 
+{: #T .index .sticky-nav }
+## T
+
 Taister, Cathy  270–271
 
 Taister, Anton  270–271
@@ -1220,7 +1282,13 @@ Tyc, Cat  130–131
 
 Tyler, Evan  68–69
 
+{: #U .index .sticky-nav }
+## U
+
 Underworld Productions  566–567
+
+{: #V .index .sticky-nav }
+## V
 
 Vallejo, Cindy  12–13
 
@@ -1245,6 +1313,9 @@ Voliakovksy, Natacha  318–319
 Vuong, Phuong T.  446–447
 
 Vyle  368–369
+
+{: #W .index .sticky-nav }
+## W
 
 Walker, Nathan  520–521
 
@@ -1300,6 +1371,9 @@ Wyckoff-Lareau, Josephine L.  314–315
 
 Wyrick, Nathaniel  58–59
 
+{: #Y .index .sticky-nav }
+## Y
+
 Youmans, Dorothy  406–407
 
 Young, James  142–143
@@ -1307,6 +1381,9 @@ Young, James  142–143
 Young, Asayah  524–525
 
 Yung, Samsam  70–71
+
+{: #Z .index .sticky-nav }
+## Z
 
 Z, Lix  566–567
 
