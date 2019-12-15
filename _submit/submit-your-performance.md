@@ -8,9 +8,7 @@ banner: true
 
 _Emergency INDEX_ is an annual print publication documenting new performance in the words of its creators. For more information, see our [Project Description](/about/project-description/) page.
 
-**Submissions for INDEX Volume 8 closed**
-
-Submissions for INDEX Volume 9 will be opened at the beginning of 2020.
+[**Submissions for INDEX Volume 9 are now open (click here for the submission form)**](https://emergency-index-submission-2019.glitch.me/)
 
 Please email <emergency@uglyducklingpresse.org> with any questions.
 
