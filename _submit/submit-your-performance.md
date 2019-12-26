@@ -10,6 +10,8 @@ _Emergency INDEX_ is an annual print publication documenting new performance in 
 
 [**Submissions for INDEX Volume 9 are now open (click here for the submission form)**](https://emergency-index-submission-2019.glitch.me/)
 
+The deadline is **January 15, 2020 at 11:59pm EST**; this deadline is strict, and we cannot consider submissions sent after this date. **Please submit only one work**; authors and collectives who submit more than one work will be disqualified.
+
 Please email <emergency@uglyducklingpresse.org> with any questions.
 
 See below for example pages from Volume 6, which includes 279 works from 46 countries performed during 2016.
