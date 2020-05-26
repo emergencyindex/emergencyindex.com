@@ -11,6 +11,11 @@ require 'redis'
 require 'google_places'
 include Carmen
 
+# how to use!
+# cd emergencyindex.com/utilz
+# ruby map_update.rb -g ../_projects/2012 -c True
+# -g flag indicates geocoding
+# -c flag causes each project's coordinates to be cached locally
 module ScrapeProjects
 
   @options = {}
