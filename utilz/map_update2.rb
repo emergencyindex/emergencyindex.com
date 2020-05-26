@@ -8,8 +8,57 @@ require 'yaml'
 require 'carmen'
 require 'geocoder'
 require 'redis'
-require 'google_places'
 include Carmen
+
+
+# This class allows you to configure how Geocoder should treat errors that occur when
+# the cache is not available.
+# Configure it like this
+# config/initializers/geocoder.rb
+# Geocoder.configure(
+#  :cache => Geocoder::CacheBypass.new(Redis.new)
+# )
+#
+# Depending on the value of @bypass this will either
+# raise the exception (true) or swallow it and pretend the cache did not return a hit (false)
+#
+class Geocoder::CacheBypass
+  def initialize(target, bypass = true)
+    @target = target
+    @bypass = bypass
+  end
+
+
+  def [](key)
+    with_bypass { @target[key] }
+  end
+
+  def []=(key, value)
+    with_bypass(value) { @target[key] = value }
+  end
+
+  def keys
+    with_bypass([]) { @target.keys }
+  end
+
+  def del(key)
+    with_bypass { @target.del(key) }
+  end
+
+  private
+
+  def with_bypass(return_value_if_exception = nil, &block)
+    begin
+      yield
+    rescue
+      if @bypass
+        return_value_if_exception
+      else
+        raise # reraise original exception
+      end
+    end
+  end
+end
 
 module ScrapeProjects
 
@@ -21,6 +70,31 @@ module ScrapeProjects
 
     @options[:out_dir] = Dir.pwd
     @options[:pageoffset] = 2
+
+    Geocoder.configure(
+      # geocoding service request timeout, in seconds (default 3):
+      timeout: 15,
+      # NOTE: there is a limit on geocoding requests, 2,500, with nominatim
+
+      # lookup: :nominatim
+      #lookup: :location_iq,
+      lookup: :google,
+
+      # api for locationiq
+      #api_key: "cc42d410fdedaf",
+      api_key: 'AIzaSyCGucx-_XZJLn-Gd1cHme18vk6osePAE3w',
+
+      # possible method for batch geocoding:
+      # rake geocode:all CLASS=YourModel SLEEP=0.25 BATCH=100 LIMIT=1000
+
+      #always_raise: [Timeout::Error],
+      always_raise: :all,
+
+      # caching (see https://github.com/alexreisner/geocoder)
+      #cache: Redis.new
+      cache: Geocoder::CacheBypass.new(Redis.new)
+      #cache_prefix: "..."
+    )
 
     # options to parse for script call
     optparse = OptionParser.new do |opts|
@@ -37,7 +111,6 @@ module ScrapeProjects
       opts.on("-x", "--tidy DIRECTORY", "Tidy project YAML") { |v| @options[:tidy] = v }
       opts.on("-X", "--drytidy", "DRY RUN Tidy project YAML (no files modified)") { |v| @options[:drytidy] = v }
       opts.on("-g", "--geocode DIRECTORY", "Generate Longitude and Latitude automatically") { |v| @options[:geocode_projects] = v }
-      opts.on("-c", "--cache CACHE", "Write 'True' to activate Cache") { |v| @options[:cache_it] = v }
       opts.on("-G", "--drygeo", "DRY RUN Generate Longitude and Latitude automatically") { |v| @options[:drygeo] = v }
     end.parse!
 
@@ -84,83 +157,51 @@ module ScrapeProjects
       project = read_md file: file
 
       # find the place tag
-      if project[:yml]["place"] != ""
-        theplace = project[:yml]["place"]
-      else
-        theplace = ""
-      end
-
-      redis = Redis.new(host: "localhost")
+      theplace = project[:yml]["place"]
 
       # rest for a second so the requests don't come too fast
       # for location iq, needs to be less than 2 requests per second
       # for google, needs to be less than 50 requests per second
-      sleep(0.25)
+      sleep(1)
 
-      @client = GooglePlaces::Client.new("AIzaSyCGucx-_XZJLn-Gd1cHme18vk6osePAE3w")
-
-      if redis.get(theplace) != nil
-        p "cached"
-        coords = redis.get(theplace).delete('[]').split
-        location = coords
-      else
-        if theplace != ""
-          api_call = @client.spots_by_query(theplace)
-          location = nil
-        else
-          p "something wrong with: "+theplace
-          p "try something else?"
-          new_add = gets.chomp
-          api_call = @client.spots_by_query(new_add)
-        end
-      end
+      p theplace
+      api_call = Geocoder.search(theplace)
+      location = nil
+      #location = api_call
+      #p location
 
       while location == nil
         # if there's an error in the look up
-        while api_call == []
-          p theplace
+        #p api_call[0].data["error"].to_s
+        while api_call[0].data["error"].to_s == "Unable to geocode"
           p "ERROR - can't geocode this location, try another address?"
           new_add = gets.chomp
-          api_call = @client.spots_by_query(new_add)
+          api_call = Geocoder.search(new_add)
         end
 
         # if there is more than one location
+        #p api_call.count
         if api_call.count > 1
-          p theplace
-          p "choose from the following by entering 'y' or 'n' (or to enter another address, 'a'): "
+          p "choose from the following by entering 'y' or 'n': "
           for n in api_call
-            begin
-              puts "is this it?: #{n.name.to_s} at #{n.formatted_address.to_s}"
-            rescue
-              puts "is this it?: #{n}"
-            end
+            puts "is this it?: #{n.data["display_name"].to_s}"
             choice = gets.chomp
             if choice == "y"
               location = n
               break
             end
-            if choice == "a"
-              api_call = []
-              break
-            end
           end
+          p "ERROR - can't geocode this location, try another address?"
+          new_add = gets.chomp
+          api_call = Geocoder.search(new_add)
         else
           location = api_call[0]
         end
       end
 
       #p location
-      if redis.get(theplace) != nil
-        lat = coords[0]
-        long = coords[1]
-      else
-        lat = location.lat
-        long = location.lng
-      end
-      if @options[:cache_it] and redis.get(theplace) == nil
-        redis.set(theplace, [lat, long])
-        p "cached it!"
-      end
+      lat = location.data["lat"]
+      long = location.data["lon"]
       p lat.to_s+" "+long.to_s
 
       title = project[:yml]["title"]
