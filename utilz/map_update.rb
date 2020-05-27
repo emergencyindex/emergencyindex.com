@@ -13,7 +13,7 @@ include Carmen
 
 # how to use!
 # cd emergencyindex.com/utilz
-# ruby map_update.rb -g ../_projects/2012 -c True
+# API_KEY='someapikey' ruby map_update.rb -g ../_projects/2012 -c True
 # -g flag indicates geocoding
 # -c flag causes each project's coordinates to be cached locally
 module MapUpdate
@@ -72,12 +72,11 @@ module MapUpdate
 
       redis = Redis.new(host: "localhost")
 
-      # rest for a second so the requests don't come too fast
-      # for location iq, needs to be less than 2 requests per second
+      # rest for less than a second so the requests don't come too fast
       # for google, needs to be less than 50 requests per second
       sleep(0.25)
 
-      @client = GooglePlaces::Client.new("AIzaSyDueWSltX2qzLwsYLrFVwA1_malOB9rtOo")
+      @client = GooglePlaces::Client.new(ENV["API_KEY"])
 
       if redis.get(theplace) != nil
         p "cached"
@@ -88,7 +87,7 @@ module MapUpdate
           api_call = @client.spots_by_query(theplace)
           location = nil
         else
-          p "something wrong with: "+theplace
+          p "something wrong with: #{theplace}"
           p "try something else?"
           new_add = gets.chomp
           api_call = @client.spots_by_query(new_add)
@@ -141,7 +140,7 @@ module MapUpdate
         redis.set(theplace, [lat, long])
         p "cached it!"
       end
-      p lat.to_s+" "+long.to_s
+      p "#{lat} #{long}"
 
       title = project[:yml]["title"]
       year = project[:yml]["volume"].to_s
