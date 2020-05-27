@@ -34,6 +34,8 @@ module MapUpdate
       opts.on("-c", "--cache CACHE", "Write 'True' to activate Cache") { |v| @options[:cache_it] = v }
     end.parse!
 
+    raise "ERROR! --geocode is not a directory" unless File.directory?(@options[:geocode_projects])
+
     # depending on calls made, call the functions
     if @options[:geocode_projects]
       geocode_projects
@@ -78,7 +80,7 @@ module MapUpdate
       project[:yml]["Pcrds"] = pCrds
       project[:yml]["Hcrds"] = hCrds
 
-      File.open(file,"w"){|f| f.write("#{project[:yml].to_yaml}---\n\n#{project[:description]}")}
+      File.open(file,"w"){|f| f.write("#{project[:yml].to_yaml}---#{project[:description]}")}
       idx += 1
     end
 
@@ -105,7 +107,7 @@ private
 
     # rest for less than a second so the requests don't come too fast
     # for google, needs to be less than 50 requests per second
-    sleep(0.25)
+    sleep(0.03)
 
     @client = GooglePlaces::Client.new(ENV["GOOGLE_PLACES_API_KEY"])
 
