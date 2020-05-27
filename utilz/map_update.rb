@@ -146,7 +146,7 @@ module MapUpdate
       title = project[:yml]["title"]
       year = project[:yml]["volume"].to_s
       pagenums = project[:yml]["pages"].to_s
-      link = "\/volume\/"+year+"#"+year+"-"+pagenums
+      link = "/volume/#{year}##{year}-#{pagenums}"
 
       # project[:yml]["mapping"]["link"] = "/volume/"+year+"#"+year+"-"+project[:yml]["pages"]
       # project[:yml]["mapping"]["longitude"] = location[0].longitude
