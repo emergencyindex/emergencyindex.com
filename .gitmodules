@@ -82,7 +82,7 @@
 	path = assets/img/2017
 	url = https://github.com/emergencyindex/projects-2017
 	branch = images
-[submodule "_indexes/2018"]
-	path = _indexes/2018
-	url = https://github.com/emergencyindex/projects-2018
-	branch = indexes
+	[submodule "_indexes/2018"]
+		path = _indexes/2018
+		url = https://github.com/emergencyindex/projects-2018
+		branch = indexes
