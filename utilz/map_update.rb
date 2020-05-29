@@ -77,8 +77,8 @@ module MapUpdate
       hCrds = call_api(thehome)
 
       # add mapping info
-      project[:yml]["Pcrds"] = pCrds
-      project[:yml]["Hcrds"] = hCrds
+      project[:yml]["place_coords"] = pCrds
+      project[:yml]["home_coords"] = hCrds
 
       File.open(file,"w"){|f| f.write("#{project[:yml].to_yaml}---#{project[:description]}")}
       idx += 1
@@ -113,8 +113,7 @@ private
 
     if redis.get(place_to_call) != nil
       p "cached"
-      coords = redis.get(place_to_call).delete('[]').split
-      location = coords
+      location = redis.get(place_to_call)
     else
       if place_to_call != ""
         api_call = @client.spots_by_query(place_to_call)
@@ -140,7 +139,7 @@ private
       # if there is more than one location
       if api_call.count > 1
         p place_to_call
-        p "choose from the following by entering 'y' or 'n' (or to enter another address, 'a'): "
+        p "choose from the following by entering 'y' or 'n', to enter another address, 'a', to simplify things, 's': "
         for n in api_call
           begin
             puts "is this it?: #{n.name.to_s} at #{n.formatted_address.to_s}"
@@ -156,19 +155,24 @@ private
             api_call = []
             break
           end
+          if choice == "s"
+            parts = theplace.split(/\s*,\s*/)
+            new_add = parts.last(2).join(', ')
+            api_call = @client.spots_by_query(new_add)
+            break
+          end
         end
       else
         location = api_call[0]
       end
     end
 
-    #p location
     if redis.get(place_to_call) != nil
       crds = coords
     else
       lat = location.lat
       long = location.lng
-      crds = [lat, long]
+      crds = "#{lat} #{long}"
     end
 
     if @options[:cache_it] and redis.get(place_to_call) == nil
