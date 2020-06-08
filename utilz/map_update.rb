@@ -65,7 +65,11 @@ module MapUpdate
         theplace = ""
       end
 
+      p "finding place_coords"
       pCrds = call_api(theplace)
+
+      # add mapping info
+      project[:yml]["place_coords"] = pCrds
 
       # find the home tag
       if project[:yml]["home"] != ""
@@ -74,10 +78,10 @@ module MapUpdate
         thehome = ""
       end
 
+      p "finding home_coords"
       hCrds = call_api(thehome)
 
       # add mapping info
-      project[:yml]["place_coords"] = pCrds
       project[:yml]["home_coords"] = hCrds
 
       File.open(file,"w"){|f| f.write("#{project[:yml].to_yaml}---#{project[:description]}")}
@@ -105,6 +109,8 @@ private
 
     redis = Redis.new(host: "localhost")
 
+    places_num = 0
+
     # rest for less than a second so the requests don't come too fast
     # for google, needs to be less than 50 requests per second
     sleep(0.03)
@@ -128,6 +134,13 @@ private
     end
 
     while location == nil
+
+      if places_num.to_i >= 1
+        p "enter place number #{places_num} in #{place_to_call} (counting down to 1): "
+        new_add = gets.chomp
+        api_call = @client.spots_by_query(new_add)
+      end
+
       # if there's an error in the look up
       while api_call == []
         p place_to_call
@@ -139,7 +152,7 @@ private
       # if there is more than one location
       if api_call.count > 1
         p place_to_call
-        p "choose from the following by entering 'y' or 'n', to enter another address, 'a', to simplify things, 's': "
+        p "choose from the following by entering 'y' or 'n', if multiple places, 'm', to enter another address, 'a', to simplify things, 's': "
         for n in api_call
           begin
             puts "is this it?: #{n.name.to_s} at #{n.formatted_address.to_s}"
@@ -149,6 +162,14 @@ private
           choice = gets.chomp
           if choice == "y"
             location = n
+            break
+          end
+          if choice == "m"
+            p "how many places are in #{place_to_call}?"
+            places_num = gets.chomp
+            crds = Array.new()
+            p "just created #{crds}"
+            api_call = []
             break
           end
           if choice == "a"
@@ -165,10 +186,29 @@ private
       else
         location = api_call[0]
       end
+
+      if places_num.to_i >= 1 and location != nil
+        lat = location.lat
+        long = location.lng
+        crds.unshift("#{lat} #{long}")
+        p "just added to #{crds}"
+        places_num = places_num.to_i - 1
+
+        redis.set(new_add, crds.at(0))
+        p "cached #{new_add}!"
+      end
+
+      if places_num.to_i != 0 and location != nil
+        location = nil
+      end
     end
 
     if redis.get(place_to_call) != nil
-      crds = coords
+      crds = location
+    elsif crds.is_a?(Array)
+      redis.set(place_to_call, crds)
+      p "cached #{new_add}!"
+      p "array of crds: #{crds}"
     else
       lat = location.lat
       long = location.lng
@@ -176,10 +216,15 @@ private
     end
 
     if @options[:cache_it] and redis.get(place_to_call) == nil
-      redis.set(place_to_call, crds)
-      p "cached it!"
+      if crds.is_a?(Array)
+        redis.set(place_to_call, crds.to_a)
+      else
+        redis.set(place_to_call, crds)
+      end
+      p "cached #{place_to_call}!"
     end
 
+    p "returning #{crds}"
     return crds
 
   end
