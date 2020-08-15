@@ -167,6 +167,9 @@ var initProjectCitationModal = function () {
   document.querySelectorAll('.location-origin').forEach(function (el) {
     el.innerHTML = window.location.origin;
   });
+  document.querySelectorAll('.date-now').forEach(function(el){
+    el.innerHTML = new Date().toLocaleDateString();
+  });
   M.Modal.init(document.querySelectorAll('.modal:not(.tags)'));
 }
 
