@@ -63,7 +63,7 @@ layout: default
     <div id="{{ page.volume }}{{ page.pages }}" class="citation modal">
       <div class="modal-content">
         <h4>Citation</h4>
-        <p>{{ page.contributor }}. {{ page.title }}. In Emergency Index Vol. {{ page.volume | minus: 2010 }}, Brooklyn NY: Ugly Duckling Presse, {{ page.volume | plus: 1 }}, {{ page.pages }}. Accessed on {{ site.time | date: '%B %d, %Y' }} from <span class="location-origin"></span>{{ page.url }}.</p>
+        <p>{{ page.contributor }}. {{ page.title }}. In Emergency Index Vol. {{ page.volume | minus: 2010 }}, Brooklyn NY: Ugly Duckling Presse, {{ page.volume | plus: 1 }}, {{ page.pages }}. Accessed on {{ "now" | date: '%B %d, %Y' }} from <span class="location-origin"></span>{{ page.url }}.</p>
       </div>
       <div class="modal-footer">
         <a class="modal-close waves-effect btn-flat">Done</a>
