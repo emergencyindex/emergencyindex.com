@@ -475,6 +475,7 @@ module ScrapeIndesign
   end
 
   def self.validate_images
+    # ex: ruby utilz/scrape_indesign.rb --validateimages /Users/edwardsharp/Desktop/index8/out/projects/2018 --validateimagesdir /Users/edwardsharp/src/github/emergencyindex/projects-2018
     # useful stuff todo before this:
     # mogrify -format jpg *.png
     #   convert png files to jpeg
