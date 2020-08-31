@@ -10,8 +10,9 @@ include Carmen
 
 module ScrapeIndesign
 
+  dir_prefix = Dir.pwd.end_with?('/utilz') ? '' : './utilz/'
   @options = {}
-  @project_template = File.read 'project_template.erb'
+  @project_template = File.read "#{dir_prefix}project_template.erb"
   @pinwheel = %w{ | \/ - \\ }
 
   def self.init
@@ -484,14 +485,18 @@ module ScrapeIndesign
       'N_49.39\'7.92__W_124.4\'11.397_.jpg': 'N_49.39_7.92_W_124.4_11.397_.jpg',
     }
 
-    # make sure validate_images_dir ends with a slash.
+    # make sure dirz ends with a slash.
+    @options[:validate_images] = "#{@options[:validate_images]}/" unless @options[:validate_images][-1] == '/'
     @options[:validate_images_dir] = "#{@options[:validate_images_dir]}/" unless @options[:validate_images_dir][-1] == '/'
 
+    raise "--validateimagesdir '#{@options[:validate_images]}' does not exist?'" unless File.directory? @options[:validate_images]
     raise "--validateimagesdir '#{@options[:validate_images_dir]}' does not exist?'" unless File.directory? @options[:validate_images_dir]
 
-    p "Looking for MD files in #{@options[:validate_images]}"
+    p "Looking for MD files in #{@options[:validate_images]}..."
+
     all_filez = Dir.glob("#{@options[:validate_images]}**/*.md").select{ |e| File.file? e }
     len = all_filez.length
+    raise "no .md files found here: #{@options[:validate_images]}?" if len == 0
     idx = 0
     all_filez.each do |file|
       needToReWrite = false
