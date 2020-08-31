@@ -522,7 +522,7 @@ module ScrapeIndesign
       if hasimg and needToReWrite
         p "re-writing image #{project[:yml]["image"]} to #{img} for #{file}."
         project[:yml]["image"] = img
-        File.open(file,"w"){|f| f.write("#{project[:yml].to_yaml}---\n\n#{project[:description]}")} if needToReWrite
+        File.open(file,"w"){|f| f.write("#{project[:yml].to_yaml}---\n\n#{project[:description]}")}
       end
 
       unless hasimg
