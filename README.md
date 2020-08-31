@@ -10,7 +10,9 @@ permalink: /README.md/
 👋this is a [Jekyll](https://jekyllrb.com/) project for the [Emergency INDEX](http://emergencyindex.com) website. this repository contains code to build a static website leveraging the Jekyll "ruby framework" and a lot of [liquid templates](https://shopify.github.io/liquid/) to generate .html (.js, .json, and .css, too! 😊) files that are hosted (for free! 🙌) via [GitHub Pages](https://github.com/emergencyindex/emergencyindex.com/deployments/activity_log?environment=github-pages)
 
 
-..want to help? [reach out on gitter.im/emergencyindex](https://gitter.im/emergencyindex)
+curious about the future? see: https://github.com/orgs/emergencyindex/teams/emergency_index_people
+
+...want to help? [reach out on gitter.im/emergencyindex](https://gitter.im/emergencyindex)
 
 **tldr;**
 
