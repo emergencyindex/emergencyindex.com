@@ -27,4 +27,7 @@ pages:
 needs_review:
 ---
 
+text here will be the project's description. limited html markup is supported tho probably discouraged. other markdown is preferred.
 ```
+
+see [MARKDOWN_NOTES.md](MARKDOWN_NOTES.md) for help getting started with markdown.

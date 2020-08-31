@@ -19,6 +19,7 @@ curious about the future? see: [emergency_index_people](https://github.com/orgs/
 ### devel notes
 
 see [MARKDOWN_NOTES.md](MARKDOWN_NOTES.md) for help getting started with markdown.
+
 see [PROJECT_TEMPLATE.md](PROJECT_TEMPLATE.md) (project's __schema__)
 
 Edit files using a web browser with the [editor on GitHub](https://github.com/emergencyindex/emergencyindex.com/edit/master/README.md)
