@@ -7,7 +7,7 @@ permalink: /README.md/
 
 [![Gitter](https://badges.gitter.im/emergencyindex/community.svg)](https://gitter.im/emergencyindex/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-👋this is a [Jekyll](https://jekyllrb.com/) project for the [Emergency INDEX](http://emergencyindex.com) website. this repository contains code to build a static website leveraging the Jekyll "ruby framework" and a lot of [liquid templates](https://shopify.github.io/liquid/) to generate .html (.js && .css, too! 😊) files that are hosted (for free! 🙌) via [GitHub Pages](https://github.com/emergencyindex/emergencyindex.com/deployments/activity_log?environment=github-pages)
+👋this is a [Jekyll](https://jekyllrb.com/) project for the [Emergency INDEX](http://emergencyindex.com) website. this repository contains code to build a static website leveraging the Jekyll "ruby framework" and a lot of [liquid templates](https://shopify.github.io/liquid/) to generate .html (.js, .json, and .css, too! 😊) files that are hosted (for free! 🙌) via [GitHub Pages](https://github.com/emergencyindex/emergencyindex.com/deployments/activity_log?environment=github-pages)
 
 
 ..want to help? [reach out on gitter.im/emergencyindex](https://gitter.im/emergencyindex)
