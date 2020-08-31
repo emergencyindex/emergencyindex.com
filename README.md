@@ -4,6 +4,7 @@ title: README
 permalink: /README.md/
 ---
 # EmergencyINDEX
+## AN ANNUAL DOCUMENT OF PERFORMANCE PRACTICE
 
 [![Gitter](https://badges.gitter.im/emergencyindex/community.svg)](https://gitter.im/emergencyindex/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
