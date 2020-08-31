@@ -489,8 +489,8 @@ module ScrapeIndesign
     @options[:validate_images] = "#{@options[:validate_images]}/" unless @options[:validate_images][-1] == '/'
     @options[:validate_images_dir] = "#{@options[:validate_images_dir]}/" unless @options[:validate_images_dir][-1] == '/'
 
-    raise "--validateimagesdir '#{@options[:validate_images]}' does not exist?'" unless File.directory? @options[:validate_images]
-    raise "--validateimagesdir '#{@options[:validate_images_dir]}' does not exist?'" unless File.directory? @options[:validate_images_dir]
+    raise "--validateimages '#{@options[:validate_images]}' directory does not exist?'" unless File.directory? @options[:validate_images]
+    raise "--validateimagesdir '#{@options[:validate_images_dir]}' directory does not exist?'" unless File.directory? @options[:validate_images_dir]
 
     p "Looking for MD files in #{@options[:validate_images]}..."
 
