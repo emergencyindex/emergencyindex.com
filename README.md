@@ -151,8 +151,8 @@ the content for each year is referenced via git submodules to individual project
 [projects-2014](https://github.com/emergencyindex/projects-2014)  
 [projects-2015](https://github.com/emergencyindex/projects-2015)  
 [projects-2016](https://github.com/emergencyindex/projects-2016)  
-[projects-2015](https://github.com/emergencyindex/projects-2017)  
-[projects-2015](https://github.com/emergencyindex/projects-2018)  
+[projects-2017](https://github.com/emergencyindex/projects-2017)  
+[projects-2018](https://github.com/emergencyindex/projects-2018)  
 
 every repository contains separate branches (`projects`, `indexes`, & `images`) with files that end up their own respective folder in this project (e.g. [projects-2011](https://github.com/emergencyindex/projects-2011)'s `indexes` branch files will end up the `_projects/2011` folder).  
 
