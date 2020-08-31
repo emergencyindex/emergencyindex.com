@@ -526,7 +526,7 @@ module ScrapeIndesign
       end
 
       unless hasimg
-        p "onoz! no image for: '#{img}'"
+        p "onoz! '#{img}' does not seem to exist? probably need to manually fix #{file}?"
       end
 
       idx += 1
