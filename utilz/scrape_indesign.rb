@@ -10,8 +10,9 @@ include Carmen
 
 module ScrapeIndesign
 
+  dir_prefix = Dir.pwd.end_with?('/utilz') ? '' : './utilz/'
   @options = {}
-  @project_template = File.read 'project_template.erb'
+  @project_template = File.read "#{dir_prefix}project_template.erb"
   @pinwheel = %w{ | \/ - \\ }
 
   def self.init
@@ -32,10 +33,12 @@ module ScrapeIndesign
       opts.on("-I", "--termsindex", "Build Terms Index MD") { |v| @options[:termsindex] = v }
       opts.on("-x", "--tidy DIRECTORY", "Tidy project YAML") { |v| @options[:tidy] = v }
       opts.on("-X", "--drytidy", "DRY RUN Tidy project YAML (no files modified)") { |v| @options[:drytidy] = v }
+      opts.on("-V", "--validateimages DIRECTORY", "Validate project image files. Specify project dir with .md files.") { |v| @options[:validate_images] = v }
+      opts.on("-I", "--validateimagesdir DIRECTORY", "Validate project images. Specify directory with project images.") { |v| @options[:validate_images_dir] = v }
     end.parse!
 
 
-    unless @options[:tidy]
+    unless @options[:tidy] or @options[:validate_images]
       raise "ERROR! --input file not specified" if @options[:in_file].nil?
       raise "ERROR! --infile does not exist" unless File.exist?(@options[:in_file])
       raise "ERROR! --outdir is not a directory" unless File.directory?(@options[:out_dir])
@@ -53,6 +56,8 @@ module ScrapeIndesign
       build_terms_index
     elsif @options[:tidy]
       tidy_project_yml
+    elsif @options[:validate_images]
+      validate_images
     else
       p "nothing to do!"
       puts optparse
@@ -61,8 +66,9 @@ module ScrapeIndesign
   end
 
   def self.scrape_projects_html
+    # ex: ruby scrape_indesign.rb -i /Users/edwardsharp/Desktop/index8/index8.html -d /Users/edwardsharp/Desktop/index8/out -v 2018 -p
 
-    p "reading #{@options[:in_file]}...\n"
+    p "reading #{@options[:in_file]}..."
     Dir.mkdir("#{@options[:out_dir]}/projects") unless Dir.exist?("#{@options[:out_dir]}/projects")
     Dir.mkdir("#{@options[:out_dir]}/projects/#{@options[:vol]}") unless Dir.exist?("#{@options[:out_dir]}/projects/#{@options[:vol]}")
 
@@ -81,7 +87,11 @@ module ScrapeIndesign
     unless len % 4 == 0
       p "found #{page.css('img').length} images. expect #{page.xpath('/html/body/div').length / 4}"
       page.xpath('/html/body/div').each_slice(4) do |div|
-        p "4block does not have an img tag. line: #{div.first.line}" unless div.collect{|d| d.css('div img') and d.css('div img').length > 0 }.include?(true)
+        d = div.first
+        blockhasimg = d.css('div img') and d.css('div img').length > 0 
+        if blockhasimg.empty?
+          p "4block does not have an img tag. line: #{div.first.line}"  
+        end
       end
     end
 
@@ -117,7 +127,7 @@ module ScrapeIndesign
       # for each div, check if there's an image
       div.each do |d|
         if d.css('div img').first and d.css('div img').first['src']
-          project['info']['image'] = d.css('div img').first['src'].gsub("INDEX-7-book-web-resources/image/",'').strip
+          project['info']['image'] = d.css('div img').first['src'].gsub(/.*\/image\//,'').strip
           next
         end
         #if d.css('.photo-credit').first and d.css('.photo-credit').first.text
@@ -249,7 +259,7 @@ module ScrapeIndesign
   end #scrape_projects_html
 
   def self.scrape_terms_html
-
+    # ex: ruby scrape_indesign.rb --infile /Users/edwardsharp/Desktop/index8/terms.html --out /Users/edwardsharp/Desktop/index8/out --volume 2018 --terms
     p "reading #{@options[:in_file]}..."
     Dir.mkdir("#{@options[:out_dir]}/projects") unless Dir.exist?("#{@options[:out_dir]}/projects")
     Dir.mkdir("#{@options[:out_dir]}/projects/#{@options[:vol]}") unless Dir.exist?("#{@options[:out_dir]}/projects/#{@options[:vol]}")
@@ -374,7 +384,7 @@ module ScrapeIndesign
   end
 
   def self.write_terms_to_md
-    # ex:  ruby scrape_indesign.rb --infile /Users/edward/src/tower/github/alveol.us/utilz/projects/2014/terms_by_page.json --out ../_projects/2014/ --writeterms
+    # ex: ruby scrape_indesign.rb --infile /Users/edwardsharp/Desktop/index8/out/projects/2018/pages.json --out /Users/edwardsharp/Desktop/index8/out/projects/2018/ --writeterms
     p "reading #{@options[:in_file]}..."
     j = JSON.parse( File.read(@options[:in_file]) )
     len = j.length
@@ -393,7 +403,7 @@ module ScrapeIndesign
   end
 
   def self.build_terms_index
-     # ex:  ruby scrape_indesign.rb --infile /Users/edwardsharp/src/github/emergencyindex/emergencyindex.com/utilz/projects/2017/terms.json --termsindex
+     # ex: ruby scrape_indesign.rb --infile /Users/edwardsharp/src/github/emergencyindex/emergencyindex.com/utilz/projects/2017/terms.json --termsindex
      p "reading #{@options[:in_file]}..."
      j = JSON.parse( File.read(@options[:in_file]) )
      len = j.length
@@ -433,6 +443,7 @@ module ScrapeIndesign
   end
 
   def self.tidy_project_yml
+    # ex: ruby scrape_indesign.rb --tidy  /Users/edwardsharp/Desktop/index8/out/projects/2018/
     p "DRY RUNNING TIDY PROCESS (good job!)" if @options[:drytidy]
     #/Users/edward/src/tower/github/alveol.us/_projects/
     @options[:tidy] = "#{@options[:tidy]}/" unless @options[:tidy][-1] == '/'
@@ -461,6 +472,68 @@ module ScrapeIndesign
     end
 
     p "done! #{len} filez"
+  end
+
+  def self.validate_images
+    # ex: ruby utilz/scrape_indesign.rb --validateimages /Users/edwardsharp/Desktop/index8/out/projects/2018 --validateimagesdir /Users/edwardsharp/src/github/emergencyindex/projects-2018
+    # useful stuff todo before this:
+    # mogrify -format jpg *.png
+    #   convert png files to jpeg
+    # detox -rvn /Users/edwardsharp/src/github/emergencyindex/projects-2018
+    #   note: -n for dry-run. detox removes bad files name chars.
+    # use hash keys with original filename and value of detox'd filename, like:
+    detoxd = {
+      'N_49.39\'7.92__W_124.4\'11.397_.jpg': 'N_49.39_7.92_W_124.4_11.397_.jpg',
+    }
+
+    # make sure dirz ends with a slash.
+    @options[:validate_images] = "#{@options[:validate_images]}/" unless @options[:validate_images][-1] == '/'
+    @options[:validate_images_dir] = "#{@options[:validate_images_dir]}/" unless @options[:validate_images_dir][-1] == '/'
+
+    raise "--validateimages '#{@options[:validate_images]}' directory does not exist?'" unless File.directory? @options[:validate_images]
+    raise "--validateimagesdir '#{@options[:validate_images_dir]}' directory does not exist?'" unless File.directory? @options[:validate_images_dir]
+
+    p "Looking for MD files in #{@options[:validate_images]}..."
+
+    all_filez = Dir.glob("#{@options[:validate_images]}**/*.md").select{ |e| File.file? e }
+    len = all_filez.length
+    raise "no .md files found here: #{@options[:validate_images]}?" if len == 0
+    idx = 0
+    all_filez.each do |file|
+      needToReWrite = false
+      project = read_md file: file
+
+      img = project[:yml]["image"]
+      
+      if detoxd.has_key? img.to_sym
+        # p "need to re-write detoxd file!"
+        img = detoxd[img.to_sym]
+        needToReWrite = true
+      end
+
+      if img.match /.*\.png/
+        # p "need to re-write png -> jpg"
+        img.gsub!('.png', '.jpg')
+        needToReWrite = true
+      end
+
+      hasimg = File.exist?("#{@options[:validate_images_dir]}#{img}")
+
+      if hasimg and needToReWrite
+        p "re-writing image #{project[:yml]["image"]} to #{img} for #{file}."
+        project[:yml]["image"] = img
+        File.open(file,"w"){|f| f.write("#{project[:yml].to_yaml}---\n\n#{project[:description]}")}
+      end
+
+      unless hasimg
+        p "onoz! '#{img}' does not seem to exist? probably need to manually fix #{file}?"
+      end
+
+      idx += 1
+    end
+
+    p "done! checked #{len} md filez"
+
   end
 
 private
