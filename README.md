@@ -113,9 +113,9 @@ rough example how this script was used for vol. 8:
 ```sh
 ruby scrape_indesign.rb -i /Users/edwardsharp/Desktop/index8/index8.html -d /Users/edwardsharp/Desktop/index8/out -v 2018 -p
 
-ruby scrape_indesign.rb --infile /Users/edwardsharp/Desktop/index8/terms.html --out /Users/edwardsharp/Desktop/index8/out --volume 2018 --terms
+ruby scrape_indesign.rb --infile /Users/edwardsharp/Desktop/index8/terms.html --out /Users/edwardsharp/Desktop/index8/out --volume 2018 --terms --dryrun
 
-ruby scrape_indesign.rb --infile /Users/edwardsharp/Desktop/index8/out/projects/2018/pages.json --out /Users/edwardsharp/Desktop/index8/out/projects/2018/ --writeterms
+ruby scrape_indesign.rb --infile /Users/edwardsharp/Desktop/index8/terms.html --out /Users/edwardsharp/src/github/emergencyindex/projects-2018 --terms
 
 ruby scrape_indesign.rb --infile /Users/edwardsharp/Desktop/index8/out/projects/2018/terms.json --termsindex
 
