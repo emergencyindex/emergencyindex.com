@@ -351,6 +351,8 @@ module ScrapeIndesign
 
     page = Nokogiri::HTML(open(@options[:in_file]))
 
+    # note: this volume may or not have tags before "A"
+    
     md_out = %{---
 layout: page
 name: Terms
@@ -409,44 +411,6 @@ toc: #{@options[:vol]} Terms
     
     p "wrote to ./terms.md"
     File.open('terms.md',"w"){|f| f.write(md_out)}
-
-    #  p "reading #{@options[:in_file]}..."
-    #  # **Asia** _see also_ <span class="see-also">China</span> <span class="see-also">Japan</span>
-    #  j = JSON.parse( File.read(@options[:in_file]) )
-    #  len = j.length
-    #  idx = 0
-    #  md_out = ''
-    #  j.each do |item|
-    #    status_update(len:len, idx:idx)
-
-    #    if item[0].length === 1
-    #      # this must be a letter section heading
-    #      md_out += "{: ##{item[0]} .index .sticky-nav }\n"
-    #      md_out += "## #{item[0]}\n\n"
-    #    elsif item[1].length === 0
-    #       if item[0] =~ /see also/
-    #         splt = item[0].split('see also')
-    #         md_out += "**#{splt[0].strip}** _see also_ "
-    #         md_out += splt[1].split(',').map{ |t| "<span class=\"see-also\">#{t.strip}</span>"}.join(' ')
-    #         md_out += "\n\n"
-    #       elsif item[0] =~ /see/
-    #         splt = item[0].split('see')
-    #         md_out += "**#{splt[0].strip}** _see_ "
-    #         md_out += splt[1].split(',').map{ |t| "<span class=\"see-also\">#{t.strip}</span>"}.join(' ')
-    #         md_out += "\n\n"
-    #       else 
-    #         p "expected empty array to be see also ref, got: #{item[0]}"
-    #       end
-    #    else
-    #      md_out += "**#{item[0]}** "
-    #      md_out += item[1].map{ |pp| "[#{pp}]"}.join(', ')
-    #      md_out += "\n\n"
-    #    end
-       
-    #  end
-
-    #  p "wrote to ./terms.md"
-    #  File.open('terms.md',"w"){|f| f.write(md_out)}
 
   end
 
@@ -547,27 +511,6 @@ toc: #{@options[:vol]} Terms
 private
   def self.status_update(len:nil, idx:nil)
     print "\b" * 16, "Progress: #{(idx.to_f / len * 100).to_i}% ", @pinwheel.rotate!.first
-  end
-
-  def fix_2012_termz
-    f = "/Users/edward/src/tower/github/alveol.us/utilz/projects/2012/pages_edited.json"
-    j = JSON.parse( File.read(f) )
-
-    j.each do |i|
-      terms = i[1]
-      terms.each do |t|
-        m = t.match(/(.*)\(([a-z, ]*)\)/)
-        if m and m[2]
-          j[i[0]] -= [t]
-          j[i[0]] << m[2].split(',').collect{|s| "#{m[1].strip} #{s.strip}" }
-          j[i[0]].flatten!
-          j[i[0]].sort!
-        end
-      end
-    end
-
-    File.open("/Users/edward/src/tower/github/alveol.us/utilz/projects/2012/pages_edited_fixed_subtermz.json","w"){|f| f.write(j.to_json)}
-
   end
 
   def self.read_md file: ''
