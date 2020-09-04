@@ -117,9 +117,7 @@ ruby scrape_indesign.rb --infile /Users/edwardsharp/Desktop/index8/terms.html --
 
 ruby scrape_indesign.rb --infile /Users/edwardsharp/Desktop/index8/terms.html --out /Users/edwardsharp/src/github/emergencyindex/projects-2018 --terms
 
-ruby scrape_indesign.rb --infile /Users/edwardsharp/Desktop/index8/out/projects/2018/terms.json --termsindex
-
-ruby scrape_indesign.rb --tidy  /Users/edwardsharp/Desktop/index8/out/projects/2018/
+ruby scrape_indesign.rb --infile /Users/edwardsharp/Desktop/index8/terms.html --volume 2018 --termsindex
 ```
 use detox program (`brew install detox` or whatever) rename image files:  (-n for dry-run. detox removes bad filename charz)
 ```sh
@@ -130,4 +128,6 @@ use imagemagick (`brew install imagemagick` or whatever) to convert png -> jpgz:
 mogrify -format jpg *.png
 
 ruby scrape_indesign.rb --validateimages /Users/edwardsharp/Desktop/index8/out/projects/2018 --validateimagesdir /Users/edwardsharp/src/github/emergencyindex/projects-2018
+
+ruby scrape_indesign.rb --tidy  /Users/edwardsharp/Desktop/index8/out/projects/2018/
 ```

@@ -346,42 +346,107 @@ module ScrapeIndesign
   end #scrape_terms_html
 
   def self.build_terms_index
-     # ex: ruby scrape_indesign.rb --infile /Users/edwardsharp/src/github/emergencyindex/emergencyindex.com/utilz/projects/2017/terms.json --termsindex
-     p "reading #{@options[:in_file]}..."
-     j = JSON.parse( File.read(@options[:in_file]) )
-     len = j.length
-     idx = 0
-     md_out = ''
-     j.each do |item|
-       status_update(len:len, idx:idx)
+    # ex: ruby scrape_indesign.rb --infile /Users/edwardsharp/Desktop/index8/terms.html --volume 2018 --termsindex
+    p "reading #{@options[:in_file]}..."
 
-       if item[0].length === 1
-         # this must be a letter section heading
-         md_out += "{: ##{item[0]} .index .sticky-nav }\n"
-         md_out += "## #{item[0]}\n\n"
-       elsif item[1].length === 0
-          if item[0] =~ /see also/
-            splt = item[0].split('see also')
-            md_out += "**#{splt[0].strip}** _see also_ "
-            md_out += splt[1].split(',').map{ |t| "<span class=\"see-also\">#{t.strip}</span>"}.join(' ')
-            md_out += "\n\n"
-          elsif item[0] =~ /see/
-            splt = item[0].split('see')
-            md_out += "**#{splt[0].strip}** _see_ "
-            md_out += splt[1].split(',').map{ |t| "<span class=\"see-also\">#{t.strip}</span>"}.join(' ')
-            md_out += "\n\n"
-          else 
-            p "expected empty array to be see also ref, got: #{item[0]}"
-          end
-       else
-         md_out += "**#{item[0]}** "
-         md_out += item[1].map{ |pp| "[#{pp}]"}.join(', ')
-         md_out += "\n\n"
-       end
+    page = Nokogiri::HTML(open(@options[:in_file]))
+
+    md_out = %{---
+layout: page
+name: Terms
+volume: '#{@options[:vol]}'
+title: 'Index #{@options[:vol]}: Terms'
+wrapperclass: 'index-terms'
+toc: #{@options[:vol]} Terms
+---
+
+\{: #0-9 .index .sticky-nav \}
+## 0-9
+
+}
+
+    page.css('p').each do |_p|
+
+      _spans = _p.css('span')
+
+      base_term = _spans[0].text.strip
+      if _spans.length == 1
+        # this must be a letter section heading
+        md_out += "{: ##{base_term} .index .sticky-nav }\n"
+        md_out += "## #{base_term}\n\n"
+        next
+      end
+
+      md_out += "**#{base_term}** "
+
+      _spans.each_with_index do |_span, i|
+        text = _span.text.strip
+        next if text.blank? or i == 0
+
+        # yank common delinatorz used in page lists
+        no_delinatorz = text.gsub(',','').gsub(' ','').gsub(';','')
+        # try to determine if this is all numbers and thus a list of pages.
+        # if there are more than 0 numbers and nothing else, it must be a list of pages. neat.
+        isNumeric = no_delinatorz.scan(/\d/).length > 0 and no_delinatorz.scan(/\D/).empty?
+        if isNumeric
+          md_out += text.gsub(';','').split(',').map{ |s| "[#{s.strip.rjust(3, '0')}]"}.join(', ')
+          md_out += ' '
+          next
+        end
+
+        if text == 'see' or text == 'see also' or text == 'as in'
+          md_out += "_#{text}_ "
+          next
+        end
+
+        md_out += text.split(',').map{ |t| "<span class=\"see-also\">#{t.strip}</span>" }.join(',')
+        md_out += ' '
+
+      end
+
+      md_out += "\n\n"
+    end
+    
+    p "wrote to ./terms.md"
+    File.open('terms.md',"w"){|f| f.write(md_out)}
+
+    #  p "reading #{@options[:in_file]}..."
+    #  # **Asia** _see also_ <span class="see-also">China</span> <span class="see-also">Japan</span>
+    #  j = JSON.parse( File.read(@options[:in_file]) )
+    #  len = j.length
+    #  idx = 0
+    #  md_out = ''
+    #  j.each do |item|
+    #    status_update(len:len, idx:idx)
+
+    #    if item[0].length === 1
+    #      # this must be a letter section heading
+    #      md_out += "{: ##{item[0]} .index .sticky-nav }\n"
+    #      md_out += "## #{item[0]}\n\n"
+    #    elsif item[1].length === 0
+    #       if item[0] =~ /see also/
+    #         splt = item[0].split('see also')
+    #         md_out += "**#{splt[0].strip}** _see also_ "
+    #         md_out += splt[1].split(',').map{ |t| "<span class=\"see-also\">#{t.strip}</span>"}.join(' ')
+    #         md_out += "\n\n"
+    #       elsif item[0] =~ /see/
+    #         splt = item[0].split('see')
+    #         md_out += "**#{splt[0].strip}** _see_ "
+    #         md_out += splt[1].split(',').map{ |t| "<span class=\"see-also\">#{t.strip}</span>"}.join(' ')
+    #         md_out += "\n\n"
+    #       else 
+    #         p "expected empty array to be see also ref, got: #{item[0]}"
+    #       end
+    #    else
+    #      md_out += "**#{item[0]}** "
+    #      md_out += item[1].map{ |pp| "[#{pp}]"}.join(', ')
+    #      md_out += "\n\n"
+    #    end
        
-     end
+    #  end
 
-     File.open('terms.md',"w"){|f| f.write(md_out)}
+    #  p "wrote to ./terms.md"
+    #  File.open('terms.md',"w"){|f| f.write(md_out)}
 
   end
 
