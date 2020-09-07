@@ -197,6 +197,13 @@ label[for="project_already_submitted"], label[for="project_description_monospace
   font-size: 14px;
 }
 
+.nowrap pre code{
+  white-space: pre;
+}
+.nowrap pre {
+  overflow-x: scroll;
+}
+
 .all-projects{
   display: flex;
   justify-content: space-between;
