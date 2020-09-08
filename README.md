@@ -3,130 +3,29 @@ layout: default
 title: README
 permalink: /README.md/
 ---
-## EmergencyINDEX
+# EmergencyINDEX
+## AN ANNUAL DOCUMENT OF PERFORMANCE PRACTICE
 
 [![Gitter](https://badges.gitter.im/emergencyindex/community.svg)](https://gitter.im/emergencyindex/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
+👋this is a [Jekyll](https://jekyllrb.com/) project for the [EmergencyINDEX.com](http://emergencyindex.com) website. this repository contains code to build a static website leveraging the Jekyll "ruby framework" and a lot of [liquid templates](https://shopify.github.io/liquid/) to generate .html (.js, .json, and .css, too! 😊) files that are hosted (for free! 🙌) via [GitHub Pages](https://github.com/emergencyindex/emergencyindex.com/deployments/activity_log?environment=github-pages)
+
+
+curious about the future? see: [emergency_index_people](https://github.com/orgs/emergencyindex/teams/emergency_index_people)
+
+...want to help? [reach out on gitter.im/emergencyindex](https://gitter.im/emergencyindex)
+
+**tldr;**
+
+### devel notes
+
+see [MARKDOWN_NOTES.md](MARKDOWN_NOTES.md) for help getting started with markdown.
+
+see [PROJECT_TEMPLATE.md](PROJECT_TEMPLATE.md) (project's __schema__)
+
 Edit files using a web browser with the [editor on GitHub](https://github.com/emergencyindex/emergencyindex.com/edit/master/README.md)
 
-Whenever there are commits to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the site (_limit of 10 builds an hour_). 
-
-### Markdown Syntax
-
-Markdown is a lightweight and easy-to-use syntax for styling text.
-
-```markdown
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](https://emergencyindex.com) and ![Image](https://emergencyindex.com/assets/img/preview.png)
-
-> blockquote
-
-two spaces  
-after text  
-will not
-add return
-
-Header 0 | Header 1
--------- | --------
-cell 1 | cell 2
-cell 3 | cell 4
-
-HTML
-<dl>
-  <dt>Definition list</dt>
-  <dd>Is something people use sometimes.</dd>
-
-  <dt>Markdown in HTML</dt>
-  <dd>Does *not* work **very** well. Use HTML <em>tags</em>.</dd>
-</dl>
-
-Horizontal Rule
-
----
-
-```
-
-The above markdown code looks like:
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](https://emergencyindex.com) and ![Image](https://emergencyindex.com/assets/img/preview.png)
-
-> blockquote
-
-two spaces  
-after text  
-will not
-add return (and multiple line breaks are ignored!)
-
-Header 0 | Header 1
--------- | --------
-cell 1 | cell 2
-cell 3 | cell 4
-
-HTML
-<dl>
-  <dt>Definition list</dt>
-  <dd>Is something people use sometimes.</dd>
-
-  <dt>Markdown in HTML</dt>
-  <dd>Does *not* work **very** well. Use HTML <em>tags</em>.</dd>
-</dl>
-
----
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Project template
-
-All of the project files need to include this [YAML](http://yaml.org/) metadata at the top of the Markdown file:
-
-```markdown
----
-layout: project
-volume: 
-image: 
-photo_credit: 
-title: 
-first_performed: 
-place: 
-times_performed: 
-contributor: 
-collaborators:
-  -
-home: 
-links: 
-  - 
-contact: 
-footnote: 
-tags: 
-  - 
-pages:
-needs_review:
----
-
-```
+Whenever there are commits to this repository, GitHub Pages will rebuild the site (_limit of 10 builds an hour_). 
 
 ### local development 
 
@@ -141,7 +40,9 @@ the content for each year is referenced via git submodules to individual project
 [projects-2013](https://github.com/emergencyindex/projects-2013)  
 [projects-2014](https://github.com/emergencyindex/projects-2014)  
 [projects-2015](https://github.com/emergencyindex/projects-2015)  
-[projects-2016](https://github.com/emergencyindex/projects-2016)
+[projects-2016](https://github.com/emergencyindex/projects-2016)  
+[projects-2017](https://github.com/emergencyindex/projects-2017)  
+[projects-2018](https://github.com/emergencyindex/projects-2018)  
 
 every repository contains separate branches (`projects`, `indexes`, & `images`) with files that end up their own respective folder in this project (e.g. [projects-2011](https://github.com/emergencyindex/projects-2011)'s `indexes` branch files will end up the `_projects/2011` folder).  
 
@@ -162,20 +63,25 @@ to pull in updates from sub-modules run:
 $ `git submodule sync`
 $ `git submodule update --init --recursive --remote`
 
-to add a new submodule: 
+##### add a new submodule: 
 
 $ `git submodule add <url> <path>`
 
-so for example: `git submodule add https://github.com/emergencyindex/projects-2017 _indexes/2017`
+so for example (__vol. 8__):
+```sh
+git submodule add https://github.com/emergencyindex/projects-2018 _indexes/2018
+git submodule add https://github.com/emergencyindex/projects-2018 _projects/2018
+git submodule add https://github.com/emergencyindex/projects-2018 assets/img/2018
+```
 
-then edit the `.gitmodules` file to specify the branch (if needed). for example: `branch = indexes`
+then edit the `.gitmodules` file to specify the branch for each (3) of these submodules (if needed). for example: `branch = indexes`
 
 so something like: 
 
 ```
-[submodule "_indexes/2017"]
-path = _indexes/2017
-url = https://github.com/emergencyindex/projects-2017
+[submodule "_indexes/2018"]
+path = _indexes/2018
+url = https://github.com/emergencyindex/projects-2018
 branch = indexes
 ```
 
@@ -199,3 +105,29 @@ $ `bundle exec jekyll serve`
 add `--incremental` flag to speed up build time. make changes and preview locally, run:
 
 $ `bundle exec jekyll serve --incremental`
+
+#### 🔪 `utilz/scrape_indesign.rb` 🔪
+
+rough example how this script was used for vol. 8:
+
+```sh
+ruby scrape_indesign.rb -i /Users/edwardsharp/Desktop/index8/index8.html -d /Users/edwardsharp/Desktop/index8/out -v 2018 -p
+
+ruby scrape_indesign.rb --infile /Users/edwardsharp/Desktop/index8/terms.html --out /Users/edwardsharp/Desktop/index8/out --volume 2018 --terms --dryrun
+
+ruby scrape_indesign.rb --infile /Users/edwardsharp/Desktop/index8/terms.html --out /Users/edwardsharp/src/github/emergencyindex/projects-2018 --terms
+
+ruby scrape_indesign.rb --infile /Users/edwardsharp/Desktop/index8/terms.html --volume 2018 --termsindex
+```
+use detox program (`brew install detox` or whatever) rename image files:  (-n for dry-run. detox removes bad filename charz)
+```sh
+detox -rv /Users/edwardsharp/src/github/emergencyindex/projects-2018
+```
+use imagemagick (`brew install imagemagick` or whatever) to convert png -> jpgz:
+```sh
+mogrify -format jpg *.png
+
+ruby scrape_indesign.rb --validateimages /Users/edwardsharp/Desktop/index8/out/projects/2018 --validateimagesdir /Users/edwardsharp/src/github/emergencyindex/projects-2018
+
+ruby scrape_indesign.rb --tidy  /Users/edwardsharp/Desktop/index8/out/projects/2018/
+```

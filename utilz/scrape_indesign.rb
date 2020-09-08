@@ -10,8 +10,9 @@ include Carmen
 
 module ScrapeIndesign
 
+  dir_prefix = Dir.pwd.end_with?('/utilz') ? '' : './utilz/'
   @options = {}
-  @project_template = File.read 'project_template.erb'
+  @project_template = File.read "#{dir_prefix}project_template.erb"
   @pinwheel = %w{ | \/ - \\ }
 
   def self.init
@@ -26,16 +27,17 @@ module ScrapeIndesign
       opts.on('-v', '--volume VOLUME', 'Volume Name') { |v| @options[:vol] = v }
       opts.on('-o', '--pageoffset OFFSET', 'Page of first project') { |v| @options[:pageoffset] = v }
       opts.on("-p", "--projects", "Scrape Projects") { |v| @options[:projects] = v }
-      opts.on("-t", "--terms", "Scrape Terms") { |v| @options[:terms] = v }
-      opts.on("-u", "--termstxt", "Scrape Terms Text") { |v| @options[:terms_txt] = v }
-      opts.on("-T", "--writeterms", "Write Terms to MD") { |v| @options[:writeterms] = v }
+      opts.on("-t", "--terms", "Scrape Terms (use --dryrun first)") { |v| @options[:terms] = v }
       opts.on("-I", "--termsindex", "Build Terms Index MD") { |v| @options[:termsindex] = v }
       opts.on("-x", "--tidy DIRECTORY", "Tidy project YAML") { |v| @options[:tidy] = v }
       opts.on("-X", "--drytidy", "DRY RUN Tidy project YAML (no files modified)") { |v| @options[:drytidy] = v }
+      opts.on("-Z", "--dryrun", "DRY RUN (no files modified)") { |v| @options[:dryrun] = v }
+      opts.on("-V", "--validateimages DIRECTORY", "Validate project image files. Specify project dir with .md files.") { |v| @options[:validate_images] = v }
+      opts.on("-I", "--validateimagesdir DIRECTORY", "Validate project images. Specify directory with project images.") { |v| @options[:validate_images_dir] = v }
     end.parse!
 
 
-    unless @options[:tidy]
+    unless @options[:tidy] or @options[:validate_images]
       raise "ERROR! --input file not specified" if @options[:in_file].nil?
       raise "ERROR! --infile does not exist" unless File.exist?(@options[:in_file])
       raise "ERROR! --outdir is not a directory" unless File.directory?(@options[:out_dir])
@@ -45,14 +47,12 @@ module ScrapeIndesign
       scrape_projects_html
     elsif @options[:terms]
       scrape_terms_html
-    elsif @options[:terms_txt]
-      scrape_terms_txt
-    elsif @options[:writeterms]
-      write_terms_to_md
     elsif @options[:termsindex]
       build_terms_index
     elsif @options[:tidy]
       tidy_project_yml
+    elsif @options[:validate_images]
+      validate_images
     else
       p "nothing to do!"
       puts optparse
@@ -61,8 +61,9 @@ module ScrapeIndesign
   end
 
   def self.scrape_projects_html
+    # ex: ruby scrape_indesign.rb -i /Users/edwardsharp/Desktop/index8/index8.html -d /Users/edwardsharp/Desktop/index8/out -v 2018 -p
 
-    p "reading #{@options[:in_file]}...\n"
+    p "reading #{@options[:in_file]}..."
     Dir.mkdir("#{@options[:out_dir]}/projects") unless Dir.exist?("#{@options[:out_dir]}/projects")
     Dir.mkdir("#{@options[:out_dir]}/projects/#{@options[:vol]}") unless Dir.exist?("#{@options[:out_dir]}/projects/#{@options[:vol]}")
 
@@ -81,7 +82,11 @@ module ScrapeIndesign
     unless len % 4 == 0
       p "found #{page.css('img').length} images. expect #{page.xpath('/html/body/div').length / 4}"
       page.xpath('/html/body/div').each_slice(4) do |div|
-        p "4block does not have an img tag. line: #{div.first.line}" unless div.collect{|d| d.css('div img') and d.css('div img').length > 0 }.include?(true)
+        d = div.first
+        blockhasimg = d.css('div img') and d.css('div img').length > 0 
+        if blockhasimg.empty?
+          p "4block does not have an img tag. line: #{div.first.line}"  
+        end
       end
     end
 
@@ -117,7 +122,7 @@ module ScrapeIndesign
       # for each div, check if there's an image
       div.each do |d|
         if d.css('div img').first and d.css('div img').first['src']
-          project['info']['image'] = d.css('div img').first['src'].gsub("INDEX-7-book-web-resources/image/",'').strip
+          project['info']['image'] = d.css('div img').first['src'].gsub(/.*\/image\//,'').strip
           next
         end
         #if d.css('.photo-credit').first and d.css('.photo-credit').first.text
@@ -249,190 +254,168 @@ module ScrapeIndesign
   end #scrape_projects_html
 
   def self.scrape_terms_html
-
+    # ex: ruby scrape_indesign.rb --infile /Users/edwardsharp/Desktop/index8/terms.html --out /Users/edwardsharp/Desktop/index8/out --volume 2018 --terms --dryrun
+    # ex: ruby scrape_indesign.rb --infile /Users/edwardsharp/Desktop/index8/terms.html --out /Users/edwardsharp/src/github/emergencyindex/projects-2018 --terms
     p "reading #{@options[:in_file]}..."
-    Dir.mkdir("#{@options[:out_dir]}/projects") unless Dir.exist?("#{@options[:out_dir]}/projects")
-    Dir.mkdir("#{@options[:out_dir]}/projects/#{@options[:vol]}") unless Dir.exist?("#{@options[:out_dir]}/projects/#{@options[:vol]}")
 
     page = Nokogiri::HTML(open(@options[:in_file]))
 
     terms = {}
+    
     page.css('p').each do |_p|
 
-      _terms = _p.text.split(';')
+      _span = _p.css('span')
+      
+      # skip if there's zero on one <span>
+      next if _span.length == 0 or _span.length == 1
+     
+      base = _span[0].text.strip
 
-      _baseTerm = _terms[0].match(/^[^\d]*/)[0].strip
-      _pages = _terms[0].gsub(/[^0-9,\ ]/, '').split(/,| /).reject(&:nil?)
+      _span.each_with_index do |_s, i|
+        next if i === 0
+        # yank common delinatorz used in page lists
+        no_delinatorz = _s.text.gsub(',','').gsub(' ','').gsub(';','')
+        # try to determine if this is all numbers and thus a list of pages.
+        # if there are more than 0 numbers and nothing else, it must be a list of pages. neat.
+        isNumeric = no_delinatorz.scan(/\d/).length > 0 and no_delinatorz.scan(/\D/).empty?
+        if isNumeric
+          # sometimes there's an empty span, so check for that and if so, use the span before that.
+          term = _span[i-1].text.strip.empty? ? _span[i-2].text.strip : _span[i-1].text.strip
+          term_pages = _s.text.gsub(';','').split(',').map{ |s| page_to_pages s}
 
-      if _baseTerm.include?('also ')
-        _also = _baseTerm.match(/also [^\d]*/)[0].gsub('also','').strip
-        # p "ALSO!! #{_also}"
-        terms[_also] ||= []
-        terms[_also] << _pages
-        terms[_also].flatten!
+          if terms[term]
+            terms[term] = terms[term].concat term_pages
+          else
+            terms[term] = term_pages
+          end
+
+          if base != term
+            p "adding base term: #{base}"
+            if terms[base]
+              terms[base] = terms[base].concat term_pages
+            else
+              terms[base] = term_pages
+            end
+          end
+
+          # p "zomg #{term} already here?????" if terms[term]
+          # terms[term] = term_pages
+        end
       end
 
-      _baseTerm.gsub!(/also (.*)/,'')
-      _baseTerm.gsub!(')','') if _baseTerm.include?(')') and !_baseTerm.include?('(')
-      _baseTerm.gsub!('(','') if _baseTerm.include?('(') and !_baseTerm.include?(')')
-      _baseTerm.strip!
+    end
 
-      terms[_baseTerm] ||= []
-      terms[_baseTerm] << _pages
-      terms[_baseTerm].flatten!
+    pages_data = {}
 
-
-      _terms[1..-1].each do |_t|
-        _subTerm = _t.match(/^[^\d]*/)[0]
-        _pages = _t.gsub(/[^0-9, ]/, '').split(/,| /).reject(&:nil?)
-        if _t.include?('also ')
-          _also = _t.match(/also [^\d]*/)[0].gsub('also','').strip
-          _also.gsub!(')','') if _also.include?(')') and !_also.include?('(')
-          # p "SUB ALSO: #{_also}"
-          terms[_also] ||= []
-          terms[_also] <<  _pages
-          terms[_also].flatten!
+    terms.each do |term, pages|
+      pages.each do |page|
+        if pages_data[page].nil? 
+          pages_data[page] = [term]
+        else
+          pages_data[page] << term
         end
-        terms[_baseTerm] ||= []
-        terms[_baseTerm] << _pages
-        terms[_baseTerm].flatten!
-        _subKey = "#{_baseTerm} #{_subTerm.gsub(/\(also (.*)\)/,'').strip}"
-        terms[_subKey] ||= []
-        terms[_subKey] << _pages
-        terms[_subKey].flatten!
       end
     end
 
-    p "writing #{terms.length} items to terms.json"
-    outfile = "#{@options[:out_dir]}/projects/#{@options[:vol]}/terms.json"
-    File.open(outfile,"w"){|f| f.write(terms.to_json)}
-
-
-    pages_hash = {}
-    terms.each do |term, pages|
-
-      pages.each do |page|
-        if page.to_i.even?
-          _next = (page.to_i + 1).to_s
-          _pages = "#{page.rjust(3, '0')}-#{_next.rjust(3, '0')}"
-        else
-          _prev = (page.to_i - 1).to_s
-          _pages = "#{_prev.rjust(3, '0')}-#{page.rjust(3, '0')}"
+    if @options[:dryrun]
+      p "...writing terms.json"
+      Dir.mkdir("#{@options[:out_dir]}/projects") unless Dir.exist?("#{@options[:out_dir]}/projects")
+      Dir.mkdir("#{@options[:out_dir]}/projects/#{@options[:vol]}") unless Dir.exist?("#{@options[:out_dir]}/projects/#{@options[:vol]}")
+      outdir = "#{@options[:out_dir]}/projects/#{@options[:vol]}"
+      File.open("#{outdir}/terms.json","w"){|f| f.write(JSON.pretty_generate(terms))}
+      p "...writing pages.json"
+      File.open("#{outdir}/pages.json","w"){|f| f.write(JSON.pretty_generate(pages_data))}
+    else
+      p "...writing project .md files (#{outdir})"
+      outdir = @options[:out_dir] = "#{@options[:out_dir]}/" unless @options[:out_dir][-1] == '/'
+      pages_data.each do |pages, terms|
+        project_file = "#{outdir}#{pages}.md"
+        unless File.exist?(project_file)
+          p "WARN: #{project_file} doesnot exist!"
+          p "terms: #{terms}"
+          next
         end
-
-        pages_hash[_pages] ||= []
-        pages_hash[_pages] << term unless pages_hash[_pages].include?(term) or term.nil?
+        project = read_md(file:project_file)
+        project[:yml]["tags"] = terms.sort_by(&:downcase).uniq
+        File.open(project_file,"w"){|f| f.write("#{project[:yml].to_yaml}---#{project[:description]}")}
       end
-
     end
 
     p "Done!"
-    outfile = "#{@options[:out_dir]}/projects/#{@options[:vol]}/pages.json"
-    File.open(outfile,"w"){|f| f.write(pages_hash.to_json)}
-    p "wrote #{pages_hash.length} items to #{outfile}"
 
   end #scrape_terms_html
 
-  def self.scrape_terms_txt
-    # read txt files like:
-    # TERM [...pages]
-    # example:  body 007, 023, 033, 119
+  def self.build_terms_index
+    # ex: ruby scrape_indesign.rb --infile /Users/edwardsharp/Desktop/index8/terms.html --volume 2018 --termsindex
     p "reading #{@options[:in_file]}..."
-    Dir.mkdir("#{@options[:out_dir]}/projects") unless Dir.exist?("#{@options[:out_dir]}/projects")
-    Dir.mkdir("#{@options[:out_dir]}/projects/#{@options[:vol]}") unless Dir.exist?("#{@options[:out_dir]}/projects/#{@options[:vol]}")
 
-    terms = {}
-    file = open(@options[:in_file])
+    page = Nokogiri::HTML(open(@options[:in_file]))
 
-    file.each do |line|
-      term = line.match(/^[^\d]*/)[0].strip
-      terms[term] = line.gsub(/[^0-9, ]/, '').split(/,| /).reject(&:empty?)
-    end
+    # note: this volume may or not have tags before "A"
+    
+    md_out = %{---
+layout: page
+name: Terms
+volume: '#{@options[:vol]}'
+title: 'Index #{@options[:vol]}: Terms'
+wrapperclass: 'index-terms'
+toc: #{@options[:vol]} Terms
+---
 
-    pages_hash = {}
-    terms.each do |term, pages|
+\{: #0-9 .index .sticky-nav \}
+## 0-9
 
-      pages.each do |page|
-        if page.to_i.even?
-          _next = (page.to_i + 1).to_s
-          _pages = "#{page.rjust(3, '0')}-#{_next.rjust(3, '0')}"
-        else
-          _prev = (page.to_i - 1).to_s
-          _pages = "#{_prev.rjust(3, '0')}-#{page.rjust(3, '0')}"
-        end
+}
 
-        pages_hash[_pages] ||= []
-        pages_hash[_pages] << term unless pages_hash[_pages].include?(term) or term.nil?
-      end
+    page.css('p').each do |_p|
 
-    end
+      _spans = _p.css('span')
 
-    p "Done!"
-    outfile = "#{@options[:out_dir]}/projects/#{@options[:vol]}/terms_by_page.json"
-    File.open(outfile,"w"){|f| f.write(pages_hash.to_json)}
-    p "wrote #{pages_hash.length} items to #{outfile}"
-  end
-
-  def self.write_terms_to_md
-    # ex:  ruby scrape_indesign.rb --infile /Users/edward/src/tower/github/alveol.us/utilz/projects/2014/terms_by_page.json --out ../_projects/2014/ --writeterms
-    p "reading #{@options[:in_file]}..."
-    j = JSON.parse( File.read(@options[:in_file]) )
-    len = j.length
-    idx = 0
-    j.each do |item|
-      status_update(len:len, idx:idx)
-      project_file = "#{@options[:out_dir]}/#{item[0]}.md"
-      unless File.exist?(project_file)
-        p "WARN: #{project_file} doesnot exist!"
+      base_term = _spans[0].text.strip
+      if _spans.length == 1
+        # this must be a letter section heading
+        md_out += "{: ##{base_term} .index .sticky-nav }\n"
+        md_out += "## #{base_term}\n\n"
         next
       end
-      project = read_md(file:project_file)
-      project[:yml]["tags"] = item[1].sort_by(&:downcase).uniq
-      File.open(project_file,"w"){|f| f.write("#{project[:yml].to_yaml}---#{project[:description]}")}
+
+      md_out += "**#{base_term}** "
+
+      _spans.each_with_index do |_span, i|
+        text = _span.text.strip
+        next if text.blank? or i == 0
+
+        # yank common delinatorz used in page lists
+        no_delinatorz = text.gsub(',','').gsub(' ','').gsub(';','')
+        # try to determine if this is all numbers and thus a list of pages.
+        # if there are more than 0 numbers and nothing else, it must be a list of pages. neat.
+        isNumeric = no_delinatorz.scan(/\d/).length > 0 and no_delinatorz.scan(/\D/).empty?
+        if isNumeric
+          md_out += text.gsub(';','').split(',').map{ |s| "[#{s.strip.rjust(3, '0')}]"}.join(', ')
+          md_out += ' '
+          next
+        end
+
+        if text == 'see' or text == 'see also' or text == 'as in'
+          md_out += "_#{text}_ "
+          next
+        end
+
+        md_out += text.split(',').map{ |t| "<span class=\"see-also\">#{t.strip}</span>" }.join(',')
+        md_out += ' '
+
+      end
+
+      md_out += "\n\n"
     end
-  end
-
-  def self.build_terms_index
-     # ex:  ruby scrape_indesign.rb --infile /Users/edwardsharp/src/github/emergencyindex/emergencyindex.com/utilz/projects/2017/terms.json --termsindex
-     p "reading #{@options[:in_file]}..."
-     j = JSON.parse( File.read(@options[:in_file]) )
-     len = j.length
-     idx = 0
-     md_out = ''
-     j.each do |item|
-       status_update(len:len, idx:idx)
-
-       if item[0].length === 1
-         # this must be a letter section heading
-         md_out += "{: ##{item[0]} .index .sticky-nav }\n"
-         md_out += "## #{item[0]}\n\n"
-       elsif item[1].length === 0
-          if item[0] =~ /see also/
-            splt = item[0].split('see also')
-            md_out += "**#{splt[0].strip}** _see also_ "
-            md_out += splt[1].split(',').map{ |t| "<span class=\"see-also\">#{t.strip}</span>"}.join(' ')
-            md_out += "\n\n"
-          elsif item[0] =~ /see/
-            splt = item[0].split('see')
-            md_out += "**#{splt[0].strip}** _see_ "
-            md_out += splt[1].split(',').map{ |t| "<span class=\"see-also\">#{t.strip}</span>"}.join(' ')
-            md_out += "\n\n"
-          else 
-            p "expected empty array to be see also ref, got: #{item[0]}"
-          end
-       else
-         md_out += "**#{item[0]}** "
-         md_out += item[1].map{ |pp| "[#{pp}]"}.join(', ')
-         md_out += "\n\n"
-       end
-       
-     end
-
-     File.open('terms.md',"w"){|f| f.write(md_out)}
+    
+    p "wrote to ./terms.md"
+    File.open('terms.md',"w"){|f| f.write(md_out)}
 
   end
 
   def self.tidy_project_yml
+    # ex: ruby scrape_indesign.rb --tidy  /Users/edwardsharp/Desktop/index8/out/projects/2018/
     p "DRY RUNNING TIDY PROCESS (good job!)" if @options[:drytidy]
     #/Users/edward/src/tower/github/alveol.us/_projects/
     @options[:tidy] = "#{@options[:tidy]}/" unless @options[:tidy][-1] == '/'
@@ -456,37 +439,78 @@ module ScrapeIndesign
       project[:yml]["title"].upcase!
       project[:yml]["contributor"].upcase!
 
-      File.open(file,"w"){|f| f.write("#{project[:yml].to_yaml}---\n\n#{project[:description]}")} unless @options[:drytidy]
+      File.open(file,"w"){|f| f.write("#{project[:yml].to_yaml}---\n#{project[:description]}")} unless @options[:drytidy]
       idx += 1
     end
 
     p "done! #{len} filez"
   end
 
+  def self.validate_images
+    # ex: ruby utilz/scrape_indesign.rb --validateimages /Users/edwardsharp/Desktop/index8/out/projects/2018 --validateimagesdir /Users/edwardsharp/src/github/emergencyindex/projects-2018
+    # useful stuff todo before this:
+    # mogrify -format jpg *.png
+    #   convert png files to jpeg
+    # detox -rvn /Users/edwardsharp/src/github/emergencyindex/projects-2018
+    #   note: -n for dry-run. detox removes bad files name chars.
+    # use hash keys with original filename and value of detox'd filename, like:
+    detoxd = {
+      'N_49.39\'7.92__W_124.4\'11.397_.jpg': 'N_49.39_7.92_W_124.4_11.397_.jpg',
+    }
+
+    # make sure dirz ends with a slash.
+    @options[:validate_images] = "#{@options[:validate_images]}/" unless @options[:validate_images][-1] == '/'
+    @options[:validate_images_dir] = "#{@options[:validate_images_dir]}/" unless @options[:validate_images_dir][-1] == '/'
+
+    raise "--validateimages '#{@options[:validate_images]}' directory does not exist?'" unless File.directory? @options[:validate_images]
+    raise "--validateimagesdir '#{@options[:validate_images_dir]}' directory does not exist?'" unless File.directory? @options[:validate_images_dir]
+
+    p "Looking for MD files in #{@options[:validate_images]}..."
+
+    all_filez = Dir.glob("#{@options[:validate_images]}**/*.md").select{ |e| File.file? e }
+    len = all_filez.length
+    raise "no .md files found here: #{@options[:validate_images]}?" if len == 0
+    idx = 0
+    all_filez.each do |file|
+      needToReWrite = false
+      project = read_md file: file
+
+      img = project[:yml]["image"]
+      
+      if detoxd.has_key? img.to_sym
+        # p "need to re-write detoxd file!"
+        img = detoxd[img.to_sym]
+        needToReWrite = true
+      end
+
+      if img.match /.*\.png/
+        # p "need to re-write png -> jpg"
+        img.gsub!('.png', '.jpg')
+        needToReWrite = true
+      end
+
+      hasimg = File.exist?("#{@options[:validate_images_dir]}#{img}")
+
+      if hasimg and needToReWrite
+        p "re-writing image #{project[:yml]["image"]} to #{img} for #{file}."
+        project[:yml]["image"] = img
+        File.open(file,"w"){|f| f.write("#{project[:yml].to_yaml}---\n#{project[:description]}")}
+      end
+
+      unless hasimg
+        p "onoz! '#{img}' does not seem to exist? probably need to manually fix #{file}?"
+      end
+
+      idx += 1
+    end
+
+    p "done! checked #{len} md filez"
+
+  end
+
 private
   def self.status_update(len:nil, idx:nil)
     print "\b" * 16, "Progress: #{(idx.to_f / len * 100).to_i}% ", @pinwheel.rotate!.first
-  end
-
-  def fix_2012_termz
-    f = "/Users/edward/src/tower/github/alveol.us/utilz/projects/2012/pages_edited.json"
-    j = JSON.parse( File.read(f) )
-
-    j.each do |i|
-      terms = i[1]
-      terms.each do |t|
-        m = t.match(/(.*)\(([a-z, ]*)\)/)
-        if m and m[2]
-          j[i[0]] -= [t]
-          j[i[0]] << m[2].split(',').collect{|s| "#{m[1].strip} #{s.strip}" }
-          j[i[0]].flatten!
-          j[i[0]].sort!
-        end
-      end
-    end
-
-    File.open("/Users/edward/src/tower/github/alveol.us/utilz/projects/2012/pages_edited_fixed_subtermz.json","w"){|f| f.write(j.to_json)}
-
   end
 
   def self.read_md file: ''
@@ -498,23 +522,16 @@ private
     {yml: yml, description: description}
   end
 
-  # misc shit
-  def dump_from_rails
-    project_template = File.read Rails.root.join('app/views/projects/jekyll.html.erb')
-    Project.where(volume: Volume.where(year: 2011)).each do |project|
-      @project = project
-      outfile = "/Users/edward/src/tower/github/alveol.us/utilz/projects/2011/#{project.pages}.md"
-      File.open(outfile,"w") do |f|
-        f.write(ERB.new(project_template).result(binding))
-        p "wrote #{outfile}"
-      end
+  def self.page_to_pages(page_string = '')
+    page = page_string.strip
+    if page.to_i.even?
+      _next = (page.to_i + 1).to_s
+      return "#{page.rjust(3, '0')}-#{_next.rjust(3, '0')}"
+    else
+      _prev = (page.to_i - 1).to_s
+      return "#{_prev.rjust(3, '0')}-#{page.rjust(3, '0')}"
     end
-  end
 
-  def rename_imgz(dir: "/Users/edward/src/tower/github/alveol.us/assets/img/2011/")
-    Dir["#{dir}*.jpg"].each do |img|
-      File.rename(File.basename(img), File.basename(img).gsub(/[&$+,\/:;=?@<>\[\]\{\}\|\\\^~%# ]/,'_'))
-    end
   end
 
 end
