@@ -548,11 +548,15 @@ toc: #{@options[:vol]} Terms
         md_needs_manual_review << project[:yml]["pages"]
       end
 
+      if project[:yml]["title"].strip.empty? or project[:yml]["contributor"].strip.empty? or project[:yml]["place"].strip.empty?
+        md_needs_manual_review << project[:yml]["pages"]
+      end
+
     end
 
     if md_needs_manual_review.length > 0
       needs_review_dir = "#{projects_dir}/needs_review"
-      p "#{md_needs_manual_review.length} md files need manual review. type 'y' to copy files to #{needs_review_dir} (or type anying else to cancel and quit)."
+      p "#{md_needs_manual_review.length} md files need manual review. type 'y' to copy files to #{needs_review_dir}, 'v' to view, or type anying else to cancel and quit."
       copy_filez = gets.chomp
       if copy_filez == 'y'
         Dir.mkdir("#{needs_review_dir}") unless Dir.exist?("#{needs_review_dir}")
@@ -561,6 +565,10 @@ toc: #{@options[:vol]} Terms
         end
         
         p "copied files to: #{projects_dir}needs_review/"
+      elsif copy_filez == 'v'
+        md_needs_manual_review.each do |pages|
+          p "pages: #{pages}"
+        end
       end
     end
 
