@@ -204,6 +204,10 @@ label[for="project_already_submitted"], label[for="project_description_monospace
   overflow-x: scroll;
 }
 
+.smallerfont.nowrap pre code{
+  font-size: 14px;
+}
+
 .all-projects{
   display: flex;
   justify-content: space-between;
