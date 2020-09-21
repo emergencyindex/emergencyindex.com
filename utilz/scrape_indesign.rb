@@ -6,6 +6,8 @@ require 'optparse'
 require 'erb'
 require 'yaml'
 require 'carmen'
+require 'CSV'
+require 'fileutils'
 include Carmen
 
 module ScrapeIndesign
@@ -34,10 +36,12 @@ module ScrapeIndesign
       opts.on("-Z", "--dryrun", "DRY RUN (no files modified)") { |v| @options[:dryrun] = v }
       opts.on("-V", "--validateimages DIRECTORY", "Validate project image files. Specify project dir with .md files.") { |v| @options[:validate_images] = v }
       opts.on("-I", "--validateimagesdir DIRECTORY", "Validate project images. Specify directory with project images.") { |v| @options[:validate_images_dir] = v }
+      opts.on("-P", "--validateperformed", "Validate first_performed and times_performed fields; copies problem .md files to /needs_review/ dir.") { |v| @options[:validate_performed] = v }
+      opts.on("-c", "--crossref", "Update projects metadata with submission .csv data.") { |v| @options[:cross_ref] = v }
     end.parse!
 
 
-    unless @options[:tidy] or @options[:validate_images]
+    unless @options[:tidy] or @options[:validate_images] or @options[:cross_ref] or @options[:validate_performed]
       raise "ERROR! --input file not specified" if @options[:in_file].nil?
       raise "ERROR! --infile does not exist" unless File.exist?(@options[:in_file])
       raise "ERROR! --outdir is not a directory" unless File.directory?(@options[:out_dir])
@@ -53,6 +57,10 @@ module ScrapeIndesign
       tidy_project_yml
     elsif @options[:validate_images]
       validate_images
+    elsif @options[:validate_performed]
+      validate_performed
+    elsif @options[:cross_ref]
+      cross_ref
     else
       p "nothing to do!"
       puts optparse
@@ -505,6 +513,184 @@ toc: #{@options[:vol]} Terms
     end
 
     p "done! checked #{len} md filez"
+
+  end
+
+  def self.validate_performed
+    # validate each project first_performed & times_performed. copies problem .md files to /needs_review/ dir
+    # ex: ruby ./utilz/scrape_indesign.rb -P
+    # first_performed: first performed on December 4, 2018
+    # times_performed: performed once in 2018
+    
+    project_dir_default = '/Users/edwardsharp/src/github/emergencyindex/emergencyindex.com/_projects/2018'
+    p "enter path to projects .md files: [#{project_dir_default}]"
+    projects_dir = gets.chomp
+    projects_dir = project_dir_default if projects_dir.empty?
+    projects_dir = "#{projects_dir}/" unless projects_dir[-1] == '/'
+    raise "ERROR: unable to find projects in: #{projects_dir}" unless File.directory?(projects_dir)
+    all_filez = Dir.glob("#{projects_dir}**/*.md").select{ |e| File.file? e }
+    len = all_filez.length
+    raise "no .md files found here: #{projects_dir}?" if len == 0
+
+    md_needs_manual_review = []
+    all_filez.each do |file|
+      project = read_md file: file
+  
+      next if project[:yml]["pages"] == "000-001"
+
+      first_performed = project[:yml]["first_performed"].split(' ')
+      if first_performed[0] != 'first' or first_performed[1] != 'performed' or first_performed[2] != 'on' or first_performed[first_performed.length - 1] != '2018'
+        md_needs_manual_review << project[:yml]["pages"]
+      end
+    
+      times_performed = project[:yml]["times_performed"].split(' ')
+      if times_performed[0] != 'performed' or times_performed[times_performed.length - 1] != '2018'
+        md_needs_manual_review << project[:yml]["pages"]
+      end
+
+    end
+
+    if md_needs_manual_review.length > 0
+      needs_review_dir = "#{projects_dir}/needs_review"
+      p "#{md_needs_manual_review.length} md files need manual review. type 'y' to copy files to #{needs_review_dir} (or type anying else to cancel and quit)."
+      copy_filez = gets.chomp
+      if copy_filez == 'y'
+        Dir.mkdir("#{needs_review_dir}") unless Dir.exist?("#{needs_review_dir}")
+        md_needs_manual_review.each do |pages|
+          FileUtils.cp("#{projects_dir}#{pages}.md", "#{needs_review_dir}/#{pages}.md")
+        end
+        
+        p "copied files to: #{projects_dir}needs_review/"
+      end
+    end
+
+  end
+
+  def self.cross_ref
+    # attempt to update projects metadata with submission data.
+    # ex: ruby ./utilz/scrape_indesign.rb -c
+    csvfile_default = '/Users/edwardsharp/Desktop/2018sub.csv'
+    p "enter path to projects .csv file: [#{csvfile_default}]"
+    csvfile = gets.chomp
+    csvfile = csvfile_default if csvfile.empty?
+    raise "ERROR: unable to find file: #{csvfile}" unless File.exist?(csvfile)
+
+    project_dir_default = '/Users/edwardsharp/src/github/emergencyindex/emergencyindex.com/_projects/2018'
+    p "enter path to projects .md files: [#{project_dir_default}]"
+    projects_dir = gets.chomp
+    projects_dir = project_dir_default if projects_dir.empty?
+    projects_dir = "#{projects_dir}/" unless projects_dir[-1] == '/'
+    raise "ERROR: unable to find projects in: #{projects_dir}" unless File.directory?(projects_dir)
+    all_filez = Dir.glob("#{projects_dir}**/*.md").select{ |e| File.file? e }
+    len = all_filez.length
+    raise "no .md files found here: #{projects_dir}?" if len == 0
+
+    # go thru each csv row and collect hash of projects 
+    projects = {}
+    projects_arr = [] # this is sorta lazy buy stuffing into array so later if unable to find this by key then will use .filter
+    CSV.foreach(csvfile, headers: true) do |row|
+      # use title--contributor key so we can find this again
+      begin
+        # key = "#{row['title'].upcase}--#{row['contributor'].upcase}"
+        key = row['contributor'].upcase
+        proj = {
+          photo_credit: row['photo_credit'],
+          title: row['title'].upcase,
+          first_performed: row['first_performed'],
+          place: row['place'],
+          contributor: row['contributor'].upcase,
+          collaborators: row['collaborators'],
+          home: row['home'],
+          links: row['links'],
+          contact: row['contact'],
+        }
+        projects[key] = proj
+        projects_arr << proj
+      rescue 
+        p "ohnoz! caught error! row['title']#{row['title']} row['contributor']:#{row['contributor']} row: #{row}"
+      end
+
+
+    end
+
+    # okay, iterate thru all the project .md files and try to find the row in CSV to compare...
+
+    md_needs_manual_review = []
+    md_files_updated = 0
+    all_filez.each do |file|
+      project = read_md file: file
+  
+      next if project[:yml]["pages"] == "000-001"
+      key = project[:yml]["contributor"].upcase
+      csv_project = projects[key]
+
+      if csv_project.nil?
+        ['title', 'contact', 'photo_credit'].each do |lookup|
+          next if project[:yml][lookup].empty? # bail if value is empty.
+          csv_project = projects_arr.find do |a|
+            # p "trying to lookup: #{lookup} project[:yml][lookup]:#{project[:yml][lookup]}"
+            # p "FOUND ONE!! #{lookup}: #{project[:yml][lookup]}" if a[lookup.to_sym] == project[:yml][lookup]
+            a[lookup.to_sym] == project[:yml][lookup]
+          end
+          break unless csv_project.nil?
+        end
+      end
+
+      # check if the md file needs to be updated
+      unless csv_project.nil?
+        needs_update = false
+        csv_project.keys.each do |k|
+          # home field is often reformated, so skip if current value is blank.
+          next if k.to_s == 'home' and !project[:yml][k.to_s].blank?
+          # check if this is an array field
+          if project[:yml][k.to_s].kind_of?(Array)
+            if k.to_s == 'links'
+              v = [csv_project[k].gsub('http://','').gsub('https://','').gsub('www.','').gsub(/\/$/, '').strip.downcase] rescue []
+            elsif k.to_s == 'collaborators'
+              v = csv_project[k].split(',').map(&:strip) rescue []
+            else
+              v = [csv_project[k]]
+            end
+          else
+            v = csv_project[k].strip rescue nil
+          end
+
+          next if v.nil? or v.empty?
+          if project[:yml][k.to_s] != v
+            project[:yml][k.to_s] = v if needs_update
+            # p "ZOMG NEED MD UPDATE #{k}. diff: #{project[:yml][k.to_s]}>>>#{v}"
+            needs_update = true
+          end
+          
+        end
+
+        if needs_update
+          File.open(file,"w"){|f| f.write("#{project[:yml].to_yaml}---\n\n#{project[:description].strip}\n")}
+          md_files_updated += 1
+        end
+
+      end
+
+      # p "cant find project for key: #{key} pages:#{project[:yml]["pages"]}" if csv_project.nil?
+      md_needs_manual_review << project[:yml]["pages"] if csv_project.nil?
+
+    end
+
+    p "#{md_files_updated} .md files updated!"
+
+    if md_needs_manual_review.length > 0
+      needs_review_dir = "#{projects_dir}/needs_review"
+      p "#{md_needs_manual_review.length} md files need manual review. type 'y' to copy files to #{needs_review_dir} (or type anying else to cancel and quit)."
+      copy_filez = gets.chomp
+      if copy_filez == 'y'
+        Dir.mkdir("#{needs_review_dir}") unless Dir.exist?("#{needs_review_dir}")
+        md_needs_manual_review.each do |pages|
+          FileUtils.cp("#{projects_dir}#{pages}.md", "#{needs_review_dir}/#{pages}.md")
+        end
+        
+        p "copied files to: #{projects_dir}needs_review/"
+      end
+    end
 
   end
 

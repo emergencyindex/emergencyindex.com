@@ -128,6 +128,16 @@ use imagemagick (`brew install imagemagick` or whatever) to convert png -> jpgz:
 mogrify -format jpg *.png
 
 ruby scrape_indesign.rb --validateimages /Users/edwardsharp/Desktop/index8/out/projects/2018 --validateimagesdir /Users/edwardsharp/src/github/emergencyindex/projects-2018
-
+```
+attempt to update projects metadata with submission .csv data:
+```sh
+ruby ./utilz/scrape_indesign.rb -c
+```
+validate each project first_performed & times_performed. copies problem .md files to /needs_review/ dir:
+```sh
+ruby ./utilz/scrape_indesign.rb -P
+```
+finally, tidy all the .md files:
+```sh
 ruby scrape_indesign.rb --tidy  /Users/edwardsharp/Desktop/index8/out/projects/2018/
 ```
