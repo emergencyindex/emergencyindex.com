@@ -197,6 +197,17 @@ label[for="project_already_submitted"], label[for="project_description_monospace
   font-size: 14px;
 }
 
+.nowrap pre code{
+  white-space: pre;
+}
+.nowrap pre {
+  overflow-x: scroll;
+}
+
+.smallerfont.nowrap pre code{
+  font-size: 14px;
+}
+
 .all-projects{
   display: flex;
   justify-content: space-between;
@@ -238,7 +249,7 @@ label[for="project_already_submitted"], label[for="project_description_monospace
 
 @media (min-width: 1281px) {
   .project-info p, .photo-credit{
-    font-size: 20px
+    font-size: 16px;
   }
   .description code, .description kbd, .description pre, .description samp{
     font-size: 22px;
