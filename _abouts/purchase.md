@@ -9,6 +9,8 @@ Click on any image below to order a copy of Emergency INDEX.
 
 For lists of contributors, [click here](/index/contributors).
 
+[![Vol. 9](/assets/img/about/index9_promo_crop.jpg "Vol. 9")](https://uglyducklingpresse.org/publications/emergency-index-an-annual-document-of-performance-practice-vol-9) [Vol. 9 (2019)](https://uglyducklingpresse.org/publications/emergency-index-an-annual-document-of-performance-practice-vol-9)
+
 [![Vol. 8](/assets/img/about/index8_promo_crop.jpg "Vol. 8")](https://uglyducklingpresse.org/publications/emergency-index-an-annual-document-of-performance-practice-vol-8) [Vol. 8 (2018)](https://uglyducklingpresse.org/publications/emergency-index-an-annual-document-of-performance-practice-vol-8)
 
 [![Vol. 7](/assets/img/about/index7_promo_crop.jpg "Vol. 7")](https://uglyducklingpresse.org/publications/emergency-index-an-annual-document-of-performance-practice-vol-7) [Vol. 7 (2017)](https://uglyducklingpresse.org/publications/emergency-index-an-annual-document-of-performance-practice-vol-7)
