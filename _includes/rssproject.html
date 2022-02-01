@@ -1,0 +1,66 @@
+<article class='row'>
+  <header class="col s12 m4 project-info">
+
+    {%- if project.image -%}
+    <img src="https://emergencyindex.com/assets/img/{{project.volume}}/{{project.image}}" class="project-img" alt="project image" />
+    <div class="photo-credit truncate">Photo credit: {{project.photo_credit | replace: 'Photo credit: ', '' }}</div>
+    {%- endif -%}
+    
+    <h1 class="title">
+      {{ project.title }}
+    </h1>
+
+    <h2 class="contributor">
+      {{ project.contributor }}
+    </h2>
+    
+    <p>
+      {% if project.volume == 2011 %}
+      first performed on
+      {% endif %}
+      {{project.first_performed}}
+      <br />
+      {{project.place}}
+      <br />
+      {{project.times_performed}}
+    </p>
+
+    <p class="project-collaborators">
+      {{project.collaborators | join: ', '}}
+    </p>
+
+    <p class="home">
+      {{project.home}}
+      <br />
+      <span class="contact">{{project.contact}}</span>
+      {% for link in project.links %}
+      {% assign link_strip = link | replace: 'http://', '' | replace: 'https://', '' %}
+      	<br/>
+        <a href="http://{{ link_strip }}" target="_blank" rel="noopener noreferrer">{{ link_strip }}</a>
+      {% endfor %}
+    </p>
+
+    {{project.footnote}}
+
+  </header>
+  <main>
+
+    <div class="description">
+      {{ project.content }}
+    </div>
+
+  </main>
+  <footer>
+    
+    <br />
+    <a href="{{project.url}}">Permanent link to this project</a>
+    <br />
+    <a href="/volume/{{ project.volume }}#{{ project.volume }}-{{ project.pages }}">Link to this project (p.{{ project.pages }}) in Volume {{ project.volume }}</a>
+
+    <p>
+      <h3>Tags:</h3>
+      {{ project.tags | join: ", "}}
+    </p>
+
+  </footer>
+</article>

@@ -1,0 +1,54 @@
+---
+layout: null
+---
+{%- assign day = 'now' | date: "%B %-d" -%}
+{%- assign onedayseconds = 1 | times: 24 | times: 60 | times: 60 -%}
+{%- assign day1 = 'now' | date: "%s" | plus: onedayseconds | date: "%B %-d" -%}
+{%- assign twodayseconds = 2 | times: 24 | times: 60 | times: 60 -%}
+{%- assign day2 = 'now' | date: "%s" | plus: twodayseconds | date: "%B %-d" -%}
+{%- assign threedayseconds = 3 | times: 24 | times: 60 | times: 60 -%}
+{%- assign day3 = 'now' | date: "%s" | plus: threedayseconds | date: "%B %-d" -%}
+{%- assign fourdayseconds = 4 | times: 24 | times: 60 | times: 60 -%}
+{%- assign day4 = 'now' | date: "%s" | plus: fourdayseconds | date: "%B %-d" -%}
+{%- assign fivedayseconds = 5 | times: 24 | times: 60 | times: 60 -%}
+{%- assign day5 = 'now' | date: "%s" | plus: fivedayseconds | date: "%B %-d" -%}
+{%- assign sixdayseconds = 6 | times: 24 | times: 60 | times: 60 -%}
+{%- assign day6 = 'now' | date: "%s" | plus: sixdayseconds | date: "%B %-d" -%}
+{%- assign expr = day | append: "," -%}
+{%- assign expr1 = day1 | append: "," -%}
+{%- assign expr2 = day2 | append: "," -%}
+{%- assign expr3 = day3 | append: "," -%}
+{%- assign expr4 = day4 | append: "," -%}
+{%- assign expr5 = day5 | append: "," -%}
+{%- assign expr6 = day6 | append: "," -%}
+{%- assign projects = site.projects | where_exp: "project", 
+  "project.first_performed contains expr 
+or project.first_performed contains expr1 
+or project.first_performed contains expr2 
+or project.first_performed contains expr3 
+or project.first_performed contains expr4 
+or project.first_performed contains expr5 
+or project.first_performed contains expr6" -%}<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Emergency INDEX -- This Week In Performance</title>
+  <link>https://emergencyindex.com</link>
+  <updated>{{ site.time | date_to_rfc822 }}</updated>
+  <author>
+    <name>Emergency INDEX</name>
+  </author>
+  <id>https://emergencyindex.com</id>
+  {%- for project in projects -%}
+  <entry>
+    <title>[{{project.volume | xml_escape}}] {{ project.title | xml_escape }} -- {{ project.contributor | xml_escape }}</title>
+    <link href="https://emergencyindex.com{{ project.url }}" />
+    <id>https://emergencyindex.com{{ project.url }}</id>
+    <updated>{{ site.time | date_to_rfc822 }}</updated>
+    <summary>{{ project.excerpt | xml_escape }}</summary>
+    <content type="html">
+      <![CDATA[
+      {% include rssproject.html project=project %}
+      ]]>
+    </content>
+  </entry>
+  {%- endfor -%}
+</feed>

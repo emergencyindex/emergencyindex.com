@@ -1,0 +1,56 @@
+---
+layout: default
+title: This Week In Performance
+permalink: /thisweek/
+---
+
+{% assign day = 'now' | date: "%B %-d" %}
+
+{% assign onedayseconds = 1 | times: 24 | times: 60 | times: 60 %}
+{% assign day1 = 'now' | date: "%s" | plus: onedayseconds | date: "%B %-d" %}
+
+{% assign twodayseconds = 2 | times: 24 | times: 60 | times: 60 %}
+{% assign day2 = 'now' | date: "%s" | plus: twodayseconds | date: "%B %-d" %}
+
+{% assign threedayseconds = 3 | times: 24 | times: 60 | times: 60 %}
+{% assign day3 = 'now' | date: "%s" | plus: threedayseconds | date: "%B %-d" %}
+
+{% assign fourdayseconds = 4 | times: 24 | times: 60 | times: 60 %}
+{% assign day4 = 'now' | date: "%s" | plus: fourdayseconds | date: "%B %-d" %}
+
+{% assign fivedayseconds = 5 | times: 24 | times: 60 | times: 60 %}
+{% assign day5 = 'now' | date: "%s" | plus: fivedayseconds | date: "%B %-d" %}
+
+{% assign sixdayseconds = 6 | times: 24 | times: 60 | times: 60 %}
+{% assign day6 = 'now' | date: "%s" | plus: sixdayseconds | date: "%B %-d" %}
+
+{% assign expr = day | append: "," %}
+{% assign expr1 = day1 | append: "," %}
+{% assign expr2 = day2 | append: "," %}
+{% assign expr3 = day3 | append: "," %}
+{% assign expr4 = day4 | append: "," %}
+{% assign expr5 = day5 | append: "," %}
+{% assign expr6 = day6 | append: "," %}
+
+{% assign projects = site.projects | where_exp: "project", 
+  "project.first_performed contains expr 
+or project.first_performed contains expr1 
+or project.first_performed contains expr2 
+or project.first_performed contains expr3 
+or project.first_performed contains expr4 
+or project.first_performed contains expr5 
+or project.first_performed contains expr6" %}
+
+<section>
+  <h1 class="sticky-nav all-projects">
+    This Week In Performance {{month}} {{day}} - {{day6}}
+    <span class="chip all-projects-chip">{{projects.size}}</span>
+  </h1>
+
+  {% for project in projects %}
+    <a href="{{ project.url }}" title="{{project.first_performed}}" class="waves-effect">
+      [{{project.volume}}] {{ project.title }} -- {{ project.contributor }}
+    </a>
+    <br />
+  {% endfor %}
+</section>
