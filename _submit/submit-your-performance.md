@@ -8,7 +8,7 @@ banner: true
 
 _Emergency INDEX_ is an annual print publication documenting new performance in the words of its creators. For more information, see our [Project Description](/about/project-description/) page.
 
-Submissions for Volume 10/+ are now open, and you are invited to submit a description of a performance you made in 2021. The deadline to submit is October 10th, 2022. For more information on submitting your performance, check out our [FAQ](/submission-faq/) and follow guidelines in the [submission form](https://forms.gle/hTrh9zsPUGwBgsNa8).
+Submissions for Volume 10/+ are now open, and you are invited to submit a description of a performance you made in 2021. The deadline to submit is October 10th, 2022. For more information on submitting your performance, check out our [FAQ](/submission-faq/) and follow guidelines in the [submission form](http://emergency-index-submission-ten-plus.glitch.me).
 
 Unlike previous years, Volume 10/+ will be a special "pandemic" issue that includes performances made in 2020 and those made in 2021. Because of the increased number of contributions, and the physical limitation of a paper book, some contributions will appear in the print volume (Vol. 10), and some will appear in an online-only volume (Vol. 10+). The submission period for 2020 performances was held last year, and is now closed. This open call is for performances made in 2021.  
 
