@@ -102,7 +102,7 @@ module ScrapeIndesign
     idx = 0
     pageoffset = @options[:pageoffset]
 
-    raise "\nERROR! wrong number of div elementz! (#{len}) (see empty divz?)" if len % 4 != 0
+    # raise "\nERROR! wrong number of div elementz! (#{len}) (see empty divz?)" if len % 4 != 0
 
     page.xpath('/html/body/div').each_slice(4) do |div|
       status_update(len:len, idx:idx)
@@ -191,7 +191,11 @@ module ScrapeIndesign
       project['info']['contact'] = project['info']['contact'].strip
 
       # now get the photo credit div
-      project['info']['photo_credit'] = info_description[1].css('p').first.text.strip
+
+      # helpful to debug finding blank divz use this puts:
+      # puts info_description 
+
+      project['info']['photo_credit'] = info_description[1].css('p').first.text.strip rescue 'TODO_PHOTO_CREDIT'
 
       # now get the description div
       info_description[2].css("span[class*=ITALIC--description-paragraphs-]").each do |i|
@@ -263,7 +267,7 @@ module ScrapeIndesign
 
   def self.scrape_terms_html
     # ex: ruby scrape_indesign.rb --infile /Users/edwardsharp/Desktop/index8/terms.html --out /Users/edwardsharp/Desktop/index8/out --volume 2018 --terms --dryrun
-    # ex: ruby scrape_indesign.rb --infile /Users/edwardsharp/Desktop/index8/terms.html --out /Users/edwardsharp/src/github/emergencyindex/projects-2018 --terms
+    # ex: ruby scrape_indesign.rb --infile /Users/edwardsharp/Desktop/index8/terms.html --out /Users/edwardsharp/src/github/emergencyindex/projects-2018 --volume 2018 --terms
     p "reading #{@options[:in_file]}..."
 
     page = Nokogiri::HTML(open(@options[:in_file]))
@@ -271,44 +275,49 @@ module ScrapeIndesign
     terms = {}
     
     page.css('p').each do |_p|
+      term_entry = _p.text.strip
 
-      _span = _p.css('span')
-      
-      # skip if there's zero on one <span>
-      next if _span.length == 0 or _span.length == 1
-     
-      base = _span[0].text.strip
+      # gsub to try and fix commas that do not have space after them so split(' ') workz better!
+      term_parts = term_entry.gsub(/,([^ ])/, ', \1').split(' ')
+      next if term_parts.length < 2
+      # puts "term_entry: #{term_entry}"
 
-      _span.each_with_index do |_s, i|
-        next if i === 0
+      base = ''
+      see = false
+      see_also = false
+      term_pages = []
+      for part in term_parts do
         # yank common delinatorz used in page lists
-        no_delinatorz = _s.text.gsub(',','').gsub(' ','').gsub(';','')
+        no_delinatorz = part.gsub(',','').gsub(';','')
         # try to determine if this is all numbers and thus a list of pages.
         # if there are more than 0 numbers and nothing else, it must be a list of pages. neat.
         isNumeric = no_delinatorz.scan(/\d/).length > 0 and no_delinatorz.scan(/\D/).empty?
-        if isNumeric
-          # sometimes there's an empty span, so check for that and if so, use the span before that.
-          term = _span[i-1].text.strip.empty? ? _span[i-2].text.strip : _span[i-1].text.strip
-          term_pages = _s.text.gsub(';','').split(',').map{ |s| page_to_pages s}
-
-          if terms[term]
-            terms[term] = terms[term].concat term_pages
+        if part === 'see'
+          # p "zomg see! #{part}"
+          see = true
+        elsif part === 'also'
+          # p "zomg also! #{part}"
+          see_also = true
+        elsif !isNumeric and !see and !see_also
+          if base.length === 0
+            base += part
           else
-            terms[term] = term_pages
+            base += " #{part}"
           end
-
-          if base != term
-            p "adding base term: #{base}"
-            if terms[base]
-              terms[base] = terms[base].concat term_pages
-            else
-              terms[base] = term_pages
-            end
-          end
-
-          # p "zomg #{term} already here?????" if terms[term]
-          # terms[term] = term_pages
+        elsif isNumeric and !see and !see_also 
+          term_pages << page_to_pages(part)
+        else 
+          # puts "zomg something else:#{part}"
         end
+
+      end #end for
+
+      base = base.delete_suffix(',').strip
+
+      if terms[base]
+        terms[base] = terms[base].concat term_pages
+      else
+        terms[base] = term_pages
       end
 
     end
@@ -324,6 +333,8 @@ module ScrapeIndesign
         end
       end
     end
+
+    # pp terms
 
     if @options[:dryrun]
       p "...writing terms.json"
@@ -378,6 +389,9 @@ toc: #{@options[:vol]} Terms
     page.css('p').each do |_p|
 
       _spans = _p.css('span')
+
+      # debug terms with puts like:
+      # puts _spans
 
       base_term = _spans[0].text.strip
       if _spans.length == 1
@@ -717,7 +731,7 @@ private
   end
 
   def self.page_to_pages(page_string = '')
-    page = page_string.strip
+    page = page_string.gsub(',','').gsub(';','').strip
     if page.to_i.even?
       _next = (page.to_i + 1).to_s
       return "#{page.rjust(3, '0')}-#{_next.rjust(3, '0')}"
