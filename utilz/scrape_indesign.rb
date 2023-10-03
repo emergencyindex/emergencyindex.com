@@ -10,6 +10,8 @@ require 'CSV'
 require 'fileutils'
 include Carmen
 
+# gem install nokogiri sanitize carmen
+
 module ScrapeIndesign
 
   dir_prefix = Dir.pwd.end_with?('/utilz') ? '' : './utilz/'
@@ -378,7 +380,8 @@ toc: #{@options[:vol]} Terms
     page.css('p').each do |_p|
 
       _spans = _p.css('span')
-
+      p "zomg no spans?? #{(_p.inspect)}" unless _spans[0] 
+      next unless _spans[0]
       base_term = _spans[0].text.strip
       if _spans.length == 1
         # this must be a letter section heading
@@ -389,8 +392,12 @@ toc: #{@options[:vol]} Terms
 
       md_out += "**#{base_term}** "
 
-      _spans.each_with_index do |_span, i|
-        text = _span.text.strip
+      contentz = _p.text.split(' ')
+      p "zomg contentz: #{contentz}"
+      # _spans.each_with_index do |_span, i|
+      contentz.each_with_index do |text, i|
+        # text = _span.text.strip
+        p "text blank?" if text.blank? or i == 0
         next if text.blank? or i == 0
 
         # yank common delinatorz used in page lists
