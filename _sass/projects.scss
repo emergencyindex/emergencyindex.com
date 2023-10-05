@@ -42,24 +42,27 @@ label[for="project_already_submitted"], label[for="project_description_monospace
 .right-panel .title{
   font-size: 1.66rem;
   font-weight: 400;
+  text-transform: uppercase;
 }
 
 .right-panel .contributor{
   font-size: 1.33rem;
   font-weight: 100;
+  text-transform: uppercase;
 }
 
 .project-info .contributor{
   font-size: 17px;
   font-weight: 100;
+  text-transform: uppercase;
+  margin-top: 1em;
 }
 
 .project-info .title{
   font-size: 19px;
+  text-transform: uppercase;
 }
-.project-info .contributor{
-  margin-top: 1em;
-}
+
 .project-info .home{
   margin: 1em 0;
 }
