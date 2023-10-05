@@ -441,7 +441,7 @@ toc: #{@options[:vol]} Terms
   end
 
   def self.tidy_project_yml
-    # ex: ruby scrape_indesign.rb --tidy  /Users/edwardsharp/Desktop/index8/out/projects/2018/
+    # ex: ruby scrape_indesign.rb --tidy /Users/edwardsharp/src/github/emergencyindex/projects-2019
     p "DRY RUNNING TIDY PROCESS (good job!)" if @options[:drytidy]
     #/Users/edward/src/tower/github/alveol.us/_projects/
     @options[:tidy] = "#{@options[:tidy]}/" unless @options[:tidy][-1] == '/'
@@ -453,14 +453,15 @@ toc: #{@options[:vol]} Terms
       status_update(len:len, idx:idx)
       project = read_md file: file
 
-      project[:yml]["tags"] = project[:yml]["tags"].map(&:to_s).sort_by(&:downcase).uniq
+      # alphabetize and remove duplicate tags 
+      # project[:yml]["tags"] = project[:yml]["tags"].map(&:to_s).sort_by(&:downcase).uniq
       
       # try to remove HTML entities
-      project[:yml]["title"] = Nokogiri::HTML.parse(project[:yml]["title"]).text
-      project[:yml]["contributor"] = Nokogiri::HTML.parse(project[:yml]["contributor"]).text
-      project[:yml]["photo_credit"] = Nokogiri::HTML.parse(project[:yml]["photo_credit"]).text
-      project[:yml]["collaborators"].each{ |collaborator| collaborator = Nokogiri::HTML.parse(collaborator).text } rescue nil
-      project[:description] = Nokogiri::HTML.parse(project[:description]).text
+      # project[:yml]["title"] = Nokogiri::HTML.parse(project[:yml]["title"]).text
+      # project[:yml]["contributor"] = Nokogiri::HTML.parse(project[:yml]["contributor"]).text
+      # project[:yml]["photo_credit"] = Nokogiri::HTML.parse(project[:yml]["photo_credit"]).text
+      # project[:yml]["collaborators"].each{ |collaborator| collaborator = Nokogiri::HTML.parse(collaborator).text } rescue nil
+      # project[:description] = Nokogiri::HTML.parse(project[:description]).text
 
       project[:yml]["title"].upcase!
       project[:yml]["contributor"].upcase!
