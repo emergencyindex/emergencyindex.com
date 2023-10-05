@@ -10,6 +10,8 @@ require 'CSV'
 require 'fileutils'
 include Carmen
 
+# gem install nokogiri sanitize carmen
+
 module ScrapeIndesign
 
   dir_prefix = Dir.pwd.end_with?('/utilz') ? '' : './utilz/'
@@ -36,12 +38,12 @@ module ScrapeIndesign
       opts.on("-Z", "--dryrun", "DRY RUN (no files modified)") { |v| @options[:dryrun] = v }
       opts.on("-V", "--validateimages DIRECTORY", "Validate project image files. Specify project dir with .md files.") { |v| @options[:validate_images] = v }
       opts.on("-I", "--validateimagesdir DIRECTORY", "Validate project images. Specify directory with project images.") { |v| @options[:validate_images_dir] = v }
-      opts.on("-P", "--validateperformed", "Validate first_performed and times_performed fields; copies problem .md files to /needs_review/ dir.") { |v| @options[:validate_performed] = v }
+      opts.on("-P", "--validatemeta", "Validate metadata fields; copies problem .md files to /needs_review/ dir.") { |v| @options[:validate_meta] = v }
       opts.on("-c", "--crossref", "Update projects metadata with submission .csv data.") { |v| @options[:cross_ref] = v }
     end.parse!
 
 
-    unless @options[:tidy] or @options[:validate_images] or @options[:cross_ref] or @options[:validate_performed]
+    unless @options[:tidy] or @options[:validate_images] or @options[:cross_ref] or @options[:validate_meta]
       raise "ERROR! --input file not specified" if @options[:in_file].nil?
       raise "ERROR! --infile does not exist" unless File.exist?(@options[:in_file])
       raise "ERROR! --outdir is not a directory" unless File.directory?(@options[:out_dir])
@@ -57,8 +59,8 @@ module ScrapeIndesign
       tidy_project_yml
     elsif @options[:validate_images]
       validate_images
-    elsif @options[:validate_performed]
-      validate_performed
+    elsif @options[:validate_meta]
+      validate_meta
     elsif @options[:cross_ref]
       cross_ref
     else
@@ -389,10 +391,8 @@ toc: #{@options[:vol]} Terms
     page.css('p').each do |_p|
 
       _spans = _p.css('span')
-
-      # debug terms with puts like:
-      # puts _spans
-
+      p "zomg no spans?? #{(_p.inspect)}" unless _spans[0] 
+      next unless _spans[0]
       base_term = _spans[0].text.strip
       if _spans.length == 1
         # this must be a letter section heading
@@ -403,8 +403,12 @@ toc: #{@options[:vol]} Terms
 
       md_out += "**#{base_term}** "
 
-      _spans.each_with_index do |_span, i|
-        text = _span.text.strip
+      contentz = _p.text.split(' ')
+      p "zomg contentz: #{contentz}"
+      # _spans.each_with_index do |_span, i|
+      contentz.each_with_index do |text, i|
+        # text = _span.text.strip
+        p "text blank?" if text.blank? or i == 0
         next if text.blank? or i == 0
 
         # yank common delinatorz used in page lists
@@ -437,7 +441,7 @@ toc: #{@options[:vol]} Terms
   end
 
   def self.tidy_project_yml
-    # ex: ruby scrape_indesign.rb --tidy  /Users/edwardsharp/Desktop/index8/out/projects/2018/
+    # ex: ruby scrape_indesign.rb --tidy /Users/edwardsharp/src/github/emergencyindex/projects-2019
     p "DRY RUNNING TIDY PROCESS (good job!)" if @options[:drytidy]
     #/Users/edward/src/tower/github/alveol.us/_projects/
     @options[:tidy] = "#{@options[:tidy]}/" unless @options[:tidy][-1] == '/'
@@ -449,14 +453,15 @@ toc: #{@options[:vol]} Terms
       status_update(len:len, idx:idx)
       project = read_md file: file
 
-      project[:yml]["tags"] = project[:yml]["tags"].map(&:to_s).sort_by(&:downcase).uniq
+      # alphabetize and remove duplicate tags 
+      # project[:yml]["tags"] = project[:yml]["tags"].map(&:to_s).sort_by(&:downcase).uniq
       
       # try to remove HTML entities
-      project[:yml]["title"] = Nokogiri::HTML.parse(project[:yml]["title"]).text
-      project[:yml]["contributor"] = Nokogiri::HTML.parse(project[:yml]["contributor"]).text
-      project[:yml]["photo_credit"] = Nokogiri::HTML.parse(project[:yml]["photo_credit"]).text
-      project[:yml]["collaborators"].each{ |collaborator| collaborator = Nokogiri::HTML.parse(collaborator).text } rescue nil
-      project[:description] = Nokogiri::HTML.parse(project[:description]).text
+      # project[:yml]["title"] = Nokogiri::HTML.parse(project[:yml]["title"]).text
+      # project[:yml]["contributor"] = Nokogiri::HTML.parse(project[:yml]["contributor"]).text
+      # project[:yml]["photo_credit"] = Nokogiri::HTML.parse(project[:yml]["photo_credit"]).text
+      # project[:yml]["collaborators"].each{ |collaborator| collaborator = Nokogiri::HTML.parse(collaborator).text } rescue nil
+      # project[:description] = Nokogiri::HTML.parse(project[:description]).text
 
       project[:yml]["title"].upcase!
       project[:yml]["contributor"].upcase!
@@ -530,13 +535,15 @@ toc: #{@options[:vol]} Terms
 
   end
 
-  def self.validate_performed
+  def self.validate_meta
+    # NOTE: update this_volume
+    this_volume = '2019'
     # validate each project first_performed & times_performed. copies problem .md files to /needs_review/ dir
     # ex: ruby ./utilz/scrape_indesign.rb -P
     # first_performed: first performed on December 4, 2018
     # times_performed: performed once in 2018
     
-    project_dir_default = '/Users/edwardsharp/src/github/emergencyindex/emergencyindex.com/_projects/2018'
+    project_dir_default = '/Users/edwardsharp/src/github/emergencyindex/emergencyindex.com/_projects/2019'
     p "enter path to projects .md files: [#{project_dir_default}]"
     projects_dir = gets.chomp
     projects_dir = project_dir_default if projects_dir.empty?
@@ -553,16 +560,19 @@ toc: #{@options[:vol]} Terms
       next if project[:yml]["pages"] == "000-001"
 
       first_performed = project[:yml]["first_performed"].split(' ')
-      if first_performed[0] != 'first' or first_performed[1] != 'performed' or first_performed[2] != 'on' or first_performed[first_performed.length - 1] != '2018'
+      if first_performed[0] != 'first' or first_performed[1] != 'performed' or first_performed[2] != 'on' or first_performed[first_performed.length - 1] != this_volume
+        p "#{project[:yml]["pages"]} first_performed wrong."
         md_needs_manual_review << project[:yml]["pages"]
       end
     
       times_performed = project[:yml]["times_performed"].split(' ')
-      if times_performed[0] != 'performed' or times_performed[times_performed.length - 1] != '2018'
+      if times_performed[0] != 'performed' or times_performed[times_performed.length - 1] != this_volume
+        p "#{project[:yml]["pages"]} times_performed wrong"
         md_needs_manual_review << project[:yml]["pages"]
       end
 
       if project[:yml]["title"].strip.empty? or project[:yml]["contributor"].strip.empty? or project[:yml]["place"].strip.empty?
+        p "#{project[:yml]["pages"]} title, contributor, or place wrong."
         md_needs_manual_review << project[:yml]["pages"]
       end
 
@@ -591,13 +601,13 @@ toc: #{@options[:vol]} Terms
   def self.cross_ref
     # attempt to update projects metadata with submission data.
     # ex: ruby ./utilz/scrape_indesign.rb -c
-    csvfile_default = '/Users/edwardsharp/Desktop/2018sub.csv'
+    csvfile_default = '/Users/edwardsharp/Desktop/TRASH BOAT/index9/vol9subz.csv'
     p "enter path to projects .csv file: [#{csvfile_default}]"
     csvfile = gets.chomp
     csvfile = csvfile_default if csvfile.empty?
     raise "ERROR: unable to find file: #{csvfile}" unless File.exist?(csvfile)
 
-    project_dir_default = '/Users/edwardsharp/src/github/emergencyindex/emergencyindex.com/_projects/2018'
+    project_dir_default = '/Users/edwardsharp/src/github/emergencyindex/emergencyindex.com/_projects/2019'
     p "enter path to projects .md files: [#{project_dir_default}]"
     projects_dir = gets.chomp
     projects_dir = project_dir_default if projects_dir.empty?
@@ -609,7 +619,7 @@ toc: #{@options[:vol]} Terms
 
     # go thru each csv row and collect hash of projects 
     projects = {}
-    projects_arr = [] # this is sorta lazy buy stuffing into array so later if unable to find this by key then will use .filter
+    projects_arr = [] # this is sorta lazy, stuffing into array so later if unable to find this by key then will use .filter
     CSV.foreach(csvfile, headers: true) do |row|
       # use title--contributor key so we can find this again
       begin
@@ -650,7 +660,7 @@ toc: #{@options[:vol]} Terms
         ['title', 'contact', 'photo_credit'].each do |lookup|
           next if project[:yml][lookup].empty? # bail if value is empty.
           csv_project = projects_arr.find do |a|
-            # p "trying to lookup: #{lookup} project[:yml][lookup]:#{project[:yml][lookup]}"
+            p "trying extra hard to lookup: #{lookup} project[:yml][lookup]:#{project[:yml][lookup]}"
             # p "FOUND ONE!! #{lookup}: #{project[:yml][lookup]}" if a[lookup.to_sym] == project[:yml][lookup]
             a[lookup.to_sym] == project[:yml][lookup]
           end
