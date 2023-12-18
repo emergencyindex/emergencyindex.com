@@ -729,6 +729,7 @@ module ScrapeIndesign
     pageoffset = @options[:pageoffset]
 
     project_dir_default = '/Users/edwardsharp/Desktop/TRASH BOAT/emergencyINDEX/ten_plus/vol11'
+
     p "enter path to projects .json files: [#{project_dir_default}]"
     projects_dir = gets.chomp
     projects_dir = project_dir_default if projects_dir.empty?
@@ -780,7 +781,7 @@ module ScrapeIndesign
       # note: make sure dates are good, here, before starting to writing filez...
       parse_first_performed_date project['info']['first_performed']
       project['info']['place'] = project_hash['venue'].strip
-      project['info']['times_performed'] = "performed #{times_performed(project_hash['times_performed'])} in 2020"
+      project['info']['times_performed'] = "performed #{times_performed(project_hash['times_performed'])} in 2021"
       project['info']['contributor'] = project_hash['contributor'].strip.upcase
       project['info']['collaborators'] = project_hash['collaborators'].split(',').map!(&:strip)
       project['info']['home'] = project_hash['home'].strip
@@ -815,19 +816,19 @@ module ScrapeIndesign
       # if File.exists? imgfile
       #    # copy image
       #    project['info']['image'] = tidyimage
-      #    FileUtils.cp(imgfile, "#{projects_dir}out/img/2020/#{tidyimage}")
-      #    p "wrote image #{projects_dir}out/img/2020/#{tidyimage}"
+      #    FileUtils.cp(imgfile, "#{projects_dir}out/img/2021/#{tidyimage}")
+      #    p "wrote image #{projects_dir}out/img/2021/#{tidyimage}"
       # elsif File.exists? imgfile2
       #    # copy image
       #    project['info']['image'] = tidyimage
-      #    FileUtils.cp(imgfile2, "#{projects_dir}out/img/2020/#{tidyimage}")
-      #    p "wrote image #{projects_dir}out/img/2020/#{tidyimage}"
+      #    FileUtils.cp(imgfile2, "#{projects_dir}out/img/2021/#{tidyimage}")
+      #    p "wrote image #{projects_dir}out/img/2021/#{tidyimage}"
       # else
       #   p "ERROR! project image #{imgfile} not found!"
       # end
 
       pageoffset += 2
-      outfile = "#{projects_dir}out/projects/2020/#{idx_str}.md"
+      outfile = "#{projects_dir}out/projects/2021/#{idx_str}.md"
 
       # write entire file:
       File.open(outfile,"w") do |f|
@@ -852,7 +853,7 @@ module ScrapeIndesign
     # attempt to fix project pages metadata and filenames
     pageoffset = @options[:pageoffset]
 
-    project_dir_default = '/Users/edwardsharp/src/github/emergencyindex/projects-2020/projects/2020'
+    project_dir_default = '/Users/edwardsharp/src/github/emergencyindex/projects-2021/projects/2021'
     p "enter path to projects .md files: [#{project_dir_default}]"
     projects_dir = gets.chomp
     projects_dir = project_dir_default if projects_dir.empty?
@@ -895,7 +896,7 @@ module ScrapeIndesign
     raise "no .md files found here: #{all_projects_dir}?" if len == 0
 
     # get single volue project files dir
-    project_dir_default = '/Users/edwardsharp/src/github/emergencyindex/projects-2020/projects/2020'
+    project_dir_default = '/Users/edwardsharp/src/github/emergencyindex/projects-2021/projects/2021'
     p "enter path to projects .md files: [#{project_dir_default}]"
     projects_dir = gets.chomp
     projects_dir = project_dir_default if projects_dir.empty?
@@ -972,7 +973,7 @@ private
     project = {}
     project['info'] = {}
     project['info']['layout'] = 'project'
-    project['info']['volume'] = @options[:vol] || 2020
+    project['info']['volume'] = @options[:vol] || 2021
     project['info']['image'] = ''
     project['info']['photo_credit'] = ''
     project['info']['title'] = ''
@@ -1018,23 +1019,42 @@ private
   end
 
   def self.is_first_performed_valid_year(date)
-    parse_first_performed_date(date).strftime('%Y') == "2020"
+    begin
+      parse_first_performed_date(date).strftime('%Y') == "2021"
+    rescue
+      false
+    end
   end
 
   def self.parse_first_performed_date(date)
     begin
       Time::strptime(date,"%Y-%m-%d")
     rescue 
-      p "unable to parse date: #{date}"
-      raise 
+      # p "unable to parse date: #{date}"
+      begin 
+        # January 10, 2021
+        # 
+        Time::strptime(date,"%B %d, %Y")
+      rescue
+        #  p "still unable to parse date: #{date}"
+        # raise
+        begin 
+          # 09/04/2021
+          # 
+          Time::strptime(date,"%m/%d/%Y")
+        rescue
+          p "datez r hard: #{date}"
+        end
+      end
+      # raise 
     end
   end
 
   def self.first_performed(date)
     # date like: 
-    # 2020-11-18
+    # 2021-11-18
     # format like:
-    # first_performed: first performed on November 18, 2020
+    # first_performed: first performed on November 18, 2021
     begin
       "first performed on #{parse_first_performed_date(date).strftime('%B %d, %Y')}"
     rescue 
