@@ -728,7 +728,7 @@ module ScrapeIndesign
     # ex: ruby ./utilz/scrape_indesign.rb -r
     pageoffset = @options[:pageoffset]
 
-    project_dir_default = '/Users/edwardsharp/Desktop/TRASH BOAT/emergencyINDEX/ten_plus/vol10'
+    project_dir_default = '/Users/edwardsharp/Desktop/TRASH BOAT/emergencyINDEX/ten_plus/vol11'
     p "enter path to projects .json files: [#{project_dir_default}]"
     projects_dir = gets.chomp
     projects_dir = project_dir_default if projects_dir.empty?
