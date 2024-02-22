@@ -40,10 +40,13 @@ module ScrapeIndesign
       opts.on("-I", "--validateimagesdir DIRECTORY", "Validate project images. Specify directory with project images.") { |v| @options[:validate_images_dir] = v }
       opts.on("-P", "--validatemeta", "Validate metadata fields; copies problem .md files to /needs_review/ dir.") { |v| @options[:validate_meta] = v }
       opts.on("-c", "--crossref", "Update projects metadata with submission .csv data.") { |v| @options[:cross_ref] = v }
+      opts.on("-r", "--rawjson", "Scrape raw submission json files.") { |v| @options[:raw_json] = v }
+      opts.on("-f", "--fixpages", "Fix project pages (and filenames) for md projects") { |v| @options[:fix_project_pages] = v }
+      opts.on("-g", "--gentags", "Try to generate project tags metadata") { |v| @options[:gen_tags] = v }
     end.parse!
 
 
-    unless @options[:tidy] or @options[:validate_images] or @options[:cross_ref] or @options[:validate_meta]
+    unless @options[:tidy] or @options[:validate_images] or @options[:cross_ref] or @options[:validate_meta] or @options[:raw_json] or @options[:fix_project_pages] or @options[:gen_tags]
       raise "ERROR! --input file not specified" if @options[:in_file].nil?
       raise "ERROR! --infile does not exist" unless File.exist?(@options[:in_file])
       raise "ERROR! --outdir is not a directory" unless File.directory?(@options[:out_dir])
@@ -63,6 +66,12 @@ module ScrapeIndesign
       validate_meta
     elsif @options[:cross_ref]
       cross_ref
+    elsif @options[:raw_json]
+      raw_json
+    elsif @options[:fix_project_pages]
+      fix_project_pages
+    elsif @options[:gen_tags]
+      gen_tags
     else
       p "nothing to do!"
       puts optparse
@@ -374,19 +383,7 @@ module ScrapeIndesign
 
     # note: this volume may or not have tags before "A"
     
-    md_out = %{---
-layout: page
-name: Terms
-volume: '#{@options[:vol]}'
-title: 'Index #{@options[:vol]}: Terms'
-wrapperclass: 'index-terms'
-toc: #{@options[:vol]} Terms
----
-
-\{: #0-9 .index .sticky-nav \}
-## 0-9
-
-}
+    md_out = terms_index_md
 
     page.css('p').each do |_p|
 
@@ -726,6 +723,227 @@ toc: #{@options[:vol]} Terms
 
   end
 
+  def self.raw_json
+    # attempt to scrape raw submissions json data
+    # ex: ruby ./utilz/scrape_indesign.rb -r
+    pageoffset = @options[:pageoffset]
+
+    project_dir_default = '/Users/edwardsharp/Desktop/TRASH BOAT/emergencyINDEX/ten_plus/vol11'
+
+    p "enter path to projects .json files: [#{project_dir_default}]"
+    projects_dir = gets.chomp
+    projects_dir = project_dir_default if projects_dir.empty?
+    projects_dir = "#{projects_dir}/" unless projects_dir[-1] == '/'
+    raise "ERROR: unable to find projects in: #{projects_dir}" unless File.directory?(projects_dir)
+    all_filez = Dir.glob("#{projects_dir}**/*.json").select{ |e| File.file? e }
+    len = all_filez.length
+    raise "no .json files found here: #{projects_dir}?" if len == 0
+
+    all_projects = []
+
+    all_filez.each do |file|
+      # p "file: #{file}"
+      f = File.read(file, encoding: 'UTF-8')
+      project_json = JSON.parse(f)
+      # p "project_json: #{project_json}"
+      # p "keyz: #{project_json.keys}"
+
+      project_hash = {}
+      project_json['project_form']['items'].each do |item|
+        project_hash[item['id']] = item['value']
+      end
+
+      unless is_first_performed_valid_year project_hash['date_first_performed']
+        p "SKIPPING #{project_hash['title']} not valid year #{project_hash['date_first_performed']}"
+        next
+      end
+      # transform project_hash into project (key map)
+      project = default_project
+
+      # try to find the correct image
+      # note: photoUrl has double __
+      photoUrl = File.basename(project_json['photoUrl']).split('__',2)[1].gsub('JPG','jpg').gsub('JPEG','jpg')
+      # origPhoto is just the original photoName, but there is some string mangle :/ and only one _
+      origPhoto = File.basename(project_json['origPhoto']).split('_',2)[1].gsub('JPG','jpg').gsub('JPEG','jpg')
+      if File.exists? "#{projects_dir}images_named/#{photoUrl}"
+        project['info']['image'] = photoUrl
+      elsif File.exists? "#{projects_dir}images/#{origPhoto}"
+        project['info']['image'] = origPhoto
+      else 
+        p "PROJECT IMAGE NOT FOUND! :( looked for #{photoUrl} and #{origPhoto}"
+      end
+
+      project['info']['photo_credit'] = project_hash['photo_credit'].strip
+      project['info']['title'] = project_hash['title'].strip.upcase
+      # note: will format this date later, leaving so we can sort by date
+      project['info']['first_performed'] = project_hash['date_first_performed']
+      # p " date_first_performed: #{project['info']['first_performed']}"
+      # note: make sure dates are good, here, before starting to writing filez...
+      parse_first_performed_date project['info']['first_performed']
+      project['info']['place'] = project_hash['venue'].strip
+      project['info']['times_performed'] = "performed #{times_performed(project_hash['times_performed'])} in 2021"
+      project['info']['contributor'] = project_hash['contributor'].strip.upcase
+      project['info']['collaborators'] = project_hash['collaborators'].split(',').map!(&:strip)
+      project['info']['home'] = project_hash['home'].strip
+      project['info']['links'] = project_hash['links'].split(',').map!(&:strip)
+      project['info']['contact'] = project_hash['published_contact'].strip
+      # project['info']['footnote'] = project_hash['']
+      # project['info']['tags'] = []
+      # project['info']['pages'] = project_hash['']
+      project['description'] = project_hash['description'].split('\n').map!(&:strip)
+
+      # p "zomg project['description']: #{project['description']}"
+      all_projects << project
+
+      # note: break if u just want to try one.
+      # break
+    end #all_filez each
+
+    all_projects.sort_by! { |proj| proj['info']['first_performed'] }
+
+    all_projects.each do |project|
+      # reformat first_performed
+      project['info']['first_performed'] = first_performed project['info']['first_performed']
+
+      idx_str = "#{pageoffset.to_s.rjust(3, '0')}-#{(pageoffset + 1).to_s.rjust(3, '0')}"
+      project['info']['pages'] = idx_str
+
+      #note remove n-number of underscores _ at the beginning of image image filename: .sub(/^_+/,'')
+      tidyimage = project['info']['image'].gsub('jpeg','jpg').sub(/^_+/,'').sub(/\.png$/,'.jpg').sub(/\.tiff$/,'.jpg').sub(/\.tif$/,'.jpg')
+      project['info']['image'] = tidyimage
+      # imgfile = "#{projects_dir}images_named/#{project['info']['image']}"
+      # imgfile2 = "#{projects_dir}images/#{project['info']['image']}"
+      # if File.exists? imgfile
+      #    # copy image
+      #    project['info']['image'] = tidyimage
+      #    FileUtils.cp(imgfile, "#{projects_dir}out/img/2021/#{tidyimage}")
+      #    p "wrote image #{projects_dir}out/img/2021/#{tidyimage}"
+      # elsif File.exists? imgfile2
+      #    # copy image
+      #    project['info']['image'] = tidyimage
+      #    FileUtils.cp(imgfile2, "#{projects_dir}out/img/2021/#{tidyimage}")
+      #    p "wrote image #{projects_dir}out/img/2021/#{tidyimage}"
+      # else
+      #   p "ERROR! project image #{imgfile} not found!"
+      # end
+
+      pageoffset += 2
+      outfile = "#{projects_dir}out/projects/2021/#{idx_str}.md"
+
+      # write entire file:
+      File.open(outfile,"w") do |f|
+        f.write(ERBWithBinding::render_from_hash(@project_template, project))
+      end
+      p "wrote project file: #{outfile}"
+
+      # MERGE SECTION
+      # # try to read existing file and merge 
+      # existing_project = read_md file: outfile
+      # # update times_performed
+      # existing_project[:yml]["times_performed"] = project['info']['times_performed']
+      # # File.open(outfile,"w"){|f| f.write("#{existing_project[:yml].to_yaml}---\n#{existing_project[:description]}")}
+      # # p "merged #{outfile}!"
+      # END MERGE SECTION
+
+    end #all_projects.each
+
+  end #def self.raw_json
+
+  def self.fix_project_pages
+    # attempt to fix project pages metadata and filenames
+    pageoffset = @options[:pageoffset]
+
+    project_dir_default = '/Users/edwardsharp/src/github/emergencyindex/projects-2021/projects/2021'
+    p "enter path to projects .md files: [#{project_dir_default}]"
+    projects_dir = gets.chomp
+    projects_dir = project_dir_default if projects_dir.empty?
+    projects_dir = "#{projects_dir}/" unless projects_dir[-1] == '/'
+    raise "ERROR: unable to find projects in: #{projects_dir}" unless File.directory?(projects_dir)
+    all_filez = Dir.glob("#{projects_dir}**/*.md").select{ |e| File.file? e }
+    len = all_filez.length
+    raise "no .md files found here: #{projects_dir}?" if len == 0
+
+    all_filez.each do |file|
+
+      project = read_md file: file
+      idx_str = "#{pageoffset.to_s.rjust(3, '0')}-#{(pageoffset + 1).to_s.rjust(3, '0')}"
+      pageoffset += 2
+      
+      if project[:yml]["pages"] != idx_str
+        outfile = "#{projects_dir}#{idx_str}.md"
+        project[:yml]["pages"] = idx_str
+        File.open(outfile,"w"){|f| f.write("#{project[:yml].to_yaml}---\n#{project[:description]}")}
+        p "DIFF fromfile: #{project[:yml]["pages"]} calc:#{idx_str} ...updated #{outfile}!" 
+      end
+
+    end
+
+  end #self.fix_project_pages
+
+  def self.gen_tags
+    # ruby ./utilz/scrape_indesign.rb -g
+    # attempt to generate tags for projects by comparing description words to existing tag set
+
+    # load all the friggen tags!
+    all_projects_dir_default = '/Users/edwardsharp/src/github/emergencyindex/emergencyindex.com/_projects'
+    p "enter path to all the projects .md files: [#{all_projects_dir_default}]"
+    all_projects_dir = gets.chomp
+    all_projects_dir = all_projects_dir_default if all_projects_dir.empty?
+    all_projects_dir = "#{all_projects_dir}/" unless all_projects_dir[-1] == '/'
+    raise "ERROR: unable to find projects in: #{all_projects_dir}" unless File.directory?(all_projects_dir)
+    all_projects_files = Dir.glob("#{all_projects_dir}**/*.md").select{ |e| File.file? e }
+    len = all_projects_files.length
+    raise "no .md files found here: #{all_projects_dir}?" if len == 0
+
+    # get single volue project files dir
+    project_dir_default = '/Users/edwardsharp/src/github/emergencyindex/projects-2021/projects/2021'
+    p "enter path to projects .md files: [#{project_dir_default}]"
+    projects_dir = gets.chomp
+    projects_dir = project_dir_default if projects_dir.empty?
+    projects_dir = "#{projects_dir}/" unless projects_dir[-1] == '/'
+    raise "ERROR: unable to find projects in: #{projects_dir}" unless File.directory?(projects_dir)
+    all_filez = Dir.glob("#{projects_dir}**/*.md").select{ |e| File.file? e }
+    len = all_filez.length
+    raise "no .md files found here: #{projects_dir}?" if len == 0
+
+    p "...hold please :)"
+
+    # gather all the existing projects tags.
+    all_project_tags = []
+    all_projects_files.each do |file|
+      project = read_md file: file
+      all_project_tags << project[:yml]["tags"]
+      all_project_tags.flatten!
+      all_project_tags.uniq!
+    end
+
+    p "all_project_tags.length: #{all_project_tags.length}"
+
+    all_filez.each do |file|
+
+      project = read_md file: file
+      project_tags = []
+      begin 
+        project_words = project[:description].split(' ').map!(&:strip).filter!{ |s| s.length > 1}
+        p "so this project has #{project_words.length} words"
+        # so look for tags
+        project_tags = project_words.filter{ |word| all_project_tags.any?{ |tag| tag.casecmp(word) == 0 }}
+        project_tags.sort_by!(&:downcase).uniq!(&:downcase)
+        p "project_tags: #{project_tags.length}"
+        project[:yml]["tags"] = project_tags
+    
+        outfile = "#{projects_dir}#{project[:yml]["pages"]}.md"
+        File.open(outfile,"w"){|f| f.write("#{project[:yml].to_yaml}---#{project[:description]}")}
+        p "tags generated for: #{outfile}!" 
+      rescue 
+        p "ohnoz! file:#{file}"
+      end
+
+    end
+
+
+  end #def self.gen_tags
+
 private
   def self.status_update(len:nil, idx:nil)
     print "\b" * 16, "Progress: #{(idx.to_f / len * 100).to_i}% ", @pinwheel.rotate!.first
@@ -749,9 +967,117 @@ private
       _prev = (page.to_i - 1).to_s
       return "#{_prev.rjust(3, '0')}-#{page.rjust(3, '0')}"
     end
-
   end
 
+  def self.default_project 
+    project = {}
+    project['info'] = {}
+    project['info']['layout'] = 'project'
+    project['info']['volume'] = @options[:vol] || 2021
+    project['info']['image'] = ''
+    project['info']['photo_credit'] = ''
+    project['info']['title'] = ''
+    project['info']['first_performed'] = ''
+    project['info']['place'] = ''
+    project['info']['times_performed'] = ''
+    project['info']['contributor'] = ''
+    project['info']['collaborators'] = []
+    project['info']['home'] = ''
+    project['info']['links'] = []
+    project['info']['contact'] = ''
+    project['info']['footnote'] = ''
+    project['info']['tags'] = []
+    project['info']['pages'] = ''
+    project['description'] = ''
+    project
+  end
+
+  def self.times_performed(times)
+    t = times.to_i
+    case t
+    when 1
+      "once"
+    when 2
+      "twice"
+    when 3
+      "three times"
+    when 4
+      "four times"
+    when 5
+      "five times"
+    when 6
+      "six times"
+    when 7
+      "seven times"
+    when 8
+      "eight times"
+    when 9
+      "nine times"
+    else 
+      "#{t} times"
+    end
+  end
+
+  def self.is_first_performed_valid_year(date)
+    begin
+      parse_first_performed_date(date).strftime('%Y') == "2021"
+    rescue
+      false
+    end
+  end
+
+  def self.parse_first_performed_date(date)
+    begin
+      Time::strptime(date,"%Y-%m-%d")
+    rescue 
+      # p "unable to parse date: #{date}"
+      begin 
+        # January 10, 2021
+        # 
+        Time::strptime(date,"%B %d, %Y")
+      rescue
+        #  p "still unable to parse date: #{date}"
+        # raise
+        begin 
+          # 09/04/2021
+          # 
+          Time::strptime(date,"%m/%d/%Y")
+        rescue
+          p "datez r hard: #{date}"
+        end
+      end
+      # raise 
+    end
+  end
+
+  def self.first_performed(date)
+    # date like: 
+    # 2021-11-18
+    # format like:
+    # first_performed: first performed on November 18, 2021
+    begin
+      "first performed on #{parse_first_performed_date(date).strftime('%B %d, %Y')}"
+    rescue 
+      p "unable to parse date: #{date}"
+      raise 
+    end
+  end
+
+  def self.terms_index_md
+    %{---
+layout: page
+name: Terms
+volume: '#{@options[:vol]}'
+title: 'Index #{@options[:vol]}: Terms'
+wrapperclass: 'index-terms'
+toc: #{@options[:vol]} Terms
+---
+
+\{: #0-9 .index .sticky-nav \}
+## 0-9
+
+}
+  end
 end
 
 class ERBWithBinding < OpenStruct
